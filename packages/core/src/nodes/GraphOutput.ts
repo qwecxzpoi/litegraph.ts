@@ -3,7 +3,7 @@ import type { LActionOptions, SlotLayout } from '../LGraphNode'
 import { LGraphNode } from '../LGraphNode'
 import { LiteGraph } from '../LiteGraph'
 import type { NodeID, SlotType, Vector2 } from '../types'
-import { BASE_SLOT_TYPES, BuiltInSlotShape, BuiltInSlotType, UUID } from '../types'
+import { BASE_SLOT_TYPES, BuiltInSlotShape, BuiltInSlotType } from '../types'
 
 import { getLitegraphTypeName, isValidLitegraphType } from '../utils'
 import type { Subgraph } from './Subgraph'
@@ -51,8 +51,6 @@ export class GraphOutput extends LGraphNode {
   constructor(title?: string) {
     super(title)
 
-    const that = this
-
     this.nameWidget = this.addWidget(
       'text',
       'Name',
@@ -82,27 +80,21 @@ export class GraphOutput extends LGraphNode {
   }
 
   setName(v: string) {
-    if (v === null || v === this.properties.name)
-      return
+    if (v === null || v === this.properties.name) { return }
 
     const subgraph = this.getParentSubgraph()
-    if (!subgraph)
-      return
+    if (!subgraph) { return }
     v = subgraph.getValidGraphOutputName(v)
     this.setProperty('name', v)
   }
 
   setType(v: string) {
-    if (!v)
-      v = '*'
+    if (!v) { v = '*' }
 
     let type: SlotType = v
-    if (v === '-1' || v === 'Action')
-      type = BuiltInSlotType.ACTION
-    else if (v === '-2' || v === 'Event')
-      type = BuiltInSlotType.EVENT
-    else if (v === '0')
-      type = '*'
+    if (v === '-1' || v === 'Action') { type = BuiltInSlotType.ACTION }
+    else if (v === '-2' || v === 'Event') { type = BuiltInSlotType.EVENT }
+    else if (v === '0') { type = '*' }
 
     this.setProperty('type', type)
   }
@@ -118,32 +110,25 @@ export class GraphOutput extends LGraphNode {
   updateType() {
     let type = this.properties.type
     const input = this.inputs[0]
-    if (this.typeWidget)
-      this.typeWidget.value = getLitegraphTypeName(type)
+    if (this.typeWidget) { this.typeWidget.value = getLitegraphTypeName(type) }
 
-    if (type === 'array')
-      input.shape = BuiltInSlotShape.GRID_SHAPE
+    if (type === 'array') { input.shape = BuiltInSlotShape.GRID_SHAPE }
 
-    else if (type === BuiltInSlotType.EVENT || type === BuiltInSlotType.ACTION)
-      input.shape = BuiltInSlotShape.BOX_SHAPE
+    else if (type === BuiltInSlotType.EVENT || type === BuiltInSlotType.ACTION) { input.shape = BuiltInSlotShape.BOX_SHAPE }
 
-    else
-      input.shape = BuiltInSlotShape.DEFAULT
+    else { input.shape = BuiltInSlotShape.DEFAULT }
 
     // update output
     if (input.type !== type) {
-      if (type === 'action' || type === 'event')
-        type = BuiltInSlotType.EVENT
-      if (!LiteGraph.isValidConnection(input.type, type))
-        this.disconnectInput(0)
+      if (type === 'action' || type === 'event') { type = BuiltInSlotType.EVENT }
+      if (!LiteGraph.isValidConnection(input.type, type)) { this.disconnectInput(0) }
       input.type = type
     }
 
     // update graph
     if (this.graph && this.nameInGraph && isValidLitegraphType(type)) {
       this.graph.changeOutputType(this.nameInGraph, type)
-      if (input.type !== type)
-        this.setInputDataType(0, type)
+      if (input.type !== type) { this.setInputDataType(0, type) }
     }
     else {
       console.error('Can\'t change GraphOutput to type', type, this.graph, this.nameInGraph)
@@ -153,8 +138,7 @@ export class GraphOutput extends LGraphNode {
   /** this is executed AFTER the property has changed */
   override onPropertyChanged(name: string, value: any) {
     if (name === 'name') {
-      if (value === '' || value === this.nameInGraph || value === 'enabled')
-        return false
+      if (value === '' || value === this.nameInGraph || value === 'enabled') { return false }
 
       if (this.graph) {
         if (this.nameInGraph) {
@@ -179,8 +163,7 @@ export class GraphOutput extends LGraphNode {
   }
 
   override getTitle(): string {
-    if (this.flags.collapsed)
-      return this.properties.name
+    if (this.flags.collapsed) { return this.properties.name }
 
     return this.title
   }
@@ -191,16 +174,13 @@ export class GraphOutput extends LGraphNode {
     // }
 
     const subgraph = this.getParentSubgraph()
-    if (!subgraph)
-      return
+    if (!subgraph) { return }
 
     const outerIndex = subgraph.findOutputSlotIndexByName(this.properties.name)
-    if (outerIndex === null)
-      return
+    if (outerIndex === null) { return }
 
     const outer = subgraph.outputs[outerIndex]
-    if (outer === null /* || outer.type !== BuiltInSlotType.EVENT */)
-      return
+    if (outer === null /* || outer.type !== BuiltInSlotType.EVENT */) { return }
 
     // console.debug("[GraphOutput] Trigger slot!", subgraph, outerIndex, outer, action, param);
     subgraph.triggerSlot(outerIndex, param)
@@ -212,8 +192,7 @@ export class GraphOutput extends LGraphNode {
   }
 
   override onRemoved() {
-    if (this.nameInGraph)
-      this.graph.removeOutput(this.nameInGraph)
+    if (this.nameInGraph) { this.graph.removeOutput(this.nameInGraph) }
   }
 }
 

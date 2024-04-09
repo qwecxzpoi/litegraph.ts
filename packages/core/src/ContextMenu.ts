@@ -1,9 +1,8 @@
-import type { LGraphNode } from './LGraphNode'
 import { LiteGraph } from './LiteGraph'
+import { LGraphCanvas } from './LGraphCanvas'
+import type { LGraphNode } from './LGraphNode'
 import type { CustomEventExt, EventExt, MouseEventExt } from './DragAndScale'
 import type { SlotInPosition } from './INodeSlot'
-import { INodeSlot } from './INodeSlot'
-import { LGraphCanvas } from './LGraphCanvas'
 
 export interface ContextMenuRoot extends HTMLDivElement {
   closing_timer?: number
@@ -68,8 +67,7 @@ export class ContextMenu {
     const evt = document.createEvent('CustomEvent')
     evt.initCustomEvent(event_name, true, true, params); // canBubble, cancelable, detail
     (evt as any).target = origin
-    if (element.dispatchEvent)
-      element.dispatchEvent(evt)
+    if (element.dispatchEvent) { element.dispatchEvent(evt) }
     // } else if (element.__events) {
     //     element.__events.dispatchEvent(evt);
 
@@ -81,16 +79,14 @@ export class ContextMenu {
     const left = event.clientX
     const top = event.clientY
     const rect = element.getBoundingClientRect()
-    if (!rect)
-      return false
+    if (!rect) { return false }
 
     if (
       top > rect.top
       && top < rect.top + rect.height
       && left > rect.left
       && left < rect.left + rect.width
-    )
-      return true
+    ) { return true }
 
     return false
   }
@@ -99,16 +95,14 @@ export class ContextMenu {
     refWindow = refWindow || window
 
     const elements = refWindow.document.querySelectorAll<ContextMenuRoot>('.litecontextmenu')
-    if (!elements.length)
-      return
+    if (!elements.length) { return }
 
     const result = Array.from(elements)
 
-    for (const ctxMenu of result)
-      ctxMenu.close()
+    for (const ctxMenu of result) { ctxMenu.close() }
   }
 
-  constructor(values: ContextMenuItem[], options: IContextMenuOptions = {}, window?: Window) {
+  constructor(values: ContextMenuItem[], options: IContextMenuOptions = {}, _window?: Window) {
     this.options = options
     const that = this
 
@@ -129,7 +123,7 @@ export class ContextMenu {
 
     let eventClass = null
     if (options.event) // use strings because comparing classes between windows doesnt work
-      eventClass = options.event.constructor.name
+    { eventClass = options.event.constructor.name }
     if (eventClass !== 'MouseEvent'
       && eventClass !== 'CustomEvent'
       && eventClass !== 'PointerEvent'
@@ -142,8 +136,7 @@ export class ContextMenu {
 
     const root = document.createElement('div') as ContextMenuRoot
     root.className = 'litegraph litecontextmenu litemenubar-panel'
-    if (options.className)
-      root.className += ` ${options.className}`
+    if (options.className) { root.className += ` ${options.className}` }
 
     // root.style.minWidth = "100px";
     // root.style.minHeight = "100px";
@@ -192,8 +185,7 @@ export class ContextMenu {
       return true
     }
 
-    if (!options.scroll_speed)
-      options.scroll_speed = 0.1
+    if (!options.scroll_speed) { options.scroll_speed = 0.1 }
 
     root.addEventListener('wheel', on_mouse_wheel, true)
     root.addEventListener('mousewheel', on_mouse_wheel, true)
@@ -214,12 +206,9 @@ export class ContextMenu {
     for (let i = 0; i < values.length; i++) {
       const value = values[i]
       let name: string = ''
-      if (value === ContextMenuSpecialItem.SEPARATOR)
-        name = ''
-      else if (typeof value === 'string')
-        name = value
-      else
-        name = value.content
+      if (value === ContextMenuSpecialItem.SEPARATOR) { name = '' }
+      else if (typeof value === 'string') { name = value }
+      else { name = value.content }
       this.addItem(name, value, options)
     }
 
@@ -236,24 +225,19 @@ export class ContextMenu {
           //that.close(e);
           }); */
 
-    LiteGraph.pointerListenerAdd(root, 'enter', (e) => {
+    LiteGraph.pointerListenerAdd(root, 'enter', (_e) => {
       // console.log("pointerevents: ContextMenu enter");
-      if (root.closing_timer)
-        clearTimeout(root.closing_timer)
+      if (root.closing_timer) { clearTimeout(root.closing_timer) }
     })
 
     // insert before checking position
     let root_document = document
-    if (options.event && options.event.target instanceof Node)
-      root_document = options.event.target.ownerDocument
+    if (options.event && options.event.target instanceof Node) { root_document = options.event.target.ownerDocument }
 
-    if (!root_document)
-      root_document = document
+    if (!root_document) { root_document = document }
 
-    if (root_document.fullscreenElement)
-      root_document.fullscreenElement.appendChild(root)
-    else
-      root_document.body.appendChild(root)
+    if (root_document.fullscreenElement) { root_document.fullscreenElement.appendChild(root) }
+    else { root_document.body.appendChild(root) }
 
     // compute best position
     let left = options.left || 0
@@ -261,8 +245,7 @@ export class ContextMenu {
     if (options.event) {
       left = (options.event as any).clientX - 10
       top = (options.event as any).clientY - 10
-      if (options.title)
-        top -= 20
+      if (options.title) { top -= 20 }
 
       if (options.parentMenu) {
         const rect = options.parentMenu.root.getBoundingClientRect()
@@ -271,21 +254,17 @@ export class ContextMenu {
 
       const body_rect = document.body.getBoundingClientRect()
       const root_rect = root.getBoundingClientRect()
-      if (body_rect.height === 0)
-        console.error('document.body height is 0. That is dangerous, set html,body { height: 100%; }')
+      if (body_rect.height === 0) { console.error('document.body height is 0. That is dangerous, set html,body { height: 100%; }') }
 
-      if (body_rect.width && left > body_rect.width - root_rect.width - 10)
-        left = body_rect.width - root_rect.width - 10
+      if (body_rect.width && left > body_rect.width - root_rect.width - 10) { left = body_rect.width - root_rect.width - 10 }
 
-      if (body_rect.height && top > body_rect.height - root_rect.height - 10)
-        top = body_rect.height - root_rect.height - 10
+      if (body_rect.height && top > body_rect.height - root_rect.height - 10) { top = body_rect.height - root_rect.height - 10 }
     }
 
     root.style.left = `${left}px`
     root.style.top = `${top}px`
 
-    if (options.scale)
-      root.style.transform = `scale(${options.scale})`
+    if (options.scale) { root.style.transform = `scale(${options.scale})` }
   }
 
   options: IContextMenuOptions
@@ -304,8 +283,7 @@ export class ContextMenu {
 
     let disabled = false
 
-    if (typeof value === 'string')
-      value = { content: value }
+    if (typeof value === 'string') { value = { content: value } }
 
     if (value === ContextMenuSpecialItem.SEPARATOR) {
       element.classList.add('separator')
@@ -320,34 +298,27 @@ export class ContextMenu {
         disabled = true
         element.classList.add('disabled')
       }
-      if (value.submenu || value.has_submenu)
-        element.classList.add('has_submenu')
+      if (value.submenu || value.has_submenu) { element.classList.add('has_submenu') }
 
-      if (typeof value === 'function')
-        element.dataset.value = name
+      if (typeof value === 'function') { element.dataset.value = name }
       // element.onclick_callback = value;
-      else
-        element.dataset.value = `${this.values.length}`
+      else { element.dataset.value = `${this.values.length}` }
 
-      if (value.className)
-        element.className += ` ${value.className}`
+      if (value.className) { element.className += ` ${value.className}` }
     }
 
     this.values.push(value)
 
     this.root.appendChild(element)
-    if (!disabled)
-      element.addEventListener('click', inner_onclick)
+    if (!disabled) { element.addEventListener('click', inner_onclick) }
 
-    if (options.autoopen)
-      LiteGraph.pointerListenerAdd(element, 'enter', inner_over)
+    if (options.autoopen) { LiteGraph.pointerListenerAdd(element, 'enter', inner_over) }
 
     const ctxMenu = this
 
     function inner_over(e: MouseEvent) {
       const value = this.value
-      if (!value || !value.has_submenu)
-        return
+      if (!value || !value.has_submenu) { return }
 
       // if it is a submenu, autoopen like the item was clicked
       inner_onclick.call(this, e)
@@ -357,18 +328,15 @@ export class ContextMenu {
     function inner_onclick(_e: MouseEvent) {
       const index = Number.parseInt(this.dataset.value)
       const value = ctxMenu.values[index]
-      if (LiteGraph.debug)
-        console.debug('ContextMenu inner_onclick', index, value)
+      if (LiteGraph.debug) { console.debug('ContextMenu inner_onclick', index, value) }
 
       const graphCanvas = LGraphCanvas.active_canvas
-      if (!graphCanvas)
-        return
+      if (!graphCanvas) { return }
       const e = graphCanvas.adjustMouseEvent(_e)
 
       let close_parent = true
 
-      if (that.current_submenu)
-        that.current_submenu.close(e)
+      if (that.current_submenu) { that.current_submenu.close(e) }
 
       // global callback
       if (options.callback) {
@@ -380,8 +348,7 @@ export class ContextMenu {
           that,
           options.node,
         )
-        if (r === true)
-          close_parent = false
+        if (r === true) { close_parent = false }
       }
 
       // special cases
@@ -400,19 +367,16 @@ export class ContextMenu {
             that,
             options.extra,
           )
-          if (r === true)
-            close_parent = false
+          if (r === true) { close_parent = false }
         }
         if (value.submenu) {
-          if (!value.submenu.options)
-            throw 'ContextMenu submenu needs options'
+          if (!value.submenu.options) { throw 'ContextMenu submenu needs options' }
 
           const submenu = new ContextMenu(value.submenu.options, {
             callback: value.submenu.callback,
             event: e,
             parentMenu: that,
-            ignore_item_callbacks:
-                            value.submenu.ignore_item_callbacks,
+            ignore_item_callbacks: value.submenu.ignore_item_callbacks,
             title: value.submenu.title,
             extra: value.submenu.extra,
             autoopen: options.autoopen,
@@ -421,48 +385,40 @@ export class ContextMenu {
         }
       }
 
-      if (close_parent && !that.lock)
-        that.close()
+      if (close_parent && !that.lock) { that.close() }
     }
 
     return element
   }
 
   close(e?: MouseEventExt, ignore_parent_menu?: boolean): void {
-    if (this.root.parentNode)
-      this.root.parentNode.removeChild(this.root)
+    if (this.root.parentNode) { this.root.parentNode.removeChild(this.root) }
 
     if (this.parentMenu && !ignore_parent_menu) {
       this.parentMenu.lock = false
       this.parentMenu.current_submenu = null
-      if (e === undefined)
-        this.parentMenu.close()
+      if (e === undefined) { this.parentMenu.close() }
       else if (
         e
         && !ContextMenu.isCursorOverElement(e, this.parentMenu.root)
-      )
-        ContextMenu.trigger(this.parentMenu.root, `${LiteGraph.pointerevents_method}leave`, e)
+      ) { ContextMenu.trigger(this.parentMenu.root, `${LiteGraph.pointerevents_method}leave`, e) }
     }
-    if (this.current_submenu)
-      this.current_submenu.close(e, true)
+    if (this.current_submenu) { this.current_submenu.close(e, true) }
 
-    if (this.root.closing_timer)
-      clearTimeout(this.root.closing_timer)
+    if (this.root.closing_timer) { clearTimeout(this.root.closing_timer) }
 
     // TODO implement : LiteGraph.contextMenuClosed(); :: keep track of opened / closed / current ContextMenu
     // on key press, allow filtering/selecting the context menu elements
   }
 
   getTopMenu(): ContextMenu {
-    if (this.options.parentMenu)
-      return this.options.parentMenu.getTopMenu()
+    if (this.options.parentMenu) { return this.options.parentMenu.getTopMenu() }
 
     return this
   }
 
   getFirstEvent(): EventExt {
-    if (this.options.parentMenu)
-      return this.options.parentMenu.getFirstEvent()
+    if (this.options.parentMenu) { return this.options.parentMenu.getFirstEvent() }
 
     return this.options.event
   }

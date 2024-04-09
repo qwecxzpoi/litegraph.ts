@@ -31,8 +31,7 @@ export class LGraphGroup {
   }
 
   set pos(v: Vector2) {
-    if (!v || v.length < 2)
-      return
+    if (!v || v.length < 2) { return }
 
     this._pos[0] = v[0]
     this._pos[1] = v[1]
@@ -45,8 +44,7 @@ export class LGraphGroup {
   }
 
   set size(v: Vector2) {
-    if (!v || v.length < 2)
-      return
+    if (!v || v.length < 2) { return }
 
     this._size[0] = Math.max(140, v[0])
     this._size[1] = Math.max(80, v[1])
@@ -62,7 +60,6 @@ export class LGraphGroup {
   }
 
   configure(o: SerializedLGraphGroup): void {
-    const b = o.bounding
     this.title = o.title
     this._bounding.set(o.bounding)
     this.color = o.color
@@ -87,8 +84,7 @@ export class LGraphGroup {
   move(deltaX: number, deltaY: number, ignoreNodes?: boolean): void {
     this._pos[0] += deltaX
     this._pos[1] += deltaY
-    if (ignoreNodes)
-      return
+    if (ignoreNodes) { return }
 
     for (let i = 0; i < this._nodes.length; ++i) {
       const node = this._nodes[i]
@@ -105,8 +101,7 @@ export class LGraphGroup {
     for (let i = 0; i < nodes.length; ++i) {
       const node = nodes[i]
       node.getBounding(node_bounding)
-      if (!LiteGraph.overlapBounding(this._bounding, node_bounding))
-        continue
+      if (!LiteGraph.overlapBounding(this._bounding, node_bounding)) { continue }
       // out of the visible area
       this._nodes.push(node)
     }
@@ -120,24 +115,21 @@ export class LGraphGroup {
         skipTitle: boolean = false,
   ): boolean {
     let margin_top = this.graph && this.graph.isLive() ? 0 : LiteGraph.NODE_TITLE_HEIGHT
-    if (skipTitle)
-      margin_top = 0
+    if (skipTitle) { margin_top = 0 }
 
     if (
       this.pos[0] - 4 - margin < x
       && this.pos[0] + this.size[0] + 4 + margin > x
       && this.pos[1] - margin_top - margin < y
       && this.pos[1] + this.size[1] + margin > y
-    )
-      return true
+    ) { return true }
 
     return false
   }
 
   /** Forces to redraw or the main canvas (LGraphNode) or the bg canvas (links) */
   setDirtyCanvas(fg: boolean, bg: boolean = false): void {
-    if (!this.graph)
-      return
+    if (!this.graph) { return }
 
     this.graph.sendActionToCanvas('setDirty', [fg, bg])
   }

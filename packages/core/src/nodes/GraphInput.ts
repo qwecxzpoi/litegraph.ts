@@ -1,12 +1,10 @@
-import type { IComboWidget, ITextWidget, IWidget } from '../IWidget'
-
-import type { SlotLayout } from '../LGraphNode'
 import { LGraphNode } from '../LGraphNode'
 import { LiteGraph } from '../LiteGraph'
-import type { NodeID, SlotType, Vector2 } from '../types'
-import { BASE_SLOT_TYPES, BuiltInSlotShape, BuiltInSlotType, UUID } from '../types'
-
+import { BASE_SLOT_TYPES, BuiltInSlotShape, BuiltInSlotType } from '../types'
 import { getLitegraphTypeName, isValidLitegraphType } from '../utils'
+import type { NodeID, SlotType, Vector2 } from '../types'
+import type { IComboWidget, ITextWidget, IWidget } from '../IWidget'
+import type { SlotLayout } from '../LGraphNode'
 import type { Subgraph } from './Subgraph'
 
 export interface GraphInputProperties extends Record<string, any> {
@@ -95,27 +93,21 @@ export class GraphInput extends LGraphNode {
   }
 
   setName(v: string) {
-    if (v === null || v === this.properties.name)
-      return
+    if (v === null || v === this.properties.name) { return }
 
     const subgraph = this.getParentSubgraph()
-    if (!subgraph)
-      return
+    if (!subgraph) { return }
     v = subgraph.getValidGraphInputName(v)
     this.setProperty('name', v)
   }
 
   setType(v: string) {
-    if (!v)
-      v = '*'
+    if (!v) { v = '*' }
 
     let type: SlotType = v
-    if (v === '-1' || v === 'Action')
-      type = BuiltInSlotType.ACTION
-    else if (v === '-2' || v === 'Event')
-      type = BuiltInSlotType.EVENT
-    else if (v === '0')
-      type = '*'
+    if (v === '-1' || v === 'Action') { type = BuiltInSlotType.ACTION }
+    else if (v === '-2' || v === 'Event') { type = BuiltInSlotType.EVENT }
+    else if (v === '0') { type = '*' }
 
     this.setProperty('type', type)
   }
@@ -136,19 +128,15 @@ export class GraphInput extends LGraphNode {
 
     // update output
     if (output.type !== type) {
-      if (!LiteGraph.isValidConnection(output.type, type))
-        this.disconnectOutput(0)
+      if (!LiteGraph.isValidConnection(output.type, type)) { this.disconnectOutput(0) }
       output.type = type
     }
 
-    if (type === 'array')
-      output.shape = BuiltInSlotShape.GRID_SHAPE
+    if (type === 'array') { output.shape = BuiltInSlotShape.GRID_SHAPE }
 
-    else if (type === BuiltInSlotType.EVENT || type === BuiltInSlotType.ACTION)
-      output.shape = BuiltInSlotShape.BOX_SHAPE
+    else if (type === BuiltInSlotType.EVENT || type === BuiltInSlotType.ACTION) { output.shape = BuiltInSlotShape.BOX_SHAPE }
 
-    else
-      output.shape = BuiltInSlotShape.DEFAULT
+    else { output.shape = BuiltInSlotShape.DEFAULT }
 
     // update widget
     if (type === 'number') {
@@ -172,8 +160,7 @@ export class GraphInput extends LGraphNode {
     // update graph
     if (this.graph && this.nameInGraph && isValidLitegraphType(type)) {
       this.graph.changeInputType(this.nameInGraph, type)
-      if (output.type !== type)
-        this.setOutputDataType(0, type)
+      if (output.type !== type) { this.setOutputDataType(0, type) }
     }
     else {
       console.error('[GraphInput] Can\'t change output to type', type, this.graph, this.nameInGraph)
@@ -183,8 +170,7 @@ export class GraphInput extends LGraphNode {
   /** this is executed AFTER the property has changed */
   override onPropertyChanged(name: string, value: any) {
     if (name === 'name') {
-      if (value === '' || value === this.nameInGraph || value === 'enabled')
-        return false
+      if (value === '' || value === this.nameInGraph || value === 'enabled') { return false }
 
       if (this.graph) {
         if (this.nameInGraph) {
@@ -206,15 +192,13 @@ export class GraphInput extends LGraphNode {
   }
 
   override getTitle(): string {
-    if (this.flags.collapsed)
-      return this.properties.name
+    if (this.flags.collapsed) { return this.properties.name }
 
     return this.title
   }
 
   override onAction(action: any, param: any) {
-    if (this.properties.type === BuiltInSlotType.EVENT)
-      this.triggerSlot(0, param)
+    if (this.properties.type === BuiltInSlotType.EVENT) { this.triggerSlot(0, param) }
   }
 
   override onExecute() {
@@ -230,8 +214,7 @@ export class GraphInput extends LGraphNode {
   }
 
   override onRemoved() {
-    if (this.nameInGraph)
-      this.graph.removeInput(this.nameInGraph)
+    if (this.nameInGraph) { this.graph.removeInput(this.nameInGraph) }
   }
 }
 

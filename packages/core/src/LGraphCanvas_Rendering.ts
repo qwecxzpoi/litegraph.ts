@@ -1,12 +1,11 @@
-import type { LGraph } from './LGraph'
 import { LGraphCanvas } from './LGraphCanvas'
-import type { LGraphNode } from './LGraphNode'
 import { LiteGraph } from './LiteGraph'
-import type { LLink } from './LLink'
-import { GraphInput } from './nodes/GraphInput'
 import { BuiltInSlotShape, BuiltInSlotType, Dir, LinkRenderMode, NODE_MODE_COLORS, NODE_MODE_NAMES, TitleMode } from './types'
-import type { Vector2 } from './types'
 import { getLitegraphTypeName } from './utils'
+import type { Vector2 } from './types'
+import type { LGraph } from './LGraph'
+import type { LGraphNode } from './LGraphNode'
+import type { LLink } from './LLink'
 
 export class LGraphCanvas_Rendering {
   onRender?(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void
@@ -15,17 +14,14 @@ export class LGraphCanvas_Rendering {
   setZoom(this: LGraphCanvas, value: number, center: Vector2): void {
     this.ds.changeScale(value, center)
 
-    if (this.maxZoom && this.ds.scale > this.maxZoom)
-      this.scale = this.maxZoom
-    else if (this.minZoom && this.ds.scale < this.minZoom)
-      this.scale = this.minZoom
+    if (this.maxZoom && this.ds.scale > this.maxZoom) { this.scale = this.maxZoom }
+    else if (this.minZoom && this.ds.scale < this.minZoom) { this.scale = this.minZoom }
   }
 
   /** brings a node to front (above all other nodes) */
   bringToFront(this: LGraphCanvas, node: LGraphNode): void {
     const i = (this.graph as any)._nodes.indexOf(node)
-    if (i === -1)
-      return;
+    if (i === -1) { return }
 
     (this.graph as any)._nodes.splice(i, 1);
     (this.graph as any)._nodes.push(node)
@@ -34,8 +30,7 @@ export class LGraphCanvas_Rendering {
   /** sends a node to the back (below all other nodes) */
   sendToBack(this: LGraphCanvas, node: LGraphNode): void {
     const i = (this.graph as any)._nodes.indexOf(node)
-    if (i === -1)
-      return;
+    if (i === -1) { return }
 
     (this.graph as any)._nodes.splice(i, 1);
     (this.graph as any)._nodes.unshift(node)
@@ -52,11 +47,9 @@ export class LGraphCanvas_Rendering {
       const n = nodes[i]
 
       // skip rendering nodes in live mode
-      if (this.live_mode && !n.onDrawBackground && !n.onDrawForeground)
-        continue
+      if (this.live_mode && !n.onDrawBackground && !n.onDrawForeground) { continue }
 
-      if (!LiteGraph.overlapBounding(this.visible_area, n.getBounding(LGraphCanvas_Rendering.temp)))
-        continue
+      if (!LiteGraph.overlapBounding(this.visible_area, n.getBounding(LGraphCanvas_Rendering.temp))) { continue }
       // out of the visible area
 
       visible_nodes.push(n)
@@ -66,16 +59,14 @@ export class LGraphCanvas_Rendering {
 
   /** renders the whole canvas content, by rendering in two separated canvas, one containing the background grid and the connections, and one containing the nodes) */
   draw(this: LGraphCanvas, forceFG: boolean = false, forceBG: boolean = false): void {
-    if (!this.canvas || this.canvas.width === 0 || this.canvas.height === 0)
-      return
+    if (!this.canvas || this.canvas.width === 0 || this.canvas.height === 0) { return }
 
     // fps counting
     const now = LiteGraph.getTime()
     this.render_time = (now - this.last_draw_time) * 0.001
     this.last_draw_time = now
 
-    if (this.graph)
-      this.ds.computeVisibleArea(this.viewport)
+    if (this.graph) { this.ds.computeVisibleArea(this.viewport) }
 
     if (
       this.dirty_bgcanvas
@@ -84,11 +75,9 @@ export class LGraphCanvas_Rendering {
       || (this.graph
       && this.graph._last_trigger_time
       && now - this.graph._last_trigger_time < 1000)
-    )
-      this.drawBackCanvas()
+    ) { this.drawBackCanvas() }
 
-    if (this.dirty_canvas || forceFG)
-      this.drawFrontCanvas()
+    if (this.dirty_canvas || forceFG) { this.drawFrontCanvas() }
 
     this.fps = this.render_time ? 1.0 / this.render_time : 0
     this.frame += 1
@@ -98,8 +87,7 @@ export class LGraphCanvas_Rendering {
   drawFrontCanvas(this: LGraphCanvas): void {
     this.dirty_canvas = false
 
-    if (!this.ctx)
-      this.ctx = this.canvas.getContext('2d')
+    if (!this.ctx) { this.ctx = this.canvas.getContext('2d') }
 
     const ctx = this.ctx
     if (!ctx) {
@@ -126,25 +114,19 @@ export class LGraphCanvas_Rendering {
     // clear
     // canvas.width = canvas.width;
     if (this.clear_background) {
-      if (area)
-        ctx.clearRect(area[0], area[1], area[2], area[3])
-      else
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+      if (area) { ctx.clearRect(area[0], area[1], area[2], area[3]) }
+      else { ctx.clearRect(0, 0, canvas.width, canvas.height) }
     }
 
     // draw bg canvas
-    if (this.bgcanvas === this.canvas)
-      this.drawBackCanvas()
-    else
-      ctx.drawImage(this.bgcanvas, 0, 0)
+    if (this.bgcanvas === this.canvas) { this.drawBackCanvas() }
+    else { ctx.drawImage(this.bgcanvas, 0, 0) }
 
     // rendering
-    if (this.onRender)
-      this.onRender(canvas, ctx)
+    if (this.onRender) { this.onRender(canvas, ctx) }
 
     // info widget
-    if (this.show_info)
-      this.renderInfo(ctx, area ? area[0] : 0, area ? area[1] : 0)
+    if (this.show_info) { this.renderInfo(ctx, area ? area[0] : 0, area ? area[1] : 0) }
 
     if (this.graph) {
       // apply transformations
@@ -174,13 +156,11 @@ export class LGraphCanvas_Rendering {
       }
 
       // on top (debug)
-      if (this.render_execution_order)
-        this.drawExecutionOrder(ctx)
+      if (this.render_execution_order) { this.drawExecutionOrder(ctx) }
 
       // connections ontop?
       if (this.graph.config.links_ontop) {
-        if (!this.live_mode)
-          this.drawConnections(ctx)
+        if (!this.live_mode) { this.drawConnections(ctx) }
       }
 
       // current connection (the one being dragged by the mouse)
@@ -193,10 +173,8 @@ export class LGraphCanvas_Rendering {
         const connType = connInOrOut.type
         let connDir = connInOrOut.dir
         if (connDir === null) {
-          if (this.connecting_output)
-            connDir = this.connecting_node.horizontal ? Dir.DOWN : Dir.RIGHT
-          else
-            connDir = this.connecting_node.horizontal ? Dir.UP : Dir.LEFT
+          if (this.connecting_output) { connDir = this.connecting_node.horizontal ? Dir.DOWN : Dir.RIGHT }
+          else { connDir = this.connecting_node.horizontal ? Dir.UP : Dir.LEFT }
         }
         const connShape = connInOrOut.shape
 
@@ -318,28 +296,23 @@ export class LGraphCanvas_Rendering {
       }
 
       // on top of link center
-      if (this.over_link_center && this.render_link_tooltip)
-        this.drawLinkTooltip(ctx, this.over_link_center)
+      if (this.over_link_center && this.render_link_tooltip) { this.drawLinkTooltip(ctx, this.over_link_center) }
       else
         if (this.onDrawLinkTooltip) // to remove
-          this.onDrawLinkTooltip(ctx, null, this)
+        { this.onDrawLinkTooltip(ctx, null, this) }
 
       // custom info
-      if (this.onDrawForeground)
-        this.onDrawForeground(ctx, this.visible_area)
+      if (this.onDrawForeground) { this.onDrawForeground(ctx, this.visible_area) }
 
       ctx.restore()
     }
 
     // draws panel in the corner
-    if (this._graph_stack && this._graph_stack.length && this.render_subgraph_panels)
-      this.drawSubgraphPanel(ctx)
+    if (this._graph_stack && this._graph_stack.length && this.render_subgraph_panels) { this.drawSubgraphPanel(ctx) }
 
-    if (this.onDrawOverlay)
-      this.onDrawOverlay(ctx)
+    if (this.onDrawOverlay) { this.onDrawOverlay(ctx) }
 
-    if (area)
-      ctx.restore()
+    if (area) { ctx.restore() }
 
     // if (ctx.finish2D) {
     //     //this is a function I use in webgl renderer
@@ -390,8 +363,7 @@ export class LGraphCanvas_Rendering {
     if (subnode.inputs) {
       for (let i = 0; i < subnode.inputs.length; ++i) {
         const input = subnode.inputs[i]
-        if (input.not_subgraph_input)
-          continue
+        if (input.not_subgraph_input) { continue }
 
         ctx.fillStyle = '#9C9'
         ctx.beginPath()
@@ -406,8 +378,7 @@ export class LGraphCanvas_Rendering {
       }
     }
     // add + button
-    if (this.drawButton(20, y + 2, w - 20, h - 2, '+', '#151515', '#222'))
-      this.showSubgraphPropertiesDialog(subnode)
+    if (this.drawButton(20, y + 2, w - 20, h - 2, '+', '#151515', '#222')) { this.showSubgraphPropertiesDialog(subnode) }
   }
 
   drawSubgraphPanelRight(this: LGraphCanvas, subgraph: LGraph, subnode: LGraphNode, ctx: CanvasRenderingContext2D) {
@@ -440,8 +411,7 @@ export class LGraphCanvas_Rendering {
     if (subnode.outputs) {
       for (let i = 0; i < subnode.outputs.length; ++i) {
         const output = subnode.outputs[i]
-        if (output.not_subgraph_output)
-          continue
+        if (output.not_subgraph_output) { continue }
 
         ctx.fillStyle = '#9C9'
         ctx.beginPath()
@@ -456,8 +426,7 @@ export class LGraphCanvas_Rendering {
       }
     }
     // add + button
-    if (this.drawButton(canvas_w - w, y + 2, w - 20, h - 2, '+', '#151515', '#222'))
-      this.showSubgraphPropertiesDialogRight(subnode)
+    if (this.drawButton(canvas_w - w, y + 2, w - 20, h - 2, '+', '#151515', '#222')) { this.showSubgraphPropertiesDialogRight(subnode) }
   }
 
   // Draws a button into the canvas overlay and computes if it was clicked using the immediate gui paradigm
@@ -470,8 +439,7 @@ export class LGraphCanvas_Rendering {
     const clicked = can_interact && pos && this.pointer_is_down && LiteGraph.isInsideRectangle(pos[0], pos[1], x, y, w, h)
 
     ctx.fillStyle = hover ? hovercolor : bgcolor
-    if (clicked)
-      ctx.fillStyle = '#AAA'
+    if (clicked) { ctx.fillStyle = '#AAA' }
     ctx.beginPath()
     ctx.roundRect(x, y, w, h, [4])
     ctx.fill()
@@ -487,15 +455,13 @@ export class LGraphCanvas_Rendering {
     }
 
     const was_clicked = clicked && can_interact
-    if (clicked)
-      this.blockClick()
+    if (clicked) { this.blockClick() }
     return was_clicked
   }
 
   /** draws every group area in the background */
   drawGroups(this: LGraphCanvas, canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void {
-    if (!this.graph)
-      return
+    if (!this.graph) { return }
 
     const groups = (this.graph as any)._groups
 
@@ -505,8 +471,7 @@ export class LGraphCanvas_Rendering {
     for (let i = 0; i < groups.length; ++i) {
       const group = groups[i]
 
-      if (!LiteGraph.overlapBounding(this.visible_area, group._bounding))
-        continue
+      if (!LiteGraph.overlapBounding(this.visible_area, group._bounding)) { continue }
       // out of the visible area
 
       ctx.fillStyle = group.color || '#335'
@@ -569,8 +534,7 @@ export class LGraphCanvas_Rendering {
       canvas.height = this.canvas.height
     }
 
-    if (!this.bgctx)
-      this.bgctx = this.bgcanvas.getContext('2d')
+    if (!this.bgctx) { this.bgctx = this.bgcanvas.getContext('2d') }
 
     const ctx = this.bgctx
     // if (ctx.start) {
@@ -580,8 +544,7 @@ export class LGraphCanvas_Rendering {
     const viewport = this.viewport || [0, 0, ctx.canvas.width, ctx.canvas.height]
 
     // clear
-    if (this.clear_background)
-      ctx.clearRect(viewport[0], viewport[1], viewport[2], viewport[3])
+    if (this.clear_background) { ctx.clearRect(viewport[0], viewport[1], viewport[2], viewport[3]) }
 
     // show subgraph stack header
     if (this._graph_stack && this._graph_stack.length && this.render_subgraph_stack_header) {
@@ -597,8 +560,7 @@ export class LGraphCanvas_Rendering {
       ctx.textAlign = 'center'
       ctx.fillStyle = subgraph_node.bgcolor || '#AAA'
       let title = ''
-      for (let i = 1; i < this._graph_stack.length; ++i)
-        title += `${parent_graph._subgraph_node.getTitle()} >> `
+      for (let i = 1; i < this._graph_stack.length; ++i) { title += `${parent_graph._subgraph_node.getTitle()} >> ` }
 
       ctx.fillText(
         title + subgraph_node.getTitle(),
@@ -609,8 +571,7 @@ export class LGraphCanvas_Rendering {
     }
 
     let bg_already_painted = false
-    if (this.onRenderBackground && this.onRenderBackground(canvas, ctx))
-      bg_already_painted = true
+    if (this.onRenderBackground && this.onRenderBackground(canvas, ctx)) { bg_already_painted = true }
 
     // reset in case of error
     if (!this.viewport) {
@@ -676,11 +637,9 @@ export class LGraphCanvas_Rendering {
       }
 
       // groups
-      if ((this.graph as any)._groups.length && !this.live_mode)
-        this.drawGroups(canvas, ctx)
+      if ((this.graph as any)._groups.length && !this.live_mode) { this.drawGroups(canvas, ctx) }
 
-      if (this.onDrawBackground)
-        this.onDrawBackground(ctx, this.visible_area)
+      if (this.onDrawBackground) { this.onDrawBackground(ctx, this.visible_area) }
 
       // DEBUG: show clipping area
       if (LiteGraph.debug) {
@@ -705,8 +664,7 @@ export class LGraphCanvas_Rendering {
       }
 
       // draw connections
-      if (!this.live_mode && this.render_connections)
-        this.drawConnections(ctx)
+      if (!this.live_mode && this.render_connections) { this.drawConnections(ctx) }
 
       ctx.shadowColor = 'rgba(0,0,0,0)'
 
@@ -733,8 +691,7 @@ export class LGraphCanvas_Rendering {
     let bgColor = node.bgcolor || (node.constructor as any).bgcolor || LiteGraph.NODE_DEFAULT_BGCOLOR
 
     // shadow and glow
-    if (node.mouseOver)
-      glow = true
+    if (node.mouseOver) { glow = true }
 
     const low_quality = this.ds.scale < 0.6 // zoomed out
 
@@ -742,8 +699,7 @@ export class LGraphCanvas_Rendering {
     if (this.live_mode) {
       if (!node.flags.collapsed) {
         ctx.shadowColor = 'transparent'
-        if (node.onDrawForeground)
-          node.onDrawForeground(ctx, this, this.canvas)
+        if (node.onDrawForeground) { node.onDrawForeground(ctx, this, this.canvas) }
       }
       return
     }
@@ -766,8 +722,7 @@ export class LGraphCanvas_Rendering {
       node.flags.collapsed
       && node.onDrawCollapsed
       && node.onDrawCollapsed(ctx, this) === true
-    )
-      return
+    ) { return }
 
     // clip if required (mask)
     const shape = node.shape || BuiltInSlotShape.BOX_SHAPE
@@ -812,8 +767,7 @@ export class LGraphCanvas_Rendering {
     }
 
     // draw shape
-    if (node.has_errors)
-      bgColor = 'red'
+    if (node.has_errors) { bgColor = 'red' }
 
     this.drawNodeShape(
       node,
@@ -827,8 +781,7 @@ export class LGraphCanvas_Rendering {
     ctx.shadowColor = 'transparent'
 
     // draw foreground
-    if (node.onDrawForeground)
-      node.onDrawForeground(ctx, this, this.canvas)
+    if (node.onDrawForeground) { node.onDrawForeground(ctx, this, this.canvas) }
 
     // connection slots
     ctx.textAlign = horizontal ? 'center' : 'left'
@@ -855,11 +808,9 @@ export class LGraphCanvas_Rendering {
 
           ctx.globalAlpha = editor_alpha
           // change opacity of incompatible slots when dragging a connection
-          if (this.connecting_output && !LiteGraph.isValidConnection(slot.type, out_slot.type))
-            ctx.globalAlpha = 0.4 * editor_alpha
+          if (this.connecting_output && !LiteGraph.isValidConnection(slot.type, out_slot.type)) { ctx.globalAlpha = 0.4 * editor_alpha }
 
-          else
-            ctx.globalAlpha = editor_alpha
+          else { ctx.globalAlpha = editor_alpha }
 
           ctx.fillStyle
                         = slot.link !== null
@@ -874,8 +825,7 @@ export class LGraphCanvas_Rendering {
           const pos = node.getConnectionPos(true, i, [slot_pos[0], slot_pos[1]])
           pos[0] -= node.pos[0]
           pos[1] -= node.pos[1]
-          if (max_y < pos[1] + LiteGraph.NODE_SLOT_HEIGHT * 0.5)
-            max_y = pos[1] + LiteGraph.NODE_SLOT_HEIGHT * 0.5
+          if (max_y < pos[1] + LiteGraph.NODE_SLOT_HEIGHT * 0.5) { max_y = pos[1] + LiteGraph.NODE_SLOT_HEIGHT * 0.5 }
 
           ctx.beginPath()
 
@@ -918,10 +868,8 @@ export class LGraphCanvas_Rendering {
             doStroke = false
           }
           else {
-            if (low_quality)
-              ctx.rect(pos[0] - 4, pos[1] - 4, 8, 8) // faster
-            else
-              ctx.arc(pos[0], pos[1], 4, 0, Math.PI * 2)
+            if (low_quality) { ctx.rect(pos[0] - 4, pos[1] - 4, 8, 8) } // faster
+            else { ctx.arc(pos[0], pos[1], 4, 0, Math.PI * 2) }
           }
           ctx.fill()
 
@@ -930,10 +878,8 @@ export class LGraphCanvas_Rendering {
             const text = slot.label !== null ? slot.label : slot.name
             if (text) {
               ctx.fillStyle = LiteGraph.NODE_TEXT_COLOR
-              if (horizontal || slot.dir === Dir.UP)
-                ctx.fillText(text, pos[0], pos[1] - 10)
-              else
-                ctx.fillText(text, pos[0] + 10, pos[1] + 5)
+              if (horizontal || slot.dir === Dir.UP) { ctx.fillText(text, pos[0], pos[1] - 10) }
+              else { ctx.fillText(text, pos[0] + 10, pos[1] + 5) }
             }
           }
         }
@@ -951,17 +897,14 @@ export class LGraphCanvas_Rendering {
           const slot_shape = slot.shape
 
           // change opacity of incompatible slots when dragging a connection
-          if (this.connecting_input && !LiteGraph.isValidConnection(in_slot.type, slot_type))
-            ctx.globalAlpha = 0.4 * editor_alpha
+          if (this.connecting_input && !LiteGraph.isValidConnection(in_slot.type, slot_type)) { ctx.globalAlpha = 0.4 * editor_alpha }
 
-          else
-            ctx.globalAlpha = editor_alpha
+          else { ctx.globalAlpha = editor_alpha }
 
           const pos = node.getConnectionPos(false, i, slot_pos)
           pos[0] -= node.pos[0]
           pos[1] -= node.pos[1]
-          if (max_y < pos[1] + LiteGraph.NODE_SLOT_HEIGHT * 0.5)
-            max_y = pos[1] + LiteGraph.NODE_SLOT_HEIGHT * 0.5
+          if (max_y < pos[1] + LiteGraph.NODE_SLOT_HEIGHT * 0.5) { max_y = pos[1] + LiteGraph.NODE_SLOT_HEIGHT * 0.5 }
 
           ctx.fillStyle
                         = slot.links && slot.links.length
@@ -1014,10 +957,8 @@ export class LGraphCanvas_Rendering {
             doStroke = false
           }
           else {
-            if (low_quality)
-              ctx.rect(pos[0] - 4, pos[1] - 4, 8, 8)
-            else
-              ctx.arc(pos[0], pos[1], 4, 0, Math.PI * 2)
+            if (low_quality) { ctx.rect(pos[0] - 4, pos[1] - 4, 8, 8) }
+            else { ctx.arc(pos[0], pos[1], 4, 0, Math.PI * 2) }
           }
 
           // trigger
@@ -1026,18 +967,15 @@ export class LGraphCanvas_Rendering {
 
           // if(slot.links !== null && slot.links.length)
           ctx.fill()
-          if (!low_quality && doStroke)
-            ctx.stroke()
+          if (!low_quality && doStroke) { ctx.stroke() }
 
           // render output name
           if (render_text) {
             const text = slot.label !== null ? slot.label : slot.name
             if (text) {
               ctx.fillStyle = LiteGraph.NODE_TEXT_COLOR
-              if (horizontal || slot.dir === Dir.DOWN)
-                ctx.fillText(text, pos[0], pos[1] - 8)
-              else
-                ctx.fillText(text, pos[0] - 10, pos[1] + 5)
+              if (horizontal || slot.dir === Dir.DOWN) { ctx.fillText(text, pos[0], pos[1] - 8) }
+              else { ctx.fillText(text, pos[0] - 10, pos[1] + 5) }
             }
           }
         }
@@ -1048,11 +986,9 @@ export class LGraphCanvas_Rendering {
 
       if (node.widgets) {
         let widgets_y = max_y
-        if (horizontal || node.widgets_up)
-          widgets_y = 2
+        if (horizontal || node.widgets_up) { widgets_y = 2 }
 
-        if (node.widgets_start_y !== null)
-          widgets_y = node.widgets_start_y
+        if (node.widgets_start_y !== null) { widgets_y = node.widgets_start_y }
         this.drawNodeWidgets(
           node,
           widgets_y,
@@ -1072,8 +1008,7 @@ export class LGraphCanvas_Rendering {
       if (node.inputs) {
         for (let i = 0; i < node.inputs.length; i++) {
           const slot = node.inputs[i]
-          if (slot.link === null)
-            continue
+          if (slot.link === null) { continue }
 
           input_slot = slot
           break
@@ -1082,8 +1017,7 @@ export class LGraphCanvas_Rendering {
       if (node.outputs) {
         for (let i = 0; i < node.outputs.length; i++) {
           const slot = node.outputs[i]
-          if (!slot.links || !slot.links.length)
-            continue
+          if (!slot.links || !slot.links.length) { continue }
 
           output_slot = slot
         }
@@ -1140,8 +1074,7 @@ export class LGraphCanvas_Rendering {
       }
     }
 
-    if (node.clip_area)
-      ctx.restore()
+    if (node.clip_area) { ctx.restore() }
 
     ctx.globalAlpha = 1.0
   }
@@ -1156,30 +1089,22 @@ export class LGraphCanvas_Rendering {
       ctx.fill()
     }
 
-    if (link.data === null)
-      return
+    if (link.data === null) { return }
 
     if (this.onDrawLinkTooltip) {
-      if (this.onDrawLinkTooltip(ctx, link, this) === true)
-        return
+      if (this.onDrawLinkTooltip(ctx, link, this) === true) { return }
     }
 
     const data = link.data
     let text = null
 
-    if (data.constructor === Number)
-      text = data.toFixed(2)
-    else if (data.constructor === String)
-      text = `"${data}"`
-    else if (data.constructor === Boolean)
-      text = String(data)
-    else if (data.toToolTip)
-      text = data.toToolTip()
-    else
-      text = `[${data.constructor.name}]`
+    if (data.constructor === Number) { text = data.toFixed(2) }
+    else if (data.constructor === String) { text = `"${data}"` }
+    else if (data.constructor === Boolean) { text = String(data) }
+    else if (data.toToolTip) { text = data.toToolTip() }
+    else { text = `[${data.constructor.name}]` }
 
-    if (text === null)
-      return
+    if (text === null) { return }
     text = text.substr(0, 30) // avoid weird
 
     ctx.font = '14px Courier New'
@@ -1278,8 +1203,7 @@ export class LGraphCanvas_Rendering {
     }
     ctx.shadowColor = 'transparent'
 
-    if (node.onDrawBackground)
-      node.onDrawBackground(ctx, this, this.canvas, this.graph_mouse)
+    if (node.onDrawBackground) { node.onDrawBackground(ctx, this, this.canvas, this.graph_mouse) }
 
     // title bg (remember, it is rendered ABOVE the node)
     if (render_title || titleMode === TitleMode.TRANSPARENT_TITLE) {
@@ -1293,8 +1217,7 @@ export class LGraphCanvas_Rendering {
       ) {
         const title_color = (node.constructor as any).title_color || fgColor
 
-        if (node.flags.collapsed)
-          ctx.shadowColor = LiteGraph.DEFAULT_SHADOW_COLOR
+        if (node.flags.collapsed) { ctx.shadowColor = LiteGraph.DEFAULT_SHADOW_COLOR }
 
         //* gradient test
         if (this.use_gradients) {
@@ -1330,11 +1253,9 @@ export class LGraphCanvas_Rendering {
 
       let colState = null
       if (LiteGraph.node_box_coloured_by_mode) {
-        if (NODE_MODE_COLORS[node.mode])
-          colState = NODE_MODE_COLORS[node.mode]
+        if (NODE_MODE_COLORS[node.mode]) { colState = NODE_MODE_COLORS[node.mode] }
       }
-      if (LiteGraph.node_box_coloured_when_on)
-        colState = node.action_triggered ? '#FFF' : (node.execute_triggered ? '#AAA' : colState)
+      if (LiteGraph.node_box_coloured_when_on) { colState = node.action_triggered ? '#FFF' : (node.execute_triggered ? '#AAA' : colState) }
 
       // title box
       const box_size = 10
@@ -1459,14 +1380,12 @@ export class LGraphCanvas_Rendering {
       }
 
       // custom title render
-      if (node.onDrawTitle)
-        node.onDrawTitle(ctx, this)
+      if (node.onDrawTitle) { node.onDrawTitle(ctx, this) }
     }
 
     // render selection marker
     if (selected) {
-      if (node.onBounding)
-        node.onBounding(area)
+      if (node.onBounding) { node.onBounding(area) }
 
       if (titleMode === TitleMode.TRANSPARENT_TITLE) {
         area[1] -= title_height
@@ -1520,10 +1439,8 @@ export class LGraphCanvas_Rendering {
     }
 
     // these counter helps in conditioning drawing based on if the node has been executed or an action occurred
-    if (node.execute_triggered > 0)
-      node.execute_triggered--
-    if (node.action_triggered > 0)
-      node.action_triggered--
+    if (node.execute_triggered > 0) { node.execute_triggered-- }
+    if (node.action_triggered > 0) { node.action_triggered-- }
   }
 
   private static margin_area = new Float32Array(4)
@@ -1552,23 +1469,19 @@ export class LGraphCanvas_Rendering {
     for (let n = 0, l = nodes.length; n < l; ++n) {
       const node = nodes[n]
       // for every input (we render just inputs because it is easier as every slot can only have one input)
-      if (!node.inputs || !node.inputs.length)
-        continue
+      if (!node.inputs || !node.inputs.length) { continue }
 
       for (let i = 0; i < node.inputs.length; ++i) {
         const input = node.inputs[i]
-        if (!input || input.link === null)
-          continue
+        if (!input || input.link === null) { continue }
 
         const link_id = input.link
         const link = this.graph.links[link_id]
-        if (!link)
-          continue
+        if (!link) { continue }
 
         // find link info
         const start_node = this.graph.getNodeById(link.origin_id)
-        if (start_node === null)
-          continue
+        if (start_node === null) { continue }
 
         const start_node_slot = link.origin_slot
         let start_node_slotpos = null
@@ -1604,13 +1517,11 @@ export class LGraphCanvas_Rendering {
         }
 
         // skip links outside of the visible area of the canvas
-        if (!LiteGraph.overlapBounding(link_bounding, margin_area))
-          continue
+        if (!LiteGraph.overlapBounding(link_bounding, margin_area)) { continue }
 
         const start_slot = start_node.outputs[start_node_slot]
         const end_slot = node.inputs[i]
-        if (!start_slot || !end_slot)
-          continue
+        if (!start_slot || !end_slot) { continue }
 
         const startDir
                     = start_slot.dir
@@ -1679,31 +1590,25 @@ export class LGraphCanvas_Rendering {
     endDir?: Dir,
     numSublines?: number,
   ): void {
-    if (link)
-      this.visible_links.push(link)
+    if (link) { this.visible_links.push(link) }
 
     // choose color
-    if (!color && link)
-      color = link.color || this.link_type_colors[link.type]
+    if (!color && link) { color = link.color || this.link_type_colors[link.type] }
 
-    if (!color)
-      color = this.default_link_color
+    if (!color) { color = this.default_link_color }
 
-    if (link !== null && this.highlighted_links[link.id])
-      color = '#FFF'
+    if (link !== null && this.highlighted_links[link.id]) { color = '#FFF' }
 
     startDir = startDir || Dir.RIGHT
     endDir = endDir || Dir.LEFT
 
     const dist = LiteGraph.distance(a, b)
 
-    if (this.render_connections_border && this.ds.scale > 0.6)
-      ctx.lineWidth = this.connections_width + 4
+    if (this.render_connections_border && this.ds.scale > 0.6) { ctx.lineWidth = this.connections_width + 4 }
 
     ctx.lineJoin = 'round'
     numSublines = numSublines || 1
-    if (numSublines > 1)
-      ctx.lineWidth = 0.5
+    if (numSublines > 1) { ctx.lineWidth = 0.5 }
 
     // begin line shape
     ctx.beginPath()
@@ -1804,15 +1709,11 @@ export class LGraphCanvas_Rendering {
         let start_y = a[1]
         let end_x = b[0]
         let end_y = b[1]
-        if (startDir === Dir.RIGHT)
-          start_x += 10
-        else
-          start_y += 10
+        if (startDir === Dir.RIGHT) { start_x += 10 }
+        else { start_y += 10 }
 
-        if (endDir === Dir.LEFT)
-          end_x -= 10
-        else
-          end_y -= 10
+        if (endDir === Dir.LEFT) { end_x -= 10 }
+        else { end_y -= 10 }
 
         ctx.lineTo(start_x, start_y)
         ctx.lineTo((start_x + end_x) * 0.5, start_y)
@@ -2038,8 +1939,7 @@ export class LGraphCanvas_Rendering {
     ctx: CanvasRenderingContext2D,
     activeWidget: object,
   ): void {
-    if (!node.widgets || !node.widgets.length)
-      return
+    if (!node.widgets || !node.widgets.length) { return }
 
     const width = node.size[0]
     const widgets = node.widgets
@@ -2056,20 +1956,17 @@ export class LGraphCanvas_Rendering {
 
     for (let i = 0; i < widgets.length; ++i) {
       const w = widgets[i]
-      if (w.hidden)
-        continue
+      if (w.hidden) { continue }
 
       let y = posY
-      if (w.y)
-        y = w.y
+      if (w.y) { y = w.y }
 
       w.last_y = y
       ctx.strokeStyle = outline_color
       ctx.fillStyle = '#222'
       ctx.textAlign = 'left'
       // ctx.lineWidth = 2;
-      if (w.disabled)
-        ctx.globalAlpha *= 0.5
+      if (w.disabled) { ctx.globalAlpha *= 0.5 }
       const widget_width = w.width || width
 
       switch (w.type) {
@@ -2080,8 +1977,7 @@ export class LGraphCanvas_Rendering {
             this.dirty_canvas = true
           }
           ctx.fillRect(margin, y, widget_width - margin * 2, H)
-          if (show_text && !w.disabled && !LiteGraph.ignore_all_widget_events)
-            ctx.strokeRect(margin, y, widget_width - margin * 2, H)
+          if (show_text && !w.disabled && !LiteGraph.ignore_all_widget_events) { ctx.strokeRect(margin, y, widget_width - margin * 2, H) }
           if (show_text) {
             ctx.textAlign = 'center'
             ctx.fillStyle = text_color
@@ -2093,21 +1989,17 @@ export class LGraphCanvas_Rendering {
           ctx.strokeStyle = outline_color
           ctx.fillStyle = background_color
           ctx.beginPath()
-          if (show_text)
-            (ctx as any).roundRect(margin, y, widget_width - margin * 2, H, [H * 0.5])
-          else
-            ctx.rect(margin, y, widget_width - margin * 2, H)
+          if (show_text) { (ctx as any).roundRect(margin, y, widget_width - margin * 2, H, [H * 0.5]) }
+          else { ctx.rect(margin, y, widget_width - margin * 2, H) }
           ctx.fill()
-          if (show_text && !w.disabled && !LiteGraph.ignore_all_widget_events)
-            ctx.stroke()
+          if (show_text && !w.disabled && !LiteGraph.ignore_all_widget_events) { ctx.stroke() }
           ctx.fillStyle = w.value ? '#89A' : '#333'
           ctx.beginPath()
           ctx.arc(widget_width - margin * 2, y + H * 0.5, H * 0.36, 0, Math.PI * 2)
           ctx.fill()
           if (show_text) {
             ctx.fillStyle = secondary_text_color
-            if (w.name !== null)
-              ctx.fillText(w.name, margin * 2, y + H * 0.7)
+            if (w.name !== null) { ctx.fillText(w.name, margin * 2, y + H * 0.7) }
 
             ctx.fillStyle = w.value ? text_color : secondary_text_color
             ctx.textAlign = 'right'
@@ -2127,8 +2019,7 @@ export class LGraphCanvas_Rendering {
           const nvalue = (w.value - w.options.min) / range
           ctx.fillStyle = activeWidget === w ? '#89A' : '#678'
           ctx.fillRect(margin, y, nvalue * (widget_width - margin * 2), H)
-          if (show_text && !w.disabled)
-            ctx.strokeRect(margin, y, widget_width - margin * 2, H)
+          if (show_text && !w.disabled) { ctx.strokeRect(margin, y, widget_width - margin * 2, H) }
           if (w.marker) {
             const marker_nvalue = ((+w.marker) - w.options.min) / range
             ctx.fillStyle = '#AA9'
@@ -2150,14 +2041,11 @@ export class LGraphCanvas_Rendering {
           ctx.strokeStyle = outline_color
           ctx.fillStyle = background_color
           ctx.beginPath()
-          if (show_text)
-            (ctx as any).roundRect(margin, y, widget_width - margin * 2, H, [H * 0.5])
-          else
-            ctx.rect(margin, y, widget_width - margin * 2, H)
+          if (show_text) { (ctx as any).roundRect(margin, y, widget_width - margin * 2, H, [H * 0.5]) }
+          else { ctx.rect(margin, y, widget_width - margin * 2, H) }
           ctx.fill()
           if (show_text) {
-            if (!w.disabled && !LiteGraph.ignore_all_widget_events)
-              ctx.stroke()
+            if (!w.disabled && !LiteGraph.ignore_all_widget_events) { ctx.stroke() }
             ctx.fillStyle = text_color
             if (!w.disabled && !LiteGraph.ignore_all_widget_events) {
               ctx.beginPath()
@@ -2190,10 +2078,8 @@ export class LGraphCanvas_Rendering {
               let v = w.value
               if (w.options.values) {
                 let values = w.options.values
-                if (values.constructor === Function)
-                  values = values()
-                if (values && values.constructor !== Array)
-                  v = values[w.value]
+                if (values.constructor === Function) { values = values() }
+                if (values && values.constructor !== Array) { v = values[w.value] }
               }
               ctx.fillText(
                 v,
@@ -2209,14 +2095,11 @@ export class LGraphCanvas_Rendering {
           ctx.strokeStyle = outline_color
           ctx.fillStyle = background_color
           ctx.beginPath()
-          if (show_text)
-            (ctx as any).roundRect(margin, y, widget_width - margin * 2, H, [H * 0.5])
-          else
-            ctx.rect(margin, y, widget_width - margin * 2, H)
+          if (show_text) { (ctx as any).roundRect(margin, y, widget_width - margin * 2, H, [H * 0.5]) }
+          else { ctx.rect(margin, y, widget_width - margin * 2, H) }
           ctx.fill()
           if (show_text) {
-            if (!w.disabled)
-              ctx.stroke()
+            if (!w.disabled) { ctx.stroke() }
             ctx.save()
             ctx.beginPath()
             ctx.rect(margin, y, widget_width - margin * 2, H)
@@ -2224,8 +2107,7 @@ export class LGraphCanvas_Rendering {
 
             // ctx.stroke();
             ctx.fillStyle = secondary_text_color
-            if (w.name !== null)
-              ctx.fillText(w.name, margin * 2, y + H * 0.7)
+            if (w.name !== null) { ctx.fillText(w.name, margin * 2, y + H * 0.7) }
 
             ctx.fillStyle = text_color
             ctx.textAlign = 'right'
@@ -2234,8 +2116,7 @@ export class LGraphCanvas_Rendering {
           }
           break
         default:
-          if (w.draw)
-            w.draw(ctx, node, widget_width, y, H)
+          if (w.draw) { w.draw(ctx, node, widget_width, y, H) }
 
           break
       }

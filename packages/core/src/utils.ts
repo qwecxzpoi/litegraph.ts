@@ -1,7 +1,7 @@
 import type { SlotType } from './types'
 import { BuiltInSlotType } from './types'
 
-interface CanvasRenderingContext2D {
+export interface CanvasRenderingContext2D {
   /** like rect but rounded corners */
   roundRect: (
     x: number,
@@ -26,22 +26,19 @@ export function toHashMap<T>(arr: T[], toKey: (T) => string): Record<string, T> 
 }
 
 export function getStaticProperty<T>(type: new (...args: any[]) => any, name: string): T {
-  if (name in type)
-    return type[name] as T
+  if (name in type) { return type[name] as T }
 
   return null
 }
 
 export function getStaticPropertyOnInstance<T>(type: any, name: string): T {
-  if (name in type.constructor)
-    return type.constructor[name] as T
+  if (name in type.constructor) { return type.constructor[name] as T }
 
   return null
 }
 
 function onDrag(e: MouseEvent, el: HTMLElement) {
-  if (e.target !== el)
-    return
+  if (e.target !== el) { return }
 
   const offsetX = e.clientX - Number.parseInt(window.getComputedStyle(el).left)
   const offsetY = e.clientY - Number.parseInt(window.getComputedStyle(el).top)
@@ -74,14 +71,11 @@ export function makeDraggable(el: HTMLElement): HTMLElement {
 }
 
 export function getLitegraphTypeName(type: SlotType): string {
-  if (type === BuiltInSlotType.EVENT)
-    return 'Event'
+  if (type === BuiltInSlotType.EVENT) { return 'Event' }
 
-  else if (type === BuiltInSlotType.ACTION)
-    return 'Action'
+  else if (type === BuiltInSlotType.ACTION) { return 'Action' }
 
-  else if (type === BuiltInSlotType.DEFAULT)
-    return 'Default'
+  else if (type === BuiltInSlotType.DEFAULT) { return 'Default' }
 
   return type
 }

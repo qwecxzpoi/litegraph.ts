@@ -6,9 +6,7 @@ import type { INodeInputSlot, INodeOutputSlot, INodeSlot, SlotInPosition, SlotIn
 import type { IProperty, IPropertyInfo } from './IProperty'
 import type { IWidget, WidgetCallback } from './IWidget'
 import type { LGraph, LGraphRemoveNodeOptions } from './LGraph'
-
 import type { INodePanel, LGraphCanvas } from './LGraphCanvas'
-
 import { LLink } from './LLink'
 import { LiteGraph } from './LiteGraph'
 import type { LinkID, NodeID, SlotShape, SlotType, Vector2 } from './types'
