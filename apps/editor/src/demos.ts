@@ -1,112 +1,111 @@
-import { LGraph, LiteGraph } from "@litegraph-ts/core";
-import { ConstantNumber, Watch } from "@litegraph-ts/nodes-basic"
-import { MathOperation } from "@litegraph-ts/nodes-math"
+import type { LGraph } from '@litegraph-ts/core'
+import { LiteGraph } from '@litegraph-ts/core'
+import { ConstantNumber, Watch } from '@litegraph-ts/nodes-basic'
+import { MathOperation } from '@litegraph-ts/nodes-math'
 
 export function demo(graph: LGraph) {
-    multiConnection(graph);
+  multiConnection(graph)
 }
 
 function multiConnection(graph: LGraph) {
-    // var node_button = LiteGraph.createNode("widget/button");
-    // node_button.pos = [100, 400];
-    // graph.add(node_button);
+  // var node_button = LiteGraph.createNode("widget/button");
+  // node_button.pos = [100, 400];
+  // graph.add(node_button);
 
-    // var node_console = LiteGraph.createNode("basic/console");
-    // node_console.pos = [400, 400];
-    // graph.add(node_console);
-    // node_button.connect(0, node_console);
+  // var node_console = LiteGraph.createNode("basic/console");
+  // node_console.pos = [400, 400];
+  // graph.add(node_console);
+  // node_button.connect(0, node_console);
 
-    var node_const_A = LiteGraph.createNode(ConstantNumber);
-    node_const_A.pos = [200, 200];
-    graph.add(node_const_A);
-    node_const_A.setValue(4.5);
+  const node_const_A = LiteGraph.createNode(ConstantNumber)
+  node_const_A.pos = [200, 200]
+  graph.add(node_const_A)
+  node_const_A.setValue(4.5)
 
-    var node_const_B = LiteGraph.createNode(ConstantNumber);
-    node_const_B.pos = [200, 300];
-    graph.add(node_const_B);
-    node_const_B.setValue(10);
+  const node_const_B = LiteGraph.createNode(ConstantNumber)
+  node_const_B.pos = [200, 300]
+  graph.add(node_const_B)
+  node_const_B.setValue(10)
 
-    var node_math = LiteGraph.createNode(MathOperation);
-    node_math.pos = [400, 200];
-    graph.add(node_math);
+  const node_math = LiteGraph.createNode(MathOperation)
+  node_math.pos = [400, 200]
+  graph.add(node_math)
 
-    var node_watch = LiteGraph.createNode(Watch);
-    node_watch.pos = [700, 200];
-    graph.add(node_watch);
+  const node_watch = LiteGraph.createNode(Watch)
+  node_watch.pos = [700, 200]
+  graph.add(node_watch)
 
-    var node_watch2 = LiteGraph.createNode(Watch);
-    node_watch2.pos = [700, 300];
-    graph.add(node_watch2);
+  const node_watch2 = LiteGraph.createNode(Watch)
+  node_watch2.pos = [700, 300]
+  graph.add(node_watch2)
 
-    node_const_A.connect(0, node_math, 0);
-    node_const_B.connect(0, node_math, 1);
-    node_math.connect(0, node_watch, 0);
-    node_math.connect(0, node_watch2, 0);
+  node_const_A.connect(0, node_math, 0)
+  node_const_B.connect(0, node_math, 1)
+  node_math.connect(0, node_watch, 0)
+  node_math.connect(0, node_watch2, 0)
 }
 
 function sortTest(graph: LGraph) {
-    // var rand = LiteGraph.createNode("math/rand", null, { pos: [10, 100] });
-    // graph.add(rand);
+  // var rand = LiteGraph.createNode("math/rand", null, { pos: [10, 100] });
+  // graph.add(rand);
 
-    // var nodes = [];
-    // for (var i = 4; i >= 1; i--) {
-    //     var n = LiteGraph.createNode("basic/watch", null, { pos: [i * 120, 100] });
-    //     graph.add(n);
-    //     nodes[i - 1] = n;
-    // }
+  // var nodes = [];
+  // for (var i = 4; i >= 1; i--) {
+  //     var n = LiteGraph.createNode("basic/watch", null, { pos: [i * 120, 100] });
+  //     graph.add(n);
+  //     nodes[i - 1] = n;
+  // }
 
-    // rand.connect(0, nodes[0], 0);
+  // rand.connect(0, nodes[0], 0);
 
-    // for (var i = 0; i < nodes.length - 1; i++)
-    //     nodes[i].connect(0, nodes[i + 1], 0);
+  // for (var i = 0; i < nodes.length - 1; i++)
+  //     nodes[i].connect(0, nodes[i + 1], 0);
 }
 
 function benchmark() {
-    // var num_nodes = 200;
-    // var nodes = [];
-    // for (var i = 0; i < num_nodes; i++) {
-    //     var n = LiteGraph.createNode("basic/watch", null, { pos: [(2000 * Math.random()) | 0, (2000 * Math.random()) | 0] });
-    //     graph.add(n);
-    //     nodes.push(n);
-    // }
+  // var num_nodes = 200;
+  // var nodes = [];
+  // for (var i = 0; i < num_nodes; i++) {
+  //     var n = LiteGraph.createNode("basic/watch", null, { pos: [(2000 * Math.random()) | 0, (2000 * Math.random()) | 0] });
+  //     graph.add(n);
+  //     nodes.push(n);
+  // }
 
-    // for (var i = 0; i < nodes.length; i++)
-    //     nodes[(Math.random() * nodes.length) | 0].connect(0, nodes[(Math.random() * nodes.length) | 0], 0);
+  // for (var i = 0; i < nodes.length; i++)
+  //     nodes[(Math.random() * nodes.length) | 0].connect(0, nodes[(Math.random() * nodes.length) | 0], 0);
 }
 
-
-
-//Show value inside the debug console
+// Show value inside the debug console
 function TestWidgetsNode() {
-    // this.addOutput("", "number");
-    // this.properties = {};
-    // var that = this;
-    // this.slider = this.addWidget("slider", "Slider", 0.5, function(v) { }, { min: 0, max: 1 });
-    // this.number = this.addWidget("number", "Number", 0.5, function(v) { }, { min: 0, max: 100 });
-    // this.combo = this.addWidget("combo", "Combo", "red", function(v) { }, { values: ["red", "green", "blue"] });
-    // this.text = this.addWidget("text", "Text", "edit me", function(v) { }, {});
-    // this.text2 = this.addWidget("text", "Text", "multiline", function(v) { }, { multiline: true });
-    // this.toggle = this.addWidget("toggle", "Toggle", true, function(v) { }, { on: "enabled", off: "disabled" });
-    // this.button = this.addWidget("button", "Button", null, function(v) { }, {});
-    // this.toggle2 = this.addWidget("toggle", "Disabled", true, function(v) { }, { on: "enabled", off: "disabled" });
-    // this.toggle2.disabled = true;
-    // this.size = this.computeSize();
-    // this.serialize_widgets = true;
+  // this.addOutput("", "number");
+  // this.properties = {};
+  // var that = this;
+  // this.slider = this.addWidget("slider", "Slider", 0.5, function(v) { }, { min: 0, max: 1 });
+  // this.number = this.addWidget("number", "Number", 0.5, function(v) { }, { min: 0, max: 100 });
+  // this.combo = this.addWidget("combo", "Combo", "red", function(v) { }, { values: ["red", "green", "blue"] });
+  // this.text = this.addWidget("text", "Text", "edit me", function(v) { }, {});
+  // this.text2 = this.addWidget("text", "Text", "multiline", function(v) { }, { multiline: true });
+  // this.toggle = this.addWidget("toggle", "Toggle", true, function(v) { }, { on: "enabled", off: "disabled" });
+  // this.button = this.addWidget("button", "Button", null, function(v) { }, {});
+  // this.toggle2 = this.addWidget("toggle", "Disabled", true, function(v) { }, { on: "enabled", off: "disabled" });
+  // this.toggle2.disabled = true;
+  // this.size = this.computeSize();
+  // this.serialize_widgets = true;
 }
 
 // TestWidgetsNode.title = "Widgets";
 
 // LiteGraph.registerNodeType("features/widgets", TestWidgetsNode);
 
-//Show value inside the debug console
+// Show value inside the debug console
 function TestSpecialNode() {
-    // this.addInput("", "number");
-    // this.addOutput("", "number");
-    // this.properties = {};
-    // var that = this;
-    // this.size = this.computeSize();
-    // this.enabled = false;
-    // this.visible = false;
+  // this.addInput("", "number");
+  // this.addOutput("", "number");
+  // this.properties = {};
+  // var that = this;
+  // this.size = this.computeSize();
+  // this.enabled = false;
+  // this.visible = false;
 }
 
 // TestSpecialNode.title = "Custom Shapes";
@@ -173,8 +172,6 @@ function TestSpecialNode() {
 
 // LiteGraph.registerNodeType("features/shape", TestSpecialNode);
 
-
-
 // //Show value inside the debug console
 // function TestSlotsNode() {
 //     this.addInput("C", "number");
@@ -186,9 +183,7 @@ function TestSpecialNode() {
 
 // TestSlotsNode.title = "Flat Slots";
 
-
 // LiteGraph.registerNodeType("features/slots", TestSlotsNode);
-
 
 // //Show value inside the debug console
 // function TestPropertyEditorsNode() {
@@ -210,6 +205,5 @@ function TestSpecialNode() {
 // }
 
 // TestPropertyEditorsNode.title = "Properties";
-
 
 // LiteGraph.registerNodeType("features/properties_editor", TestPropertyEditorsNode);
