@@ -859,11 +859,11 @@ export class LGraphCanvas_UI {
     })
 
     const rect = canvas.getBoundingClientRect()
-    let offsetx = -20
-    let offsety = -20
+    let offsetX = -20
+    let offsetY = -20
     if (rect) {
-      offsetx -= rect.left
-      offsety -= rect.top
+      offsetX -= rect.left
+      offsetY -= rect.top
     }
 
     if (event) {
@@ -871,8 +871,8 @@ export class LGraphCanvas_UI {
       dialog.style.top = `${event.clientY}px`
     }
     else {
-      dialog.style.left = `${canvas.width * 0.5 + offsetx}px`
-      dialog.style.top = `${canvas.height * 0.5 + offsety}px`
+      dialog.style.left = `${canvas.width * 0.5 + offsetX}px`
+      dialog.style.top = `${canvas.height * 0.5 + offsetY}px`
     }
     console.warn(dialog.style.left, dialog.style.top)
     console.warn(event)

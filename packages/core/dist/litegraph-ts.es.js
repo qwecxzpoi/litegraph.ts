@@ -1,76 +1,76 @@
-var D = /* @__PURE__ */ ((t) => (t[t.UP = 1] = "UP", t[t.DOWN = 2] = "DOWN", t[t.LEFT = 3] = "LEFT", t[t.RIGHT = 4] = "RIGHT", t[t.CENTER = 5] = "CENTER", t))(D || {}), W = /* @__PURE__ */ ((t) => (t[t.ALWAYS = 0] = "ALWAYS", t[t.ON_EVENT = 1] = "ON_EVENT", t[t.NEVER = 2] = "NEVER", t[t.ON_TRIGGER = 3] = "ON_TRIGGER", t[t.ON_REQUEST = 4] = "ON_REQUEST", t))(W || {});
-const Q = ["Always", "On Event", "Never", "On Trigger"], gt = ["#666", "#422", "#333", "#224", "#626"];
-var A = /* @__PURE__ */ ((t) => (t[t.DEFAULT = 0] = "DEFAULT", t[t.BOX_SHAPE = 1] = "BOX_SHAPE", t[t.ROUND_SHAPE = 2] = "ROUND_SHAPE", t[t.CIRCLE_SHAPE = 3] = "CIRCLE_SHAPE", t[t.CARD_SHAPE = 4] = "CARD_SHAPE", t[t.ARROW_SHAPE = 5] = "ARROW_SHAPE", t[t.GRID_SHAPE = 6] = "GRID_SHAPE", t))(A || {});
-const vt = ["default", "box", "round", "circle", "card", "arrow", "square"];
-var B = /* @__PURE__ */ ((t) => (t[t.INPUT = 0] = "INPUT", t[t.OUTPUT = 1] = "OUTPUT", t))(B || {}), lt = /* @__PURE__ */ ((t) => (t[t.STRAIGHT_LINK = 0] = "STRAIGHT_LINK", t[t.LINEAR_LINK = 1] = "LINEAR_LINK", t[t.SPLINE_LINK = 2] = "SPLINE_LINK", t))(lt || {});
-const Ft = ["Straight", "Linear", "Spline"];
-var Z = /* @__PURE__ */ ((t) => (t[t.NORMAL_TITLE = 0] = "NORMAL_TITLE", t[t.NO_TITLE = 1] = "NO_TITLE", t[t.TRANSPARENT_TITLE = 2] = "TRANSPARENT_TITLE", t[t.AUTOHIDE_TITLE = 3] = "AUTOHIDE_TITLE", t))(Z || {}), k = /* @__PURE__ */ ((t) => (t[t.EVENT = -2] = "EVENT", t[t.ACTION = -1] = "ACTION", t[t.DEFAULT = 0] = "DEFAULT", t))(k || {});
-const bt = ["*", "array", "object", "number", "string", "enum", "boolean", "table"];
+var L = /* @__PURE__ */ ((t) => (t[t.UP = 1] = "UP", t[t.DOWN = 2] = "DOWN", t[t.LEFT = 3] = "LEFT", t[t.RIGHT = 4] = "RIGHT", t[t.CENTER = 5] = "CENTER", t))(L || {}), Y = /* @__PURE__ */ ((t) => (t[t.ALWAYS = 0] = "ALWAYS", t[t.ON_EVENT = 1] = "ON_EVENT", t[t.NEVER = 2] = "NEVER", t[t.ON_TRIGGER = 3] = "ON_TRIGGER", t[t.ON_REQUEST = 4] = "ON_REQUEST", t))(Y || {});
+const J = ["Always", "On Event", "Never", "On Trigger"], _t = ["#666", "#422", "#333", "#224", "#626"];
+var S = /* @__PURE__ */ ((t) => (t[t.DEFAULT = 0] = "DEFAULT", t[t.BOX_SHAPE = 1] = "BOX_SHAPE", t[t.ROUND_SHAPE = 2] = "ROUND_SHAPE", t[t.CIRCLE_SHAPE = 3] = "CIRCLE_SHAPE", t[t.CARD_SHAPE = 4] = "CARD_SHAPE", t[t.ARROW_SHAPE = 5] = "ARROW_SHAPE", t[t.GRID_SHAPE = 6] = "GRID_SHAPE", t))(S || {});
+const gt = ["default", "box", "round", "circle", "card", "arrow", "square"];
+var G = /* @__PURE__ */ ((t) => (t[t.INPUT = 0] = "INPUT", t[t.OUTPUT = 1] = "OUTPUT", t))(G || {}), rt = /* @__PURE__ */ ((t) => (t[t.STRAIGHT_LINK = 0] = "STRAIGHT_LINK", t[t.LINEAR_LINK = 1] = "LINEAR_LINK", t[t.SPLINE_LINK = 2] = "SPLINE_LINK", t))(rt || {});
+const Ht = ["Straight", "Linear", "Spline"];
+var q = /* @__PURE__ */ ((t) => (t[t.NORMAL_TITLE = 0] = "NORMAL_TITLE", t[t.NO_TITLE = 1] = "NO_TITLE", t[t.TRANSPARENT_TITLE = 2] = "TRANSPARENT_TITLE", t[t.AUTOHIDE_TITLE = 3] = "AUTOHIDE_TITLE", t))(q || {}), O = /* @__PURE__ */ ((t) => (t[t.EVENT = -2] = "EVENT", t[t.ACTION = -1] = "ACTION", t[t.DEFAULT = 0] = "DEFAULT", t))(O || {});
+const yt = ["*", "array", "object", "number", "string", "enum", "boolean", "table"];
 var st = /* @__PURE__ */ ((t) => (t.VERTICAL_LAYOUT = "vertical", t.HORIZONTAL_LAYOUT = "horizontal", t))(st || {});
-function dt(t, e, s) {
+function pt(t, e, s) {
   return e > t ? e : s < t ? s : t;
 }
-function ht(t, e) {
-  return t.reduce((s, o) => {
-    const n = e(o);
-    return s[n] = o, s;
+function ut(t, e) {
+  return t.reduce((s, n) => {
+    const i = e(n);
+    return s[i] = n, s;
   }, {});
 }
-function mt(t, e) {
+function vt(t, e) {
   return e in t ? t[e] : null;
 }
-function pt(t, e) {
+function ct(t, e) {
   return e in t.constructor ? t.constructor[e] : null;
 }
-function St(t, e) {
+function Ct(t, e) {
   if (t.target !== e)
     return;
-  const s = t.clientX - Number.parseInt(window.getComputedStyle(e).left), o = t.clientY - Number.parseInt(window.getComputedStyle(e).top), n = (a) => {
-    if (a.buttons === 0) {
-      r();
+  const s = t.clientX - Number.parseInt(window.getComputedStyle(e).left), n = t.clientY - Number.parseInt(window.getComputedStyle(e).top), i = (l) => {
+    if (l.buttons === 0) {
+      o();
       return;
     }
-    e.style.top = `${a.clientY - o}px`, e.style.left = `${a.clientX - s}px`;
-  }, r = () => {
-    window.removeEventListener("mousemove", n), window.removeEventListener("mouseup", r);
+    e.style.top = `${l.clientY - n}px`, e.style.left = `${l.clientX - s}px`;
+  }, o = () => {
+    window.removeEventListener("mousemove", i), window.removeEventListener("mouseup", o);
   };
-  window.addEventListener("mousemove", n), window.addEventListener("mouseup", r);
+  window.addEventListener("mousemove", i), window.addEventListener("mouseup", o);
 }
-function ft(t) {
-  return t.addEventListener("mousedown", (e) => St(e, t)), t.classList.add("draggable"), t;
+function dt(t) {
+  return t.addEventListener("mousedown", (e) => Ct(e, t)), t.classList.add("draggable"), t;
 }
-function X(t) {
-  return t === k.EVENT ? "Event" : t === k.ACTION ? "Action" : t === k.DEFAULT ? "Default" : t;
+function W(t) {
+  return t === O.EVENT ? "Event" : t === O.ACTION ? "Action" : t === O.DEFAULT ? "Default" : t;
 }
-function Tt(t) {
-  return t === k.EVENT || t === k.ACTION || t === k.DEFAULT || typeof t == "string";
+function bt(t) {
+  return t === O.EVENT || t === O.ACTION || t === O.DEFAULT || typeof t == "string";
 }
-const L = class {
+const A = class {
   /** Register a node class so it can be listed when the user wants to create a new one */
   static registerNodeType(t) {
-    L.debug && console.log(`Node registered: ${t.type}`);
+    A.debug && console.log(`Node registered: ${t.type}`);
     const e = t.name, s = t.type;
     if (!s)
       throw `Config has no type: ${t}`;
-    if (L.debug && console.debug(e, s), t.category === null || t.category === "") {
-      const n = s.lastIndexOf("/");
-      t.category = s.substring(0, n);
+    if (A.debug && console.debug(e, s), t.category === null || t.category === "") {
+      const i = s.lastIndexOf("/");
+      t.category = s.substring(0, i);
     }
     t.title || (t.title = e);
-    const o = L.registered_node_types[s];
-    if (o && console.warn(`replacing node type: ${s}`), t.supported_extensions)
-      for (const n in t.supported_extensions) {
-        const r = t.supported_extensions[n];
-        r && r.constructor === String && (L.node_types_by_file_extension[r.toLowerCase()] = t);
+    const n = A.registered_node_types[s];
+    if (n && console.warn(`replacing node type: ${s}`), t.supported_extensions)
+      for (const i in t.supported_extensions) {
+        const o = t.supported_extensions[i];
+        o && o.constructor === String && (A.node_types_by_file_extension[o.toLowerCase()] = t);
       }
-    t.class.__LITEGRAPH_TYPE__ = s, L.registered_node_types[s] = t, t.class.name && (L.Nodes[e] = t), L.onNodeTypeRegistered && L.onNodeTypeRegistered(s, t), o && L.onNodeTypeReplaced && L.onNodeTypeReplaced(s, t, o);
+    t.class.__LITEGRAPH_TYPE__ = s, A.registered_node_types[s] = t, t.class.name && (A.Nodes[e] = t), A.onNodeTypeRegistered && A.onNodeTypeRegistered(s, t), n && A.onNodeTypeReplaced && A.onNodeTypeReplaced(s, t, n);
   }
   /** removes a node type from the system */
   static unregisterNodeType(t) {
     let e;
-    if (typeof t == "string" ? e = L.registered_node_types[t] : e = t, !e)
+    if (typeof t == "string" ? e = A.registered_node_types[t] : e = t, !e)
       throw `node type not found: ${t}`;
-    delete L.registered_node_types[e.type], e.constructor.name && delete L.Nodes[e.constructor.name];
+    delete A.registered_node_types[e.type], e.constructor.name && delete A.Nodes[e.constructor.name];
   }
   /**
    * Save a slot type and his node
@@ -79,22 +79,22 @@ const L = class {
    * @param {string} slot_type name of the slot type (variable type), eg. string, number, array, boolean, ..
    */
   static registerNodeAndSlotType(t, e, s = !1) {
-    let o;
-    if (typeof t == "string" ? o = L.registered_node_types[t] : "type" in t ? o = L.registered_node_types[t.type] : o = t, !o)
+    let n;
+    if (typeof t == "string" ? n = A.registered_node_types[t] : "type" in t ? n = A.registered_node_types[t.type] : n = t, !n)
       throw new Error(`Node not registered!${t}`);
-    const n = o.class.__litegraph_type__;
-    let r;
-    typeof e == "string" ? r = e.split(",") : e === k.EVENT || e === k.ACTION ? r = ["_event_"] : r = ["*"];
-    for (let a = 0; a < r.length; ++a) {
-      let u = r[a];
-      u === "" && (u = "*");
-      const l = s ? "registered_slot_out_types" : "registered_slot_in_types";
-      typeof this[l][u] > "u" && (this[l][u] = { nodes: [] }), this[l][u].nodes.push(n), u !== "_event_" && u !== "*" && (s ? L.slot_types_out.includes(u.toLowerCase()) || (L.slot_types_out.push(u.toLowerCase()), L.slot_types_out.sort()) : L.slot_types_in.includes(u.toLowerCase()) || (L.slot_types_in.push(u.toLowerCase()), L.slot_types_in.sort()));
+    const i = n.class.__litegraph_type__;
+    let o;
+    typeof e == "string" ? o = e.split(",") : e === O.EVENT || e === O.ACTION ? o = ["_event_"] : o = ["*"];
+    for (let l = 0; l < o.length; ++l) {
+      let a = o[l];
+      a === "" && (a = "*");
+      const r = s ? "registered_slot_out_types" : "registered_slot_in_types";
+      typeof this[r][a] > "u" && (this[r][a] = { nodes: [] }), this[r][a].nodes.push(i), a !== "_event_" && a !== "*" && (s ? A.slot_types_out.includes(a.toLowerCase()) || (A.slot_types_out.push(a.toLowerCase()), A.slot_types_out.sort()) : A.slot_types_in.includes(a.toLowerCase()) || (A.slot_types_in.push(a.toLowerCase()), A.slot_types_in.sort()));
     }
   }
   /** Removes all previously registered node's types. */
   static clearRegisteredTypes() {
-    L.registered_node_types = {}, L.node_types_by_file_extension = {}, L.Nodes = {}, L.searchbox_extras = {};
+    A.registered_node_types = {}, A.node_types_by_file_extension = {}, A.Nodes = {}, A.searchbox_extras = {};
   }
   /**
    * Create a new node type by passing a function, it wraps it with a proper class and generates inputs according to the parameters of the function.
@@ -166,58 +166,58 @@ const L = class {
    * @param options to set options
    */
   static createNode(t, e, s = {}) {
-    let o = null, n;
+    let n = null, i;
     if (typeof t == "string")
-      n = t;
-    else if (n = t.__LITEGRAPH_TYPE__, !n)
+      i = t;
+    else if (i = t.__LITEGRAPH_TYPE__, !i)
       throw console.error(t), "Node was not registered yet!";
-    if (o = L.registered_node_types[n], !o)
+    if (n = A.registered_node_types[i], !n)
       return console.warn(
         `GraphNode type "${t}" not registered.`
       ), null;
-    e = e || o.title || n;
-    let r = null;
-    const a = s.constructorArgs || [];
-    if (L.catch_exceptions)
+    e = e || n.title || i;
+    let o = null;
+    const l = s.constructorArgs || [];
+    if (A.catch_exceptions)
       try {
-        r = new o.class(e, ...a);
-      } catch (p) {
-        return console.error("Error creating node!", p), null;
+        o = new n.class(e, ...l);
+      } catch (c) {
+        return console.error("Error creating node!", c), null;
       }
     else
-      r = new o.class(e, ...a);
-    if (r.class = o.class, r.type = n, !r.title && e && (r.title = e), r.properties || (r.properties = {}), r.properties_info || (r.properties_info = []), r.flags || (r.flags = {}), r.size || (r.size = r.computeSize()), r.pos || (r.pos = [L.DEFAULT_POSITION[0], L.DEFAULT_POSITION[1]]), r.mode || (r.mode = W.ALWAYS), s.instanceProps)
-      for (const p in s.instanceProps)
-        r[p] = s.instanceProps[p];
-    const u = mt(o.class, "propertyLayout");
-    if (u) {
-      L.debug && console.debug("Found property layout!", u);
-      for (const p of u) {
-        const { name: f, defaultValue: c, type: g, options: y } = p;
-        r.addProperty(f, c, g, y);
+      o = new n.class(e, ...l);
+    if (o.class = n.class, o.type = i, !o.title && e && (o.title = e), o.properties || (o.properties = {}), o.properties_info || (o.properties_info = []), o.flags || (o.flags = {}), o.size || (o.size = o.computeSize()), o.pos || (o.pos = [A.DEFAULT_POSITION[0], A.DEFAULT_POSITION[1]]), o.mode || (o.mode = Y.ALWAYS), s.instanceProps)
+      for (const c in s.instanceProps)
+        o[c] = s.instanceProps[c];
+    const a = vt(n.class, "propertyLayout");
+    if (a) {
+      A.debug && console.debug("Found property layout!", a);
+      for (const c of a) {
+        const { name: d, defaultValue: u, type: _, options: m } = c;
+        o.addProperty(d, u, _, m);
       }
     }
-    const l = mt(o.class, "slotLayout");
-    if (l) {
-      if (L.debug && console.debug("Found slot layout!", l), l.inputs)
-        for (const p of l.inputs) {
-          const { name: f, type: c, options: g } = p;
-          r.addInput(f, c, g);
+    const r = vt(n.class, "slotLayout");
+    if (r) {
+      if (A.debug && console.debug("Found slot layout!", r), r.inputs)
+        for (const c of r.inputs) {
+          const { name: d, type: u, options: _ } = c;
+          o.addInput(d, u, _);
         }
-      if (l.outputs)
-        for (const p of l.outputs) {
-          const { name: f, type: c, options: g } = p;
-          r.addOutput(f, c, g);
+      if (r.outputs)
+        for (const c of r.outputs) {
+          const { name: d, type: u, options: _ } = c;
+          o.addOutput(d, u, _);
         }
     }
-    return r.onNodeCreated && r.onNodeCreated(), r;
+    return o.onNodeCreated && o.onNodeCreated(), o;
   }
   /**
    * Returns a registered node type with a given name
    * @param type full name of the node class. p.e. "math/sin"
    */
   static getNodeType(t) {
-    return L.registered_node_types[t];
+    return A.registered_node_types[t];
   }
   /**
    * Returns a list of node types matching one category
@@ -228,11 +228,11 @@ const L = class {
    */
   static getNodeTypesInCategory(t, e) {
     const s = [];
-    for (const o in L.registered_node_types) {
-      const n = L.registered_node_types[o];
-      n.filter === e && (t === "" ? n.category === null && s.push(n) : n.category === t && s.push(n));
+    for (const n in A.registered_node_types) {
+      const i = A.registered_node_types[n];
+      i.filter === e && (t === "" ? i.category === null && s.push(i) : i.category === t && s.push(i));
     }
-    return L.auto_sort_node_types && s.sort((o, n) => o.title.localeCompare(n.title)), s;
+    return A.auto_sort_node_types && s.sort((n, i) => n.title.localeCompare(i.title)), s;
   }
   /**
    * Returns a list with all the node type categories
@@ -242,40 +242,40 @@ const L = class {
    */
   static getNodeTypesCategories(t) {
     const e = { "": 1 };
-    for (const o in L.registered_node_types) {
-      const n = L.registered_node_types[o];
-      if (n.category && !n.hide_in_node_lists) {
-        if (n.filter !== t)
+    for (const n in A.registered_node_types) {
+      const i = A.registered_node_types[n];
+      if (i.category && !i.hide_in_node_lists) {
+        if (i.filter !== t)
           continue;
-        e[n.category] = 1;
+        e[i.category] = 1;
       }
     }
     const s = [];
-    for (const o in e)
-      s.push(o);
-    return L.auto_sort_node_types ? s.sort() : s;
+    for (const n in e)
+      s.push(n);
+    return A.auto_sort_node_types ? s.sort() : s;
   }
   /** debug purposes: reloads all the js scripts that matches a wildcard */
   static reloadNodes(t) {
     const e = document.getElementsByTagName("script"), s = [];
-    for (let n = 0; n < e.length; n++)
-      s.push(e[n]);
-    const o = document.getElementsByTagName("head")[0];
+    for (let i = 0; i < e.length; i++)
+      s.push(e[i]);
+    const n = document.getElementsByTagName("head")[0];
     t = document.location.href + t;
-    for (let n = 0; n < s.length; n++) {
-      const r = s[n].src;
-      if (!(!r || r.substr(0, t.length) !== t))
+    for (let i = 0; i < s.length; i++) {
+      const o = s[i].src;
+      if (!(!o || o.substr(0, t.length) !== t))
         try {
-          L.debug && console.log(`Reloading: ${r}`);
-          const a = document.createElement("script");
-          a.type = "text/javascript", a.src = r, o.appendChild(a), o.removeChild(s[n]);
-        } catch (a) {
-          if (L.throw_errors)
-            throw a;
-          L.debug && console.log(`Error while reloading ${r}`);
+          A.debug && console.log(`Reloading: ${o}`);
+          const l = document.createElement("script");
+          l.type = "text/javascript", l.src = o, n.appendChild(l), n.removeChild(s[i]);
+        } catch (l) {
+          if (A.throw_errors)
+            throw l;
+          A.debug && console.log(`Error while reloading ${o}`);
         }
     }
-    L.debug && console.log("Nodes reloaded");
+    A.debug && console.log("Nodes reloaded");
   }
   // TODO move
   // separated just to improve if it doesn't work
@@ -285,8 +285,8 @@ const L = class {
     const s = JSON.parse(JSON.stringify(t));
     if (!e)
       return s;
-    for (const o in s)
-      e[o] = s[o];
+    for (const n in s)
+      e[n] = s[n];
     return e;
   }
   /**
@@ -297,14 +297,14 @@ const L = class {
    * @return {boolean} true if they can be connected
    */
   static isValidConnection(t, e) {
-    if ((t === "" || t === "*") && (t = k.DEFAULT), (e === "" || e === "*") && (e = k.DEFAULT), !t || !e || t === e || t === k.EVENT && e === k.ACTION || t === k.ACTION && e === k.EVENT)
+    if ((t === "" || t === "*") && (t = O.DEFAULT), (e === "" || e === "*") && (e = O.DEFAULT), !t || !e || t === e || t === O.EVENT && e === O.ACTION || t === O.ACTION && e === O.EVENT)
       return !0;
     if (t = String(t), e = String(e), t = t.toLowerCase(), e = e.toLowerCase(), !t.includes(",") && !e.includes(","))
       return t === e;
-    const s = t.split(","), o = e.split(",");
-    for (let n = 0; n < s.length; ++n)
-      for (let r = 0; r < o.length; ++r)
-        if (this.isValidConnection(s[n], o[r]))
+    const s = t.split(","), n = e.split(",");
+    for (let i = 0; i < s.length; ++i)
+      for (let o = 0; o < n.length; ++o)
+        if (this.isValidConnection(s[i], n[o]))
           return !0;
     return !1;
   }
@@ -328,8 +328,8 @@ const L = class {
   static colorToString(t) {
     return `rgba(${Math.round(t[0] * 255).toFixed()},${Math.round(t[1] * 255).toFixed()},${Math.round(t[2] * 255).toFixed()},${t.length === 4 ? t[3].toFixed(2) : "1.0"})`;
   }
-  static isInsideRectangle(t, e, s, o, n, r) {
-    return s < t && s + n > t && o < e && o + r > e;
+  static isInsideRectangle(t, e, s, n, i, o) {
+    return s < t && s + i > t && n < e && n + o > e;
   }
   // [minx,miny,maxx,maxy]
   static growBounding(t, e, s) {
@@ -340,8 +340,8 @@ const L = class {
   }
   // bounding overlap, format: [ startx, starty, width, height ]
   static overlapBounding(t, e) {
-    const s = t[0] + t[2], o = t[1] + t[3], n = e[0] + e[2], r = e[1] + e[3];
-    return !(t[0] > n || t[1] > r || s < e[0] || o < e[1]);
+    const s = t[0] + t[2], n = t[1] + t[3], i = e[0] + e[2], o = e[1] + e[3];
+    return !(t[0] > i || t[1] > o || s < e[0] || n < e[1]);
   }
   // Convert a hex value to its decimal value - the inputted hex must be in the
   // format of a hex triplet - the kind we use for HTML colours. The function
@@ -349,18 +349,18 @@ const L = class {
   static hex2num(t) {
     t.charAt(0) === "#" && (t = t.slice(1)), t = t.toUpperCase();
     const e = "0123456789ABCDEF";
-    let s, o = 0, n, r;
-    for (let a = 0; a < 6; a += 2)
-      n = e.indexOf(t.charAt(a)), r = e.indexOf(t.charAt(a + 1)), s[o] = n * 16 + r, o++;
+    let s, n = 0, i, o;
+    for (let l = 0; l < 6; l += 2)
+      i = e.indexOf(t.charAt(l)), o = e.indexOf(t.charAt(l + 1)), s[n] = i * 16 + o, n++;
     return s;
   }
   // Give a array with three values as the argument and the function will return
   //	the corresponding hex triplet.
   static num2hex(t) {
     const e = "0123456789ABCDEF";
-    let s = "#", o, n;
-    for (let r = 0; r < 3; r++)
-      o = t[r] / 16, n = t[r] % 16, s += e.charAt(o) + e.charAt(n);
+    let s = "#", n, i;
+    for (let o = 0; o < 3; o++)
+      n = t[o] / 16, i = t[o] % 16, s += e.charAt(n) + e.charAt(i);
     return s;
   }
   // ContextMenu: typeof ContextMenu;
@@ -368,26 +368,26 @@ const L = class {
   // static getParameterNames(func: string | Function): string[];
   /* helper for interaction: pointer, touch, mouse Listeners
        used by LGraphCanvas DragAndScale ContextMenu */
-  static pointerListenerAdd(t, e, s, o = !1) {
+  static pointerListenerAdd(t, e, s, n = !1) {
     if (!t || !t.addEventListener || !e || typeof s != "function")
       return;
-    let n = L.pointerevents_method, r = e;
-    if (n === "pointer" && !window.PointerEvent)
-      switch (console.warn("sMethod=='pointer' && !window.PointerEvent"), console.log(`Converting pointer[${r}] : down move up cancel enter TO touchstart touchmove touchend, etc ..`), r) {
+    let i = A.pointerevents_method, o = e;
+    if (i === "pointer" && !window.PointerEvent)
+      switch (console.warn("sMethod=='pointer' && !window.PointerEvent"), console.log(`Converting pointer[${o}] : down move up cancel enter TO touchstart touchmove touchend, etc ..`), o) {
         case "down": {
-          n = "touch", r = "start";
+          i = "touch", o = "start";
           break;
         }
         case "move": {
-          n = "touch";
+          i = "touch";
           break;
         }
         case "up": {
-          n = "touch", r = "end";
+          i = "touch", o = "end";
           break;
         }
         case "cancel": {
-          n = "touch";
+          i = "touch";
           break;
         }
         case "enter": {
@@ -395,27 +395,27 @@ const L = class {
           break;
         }
         default:
-          console.warn(`PointerEvent not available in this browser ? The event ${r} would not be called`);
+          console.warn(`PointerEvent not available in this browser ? The event ${o} would not be called`);
       }
-    switch (r) {
+    switch (o) {
       case "down":
       case "up":
       case "move":
       case "over":
       case "out":
       case "enter":
-        t.addEventListener(n + r, s, o);
+        t.addEventListener(i + o, s, n);
       case "leave":
       case "cancel":
       case "gotpointercapture":
       case "lostpointercapture":
-        if (n !== "mouse")
-          return t.addEventListener(n + r, s, o);
+        if (i !== "mouse")
+          return t.addEventListener(i + o, s, n);
       default:
-        return t.addEventListener(r, s, o);
+        return t.addEventListener(o, s, n);
     }
   }
-  static pointerListenerRemove(t, e, s, o = !1) {
+  static pointerListenerRemove(t, e, s, n = !1) {
     if (!(!t || !t.removeEventListener || !e || typeof s != "function"))
       switch (e) {
         case "down":
@@ -424,19 +424,19 @@ const L = class {
         case "over":
         case "out":
         case "enter":
-          (L.pointerevents_method === "pointer" || L.pointerevents_method === "mouse") && t.removeEventListener(L.pointerevents_method + e, s, o);
+          (A.pointerevents_method === "pointer" || A.pointerevents_method === "mouse") && t.removeEventListener(A.pointerevents_method + e, s, n);
         case "leave":
         case "cancel":
         case "gotpointercapture":
         case "lostpointercapture":
-          if (L.pointerevents_method === "pointer")
-            return t.removeEventListener(L.pointerevents_method + e, s, o);
+          if (A.pointerevents_method === "pointer")
+            return t.removeEventListener(A.pointerevents_method + e, s, n);
         default:
-          return t.removeEventListener(e, s, o);
+          return t.removeEventListener(e, s, n);
       }
   }
 };
-let h = L;
+let h = A;
 h.VERSION = 10;
 h.CANVAS_GRID_SIZE = 10;
 h.NODE_TITLE_HEIGHT = 20;
@@ -508,160 +508,161 @@ h.use_uuids = !1;
 h.search_box_refresh_interval_ms = 250;
 h.graph_inputs_outputs_use_combo_widget = !1;
 h.serialize_slot_data = !1;
-class at {
+class lt {
   processMouseDown(e) {
     if (this.set_canvas_dirty_on_mouse_event && (this.dirty_canvas = !0), !this.graph)
       return;
     const s = e;
     this.adjustMouseEvent(s);
-    const o = this.getCanvasWindow();
-    o.document, T.active_canvas = this;
-    let n = !1;
-    const r = s.clientX, a = s.clientY;
+    const n = this.getCanvasWindow();
+    n.document, b.active_canvas = this;
+    let i = !1;
+    const o = s.clientX, l = s.clientY;
     this.ds.viewport = this.viewport;
-    const u = !this.viewport || this.viewport && r >= this.viewport[0] && r < this.viewport[0] + this.viewport[2] && a >= this.viewport[1] && a < this.viewport[1] + this.viewport[3];
-    if (this.skip_events || (h.pointerListenerRemove(this.canvas, "move", this._mousemove_callback), h.pointerListenerAdd(o.document, "move", this._mousemove_callback, !0), h.pointerListenerAdd(o.document, "up", this._mouseup_callback, !0)), !u)
+    const a = !this.viewport || this.viewport && o >= this.viewport[0] && o < this.viewport[0] + this.viewport[2] && l >= this.viewport[1] && l < this.viewport[1] + this.viewport[3];
+    if (this.skip_events || (h.pointerListenerRemove(this.canvas, "move", this._mousemove_callback), h.pointerListenerAdd(n.document, "move", this._mousemove_callback, !0), h.pointerListenerAdd(n.document, "up", this._mouseup_callback, !0)), !a)
       return;
-    let l = this.graph.getNodeOnPos(s.canvasX, s.canvasY, this.visible_nodes, 5), p = !1;
-    const f = h.getTime(), c = !(s instanceof PointerEvent) || !s.isPrimary, g = f - this.last_mouseclick < 300 && c;
-    if (this.mouse[0] = s.clientX, this.mouse[1] = s.clientY, this.offset_mouse[0] = s.offsetX, this.offset_mouse[1] = s.offsetY, this.graph_mouse[0] = s.canvasX, this.graph_mouse[1] = s.canvasY, this.last_click_position = [this.mouse[0], this.mouse[1]], this.last_click_position_offset = [this.offset_mouse[0], this.offset_mouse[1]], this.pointer_is_down && c ? this.pointer_is_double = !0 : this.pointer_is_double = !1, this.pointer_is_down = !0, this.canvas.focus(), z.closeAllContextMenus(o), this.search_box && this.search_box.close(), !(this.onMouse && this.onMouse(s) === !0)) {
+    let r = this.graph.getNodeOnPos(s.canvasX, s.canvasY, this.visible_nodes, 5), c = !1;
+    const d = h.getTime(), u = !(s instanceof PointerEvent) || !s.isPrimary, _ = d - this.last_mouseclick < 300 && u;
+    if (this.mouse[0] = s.clientX, this.mouse[1] = s.clientY, this.offset_mouse[0] = s.offsetX, this.offset_mouse[1] = s.offsetY, this.graph_mouse[0] = s.canvasX, this.graph_mouse[1] = s.canvasY, this.last_click_position = [this.mouse[0], this.mouse[1]], this.last_click_position_offset = [this.offset_mouse[0], this.offset_mouse[1]], this.pointer_is_down && u ? this.pointer_is_double = !0 : this.pointer_is_double = !1, this.pointer_is_down = !0, this.canvas.focus(), U.closeAllContextMenus(n), this.search_box && this.search_box.close(), !(this.onMouse && this.onMouse(s) === !0)) {
       if (s.which === 1 && !this.pointer_is_double) {
-        if (s.ctrlKey && this.allow_interaction && !this.read_only && (this.dragging_rectangle = new Float32Array(4), this.dragging_rectangle[0] = s.canvasX, this.dragging_rectangle[1] = s.canvasY, this.dragging_rectangle[2] = 1, this.dragging_rectangle[3] = 1, p = !0), h.alt_drag_do_clone_nodes && s.altKey && l && this.allow_interaction && !p && !this.read_only) {
-          const d = l.clone();
-          d && (d.pos[0] += 5, d.pos[1] += 5, this.graph.add(d, { doCalcSize: !1 }), l = d, p = !0, n || (this.allow_dragnodes && (this.graph.beforeChange(), this.node_dragged = l), this.selected_nodes[l.id] || this.processNodeSelected(l, s)));
+        if (s.ctrlKey && this.allow_interaction && !this.read_only && (this.dragging_rectangle = new Float32Array(4), this.dragging_rectangle[0] = s.canvasX, this.dragging_rectangle[1] = s.canvasY, this.dragging_rectangle[2] = 1, this.dragging_rectangle[3] = 1, c = !0), h.alt_drag_do_clone_nodes && s.altKey && r && this.allow_interaction && !c && !this.read_only) {
+          const p = r.clone();
+          p && (p.pos[0] += 5, p.pos[1] += 5, this.graph.add(p, { doCalcSize: !1 }), r = p, c = !0, i || (this.allow_dragnodes && (this.graph.beforeChange(), this.node_dragged = r), this.selected_nodes[r.id] || this.processNodeSelected(r, s)));
         }
-        let y = !1;
-        if (l && this.allow_interaction && !p && !this.read_only) {
-          if (!this.live_mode && !l.flags.pinned && this.bringToFront(l), !this.connecting_node && !l.flags.collapsed && !this.live_mode)
-            if (!p && l.resizable !== !1 && h.isInsideRectangle(s.canvasX, s.canvasY, l.pos[0] + l.size[0] - 5, l.pos[1] + l.size[1] - 5, 10, 10))
-              this.graph.beforeChange(), this.resizing_node = l, this.canvas.style.cursor = "se-resize", p = !0;
+        let m = !1;
+        if (r && this.allow_interaction && !c && !this.read_only) {
+          if (!this.live_mode && !r.flags.pinned && this.bringToFront(r), !this.connecting_node && !r.flags.collapsed && !this.live_mode)
+            if (!c && r.resizable !== !1 && h.isInsideRectangle(s.canvasX, s.canvasY, r.pos[0] + r.size[0] - 5, r.pos[1] + r.size[1] - 5, 10, 10))
+              this.graph.beforeChange(), this.resizing_node = r, this.canvas.style.cursor = "se-resize", c = !0;
             else {
-              if (l.outputs)
-                for (let d = 0, _ = l.outputs.length; d < _; ++d) {
-                  const m = l.outputs[d], b = l.getConnectionPos(!1, d);
+              if (r.outputs)
+                for (let p = 0, f = r.outputs.length; p < f; ++p) {
+                  const v = r.outputs[p], y = r.getConnectionPos(!1, p);
                   if (h.isInsideRectangle(
                     s.canvasX,
                     s.canvasY,
-                    b[0] - 15,
-                    b[1] - 10,
+                    y[0] - 15,
+                    y[1] - 10,
                     30,
                     20
                   )) {
-                    this.connecting_node = l, this.connecting_output = m, this.connecting_output.slot_index = d, this.connecting_pos = l.getConnectionPos(!1, d), this.connecting_slot = d, h.shift_click_do_break_link_from && s.shiftKey && l.disconnectOutput(d), g ? l.onOutputDblClick && l.onOutputDblClick(d, s) : l.onOutputClick && l.onOutputClick(d, s), p = !0;
+                    this.connecting_node = r, this.connecting_output = v, this.connecting_output.slot_index = p, this.connecting_pos = r.getConnectionPos(!1, p), this.connecting_slot = p, h.shift_click_do_break_link_from && s.shiftKey && r.disconnectOutput(p), _ ? r.onOutputDblClick && r.onOutputDblClick(p, s) : r.onOutputClick && r.onOutputClick(p, s), c = !0;
                     break;
                   }
                 }
-              if (l.inputs)
-                for (let d = 0, _ = l.inputs.length; d < _; ++d) {
-                  const m = l.inputs[d], b = l.getConnectionPos(!0, d);
+              if (r.inputs)
+                for (let p = 0, f = r.inputs.length; p < f; ++p) {
+                  const v = r.inputs[p], y = r.getConnectionPos(!0, p);
                   if (h.isInsideRectangle(
                     s.canvasX,
                     s.canvasY,
-                    b[0] - 15,
-                    b[1] - 10,
+                    y[0] - 15,
+                    y[1] - 10,
                     30,
                     20
                   )) {
-                    if (g ? l.onInputDblClick && l.onInputDblClick(d, s) : l.onInputClick && l.onInputClick(d, s), m.link !== null) {
-                      const v = this.graph.links[m.link];
-                      h.click_do_break_link_to && (l.disconnectInput(d), this.dirty_bgcanvas = !0, p = !0), (this.allow_reconnect_links || s.shiftKey) && (h.click_do_break_link_to || l.disconnectInput(d), this.connecting_node = this.graph._nodes_by_id[v.origin_id], this.connecting_slot = v.origin_slot, this.connecting_output = this.connecting_node.outputs[this.connecting_slot], this.connecting_pos = this.connecting_node.getConnectionPos(!1, this.connecting_slot), this.dirty_bgcanvas = !0, p = !0);
+                    if (_ ? r.onInputDblClick && r.onInputDblClick(p, s) : r.onInputClick && r.onInputClick(p, s), v.link !== null) {
+                      const g = this.graph.links[v.link];
+                      h.click_do_break_link_to && (r.disconnectInput(p), this.dirty_bgcanvas = !0, c = !0), (this.allow_reconnect_links || s.shiftKey) && (h.click_do_break_link_to || r.disconnectInput(p), this.connecting_node = this.graph._nodes_by_id[g.origin_id], this.connecting_slot = g.origin_slot, this.connecting_output = this.connecting_node.outputs[this.connecting_slot], this.connecting_pos = this.connecting_node.getConnectionPos(!1, this.connecting_slot), this.dirty_bgcanvas = !0, c = !0);
                     }
-                    p || (this.connecting_node = l, this.connecting_input = m, this.connecting_input.slot_index = d, this.connecting_pos = l.getConnectionPos(!0, d), this.connecting_slot = d, this.dirty_bgcanvas = !0, p = !0);
+                    c || (this.connecting_node = r, this.connecting_input = v, this.connecting_input.slot_index = p, this.connecting_pos = r.getConnectionPos(!0, p), this.connecting_slot = p, this.dirty_bgcanvas = !0, c = !0);
                   }
                 }
             }
-          if (!p) {
-            const d = [s.canvasX - l.pos[0], s.canvasY - l.pos[1]], _ = this.processNodeWidgets(l, this.graph_mouse, s);
-            _ && (n = !0, this.node_widget = [l, _]), g && this.selected_nodes[l.id] && (l.onDblClick && l.onDblClick(s, d, this), this.processNodeDblClicked(l), n = !0), l.onMouseDown && l.onMouseDown(s, d, this) ? n = !0 : (l.subgraph && !l.skip_subgraph_button && !l.flags.collapsed && d[0] > l.size[0] - h.NODE_TITLE_HEIGHT && d[1] < 0 && setTimeout(() => {
-              this.openSubgraph(l.subgraph);
-            }, 10), this.live_mode && (y = !0, n = !0)), n || (this.allow_dragnodes && (this.graph.beforeChange(), this.node_dragged = l), this.selected_nodes[l.id] || this.processNodeSelected(l, s)), this.dirty_canvas = !0;
+          if (!c) {
+            const p = [s.canvasX - r.pos[0], s.canvasY - r.pos[1]], f = this.processNodeWidgets(r, this.graph_mouse, s);
+            f && (i = !0, this.node_widget = [r, f]), _ && this.selected_nodes[r.id] && (r.onDblClick && r.onDblClick(s, p, this), this.processNodeDblClicked(r), i = !0), r.onMouseDown && r.onMouseDown(s, p, this) ? i = !0 : (r.subgraph && !r.skip_subgraph_button && !r.flags.collapsed && p[0] > r.size[0] - h.NODE_TITLE_HEIGHT && p[1] < 0 && setTimeout(() => {
+              this.openSubgraph(r.subgraph);
+            }, 10), this.live_mode && (m = !0, i = !0)), i || (this.allow_dragnodes && (this.graph.beforeChange(), this.node_dragged = r), this.selected_nodes[r.id] || this.processNodeSelected(r, s)), this.dirty_canvas = !0;
           }
-        } else if (!p) {
-          let d = !1;
-          if (l && l.subgraph && !l.skip_subgraph_button) {
-            const _ = [s.canvasX - l.pos[0], s.canvasY - l.pos[1]];
-            !l.flags.collapsed && _[0] > l.size[0] - h.NODE_TITLE_HEIGHT && _[1] < 0 && (d = !0, setTimeout(() => {
-              this.openSubgraph(l.subgraph);
+        } else if (!c) {
+          let p = !1;
+          if (r && r.subgraph && !r.skip_subgraph_button) {
+            const f = [s.canvasX - r.pos[0], s.canvasY - r.pos[1]];
+            !r.flags.collapsed && f[0] > r.size[0] - h.NODE_TITLE_HEIGHT && f[1] < 0 && (p = !0, setTimeout(() => {
+              this.openSubgraph(r.subgraph);
             }, 10));
           }
-          if (!d) {
+          if (!p) {
             if (this.allow_interaction && !this.read_only) {
-              const _ = this.findLinkCenterAtPos(s.canvasX, s.canvasY);
-              _ !== null && (this.showLinkMenu(_, s), this.over_link_center = null);
+              const f = this.findLinkCenterAtPos(s.canvasX, s.canvasY);
+              f !== null && (this.showLinkMenu(f, s), this.over_link_center = null);
             }
-            this.selected_group = this.graph.getGroupOnPos(s.canvasX, s.canvasY), this.selected_group_resizing = !1, this.selected_group && !this.read_only && this.allow_interaction && (s.ctrlKey && (this.dragging_rectangle = null), h.distance([s.canvasX, s.canvasY], [this.selected_group.pos[0] + this.selected_group.size[0], this.selected_group.pos[1] + this.selected_group.size[1]]) * this.ds.scale < 10 ? this.selected_group_resizing = !0 : this.selected_group.recomputeInsideNodes()), g && !this.read_only && this.allow_searchbox && this.allow_interaction && (this.showSearchBox(s), s.preventDefault(), s.stopPropagation()), y = !0;
+            this.selected_group = this.graph.getGroupOnPos(s.canvasX, s.canvasY), this.selected_group_resizing = !1, this.selected_group && !this.read_only && this.allow_interaction && (s.ctrlKey && (this.dragging_rectangle = null), h.distance([s.canvasX, s.canvasY], [this.selected_group.pos[0] + this.selected_group.size[0], this.selected_group.pos[1] + this.selected_group.size[1]]) * this.ds.scale < 10 ? this.selected_group_resizing = !0 : this.selected_group.recomputeInsideNodes()), _ && !this.read_only && this.allow_searchbox && this.allow_interaction && (this.showSearchBox(s), s.preventDefault(), s.stopPropagation()), m = !0;
           }
         }
-        !p && y && this.allow_dragcanvas && (this.dragging_canvas = !0);
+        !c && m && this.allow_dragcanvas && (this.dragging_canvas = !0);
       } else if (s.which === 2) {
-        if (h.middle_click_slot_add_default_node && l && this.allow_interaction && !p && !this.read_only && !this.connecting_node && !l.flags.collapsed && !this.live_mode) {
-          let y = null, d = null, _ = null;
-          if (l.outputs)
-            for (let m = 0, b = l.outputs.length; m < b; ++m) {
-              const v = l.outputs[m], O = l.getConnectionPos(!1, m);
-              if (h.isInsideRectangle(s.canvasX, s.canvasY, O[0] - 15, O[1] - 10, 30, 20)) {
-                y = v, d = m, _ = !0;
+        if (h.middle_click_slot_add_default_node && r && this.allow_interaction && !c && !this.read_only && !this.connecting_node && !r.flags.collapsed && !this.live_mode) {
+          let m = null, p = null, f = null;
+          if (r.outputs)
+            for (let v = 0, y = r.outputs.length; v < y; ++v) {
+              const g = r.outputs[v], N = r.getConnectionPos(!1, v);
+              if (h.isInsideRectangle(s.canvasX, s.canvasY, N[0] - 15, N[1] - 10, 30, 20)) {
+                m = g, p = v, f = !0;
                 break;
               }
             }
-          if (l.inputs)
-            for (let m = 0, b = l.inputs.length; m < b; ++m) {
-              const v = l.inputs[m], O = l.getConnectionPos(!0, m);
-              if (h.isInsideRectangle(s.canvasX, s.canvasY, O[0] - 15, O[1] - 10, 30, 20)) {
-                y = v, d = m, _ = !1;
+          if (r.inputs)
+            for (let v = 0, y = r.inputs.length; v < y; ++v) {
+              const g = r.inputs[v], N = r.getConnectionPos(!0, v);
+              if (h.isInsideRectangle(s.canvasX, s.canvasY, N[0] - 15, N[1] - 10, 30, 20)) {
+                m = g, p = v, f = !1;
                 break;
               }
             }
-          if (y && d !== !1) {
-            const m = 0.5 - (d + 1) / (_ ? l.outputs.length : l.inputs.length), b = l.getBounding(), v = [
-              _ ? b[0] + b[2] : b[0],
+          if (m && p !== !1) {
+            const v = 0.5 - (p + 1) / (f ? r.outputs.length : r.inputs.length), y = r.getBounding(), g = [
+              f ? y[0] + y[2] : y[0],
               // + node_bounding[0]/this.canvas.width*150
               s.canvasY - 80
               // + node_bounding[0]/this.canvas.width*66 // vertical "derive"
             ];
             this.createDefaultNodeForSlot("AUTO", {
-              nodeFrom: _ ? l : null,
-              slotFrom: _ ? d : null,
-              nodeTo: _ ? null : l,
-              slotTo: _ ? null : d,
-              position: v,
+              nodeFrom: f ? r : null,
+              slotFrom: f ? p : null,
+              nodeTo: f ? null : r,
+              slotTo: f ? null : p,
+              position: g,
               // ,e: e
-              posAdd: [_ ? 30 : -30, -m * 130],
+              posAdd: [f ? 30 : -30, -v * 130],
               // -alphaPosY*30]
-              posSizeFix: [_ ? 0 : -1, 0]
+              posSizeFix: [f ? 0 : -1, 0]
               // -alphaPosY*2*/
             });
           }
         }
-      } else if ((s.which === 3 || this.pointer_is_double) && this.allow_interaction && !p && !this.read_only) {
-        let y = null;
-        if (l)
-          y = { type: "node", item: l }, Object.keys(this.selected_nodes).length && (this.selected_nodes[l.id] || s.shiftKey || s.ctrlKey || s.metaKey) ? this.selected_nodes[l.id] || this.selectNodes([l], !0) : this.selectNodes([l]);
+      } else if ((s.which === 3 || this.pointer_is_double) && this.allow_interaction && !c && !this.read_only) {
+        let m = null;
+        if (r)
+          m = { type: "node", item: r }, Object.keys(this.selected_nodes).length && (this.selected_nodes[r.id] || s.shiftKey || s.ctrlKey || s.metaKey) ? this.selected_nodes[r.id] || this.selectNodes([r], !0) : this.selectNodes([r]);
         else {
-          const d = this.findLinkCenterAtPos(s.canvasX, s.canvasY);
-          d !== null && (this.over_link_center = null, this.dirty_canvas = !0, y = { type: "link", item: d });
+          const p = this.findLinkCenterAtPos(s.canvasX, s.canvasY);
+          p !== null && (this.over_link_center = null, this.dirty_canvas = !0, m = { type: "link", item: p });
         }
-        this.processContextMenu(y, s);
+        this.processContextMenu(m, s);
       }
       if (this.selected_group_moving = !1, this.selected_group && !this.selected_group_resizing) {
-        const d = (this.selected_group.fontSize || h.DEFAULT_GROUP_FONT_SIZE) * 1.4;
-        h.isInsideRectangle(s.canvasX, s.canvasY, this.selected_group.pos[0], this.selected_group.pos[1], this.selected_group.size[0], d) && (this.selected_group_moving = !0);
+        const p = (this.selected_group.fontSize || h.DEFAULT_GROUP_FONT_SIZE) * 1.4;
+        h.isInsideRectangle(s.canvasX, s.canvasY, this.selected_group.pos[0], this.selected_group.pos[1], this.selected_group.size[0], p) && (this.selected_group_moving = !0);
       }
-      return this.last_mouse[0] = s.clientX, this.last_mouse[1] = s.clientY, this.last_mouseclick = h.getTime(), this.last_mouse_dragging = !0, this.graph.change(), (!o.document.activeElement || o.document.activeElement.nodeName.toLowerCase() !== "input" && o.document.activeElement.nodeName.toLowerCase() !== "textarea") && s.preventDefault(), s.stopPropagation(), this.onMouseDown && this.onMouseDown(s), !1;
+      return this.last_mouse[0] = s.clientX, this.last_mouse[1] = s.clientY, this.last_mouseclick = h.getTime(), this.last_mouse_dragging = !0, this.graph.change(), (!n.document.activeElement || n.document.activeElement.nodeName.toLowerCase() !== "input" && n.document.activeElement.nodeName.toLowerCase() !== "textarea") && s.preventDefault(), s.stopPropagation(), this.onMouseDown && this.onMouseDown(s), !1;
     }
   }
   processMouseMove(e) {
+    var l, a;
     const s = e;
     if (this.autoresize && this.resize(), this.set_canvas_dirty_on_mouse_event && (this.dirty_canvas = !0), !this.graph)
       return;
-    T.active_canvas = this, this.adjustMouseEvent(s);
-    const o = [s.clientX, s.clientY];
-    this.mouse[0] = o[0], this.mouse[1] = o[1];
-    const n = [
-      o[0] - this.last_mouse[0],
-      o[1] - this.last_mouse[1]
+    b.active_canvas = this, this.adjustMouseEvent(s);
+    const n = [s.clientX, s.clientY];
+    this.mouse[0] = n[0], this.mouse[1] = n[1];
+    const i = [
+      n[0] - this.last_mouse[0],
+      n[1] - this.last_mouse[1]
     ];
-    if (this.last_mouse = o, this.offset_mouse[0] = s.offsetX, this.offset_mouse[1] = s.offsetY, this.graph_mouse[0] = s.canvasX, this.graph_mouse[1] = s.canvasY, this.block_click)
+    if (this.last_mouse = n, this.offset_mouse[0] = s.offsetX, this.offset_mouse[1] = s.offsetY, this.graph_mouse[0] = s.canvasX, this.graph_mouse[1] = s.canvasY, this.block_click)
       return s.preventDefault(), !1;
     s.dragging = this.last_mouse_dragging, this.node_widget && (this.processNodeWidgets(
       this.node_widget[0],
@@ -669,7 +670,7 @@ class at {
       s,
       this.node_widget[1]
     ), this.dirty_canvas = !0);
-    const r = this.selected_group;
+    const o = this.selected_group;
     if (this.selected_group && !this.selected_group_resizing && !this.selected_group_moving && (this.selected_group = null), this.dragging_rectangle)
       this.dragging_rectangle[2] = s.canvasX - this.dragging_rectangle[0], this.dragging_rectangle[3] = s.canvasY - this.dragging_rectangle[1], this.dirty_canvas = !0;
     else if (this.selected_group && !this.read_only && this.allow_interaction) {
@@ -679,50 +680,50 @@ class at {
           s.canvasY - this.selected_group.pos[1]
         ];
       else {
-        const a = n[0] / this.ds.scale, u = n[1] / this.ds.scale;
-        this.selected_group.move(a, u, s.ctrlKey), this.selected_group._nodes.length && (this.dirty_canvas = !0);
+        const r = i[0] / this.ds.scale, c = i[1] / this.ds.scale;
+        this.selected_group.move(r, c, s.ctrlKey), this.selected_group._nodes.length && (this.dirty_canvas = !0);
       }
       this.dirty_bgcanvas = !0;
     } else if (this.dragging_canvas)
-      this.ds.offset[0] += n[0] / this.ds.scale, this.ds.offset[1] += n[1] / this.ds.scale, this.dirty_canvas = !0, this.dirty_bgcanvas = !0;
+      this.ds.offset[0] += i[0] / this.ds.scale, this.ds.offset[1] += i[1] / this.ds.scale, this.dirty_canvas = !0, this.dirty_bgcanvas = !0;
     else {
-      const a = this.allow_interaction && !this.read_only;
+      const r = this.allow_interaction && !this.read_only;
       this.connecting_node && (this.dirty_canvas = !0);
-      const u = this.graph.getNodeOnPos(s.canvasX, s.canvasY, this.visible_nodes);
-      if (a)
-        for (let l = 0, p = this.graph._nodes.length; l < p; ++l) {
-          const f = this.graph._nodes[l];
-          if (f.mouseOver && u !== f) {
-            f.mouseOver = !1, this.node_over && this.node_over.onMouseLeave && this.node_over.onMouseLeave(s, [s.canvasX - this.node_over.pos[0], s.canvasY - this.node_over.pos[1]], this);
-            const c = this.node_over;
-            this.node_over = null, this.dirty_canvas = !0, c !== this.node_over && this.onHoverChange(this.node_over, c);
+      const c = this.graph.getNodeOnPos(s.canvasX, s.canvasY, this.visible_nodes);
+      if (r)
+        for (let d = 0, u = this.graph._nodes.length; d < u; ++d) {
+          const _ = this.graph._nodes[d];
+          if (_.mouseOver && c !== _) {
+            _.mouseOver = !1, this.node_over && this.node_over.onMouseLeave && this.node_over.onMouseLeave(s, [s.canvasX - this.node_over.pos[0], s.canvasY - this.node_over.pos[1]], this);
+            const m = this.node_over;
+            this.node_over = null, this.dirty_canvas = !0, m !== this.node_over && ((l = this.onHoverChange) == null || l.call(this, this.node_over, m));
           }
         }
-      if (u) {
-        if (u.redraw_on_mouse && (this.dirty_canvas = !0), a) {
-          if (!u.mouseOver) {
-            u.mouseOver = !0;
-            const l = this.node_over;
-            this.node_over = u, this.dirty_canvas = !0, l !== this.node_over && this.onHoverChange(this.node_over, l), u.onMouseEnter && u.onMouseEnter(s, [s.canvasX - u.pos[0], s.canvasY - u.pos[1]], this);
+      if (c) {
+        if (c.redraw_on_mouse && (this.dirty_canvas = !0), r) {
+          if (!c.mouseOver) {
+            c.mouseOver = !0;
+            const d = this.node_over;
+            this.node_over = c, this.dirty_canvas = !0, d !== this.node_over && ((a = this.onHoverChange) == null || a.call(this, this.node_over, d)), c.onMouseEnter && c.onMouseEnter(s, [s.canvasX - c.pos[0], s.canvasY - c.pos[1]], this);
           }
-          if (u.onMouseMove && u.onMouseMove(s, [s.canvasX - u.pos[0], s.canvasY - u.pos[1]], this), this.connecting_node) {
+          if (c.onMouseMove && c.onMouseMove(s, [s.canvasX - c.pos[0], s.canvasY - c.pos[1]], this), this.connecting_node) {
             if (this.connecting_output) {
-              const l = this._highlight_input || [0, 0];
-              if (!this.isOverNodeBox(u, s.canvasX, s.canvasY)) {
-                const p = this.isOverNodeInput(u, s.canvasX, s.canvasY, l);
-                if (p !== -1 && u.inputs[p]) {
-                  const f = u.inputs[p].type;
-                  h.isValidConnection(this.connecting_output.type, f) && (this._highlight_input = l, this._highlight_input_slot = u.inputs[p]);
+              const d = this._highlight_input || [0, 0];
+              if (!this.isOverNodeBox(c, s.canvasX, s.canvasY)) {
+                const u = this.isOverNodeInput(c, s.canvasX, s.canvasY, d);
+                if (u !== -1 && c.inputs[u]) {
+                  const _ = c.inputs[u].type;
+                  h.isValidConnection(this.connecting_output.type, _) && (this._highlight_input = d, this._highlight_input_slot = c.inputs[u]);
                 } else
                   this._highlight_input = null, this._highlight_input_slot = null;
               }
             } else if (this.connecting_input) {
-              const l = this._highlight_output || [0, 0];
-              if (!this.isOverNodeBox(u, s.canvasX, s.canvasY)) {
-                const p = this.isOverNodeOutput(u, s.canvasX, s.canvasY, l);
-                if (p !== -1 && u.outputs[p]) {
-                  const f = u.outputs[p].type;
-                  h.isValidConnection(this.connecting_input.type, f) && (this._highlight_output = l);
+              const d = this._highlight_output || [0, 0];
+              if (!this.isOverNodeBox(c, s.canvasX, s.canvasY)) {
+                const u = this.isOverNodeOutput(c, s.canvasX, s.canvasY, d);
+                if (u !== -1 && c.outputs[u]) {
+                  const _ = c.outputs[u].type;
+                  h.isValidConnection(this.connecting_input.type, _) && (this._highlight_output = d);
                 } else
                   this._highlight_output = null;
               }
@@ -731,91 +732,91 @@ class at {
           this.canvas && (h.isInsideRectangle(
             s.canvasX,
             s.canvasY,
-            u.pos[0] + u.size[0] - 5,
-            u.pos[1] + u.size[1] - 5,
+            c.pos[0] + c.size[0] - 5,
+            c.pos[1] + c.size[1] - 5,
             5,
             5
           ) ? this.canvas.style.cursor = "se-resize" : this.canvas.style.cursor = "crosshair");
         }
       } else {
-        const l = this.findLinkCenterAtPos(s.canvasX, s.canvasY);
-        l !== this.over_link_center && (this.over_link_center = l, this.dirty_canvas = !0), this.canvas && (this.canvas.style.cursor = "");
+        const d = this.findLinkCenterAtPos(s.canvasX, s.canvasY);
+        d !== this.over_link_center && (this.over_link_center = d, this.dirty_canvas = !0), this.canvas && (this.canvas.style.cursor = "");
       }
-      if (a) {
-        if (this.node_capturing_input && this.node_capturing_input !== u && this.node_capturing_input.onMouseMove && this.node_capturing_input.onMouseMove(s, [s.canvasX - this.node_capturing_input.pos[0], s.canvasY - this.node_capturing_input.pos[1]], this), this.node_dragged && !this.live_mode) {
-          for (const l in this.selected_nodes) {
-            const p = this.selected_nodes[l];
-            p.pos[0] += n[0] / this.ds.scale, p.pos[1] += n[1] / this.ds.scale;
+      if (r) {
+        if (this.node_capturing_input && this.node_capturing_input !== c && this.node_capturing_input.onMouseMove && this.node_capturing_input.onMouseMove(s, [s.canvasX - this.node_capturing_input.pos[0], s.canvasY - this.node_capturing_input.pos[1]], this), this.node_dragged && !this.live_mode) {
+          for (const d in this.selected_nodes) {
+            const u = this.selected_nodes[d];
+            u.pos[0] += i[0] / this.ds.scale, u.pos[1] += i[1] / this.ds.scale;
           }
           this.dirty_canvas = !0, this.dirty_bgcanvas = !0;
         }
         if (this.resizing_node && !this.live_mode) {
-          const l = [s.canvasX - this.resizing_node.pos[0], s.canvasY - this.resizing_node.pos[1]], p = this.resizing_node.computeSize();
-          l[0] = Math.max(p[0], l[0]), l[1] = Math.max(p[1], l[1]), this.resizing_node.setSize(l), this.canvas.style.cursor = "se-resize", this.dirty_canvas = !0, this.dirty_bgcanvas = !0;
+          const d = [s.canvasX - this.resizing_node.pos[0], s.canvasY - this.resizing_node.pos[1]], u = this.resizing_node.computeSize();
+          d[0] = Math.max(u[0], d[0]), d[1] = Math.max(u[1], d[1]), this.resizing_node.setSize(d), this.canvas.style.cursor = "se-resize", this.dirty_canvas = !0, this.dirty_bgcanvas = !0;
         }
       }
     }
-    return r && !this.selected_group_resizing && !this.selected_group_moving && (this.selected_group = r), s.preventDefault(), !1;
+    return o && !this.selected_group_resizing && !this.selected_group_moving && (this.selected_group = o), s.preventDefault(), !1;
   }
   processMouseUp(e) {
-    const s = e, o = !(s instanceof PointerEvent) || !s.isPrimary;
-    if (!o)
+    const s = e, n = !(s instanceof PointerEvent) || !s.isPrimary;
+    if (!n)
       return !1;
     if (this.set_canvas_dirty_on_mouse_event && (this.dirty_canvas = !0), !this.graph)
       return;
-    const r = this.getCanvasWindow().document;
-    T.active_canvas = this, this.skip_events || (h.pointerListenerRemove(r, "move", this._mousemove_callback, !0), h.pointerListenerAdd(this.canvas, "move", this._mousemove_callback, !0), h.pointerListenerRemove(r, "up", this._mouseup_callback, !0)), this.adjustMouseEvent(s);
-    const a = h.getTime();
-    if (s.click_time = a - this.last_mouseclick, this.last_mouse_dragging = !1, this.last_click_position = null, this.block_click && (this.block_click = !1), s.which === 1) {
+    const o = this.getCanvasWindow().document;
+    b.active_canvas = this, this.skip_events || (h.pointerListenerRemove(o, "move", this._mousemove_callback, !0), h.pointerListenerAdd(this.canvas, "move", this._mousemove_callback, !0), h.pointerListenerRemove(o, "up", this._mouseup_callback, !0)), this.adjustMouseEvent(s);
+    const l = h.getTime();
+    if (s.click_time = l - this.last_mouseclick, this.last_mouse_dragging = !1, this.last_click_position = null, this.block_click && (this.block_click = !1), s.which === 1) {
       if (this.node_widget && this.processNodeWidgets(this.node_widget[0], this.graph_mouse, s), this.node_widget = null, this.selected_group) {
-        const l = this.selected_group.pos[0] - Math.round(this.selected_group.pos[0]), p = this.selected_group.pos[1] - Math.round(this.selected_group.pos[1]);
-        this.selected_group.move(l, p, s.ctrlKey), this.selected_group.pos[0] = Math.round(
+        const r = this.selected_group.pos[0] - Math.round(this.selected_group.pos[0]), c = this.selected_group.pos[1] - Math.round(this.selected_group.pos[1]);
+        this.selected_group.move(r, c, s.ctrlKey), this.selected_group.pos[0] = Math.round(
           this.selected_group.pos[0]
         ), this.selected_group.pos[1] = Math.round(
           this.selected_group.pos[1]
         ), this.selected_group._nodes.length && (this.dirty_canvas = !0), this.selected_group = null;
       }
       this.selected_group_resizing = !1;
-      const u = this.graph.getNodeOnPos(
+      const a = this.graph.getNodeOnPos(
         s.canvasX,
         s.canvasY,
         this.visible_nodes
       );
       if (this.dragging_rectangle) {
         if (this.graph) {
-          const l = this.graph._nodes, p = new Float32Array(4), f = Math.abs(this.dragging_rectangle[2]), c = Math.abs(this.dragging_rectangle[3]), g = this.dragging_rectangle[2] < 0 ? this.dragging_rectangle[0] - f : this.dragging_rectangle[0], y = this.dragging_rectangle[3] < 0 ? this.dragging_rectangle[1] - c : this.dragging_rectangle[1];
-          if (this.dragging_rectangle[0] = g, this.dragging_rectangle[1] = y, this.dragging_rectangle[2] = f, this.dragging_rectangle[3] = c, !u || f > 10 && c > 10) {
-            const d = [];
-            for (let _ = 0; _ < l.length; ++_) {
-              const m = l[_];
-              m.getBounding(p), h.overlapBounding(
+          const r = this.graph._nodes, c = new Float32Array(4), d = Math.abs(this.dragging_rectangle[2]), u = Math.abs(this.dragging_rectangle[3]), _ = this.dragging_rectangle[2] < 0 ? this.dragging_rectangle[0] - d : this.dragging_rectangle[0], m = this.dragging_rectangle[3] < 0 ? this.dragging_rectangle[1] - u : this.dragging_rectangle[1];
+          if (this.dragging_rectangle[0] = _, this.dragging_rectangle[1] = m, this.dragging_rectangle[2] = d, this.dragging_rectangle[3] = u, !a || d > 10 && u > 10) {
+            const p = [];
+            for (let f = 0; f < r.length; ++f) {
+              const v = r[f];
+              v.getBounding(c), h.overlapBounding(
                 this.dragging_rectangle,
-                p
-              ) && d.push(m);
+                c
+              ) && p.push(v);
             }
-            d.length && this.selectNodes(d, s.shiftKey);
+            p.length && this.selectNodes(p, s.shiftKey);
           } else
-            this.selectNodes([u], s.shiftKey || s.ctrlKey);
+            this.selectNodes([a], s.shiftKey || s.ctrlKey);
         }
         this.dragging_rectangle = null;
       } else if (this.connecting_node) {
         this.dirty_canvas = !0, this.dirty_bgcanvas = !0;
-        const p = (this.connecting_output || this.connecting_input).type;
-        if (u) {
+        const c = (this.connecting_output || this.connecting_input).type;
+        if (a) {
           if (this.connecting_output) {
-            const f = this.isOverNodeInput(
-              u,
+            const d = this.isOverNodeInput(
+              a,
               s.canvasX,
               s.canvasY
             );
-            f !== -1 ? this.connecting_node.connect(this.connecting_slot, u, f) : this.connecting_node.connectByTypeInput(this.connecting_slot, u, p);
+            d !== -1 ? this.connecting_node.connect(this.connecting_slot, a, d) : this.connecting_node.connectByTypeInput(this.connecting_slot, a, c);
           } else if (this.connecting_input) {
-            const f = this.isOverNodeOutput(
-              u,
+            const d = this.isOverNodeOutput(
+              a,
               s.canvasX,
               s.canvasY
             );
-            f !== -1 ? u.connect(f, this.connecting_node, this.connecting_slot) : this.connecting_node.connectByTypeOutput(this.connecting_slot, u, p);
+            d !== -1 ? a.connect(d, this.connecting_node, this.connecting_slot) : this.connecting_node.connectByTypeOutput(this.connecting_slot, a, c);
           }
         } else
           h.release_link_on_empty_shows_menu && (s.shiftKey && this.allow_searchbox ? this.connecting_output ? this.showSearchBox(s, { node_from: this.connecting_node, slotFrom: this.connecting_output, type_filter_in: this.connecting_output.type }) : this.connecting_input && this.showSearchBox(s, { node_to: this.connecting_node, slotFrom: this.connecting_input, type_filter_out: this.connecting_input.type }) : this.connecting_output ? this.showConnectionMenu({ nodeFrom: this.connecting_node, slotFrom: this.connecting_output, e: s }) : this.connecting_input && this.showConnectionMenu({ nodeTo: this.connecting_node, slotTo: this.connecting_input, e: s }));
@@ -823,15 +824,15 @@ class at {
       } else if (this.resizing_node)
         this.dirty_canvas = !0, this.dirty_bgcanvas = !0, this.graph.afterChange(this.resizing_node), this.resizing_node = null;
       else if (this.node_dragged) {
-        const l = this.node_dragged;
-        l && s.click_time < 300 && l.isShowingTitle(!0) && h.isInsideRectangle(
+        const r = this.node_dragged;
+        r && s.click_time < 300 && r.isShowingTitle(!0) && h.isInsideRectangle(
           s.canvasX,
           s.canvasY,
-          l.pos[0],
-          l.pos[1] - h.NODE_TITLE_HEIGHT,
+          r.pos[0],
+          r.pos[1] - h.NODE_TITLE_HEIGHT,
           h.NODE_TITLE_HEIGHT,
           h.NODE_TITLE_HEIGHT
-        ) && l.collapse(), this.dirty_canvas = !0, this.dirty_bgcanvas = !0, this.node_dragged.pos[0] = Math.round(this.node_dragged.pos[0]), this.node_dragged.pos[1] = Math.round(this.node_dragged.pos[1]), (this.graph.config.align_to_grid || this.align_to_grid) && this.node_dragged.alignToGrid(), this.onNodeMoved && this.onNodeMoved(this.node_dragged), this.graph.afterChange(this.node_dragged), this.node_dragged = null;
+        ) && r.collapse(), this.dirty_canvas = !0, this.dirty_bgcanvas = !0, this.node_dragged.pos[0] = Math.round(this.node_dragged.pos[0]), this.node_dragged.pos[1] = Math.round(this.node_dragged.pos[1]), (this.graph.config.align_to_grid || this.align_to_grid) && this.node_dragged.alignToGrid(), this.onNodeMoved && this.onNodeMoved(this.node_dragged), this.graph.afterChange(this.node_dragged), this.node_dragged = null;
       } else
         !this.graph.getNodeOnPos(
           s.canvasX,
@@ -843,22 +844,22 @@ class at {
         ], this);
     } else
       s.which === 2 ? (this.dirty_canvas = !0, this.dragging_canvas = !1) : s.which === 3 && (this.dirty_canvas = !0, this.dragging_canvas = !1);
-    return o && (this.pointer_is_down = !1, this.pointer_is_double = !1), this.graph.change(), s.stopPropagation(), s.preventDefault(), !1;
+    return n && (this.pointer_is_down = !1, this.pointer_is_double = !1), this.graph.change(), s.stopPropagation(), s.preventDefault(), !1;
   }
   processMouseWheel(e) {
     const s = e;
     if (!this.graph || !this.allow_dragcanvas)
       return;
-    const o = s.wheelDeltaY !== null ? s.wheelDeltaY : s.detail * -60;
+    const n = s.wheelDeltaY !== null ? s.wheelDeltaY : s.detail * -60;
     this.adjustMouseEvent(s);
-    const n = s.clientX, r = s.clientY;
-    if (!(!this.viewport || this.viewport && n >= this.viewport[0] && n < this.viewport[0] + this.viewport[2] && r >= this.viewport[1] && r < this.viewport[1] + this.viewport[3]))
+    const i = s.clientX, o = s.clientY;
+    if (!(!this.viewport || this.viewport && i >= this.viewport[0] && i < this.viewport[0] + this.viewport[2] && o >= this.viewport[1] && o < this.viewport[1] + this.viewport[3]))
       return;
-    let u = this.ds.scale;
-    return o > 0 ? u *= 1.1 : o < 0 && (u *= 1 / 1.1), this.ds.changeScale(u, [s.clientX, s.clientY]), this.graph.change(), s.preventDefault(), !1;
+    let a = this.ds.scale;
+    return n > 0 ? a *= 1.1 : n < 0 && (a *= 1 / 1.1), this.ds.changeScale(a, [s.clientX, s.clientY]), this.graph.change(), s.preventDefault(), !1;
   }
 }
-const q = class {
+const K = class {
   /** changes the zoom level of the graph (default is 1), you can pass also a place used to pivot the zoom */
   setZoom(t, e) {
     this.ds.changeScale(t, e), this.maxZoom && this.ds.scale > this.maxZoom ? this.scale = this.maxZoom : this.minZoom && this.ds.scale < this.minZoom && (this.scale = this.minZoom);
@@ -877,9 +878,9 @@ const q = class {
   computeVisibleNodes(t, e = []) {
     const s = e;
     s.length = 0, t = t || this.graph._nodes;
-    for (let o = 0, n = t.length; o < n; ++o) {
-      const r = t[o];
-      this.live_mode && !r.onDrawBackground && !r.onDrawForeground || h.overlapBounding(this.visible_area, r.getBounding(q.temp)) && s.push(r);
+    for (let n = 0, i = t.length; n < i; ++n) {
+      const o = t[n];
+      this.live_mode && !o.onDrawBackground && !o.onDrawForeground || h.overlapBounding(this.visible_area, o.getBounding(K.temp)) && s.push(o);
     }
     return s;
   }
@@ -899,27 +900,27 @@ const q = class {
     const e = this.canvas, s = this.viewport || this.dirty_area;
     if (s && (t.save(), t.beginPath(), t.rect(s[0], s[1], s[2], s[3]), t.clip()), this.clear_background && (s ? t.clearRect(s[0], s[1], s[2], s[3]) : t.clearRect(0, 0, e.width, e.height)), this.bgcanvas === this.canvas ? this.drawBackCanvas() : t.drawImage(this.bgcanvas, 0, 0), this.onRender && this.onRender(e, t), this.show_info && this.renderInfo(t, s ? s[0] : 0, s ? s[1] : 0), this.graph) {
       t.save(), this.ds.toCanvasContext(t);
-      const o = this.computeVisibleNodes(
+      const n = this.computeVisibleNodes(
         null,
         this.visible_nodes
       );
-      for (let n = 0; n < o.length; ++n) {
-        const r = o[n];
-        t.save(), t.translate(r.pos[0], r.pos[1]), this.drawNode(r, t), t.restore();
+      for (let i = 0; i < n.length; ++i) {
+        const o = n[i];
+        t.save(), t.translate(o.pos[0], o.pos[1]), this.drawNode(o, t), t.restore();
       }
       if (this.render_execution_order && this.drawExecutionOrder(t), this.graph.config.links_ontop && (this.live_mode || this.drawConnections(t)), this.connecting_pos !== null) {
         t.lineWidth = this.connections_width;
-        let n = null;
-        const r = this.connecting_output || this.connecting_input, a = r.type;
-        let u = r.dir;
-        u === null && (this.connecting_output ? u = this.connecting_node.horizontal ? D.DOWN : D.RIGHT : u = this.connecting_node.horizontal ? D.UP : D.LEFT);
-        const l = r.shape;
-        switch (a) {
-          case k.EVENT:
-            n = h.EVENT_LINK_COLOR;
+        let i = null;
+        const o = this.connecting_output || this.connecting_input, l = o.type;
+        let a = o.dir;
+        a === null && (this.connecting_output ? a = this.connecting_node.horizontal ? L.DOWN : L.RIGHT : a = this.connecting_node.horizontal ? L.UP : L.LEFT);
+        const r = o.shape;
+        switch (l) {
+          case O.EVENT:
+            i = h.EVENT_LINK_COLOR;
             break;
           default:
-            n = h.CONNECTING_LINK_COLOR;
+            i = h.CONNECTING_LINK_COLOR;
         }
         this.renderLink(
           t,
@@ -928,10 +929,10 @@ const q = class {
           null,
           !1,
           null,
-          n,
-          u,
-          D.CENTER
-        ), t.beginPath(), l === A.BOX_SHAPE ? (t.rect(
+          i,
+          a,
+          L.CENTER
+        ), t.beginPath(), r === S.BOX_SHAPE ? (t.rect(
           this.connecting_pos[0] - 6 + 0.5,
           this.connecting_pos[1] - 5 + 0.5,
           14,
@@ -941,7 +942,7 @@ const q = class {
           this.graph_mouse[1] - 5 + 0.5,
           14,
           10
-        )) : l === A.ARROW_SHAPE ? (t.moveTo(this.connecting_pos[0] + 8, this.connecting_pos[1] + 0.5), t.lineTo(this.connecting_pos[0] - 4, this.connecting_pos[1] + 6 + 0.5), t.lineTo(this.connecting_pos[0] - 4, this.connecting_pos[1] - 6 + 0.5), t.closePath()) : (t.arc(
+        )) : r === S.ARROW_SHAPE ? (t.moveTo(this.connecting_pos[0] + 8, this.connecting_pos[1] + 0.5), t.lineTo(this.connecting_pos[0] - 4, this.connecting_pos[1] + 6 + 0.5), t.lineTo(this.connecting_pos[0] - 4, this.connecting_pos[1] - 6 + 0.5), t.closePath()) : (t.arc(
           this.connecting_pos[0],
           this.connecting_pos[1],
           4,
@@ -954,14 +955,14 @@ const q = class {
           0,
           Math.PI * 2
         )), t.fill(), t.fillStyle = "#ffcc00";
-        const p = this._highlight_input_slot.shape;
-        this._highlight_input && (t.beginPath(), p === A.ARROW_SHAPE ? (t.moveTo(this._highlight_input[0] + 8, this._highlight_input[1] + 0.5), t.lineTo(this._highlight_input[0] - 4, this._highlight_input[1] + 6 + 0.5), t.lineTo(this._highlight_input[0] - 4, this._highlight_input[1] - 6 + 0.5), t.closePath()) : t.arc(
+        const c = this._highlight_input_slot.shape;
+        this._highlight_input && (t.beginPath(), c === S.ARROW_SHAPE ? (t.moveTo(this._highlight_input[0] + 8, this._highlight_input[1] + 0.5), t.lineTo(this._highlight_input[0] - 4, this._highlight_input[1] + 6 + 0.5), t.lineTo(this._highlight_input[0] - 4, this._highlight_input[1] - 6 + 0.5), t.closePath()) : t.arc(
           this._highlight_input[0],
           this._highlight_input[1],
           6,
           0,
           Math.PI * 2
-        ), t.fill()), this._highlight_output && (t.beginPath(), p === A.ARROW_SHAPE ? (t.moveTo(this._highlight_output[0] + 8, this._highlight_output[1] + 0.5), t.lineTo(this._highlight_output[0] - 4, this._highlight_output[1] + 6 + 0.5), t.lineTo(this._highlight_output[0] - 4, this._highlight_output[1] - 6 + 0.5), t.closePath()) : t.arc(
+        ), t.fill()), this._highlight_output && (t.beginPath(), c === S.ARROW_SHAPE ? (t.moveTo(this._highlight_output[0] + 8, this._highlight_output[1] + 0.5), t.lineTo(this._highlight_output[0] - 4, this._highlight_output[1] + 6 + 0.5), t.lineTo(this._highlight_output[0] - 4, this._highlight_output[1] - 6 + 0.5), t.closePath()) : t.arc(
           this._highlight_output[0],
           this._highlight_output[1],
           6,
@@ -991,45 +992,45 @@ const q = class {
     this.drawSubgraphPanelLeft(e, s, t), this.drawSubgraphPanelRight(e, s, t);
   }
   drawSubgraphPanelLeft(t, e, s) {
-    const o = e.inputs ? e.inputs.length : 0, n = 200, r = Math.floor(h.NODE_SLOT_HEIGHT * 1.6);
-    if (s.fillStyle = "#111", s.globalAlpha = 0.8, s.beginPath(), s.roundRect(10, 10, n, (o + 1) * r + 50, [8]), s.fill(), s.globalAlpha = 1, s.fillStyle = "#888", s.font = "14px Arial", s.textAlign = "left", s.fillText("Graph Inputs", 20, 34), this.drawButton(n - 20, 20, 20, 20, "X", "#151515", void 0, void 0, !0)) {
+    const n = e.inputs ? e.inputs.length : 0, i = 200, o = Math.floor(h.NODE_SLOT_HEIGHT * 1.6);
+    if (s.fillStyle = "#111", s.globalAlpha = 0.8, s.beginPath(), s.roundRect(10, 10, i, (n + 1) * o + 50, [8]), s.fill(), s.globalAlpha = 1, s.fillStyle = "#888", s.font = "14px Arial", s.textAlign = "left", s.fillText("Graph Inputs", 20, 34), this.drawButton(i - 20, 20, 20, 20, "X", "#151515", void 0, void 0, !0)) {
       this.closeSubgraph();
       return;
     }
-    let a = 50;
+    let l = 50;
     if (s.font = "14px Arial", e.inputs)
-      for (let u = 0; u < e.inputs.length; ++u) {
-        const l = e.inputs[u];
-        l.not_subgraph_input || (s.fillStyle = "#9C9", s.beginPath(), s.arc(n - 16, a, 5, 0, 2 * Math.PI), s.fill(), s.fillStyle = "#AAA", s.fillText(l.name, 30, a + r * 0.75), s.fillStyle = "#777", s.fillText(X(l.type), 130, a + r * 0.75), a += r);
+      for (let a = 0; a < e.inputs.length; ++a) {
+        const r = e.inputs[a];
+        r.not_subgraph_input || (s.fillStyle = "#9C9", s.beginPath(), s.arc(i - 16, l, 5, 0, 2 * Math.PI), s.fill(), s.fillStyle = "#AAA", s.fillText(r.name, 30, l + o * 0.75), s.fillStyle = "#777", s.fillText(W(r.type), 130, l + o * 0.75), l += o);
       }
-    this.drawButton(20, a + 2, n - 20, r - 2, "+", "#151515", "#222") && this.showSubgraphPropertiesDialog(e);
+    this.drawButton(20, l + 2, i - 20, o - 2, "+", "#151515", "#222") && this.showSubgraphPropertiesDialog(e);
   }
   drawSubgraphPanelRight(t, e, s) {
-    const o = e.outputs ? e.outputs.length : 0, n = this.bgcanvas.width, r = 200, a = Math.floor(h.NODE_SLOT_HEIGHT * 1.6);
-    s.fillStyle = "#111", s.globalAlpha = 0.8, s.beginPath(), s.roundRect(n - r - 10, 10, r, (o + 1) * a + 50, [8]), s.fill(), s.globalAlpha = 1, s.fillStyle = "#888", s.font = "14px Arial", s.textAlign = "left";
-    const u = "Graph Outputs", l = s.measureText(u).width;
-    if (s.fillText(u, n - l - 20, 34), this.drawButton(n - r, 20, 20, 20, "X", "#151515", void 0, void 0, !0)) {
+    const n = e.outputs ? e.outputs.length : 0, i = this.bgcanvas.width, o = 200, l = Math.floor(h.NODE_SLOT_HEIGHT * 1.6);
+    s.fillStyle = "#111", s.globalAlpha = 0.8, s.beginPath(), s.roundRect(i - o - 10, 10, o, (n + 1) * l + 50, [8]), s.fill(), s.globalAlpha = 1, s.fillStyle = "#888", s.font = "14px Arial", s.textAlign = "left";
+    const a = "Graph Outputs", r = s.measureText(a).width;
+    if (s.fillText(a, i - r - 20, 34), this.drawButton(i - o, 20, 20, 20, "X", "#151515", void 0, void 0, !0)) {
       this.closeSubgraph();
       return;
     }
-    let p = 50;
+    let c = 50;
     if (s.font = "14px Arial", e.outputs)
-      for (let f = 0; f < e.outputs.length; ++f) {
-        const c = e.outputs[f];
-        c.not_subgraph_output || (s.fillStyle = "#9C9", s.beginPath(), s.arc(n - r + 16, p, 5, 0, 2 * Math.PI), s.fill(), s.fillStyle = "#AAA", s.fillText(c.name, n - r + 30, p + a * 0.75), s.fillStyle = "#777", s.fillText(X(c.type), n - r + 130, p + a * 0.75), p += a);
+      for (let d = 0; d < e.outputs.length; ++d) {
+        const u = e.outputs[d];
+        u.not_subgraph_output || (s.fillStyle = "#9C9", s.beginPath(), s.arc(i - o + 16, c, 5, 0, 2 * Math.PI), s.fill(), s.fillStyle = "#AAA", s.fillText(u.name, i - o + 30, c + l * 0.75), s.fillStyle = "#777", s.fillText(W(u.type), i - o + 130, c + l * 0.75), c += l);
       }
-    this.drawButton(n - r, p + 2, r - 20, a - 2, "+", "#151515", "#222") && this.showSubgraphPropertiesDialogRight(e);
+    this.drawButton(i - o, c + 2, o - 20, l - 2, "+", "#151515", "#222") && this.showSubgraphPropertiesDialogRight(e);
   }
   // Draws a button into the canvas overlay and computes if it was clicked using the immediate gui paradigm
-  drawButton(t, e, s, o, n, r = h.NODE_DEFAULT_COLOR, a = "#555", u = h.NODE_TEXT_COLOR, l = !1) {
-    const p = !this.block_click && (l || this.allow_interaction && !this.read_only), f = this.ctx;
-    let c = this.offset_mouse;
-    const g = p && h.isInsideRectangle(c[0], c[1], t, e, s, o);
-    c = this.last_click_position_offset;
-    const y = p && c && this.pointer_is_down && h.isInsideRectangle(c[0], c[1], t, e, s, o);
-    f.fillStyle = g ? a : r, y && (f.fillStyle = "#AAA"), f.beginPath(), f.roundRect(t, e, s, o, [4]), f.fill(), n !== null && n.constructor === String && (f.fillStyle = u, f.textAlign = "center", f.font = `${o * 0.65 | 0}px Arial`, f.fillText(n, t + s * 0.5, e + o * 0.75), f.textAlign = "left");
-    const d = y && p;
-    return y && this.blockClick(), d;
+  drawButton(t, e, s, n, i, o = h.NODE_DEFAULT_COLOR, l = "#555", a = h.NODE_TEXT_COLOR, r = !1) {
+    const c = !this.block_click && (r || this.allow_interaction && !this.read_only), d = this.ctx;
+    let u = this.offset_mouse;
+    const _ = c && h.isInsideRectangle(u[0], u[1], t, e, s, n);
+    u = this.last_click_position_offset;
+    const m = c && u && this.pointer_is_down && h.isInsideRectangle(u[0], u[1], t, e, s, n);
+    d.fillStyle = _ ? l : o, m && (d.fillStyle = "#AAA"), d.beginPath(), d.roundRect(t, e, s, n, [4]), d.fill(), i !== null && i.constructor === String && (d.fillStyle = a, d.textAlign = "center", d.font = `${n * 0.65 | 0}px Arial`, d.fillText(i, t + s * 0.5, e + n * 0.75), d.textAlign = "left");
+    const p = m && c;
+    return m && this.blockClick(), p;
   }
   /** draws every group area in the background */
   drawGroups(t, e) {
@@ -1037,15 +1038,15 @@ const q = class {
       return;
     const s = this.graph._groups;
     e.save(), e.globalAlpha = 0.5 * this.editor_alpha;
-    for (let o = 0; o < s.length; ++o) {
-      const n = s[o];
-      if (!h.overlapBounding(this.visible_area, n._bounding))
+    for (let n = 0; n < s.length; ++n) {
+      const i = s[n];
+      if (!h.overlapBounding(this.visible_area, i._bounding))
         continue;
-      e.fillStyle = n.color || "#335", e.strokeStyle = n.color || "#335";
-      const r = n._pos, a = n._size;
-      e.globalAlpha = 0.25 * this.editor_alpha, e.beginPath(), e.rect(r[0] + 0.5, r[1] + 0.5, a[0], a[1]), e.fill(), e.globalAlpha = this.editor_alpha, e.stroke(), e.beginPath(), e.moveTo(r[0] + a[0], r[1] + a[1]), e.lineTo(r[0] + a[0] - 10, r[1] + a[1]), e.lineTo(r[0] + a[0], r[1] + a[1] - 10), e.fill();
-      const u = n.font_size || h.DEFAULT_GROUP_FONT_SIZE;
-      e.font = `${u}px Arial`, e.textAlign = "left", e.fillText(n.title, r[0] + 4, r[1] + u);
+      e.fillStyle = i.color || "#335", e.strokeStyle = i.color || "#335";
+      const o = i._pos, l = i._size;
+      e.globalAlpha = 0.25 * this.editor_alpha, e.beginPath(), e.rect(o[0] + 0.5, o[1] + 0.5, l[0], l[1]), e.fill(), e.globalAlpha = this.editor_alpha, e.stroke(), e.beginPath(), e.moveTo(o[0] + l[0], o[1] + l[1]), e.lineTo(o[0] + l[0] - 10, o[1] + l[1]), e.lineTo(o[0] + l[0], o[1] + l[1] - 10), e.fill();
+      const a = i.font_size || h.DEFAULT_GROUP_FONT_SIZE;
+      e.font = `${a}px Arial`, e.textAlign = "left", e.fillText(i.title, o[0] + 4, o[1] + a);
     }
     e.restore();
   }
@@ -1060,25 +1061,25 @@ const q = class {
     const e = this.bgctx, s = this.viewport || [0, 0, e.canvas.width, e.canvas.height];
     if (this.clear_background && e.clearRect(s[0], s[1], s[2], s[3]), this._graph_stack && this._graph_stack.length && this.render_subgraph_stack_header) {
       e.save();
-      const r = this._graph_stack[this._graph_stack.length - 1].graph, a = this.graph._subgraph_node;
-      e.strokeStyle = a.bgcolor, e.lineWidth = 10, e.strokeRect(1, 1, t.width - 2, t.height - 2), e.lineWidth = 1, e.font = "40px Arial", e.textAlign = "center", e.fillStyle = a.bgcolor || "#AAA";
-      let u = "";
-      for (let l = 1; l < this._graph_stack.length; ++l)
-        u += `${r._subgraph_node.getTitle()} >> `;
+      const o = this._graph_stack[this._graph_stack.length - 1].graph, l = this.graph._subgraph_node;
+      e.strokeStyle = l.bgcolor, e.lineWidth = 10, e.strokeRect(1, 1, t.width - 2, t.height - 2), e.lineWidth = 1, e.font = "40px Arial", e.textAlign = "center", e.fillStyle = l.bgcolor || "#AAA";
+      let a = "";
+      for (let r = 1; r < this._graph_stack.length; ++r)
+        a += `${o._subgraph_node.getTitle()} >> `;
       e.fillText(
-        u + a.getTitle(),
+        a + l.getTitle(),
         t.width * 0.5,
         40
       ), e.restore();
     }
-    let o = !1;
-    if (this.onRenderBackground && this.onRenderBackground(t, e) && (o = !0), this.viewport || (e.restore(), e.setTransform(1, 0, 0, 1, 0, 0)), this.visible_links.length = 0, this.graph) {
-      if (e.save(), this.ds.toCanvasContext(e), this.background_image && this.ds.scale > 0.5 && !o) {
+    let n = !1;
+    if (this.onRenderBackground && this.onRenderBackground(t, e) && (n = !0), this.viewport || (e.restore(), e.setTransform(1, 0, 0, 1, 0, 0)), this.visible_links.length = 0, this.graph) {
+      if (e.save(), this.ds.toCanvasContext(e), this.background_image && this.ds.scale > 0.5 && !n) {
         this.zoom_modify_alpha ? e.globalAlpha = (1 - 0.5 / this.ds.scale) * this.editor_alpha : e.globalAlpha = this.editor_alpha, e.imageSmoothingEnabled = e.imageSmoothingEnabled = !1, (!this._bg_img || this._bg_img.name !== this.background_image) && (this._bg_img = new Image(), this._bg_img.name = this.background_image, this._bg_img.src = this.background_image, this._bg_img.onload = () => {
           this.draw(!0, !0);
         });
-        let n = null;
-        this._pattern === null && this._bg_img.width > 0 ? (n = e.createPattern(this._bg_img, "repeat"), this._pattern_img = this._bg_img, this._pattern = n) : n = this._pattern, n && (e.fillStyle = n, e.fillRect(
+        let i = null;
+        this._pattern === null && this._bg_img.width > 0 ? (i = e.createPattern(this._bg_img, "repeat"), this._pattern_img = this._bg_img, this._pattern = i) : i = this._pattern, i && (e.fillStyle = i, e.fillRect(
           this.visible_area[0],
           this.visible_area[1],
           this.visible_area[2],
@@ -1093,119 +1094,119 @@ const q = class {
   drawNode(t, e) {
     this.current_node = t;
     const s = t.color || t.constructor.color || h.NODE_DEFAULT_COLOR;
-    let o = t.bgcolor || t.constructor.bgcolor || h.NODE_DEFAULT_BGCOLOR;
+    let n = t.bgcolor || t.constructor.bgcolor || h.NODE_DEFAULT_BGCOLOR;
     t.mouseOver;
-    const n = this.ds.scale < 0.6;
+    const i = this.ds.scale < 0.6;
     if (this.live_mode) {
       t.flags.collapsed || (e.shadowColor = "transparent", t.onDrawForeground && t.onDrawForeground(e, this, this.canvas));
       return;
     }
-    const r = this.editor_alpha;
-    if (e.globalAlpha = r, this.render_shadows && !n ? (e.shadowColor = h.DEFAULT_SHADOW_COLOR, e.shadowOffsetX = 2 * this.ds.scale, e.shadowOffsetY = 2 * this.ds.scale, e.shadowBlur = 3 * this.ds.scale) : e.shadowColor = "transparent", t.flags.collapsed && t.onDrawCollapsed && t.onDrawCollapsed(e, this) === !0)
+    const o = this.editor_alpha;
+    if (e.globalAlpha = o, this.render_shadows && !i ? (e.shadowColor = h.DEFAULT_SHADOW_COLOR, e.shadowOffsetX = 2 * this.ds.scale, e.shadowOffsetY = 2 * this.ds.scale, e.shadowBlur = 3 * this.ds.scale) : e.shadowColor = "transparent", t.flags.collapsed && t.onDrawCollapsed && t.onDrawCollapsed(e, this) === !0)
       return;
-    const a = t.shape || A.BOX_SHAPE, u = q.temp_vec2;
-    q.temp_vec2.set(t.size);
-    const l = t.horizontal;
+    const l = t.shape || S.BOX_SHAPE, a = K.temp_vec2;
+    K.temp_vec2.set(t.size);
+    const r = t.horizontal;
     if (t.flags.collapsed) {
       e.font = this.inner_text_font;
-      const d = t.getTitle ? t.getTitle() : t.title;
-      d !== null && (t._collapsed_width = Math.min(
+      const p = t.getTitle ? t.getTitle() : t.title;
+      p !== null && (t._collapsed_width = Math.min(
         t.size[0],
-        e.measureText(d).width + h.NODE_TITLE_HEIGHT * 2
-      ), u[0] = t._collapsed_width, u[1] = 0);
+        e.measureText(p).width + h.NODE_TITLE_HEIGHT * 2
+      ), a[0] = t._collapsed_width, a[1] = 0);
     }
-    t.clip_area && (e.save(), e.beginPath(), a === A.BOX_SHAPE ? e.rect(0, 0, u[0], u[1]) : a === A.ROUND_SHAPE ? e.roundRect(0, 0, u[0], u[1], [10]) : a === A.CIRCLE_SHAPE && e.arc(
-      u[0] * 0.5,
-      u[1] * 0.5,
-      u[0] * 0.5,
+    t.clip_area && (e.save(), e.beginPath(), l === S.BOX_SHAPE ? e.rect(0, 0, a[0], a[1]) : l === S.ROUND_SHAPE ? e.roundRect(0, 0, a[0], a[1], [10]) : l === S.CIRCLE_SHAPE && e.arc(
+      a[0] * 0.5,
+      a[1] * 0.5,
+      a[0] * 0.5,
       0,
       Math.PI * 2
-    ), e.clip()), t.has_errors && (o = "red"), this.drawNodeShape(
+    ), e.clip()), t.has_errors && (n = "red"), this.drawNodeShape(
       t,
       e,
-      [u[0], u[1]],
+      [a[0], a[1]],
       s,
-      o,
+      n,
       t.is_selected,
       t.mouseOver
-    ), e.shadowColor = "transparent", t.onDrawForeground && t.onDrawForeground(e, this, this.canvas), e.textAlign = l ? "center" : "left", e.font = this.inner_text_font;
-    const p = !n, f = this.connecting_output, c = this.connecting_input;
+    ), e.shadowColor = "transparent", t.onDrawForeground && t.onDrawForeground(e, this, this.canvas), e.textAlign = r ? "center" : "left", e.font = this.inner_text_font;
+    const c = !i, d = this.connecting_output, u = this.connecting_input;
     e.lineWidth = 1;
-    let g = 0;
-    const y = [0, 0];
+    let _ = 0;
+    const m = [0, 0];
     if (t.flags.collapsed) {
       if (this.render_collapsed_slots) {
-        let d = null, _ = null;
+        let p = null, f = null;
         if (t.inputs)
-          for (let m = 0; m < t.inputs.length; m++) {
-            const b = t.inputs[m];
-            if (b.link !== null) {
-              d = b;
+          for (let v = 0; v < t.inputs.length; v++) {
+            const y = t.inputs[v];
+            if (y.link !== null) {
+              p = y;
               break;
             }
           }
         if (t.outputs)
-          for (let m = 0; m < t.outputs.length; m++) {
-            const b = t.outputs[m];
-            !b.links || !b.links.length || (_ = b);
+          for (let v = 0; v < t.outputs.length; v++) {
+            const y = t.outputs[v];
+            !y.links || !y.links.length || (f = y);
           }
-        if (d) {
-          let m = 0, b = h.NODE_TITLE_HEIGHT * -0.5;
-          l && (m = t._collapsed_width * 0.5, b = -h.NODE_TITLE_HEIGHT), e.fillStyle = "#686", e.beginPath(), d.shape === A.BOX_SHAPE ? e.rect(m - 7 + 0.5, b - 4, 14, 8) : d.shape === A.ARROW_SHAPE ? (e.moveTo(m + 8, b), e.lineTo(m + -4, b - 4), e.lineTo(m + -4, b + 4), e.closePath()) : e.arc(m, b, 4, 0, Math.PI * 2), e.fill();
+        if (p) {
+          let v = 0, y = h.NODE_TITLE_HEIGHT * -0.5;
+          r && (v = t._collapsed_width * 0.5, y = -h.NODE_TITLE_HEIGHT), e.fillStyle = "#686", e.beginPath(), p.shape === S.BOX_SHAPE ? e.rect(v - 7 + 0.5, y - 4, 14, 8) : p.shape === S.ARROW_SHAPE ? (e.moveTo(v + 8, y), e.lineTo(v + -4, y - 4), e.lineTo(v + -4, y + 4), e.closePath()) : e.arc(v, y, 4, 0, Math.PI * 2), e.fill();
         }
-        if (_) {
-          let m = t._collapsed_width, b = h.NODE_TITLE_HEIGHT * -0.5;
-          l && (m = t._collapsed_width * 0.5, b = 0), e.fillStyle = "#686", e.strokeStyle = "black", e.beginPath(), _.shape === A.BOX_SHAPE ? e.rect(m - 7 + 0.5, b - 4, 14, 8) : _.shape === A.ARROW_SHAPE ? (e.moveTo(m + 6, b), e.lineTo(m - 6, b - 4), e.lineTo(m - 6, b + 4), e.closePath()) : e.arc(m, b, 4, 0, Math.PI * 2), e.fill();
+        if (f) {
+          let v = t._collapsed_width, y = h.NODE_TITLE_HEIGHT * -0.5;
+          r && (v = t._collapsed_width * 0.5, y = 0), e.fillStyle = "#686", e.strokeStyle = "black", e.beginPath(), f.shape === S.BOX_SHAPE ? e.rect(v - 7 + 0.5, y - 4, 14, 8) : f.shape === S.ARROW_SHAPE ? (e.moveTo(v + 6, y), e.lineTo(v - 6, y - 4), e.lineTo(v - 6, y + 4), e.closePath()) : e.arc(v, y, 4, 0, Math.PI * 2), e.fill();
         }
       }
     } else {
       if (t.inputs)
-        for (let d = 0; d < t.inputs.length; d++) {
-          const _ = t.inputs[d], m = _.type, b = _.shape;
-          e.globalAlpha = r, this.connecting_output && !h.isValidConnection(_.type, f.type) ? e.globalAlpha = 0.4 * r : e.globalAlpha = r, e.fillStyle = _.link !== null ? _.color_on || T.DEFAULT_CONNECTION_COLORS_BY_TYPE[m] || T.DEFAULT_CONNECTION_COLORS.input_on : _.color_off || T.DEFAULT_CONNECTION_COLORS_BY_TYPE_OFF[m] || T.DEFAULT_CONNECTION_COLORS_BY_TYPE[m] || T.DEFAULT_CONNECTION_COLORS.input_off;
-          const v = t.getConnectionPos(!0, d, [y[0], y[1]]);
-          if (v[0] -= t.pos[0], v[1] -= t.pos[1], g < v[1] + h.NODE_SLOT_HEIGHT * 0.5 && (g = v[1] + h.NODE_SLOT_HEIGHT * 0.5), e.beginPath(), _.shape === A.BOX_SHAPE ? l ? e.rect(
-            v[0] - 5 + 0.5,
-            v[1] - 8 + 0.5,
+        for (let p = 0; p < t.inputs.length; p++) {
+          const f = t.inputs[p], v = f.type, y = f.shape;
+          e.globalAlpha = o, this.connecting_output && !h.isValidConnection(f.type, d.type) ? e.globalAlpha = 0.4 * o : e.globalAlpha = o, e.fillStyle = f.link !== null ? f.color_on || b.DEFAULT_CONNECTION_COLORS_BY_TYPE[v] || b.DEFAULT_CONNECTION_COLORS.input_on : f.color_off || b.DEFAULT_CONNECTION_COLORS_BY_TYPE_OFF[v] || b.DEFAULT_CONNECTION_COLORS_BY_TYPE[v] || b.DEFAULT_CONNECTION_COLORS.input_off;
+          const g = t.getConnectionPos(!0, p, [m[0], m[1]]);
+          if (g[0] -= t.pos[0], g[1] -= t.pos[1], _ < g[1] + h.NODE_SLOT_HEIGHT * 0.5 && (_ = g[1] + h.NODE_SLOT_HEIGHT * 0.5), e.beginPath(), f.shape === S.BOX_SHAPE ? r ? e.rect(
+            g[0] - 5 + 0.5,
+            g[1] - 8 + 0.5,
             10,
             14
           ) : e.rect(
-            v[0] - 6 + 0.5,
-            v[1] - 5 + 0.5,
+            g[0] - 6 + 0.5,
+            g[1] - 5 + 0.5,
             14,
             10
-          ) : b === A.ARROW_SHAPE ? (e.moveTo(v[0] + 8, v[1] + 0.5), e.lineTo(v[0] - 4, v[1] + 6 + 0.5), e.lineTo(v[0] - 4, v[1] - 6 + 0.5), e.closePath()) : b === A.GRID_SHAPE ? (e.rect(v[0] - 4, v[1] - 4, 2, 2), e.rect(v[0] - 1, v[1] - 4, 2, 2), e.rect(v[0] + 2, v[1] - 4, 2, 2), e.rect(v[0] - 4, v[1] - 1, 2, 2), e.rect(v[0] - 1, v[1] - 1, 2, 2), e.rect(v[0] + 2, v[1] - 1, 2, 2), e.rect(v[0] - 4, v[1] + 2, 2, 2), e.rect(v[0] - 1, v[1] + 2, 2, 2), e.rect(v[0] + 2, v[1] + 2, 2, 2)) : n ? e.rect(v[0] - 4, v[1] - 4, 8, 8) : e.arc(v[0], v[1], 4, 0, Math.PI * 2), e.fill(), p) {
-            const O = _.label !== null ? _.label : _.name;
-            O && (e.fillStyle = h.NODE_TEXT_COLOR, l || _.dir === D.UP ? e.fillText(O, v[0], v[1] - 10) : e.fillText(O, v[0] + 10, v[1] + 5));
+          ) : y === S.ARROW_SHAPE ? (e.moveTo(g[0] + 8, g[1] + 0.5), e.lineTo(g[0] - 4, g[1] + 6 + 0.5), e.lineTo(g[0] - 4, g[1] - 6 + 0.5), e.closePath()) : y === S.GRID_SHAPE ? (e.rect(g[0] - 4, g[1] - 4, 2, 2), e.rect(g[0] - 1, g[1] - 4, 2, 2), e.rect(g[0] + 2, g[1] - 4, 2, 2), e.rect(g[0] - 4, g[1] - 1, 2, 2), e.rect(g[0] - 1, g[1] - 1, 2, 2), e.rect(g[0] + 2, g[1] - 1, 2, 2), e.rect(g[0] - 4, g[1] + 2, 2, 2), e.rect(g[0] - 1, g[1] + 2, 2, 2), e.rect(g[0] + 2, g[1] + 2, 2, 2)) : i ? e.rect(g[0] - 4, g[1] - 4, 8, 8) : e.arc(g[0], g[1], 4, 0, Math.PI * 2), e.fill(), c) {
+            const N = f.label !== null ? f.label : f.name;
+            N && (e.fillStyle = h.NODE_TEXT_COLOR, r || f.dir === L.UP ? e.fillText(N, g[0], g[1] - 10) : e.fillText(N, g[0] + 10, g[1] + 5));
           }
         }
-      if (e.textAlign = l ? "center" : "right", e.strokeStyle = "black", t.outputs)
-        for (let d = 0; d < t.outputs.length; d++) {
-          const _ = t.outputs[d], m = _.type, b = _.shape;
-          this.connecting_input && !h.isValidConnection(c.type, m) ? e.globalAlpha = 0.4 * r : e.globalAlpha = r;
-          const v = t.getConnectionPos(!1, d, y);
-          v[0] -= t.pos[0], v[1] -= t.pos[1], g < v[1] + h.NODE_SLOT_HEIGHT * 0.5 && (g = v[1] + h.NODE_SLOT_HEIGHT * 0.5), e.fillStyle = _.links && _.links.length ? _.color_on || T.DEFAULT_CONNECTION_COLORS_BY_TYPE[m] || T.DEFAULT_CONNECTION_COLORS.output_on : _.color_off || T.DEFAULT_CONNECTION_COLORS_BY_TYPE_OFF[m] || T.DEFAULT_CONNECTION_COLORS_BY_TYPE[m] || T.DEFAULT_CONNECTION_COLORS.output_off, e.beginPath();
-          let O = !0;
-          if (b === A.BOX_SHAPE ? l ? e.rect(
-            v[0] - 5 + 0.5,
-            v[1] - 8 + 0.5,
+      if (e.textAlign = r ? "center" : "right", e.strokeStyle = "black", t.outputs)
+        for (let p = 0; p < t.outputs.length; p++) {
+          const f = t.outputs[p], v = f.type, y = f.shape;
+          this.connecting_input && !h.isValidConnection(u.type, v) ? e.globalAlpha = 0.4 * o : e.globalAlpha = o;
+          const g = t.getConnectionPos(!1, p, m);
+          g[0] -= t.pos[0], g[1] -= t.pos[1], _ < g[1] + h.NODE_SLOT_HEIGHT * 0.5 && (_ = g[1] + h.NODE_SLOT_HEIGHT * 0.5), e.fillStyle = f.links && f.links.length ? f.color_on || b.DEFAULT_CONNECTION_COLORS_BY_TYPE[v] || b.DEFAULT_CONNECTION_COLORS.output_on : f.color_off || b.DEFAULT_CONNECTION_COLORS_BY_TYPE_OFF[v] || b.DEFAULT_CONNECTION_COLORS_BY_TYPE[v] || b.DEFAULT_CONNECTION_COLORS.output_off, e.beginPath();
+          let N = !0;
+          if (y === S.BOX_SHAPE ? r ? e.rect(
+            g[0] - 5 + 0.5,
+            g[1] - 8 + 0.5,
             10,
             14
           ) : e.rect(
-            v[0] - 6 + 0.5,
-            v[1] - 5 + 0.5,
+            g[0] - 6 + 0.5,
+            g[1] - 5 + 0.5,
             14,
             10
-          ) : b === A.ARROW_SHAPE ? (e.moveTo(v[0] + 8, v[1] + 0.5), e.lineTo(v[0] - 4, v[1] + 6 + 0.5), e.lineTo(v[0] - 4, v[1] - 6 + 0.5), e.closePath()) : b === A.GRID_SHAPE ? (e.rect(v[0] - 4, v[1] - 4, 2, 2), e.rect(v[0] - 1, v[1] - 4, 2, 2), e.rect(v[0] + 2, v[1] - 4, 2, 2), e.rect(v[0] - 4, v[1] - 1, 2, 2), e.rect(v[0] - 1, v[1] - 1, 2, 2), e.rect(v[0] + 2, v[1] - 1, 2, 2), e.rect(v[0] - 4, v[1] + 2, 2, 2), e.rect(v[0] - 1, v[1] + 2, 2, 2), e.rect(v[0] + 2, v[1] + 2, 2, 2), O = !1) : n ? e.rect(v[0] - 4, v[1] - 4, 8, 8) : e.arc(v[0], v[1], 4, 0, Math.PI * 2), e.fill(), !n && O && e.stroke(), p) {
-            const N = _.label !== null ? _.label : _.name;
-            N && (e.fillStyle = h.NODE_TEXT_COLOR, l || _.dir === D.DOWN ? e.fillText(N, v[0], v[1] - 8) : e.fillText(N, v[0] - 10, v[1] + 5));
+          ) : y === S.ARROW_SHAPE ? (e.moveTo(g[0] + 8, g[1] + 0.5), e.lineTo(g[0] - 4, g[1] + 6 + 0.5), e.lineTo(g[0] - 4, g[1] - 6 + 0.5), e.closePath()) : y === S.GRID_SHAPE ? (e.rect(g[0] - 4, g[1] - 4, 2, 2), e.rect(g[0] - 1, g[1] - 4, 2, 2), e.rect(g[0] + 2, g[1] - 4, 2, 2), e.rect(g[0] - 4, g[1] - 1, 2, 2), e.rect(g[0] - 1, g[1] - 1, 2, 2), e.rect(g[0] + 2, g[1] - 1, 2, 2), e.rect(g[0] - 4, g[1] + 2, 2, 2), e.rect(g[0] - 1, g[1] + 2, 2, 2), e.rect(g[0] + 2, g[1] + 2, 2, 2), N = !1) : i ? e.rect(g[0] - 4, g[1] - 4, 8, 8) : e.arc(g[0], g[1], 4, 0, Math.PI * 2), e.fill(), !i && N && e.stroke(), c) {
+            const E = f.label !== null ? f.label : f.name;
+            E && (e.fillStyle = h.NODE_TEXT_COLOR, r || f.dir === L.DOWN ? e.fillText(E, g[0], g[1] - 8) : e.fillText(E, g[0] - 10, g[1] + 5));
           }
         }
       if (e.textAlign = "left", e.globalAlpha = 1, t.widgets) {
-        let d = g;
-        (l || t.widgets_up) && (d = 2), t.widgets_start_y !== null && (d = t.widgets_start_y), this.drawNodeWidgets(
+        let p = _;
+        (r || t.widgets_up) && (p = 2), t.widgets_start_y !== null && (p = t.widgets_start_y), this.drawNodeWidgets(
           t,
-          d,
+          p,
           e,
           this.node_widget && this.node_widget[0] === t ? this.node_widget[1] : null
         );
@@ -1218,187 +1219,187 @@ const q = class {
     const s = e._pos;
     if (this.allow_interaction && !this.read_only && (t.fillStyle = "black", t.beginPath(), t.arc(s[0], s[1], 3, 0, Math.PI * 2), t.fill()), e.data === null || this.onDrawLinkTooltip && this.onDrawLinkTooltip(t, e, this) === !0)
       return;
-    const o = e.data;
-    let n = null;
-    if (o.constructor === Number ? n = o.toFixed(2) : o.constructor === String ? n = `"${o}"` : o.constructor === Boolean ? n = String(o) : o.toToolTip ? n = o.toToolTip() : n = `[${o.constructor.name}]`, n === null)
+    const n = e.data;
+    let i = null;
+    if (n.constructor === Number ? i = n.toFixed(2) : n.constructor === String ? i = `"${n}"` : n.constructor === Boolean ? i = String(n) : n.toToolTip ? i = n.toToolTip() : i = `[${n.constructor.name}]`, i === null)
       return;
-    n = n.substr(0, 30), t.font = "14px Courier New";
-    const a = t.measureText(n).width + 20, u = 24;
-    t.shadowColor = "black", t.shadowOffsetX = 2, t.shadowOffsetY = 2, t.shadowBlur = 3, t.fillStyle = "#454", t.beginPath(), t.roundRect(s[0] - a * 0.5, s[1] - 15 - u, a, u, [3]), t.moveTo(s[0] - 10, s[1] - 15), t.lineTo(s[0] + 10, s[1] - 15), t.lineTo(s[0], s[1] - 5), t.fill(), t.shadowColor = "transparent", t.textAlign = "center", t.fillStyle = "#CEC", t.fillText(n, s[0], s[1] - 15 - u * 0.3);
+    i = i.substr(0, 30), t.font = "14px Courier New";
+    const l = t.measureText(i).width + 20, a = 24;
+    t.shadowColor = "black", t.shadowOffsetX = 2, t.shadowOffsetY = 2, t.shadowBlur = 3, t.fillStyle = "#454", t.beginPath(), t.roundRect(s[0] - l * 0.5, s[1] - 15 - a, l, a, [3]), t.moveTo(s[0] - 10, s[1] - 15), t.lineTo(s[0] + 10, s[1] - 15), t.lineTo(s[0], s[1] - 5), t.fill(), t.shadowColor = "transparent", t.textAlign = "center", t.fillStyle = "#CEC", t.fillText(i, s[0], s[1] - 15 - a * 0.3);
   }
   /** draws the shape of the given node in the canvas */
-  drawNodeShape(t, e, s, o, n, r, a) {
-    e.strokeStyle = o, e.fillStyle = n;
-    const u = h.NODE_TITLE_HEIGHT, l = this.ds.scale < 0.5, p = t.shape || t.constructor.shape || A.ROUND_SHAPE, f = t.titleMode, c = t.isShowingTitle(a), g = q.tmp_area;
-    g[0] = 0, g[1] = c ? -u : 0, g[2] = s[0] + 1, g[3] = c ? s[1] + u : s[1];
-    const y = e.globalAlpha;
-    if (e.beginPath(), p === A.BOX_SHAPE || l ? e.fillRect(g[0], g[1], g[2], g[3]) : p === A.ROUND_SHAPE || p === A.CARD_SHAPE ? e.roundRect(
-      g[0],
-      g[1],
-      g[2],
-      g[3],
-      p === A.CARD_SHAPE ? [this.round_radius, this.round_radius, 0, 0] : [this.round_radius]
-    ) : p === A.CIRCLE_SHAPE && e.arc(
+  drawNodeShape(t, e, s, n, i, o, l) {
+    e.strokeStyle = n, e.fillStyle = i;
+    const a = h.NODE_TITLE_HEIGHT, r = this.ds.scale < 0.5, c = t.shape || t.constructor.shape || S.ROUND_SHAPE, d = t.titleMode, u = t.isShowingTitle(l), _ = K.tmp_area;
+    _[0] = 0, _[1] = u ? -a : 0, _[2] = s[0] + 1, _[3] = u ? s[1] + a : s[1];
+    const m = e.globalAlpha;
+    if (e.beginPath(), c === S.BOX_SHAPE || r ? e.fillRect(_[0], _[1], _[2], _[3]) : c === S.ROUND_SHAPE || c === S.CARD_SHAPE ? e.roundRect(
+      _[0],
+      _[1],
+      _[2],
+      _[3],
+      c === S.CARD_SHAPE ? [this.round_radius, this.round_radius, 0, 0] : [this.round_radius]
+    ) : c === S.CIRCLE_SHAPE && e.arc(
       s[0] * 0.5,
       s[1] * 0.5,
       s[0] * 0.5,
       0,
       Math.PI * 2
-    ), e.fill(), !t.flags.collapsed && c && (e.shadowColor = "transparent", e.fillStyle = "rgba(0,0,0,0.2)", e.fillRect(0, -1, g[2], 2)), e.shadowColor = "transparent", t.onDrawBackground && t.onDrawBackground(e, this, this.canvas, this.graph_mouse), c || f === Z.TRANSPARENT_TITLE) {
+    ), e.fill(), !t.flags.collapsed && u && (e.shadowColor = "transparent", e.fillStyle = "rgba(0,0,0,0.2)", e.fillRect(0, -1, _[2], 2)), e.shadowColor = "transparent", t.onDrawBackground && t.onDrawBackground(e, this, this.canvas, this.graph_mouse), u || d === q.TRANSPARENT_TITLE) {
       if (t.onDrawTitleBar)
-        t.onDrawTitleBar(e, this, u, s, this.ds.scale, o);
-      else if (f !== Z.TRANSPARENT_TITLE && (t.constructor.title_color || this.render_title_colored)) {
-        const m = t.constructor.title_color || o;
+        t.onDrawTitleBar(e, this, a, s, this.ds.scale, n);
+      else if (d !== q.TRANSPARENT_TITLE && (t.constructor.title_color || this.render_title_colored)) {
+        const v = t.constructor.title_color || n;
         if (t.flags.collapsed && (e.shadowColor = h.DEFAULT_SHADOW_COLOR), this.use_gradients) {
-          let b = T.gradients[m];
-          b || (b = T.gradients[m] = e.createLinearGradient(0, 0, 400, 0), b.addColorStop(0, m), b.addColorStop(1, "#000")), e.fillStyle = b;
+          let y = b.gradients[v];
+          y || (y = b.gradients[v] = e.createLinearGradient(0, 0, 400, 0), y.addColorStop(0, v), y.addColorStop(1, "#000")), e.fillStyle = y;
         } else
-          e.fillStyle = m;
-        e.beginPath(), p === A.BOX_SHAPE || l ? e.rect(0, -u, s[0] + 1, u) : (p === A.ROUND_SHAPE || p === A.CARD_SHAPE) && e.roundRect(
+          e.fillStyle = v;
+        e.beginPath(), c === S.BOX_SHAPE || r ? e.rect(0, -a, s[0] + 1, a) : (c === S.ROUND_SHAPE || c === S.CARD_SHAPE) && e.roundRect(
           0,
-          -u,
+          -a,
           s[0] + 1,
-          u,
+          a,
           t.flags.collapsed ? [this.round_radius] : [this.round_radius, this.round_radius, 0, 0]
         ), e.fill(), e.shadowColor = "transparent";
       }
-      let d = null;
-      h.node_box_coloured_by_mode && gt[t.mode] && (d = gt[t.mode]), h.node_box_coloured_when_on && (d = t.action_triggered ? "#FFF" : t.execute_triggered ? "#AAA" : d);
-      const _ = 10;
-      if (t.onDrawTitleBox ? t.onDrawTitleBox(e, this, u, s, this.ds.scale) : p === A.ROUND_SHAPE || p === A.CIRCLE_SHAPE || p === A.CARD_SHAPE ? (l && (e.fillStyle = "black", e.beginPath(), e.arc(
-        u * 0.5,
-        u * -0.5,
-        _ * 0.5 + 1,
+      let p = null;
+      h.node_box_coloured_by_mode && _t[t.mode] && (p = _t[t.mode]), h.node_box_coloured_when_on && (p = t.action_triggered ? "#FFF" : t.execute_triggered ? "#AAA" : p);
+      const f = 10;
+      if (t.onDrawTitleBox ? t.onDrawTitleBox(e, this, a, s, this.ds.scale) : c === S.ROUND_SHAPE || c === S.CIRCLE_SHAPE || c === S.CARD_SHAPE ? (r && (e.fillStyle = "black", e.beginPath(), e.arc(
+        a * 0.5,
+        a * -0.5,
+        f * 0.5 + 1,
         0,
         Math.PI * 2
-      ), e.fill()), e.fillStyle = t.boxcolor || d || h.NODE_DEFAULT_BOXCOLOR, l ? e.fillRect(u * 0.5 - _ * 0.5, u * -0.5 - _ * 0.5, _, _) : (e.beginPath(), e.arc(
-        u * 0.5,
-        u * -0.5,
-        _ * 0.5,
+      ), e.fill()), e.fillStyle = t.boxcolor || p || h.NODE_DEFAULT_BOXCOLOR, r ? e.fillRect(a * 0.5 - f * 0.5, a * -0.5 - f * 0.5, f, f) : (e.beginPath(), e.arc(
+        a * 0.5,
+        a * -0.5,
+        f * 0.5,
         0,
         Math.PI * 2
-      ), e.fill())) : (l && (e.fillStyle = "black", e.fillRect(
-        (u - _) * 0.5 - 1,
-        (u + _) * -0.5 - 1,
-        _ + 2,
-        _ + 2
-      )), e.fillStyle = t.boxcolor || d || h.NODE_DEFAULT_BOXCOLOR, e.fillRect(
-        (u - _) * 0.5,
-        (u + _) * -0.5,
-        _,
-        _
-      )), e.globalAlpha = y, t.onDrawTitleText && t.onDrawTitleText(
+      ), e.fill())) : (r && (e.fillStyle = "black", e.fillRect(
+        (a - f) * 0.5 - 1,
+        (a + f) * -0.5 - 1,
+        f + 2,
+        f + 2
+      )), e.fillStyle = t.boxcolor || p || h.NODE_DEFAULT_BOXCOLOR, e.fillRect(
+        (a - f) * 0.5,
+        (a + f) * -0.5,
+        f,
+        f
+      )), e.globalAlpha = m, t.onDrawTitleText && t.onDrawTitleText(
         e,
         this,
-        u,
+        a,
         s,
         this.ds.scale,
         this.title_text_font,
-        r
-      ), !l) {
+        o
+      ), !r) {
         e.font = this.title_text_font;
-        const m = String(t.getTitle());
-        m && (r ? e.fillStyle = h.NODE_SELECTED_TITLE_COLOR : e.fillStyle = t.constructor.title_text_color || this.node_title_color, t.flags.collapsed ? (e.textAlign = "left", e.fillText(
-          m.substr(0, 20),
+        const v = String(t.getTitle());
+        v && (o ? e.fillStyle = h.NODE_SELECTED_TITLE_COLOR : e.fillStyle = t.constructor.title_text_color || this.node_title_color, t.flags.collapsed ? (e.textAlign = "left", e.fillText(
+          v.substr(0, 20),
           // avoid urls too long
-          u,
+          a,
           // + measure.width * 0.5,
-          h.NODE_TITLE_TEXT_Y - u
+          h.NODE_TITLE_TEXT_Y - a
         ), e.textAlign = "left") : (e.textAlign = "left", e.fillText(
-          m,
-          u,
-          h.NODE_TITLE_TEXT_Y - u
+          v,
+          a,
+          h.NODE_TITLE_TEXT_Y - a
         )));
       }
       if (!t.flags.collapsed && t.subgraph && !t.skip_subgraph_button) {
-        const m = h.NODE_TITLE_HEIGHT, b = t.size[0] - m, v = h.isInsideRectangle(this.graph_mouse[0] - t.pos[0], this.graph_mouse[1] - t.pos[1], b + 2, -m + 2, m - 4, m - 4);
-        e.fillStyle = v ? "#888" : "#555", p === A.BOX_SHAPE || l ? e.fillRect(b + 2, -m + 2, m - 4, m - 4) : (e.beginPath(), e.roundRect(b + 2, -m + 2, m - 4, m - 4, [4]), e.fill()), e.fillStyle = "#333", e.beginPath(), e.moveTo(b + m * 0.2, -m * 0.6), e.lineTo(b + m * 0.8, -m * 0.6), e.lineTo(b + m * 0.5, -m * 0.3), e.fill();
+        const v = h.NODE_TITLE_HEIGHT, y = t.size[0] - v, g = h.isInsideRectangle(this.graph_mouse[0] - t.pos[0], this.graph_mouse[1] - t.pos[1], y + 2, -v + 2, v - 4, v - 4);
+        e.fillStyle = g ? "#888" : "#555", c === S.BOX_SHAPE || r ? e.fillRect(y + 2, -v + 2, v - 4, v - 4) : (e.beginPath(), e.roundRect(y + 2, -v + 2, v - 4, v - 4, [4]), e.fill()), e.fillStyle = "#333", e.beginPath(), e.moveTo(y + v * 0.2, -v * 0.6), e.lineTo(y + v * 0.8, -v * 0.6), e.lineTo(y + v * 0.5, -v * 0.3), e.fill();
       }
       t.onDrawTitle && t.onDrawTitle(e, this);
     }
-    r && (t.onBounding && t.onBounding(g), f === Z.TRANSPARENT_TITLE && (g[1] -= u, g[3] += u), e.lineWidth = 1, e.globalAlpha = 0.8, e.beginPath(), p === A.BOX_SHAPE ? e.rect(
-      -6 + g[0],
-      -6 + g[1],
-      12 + g[2],
-      12 + g[3]
-    ) : p === A.ROUND_SHAPE || p === A.CARD_SHAPE && t.flags.collapsed ? e.roundRect(
-      -6 + g[0],
-      -6 + g[1],
-      12 + g[2],
-      12 + g[3],
+    o && (t.onBounding && t.onBounding(_), d === q.TRANSPARENT_TITLE && (_[1] -= a, _[3] += a), e.lineWidth = 1, e.globalAlpha = 0.8, e.beginPath(), c === S.BOX_SHAPE ? e.rect(
+      -6 + _[0],
+      -6 + _[1],
+      12 + _[2],
+      12 + _[3]
+    ) : c === S.ROUND_SHAPE || c === S.CARD_SHAPE && t.flags.collapsed ? e.roundRect(
+      -6 + _[0],
+      -6 + _[1],
+      12 + _[2],
+      12 + _[3],
       [this.round_radius * 2]
-    ) : p === A.CARD_SHAPE ? e.roundRect(
-      -6 + g[0],
-      -6 + g[1],
-      12 + g[2],
-      12 + g[3],
+    ) : c === S.CARD_SHAPE ? e.roundRect(
+      -6 + _[0],
+      -6 + _[1],
+      12 + _[2],
+      12 + _[3],
       [this.round_radius * 2, 2, this.round_radius * 2, 2]
-    ) : p === A.CIRCLE_SHAPE && e.arc(
+    ) : c === S.CIRCLE_SHAPE && e.arc(
       s[0] * 0.5,
       s[1] * 0.5,
       s[0] * 0.5 + 6,
       0,
       Math.PI * 2
-    ), e.strokeStyle = h.NODE_BOX_OUTLINE_COLOR, e.stroke(), e.strokeStyle = o, e.globalAlpha = 1), t.execute_triggered > 0 && t.execute_triggered--, t.action_triggered > 0 && t.action_triggered--;
+    ), e.strokeStyle = h.NODE_BOX_OUTLINE_COLOR, e.stroke(), e.strokeStyle = n, e.globalAlpha = 1), t.execute_triggered > 0 && t.execute_triggered--, t.action_triggered > 0 && t.action_triggered--;
   }
   /** draws every connection visible in the canvas */
   drawConnections(t) {
-    const e = h.getTime(), s = this.visible_area, o = q.margin_area;
-    o[0] = s[0] - 20, o[1] = s[1] - 20, o[2] = s[2] + 40, o[3] = s[3] + 40, t.lineWidth = this.connections_width, t.fillStyle = "#AAA", t.strokeStyle = "#AAA", t.globalAlpha = this.editor_alpha;
-    const n = this.graph._nodes;
-    for (let r = 0, a = n.length; r < a; ++r) {
-      const u = n[r];
-      if (!(!u.inputs || !u.inputs.length))
-        for (let l = 0; l < u.inputs.length; ++l) {
-          const p = u.inputs[l];
-          if (!p || p.link === null)
+    const e = h.getTime(), s = this.visible_area, n = K.margin_area;
+    n[0] = s[0] - 20, n[1] = s[1] - 20, n[2] = s[2] + 40, n[3] = s[3] + 40, t.lineWidth = this.connections_width, t.fillStyle = "#AAA", t.strokeStyle = "#AAA", t.globalAlpha = this.editor_alpha;
+    const i = this.graph._nodes;
+    for (let o = 0, l = i.length; o < l; ++o) {
+      const a = i[o];
+      if (!(!a.inputs || !a.inputs.length))
+        for (let r = 0; r < a.inputs.length; ++r) {
+          const c = a.inputs[r];
+          if (!c || c.link === null)
             continue;
-          const f = p.link, c = this.graph.links[f];
-          if (!c)
+          const d = c.link, u = this.graph.links[d];
+          if (!u)
             continue;
-          const g = this.graph.getNodeById(c.origin_id);
-          if (g === null)
+          const _ = this.graph.getNodeById(u.origin_id);
+          if (_ === null)
             continue;
-          const y = c.origin_slot;
-          let d = null;
-          y === -1 ? d = [
-            g.pos[0] + 10,
-            g.pos[1] + 10
-          ] : d = g.getConnectionPos(
+          const m = u.origin_slot;
+          let p = null;
+          m === -1 ? p = [
+            _.pos[0] + 10,
+            _.pos[1] + 10
+          ] : p = _.getConnectionPos(
             !1,
-            y,
-            q.tempA
+            m,
+            K.tempA
           );
-          const _ = u.getConnectionPos(!0, l, q.tempB), m = q.link_bounding;
-          if (m[0] = d[0], m[1] = d[1], m[2] = _[0] - d[0], m[3] = _[1] - d[1], m[2] < 0 && (m[0] += m[2], m[2] = Math.abs(m[2])), m[3] < 0 && (m[1] += m[3], m[3] = Math.abs(m[3])), !h.overlapBounding(m, o))
+          const f = a.getConnectionPos(!0, r, K.tempB), v = K.link_bounding;
+          if (v[0] = p[0], v[1] = p[1], v[2] = f[0] - p[0], v[3] = f[1] - p[1], v[2] < 0 && (v[0] += v[2], v[2] = Math.abs(v[2])), v[3] < 0 && (v[1] += v[3], v[3] = Math.abs(v[3])), !h.overlapBounding(v, n))
             continue;
-          const b = g.outputs[y], v = u.inputs[l];
-          if (!b || !v)
+          const y = _.outputs[m], g = a.inputs[r];
+          if (!y || !g)
             continue;
-          const O = b.dir || (g.horizontal ? D.DOWN : D.RIGHT), N = v.dir || (u.horizontal ? D.UP : D.LEFT);
+          const N = y.dir || (_.horizontal ? L.DOWN : L.RIGHT), E = g.dir || (a.horizontal ? L.UP : L.LEFT);
           if (this.renderLink(
             t,
-            d,
-            _,
-            c,
+            p,
+            f,
+            u,
             !1,
             !1,
             null,
-            O,
-            N
-          ), c && c._last_time && e - c._last_time < 1e3) {
-            const E = 2 - (e - c._last_time) * 2e-3, G = t.globalAlpha;
-            t.globalAlpha = G * E, this.renderLink(
+            N,
+            E
+          ), u && u._last_time && e - u._last_time < 1e3) {
+            const T = 2 - (e - u._last_time) * 2e-3, M = t.globalAlpha;
+            t.globalAlpha = M * T, this.renderLink(
               t,
-              d,
-              _,
-              c,
+              p,
+              f,
+              u,
               !0,
               !0,
               "white",
-              O,
-              N
-            ), t.globalAlpha = G;
+              N,
+              E
+            ), t.globalAlpha = M;
           }
         }
     }
@@ -1416,289 +1417,289 @@ const q = class {
    * @param endDir the direction enum
    * @param numSublines number of sublines (useful to represent vec3 or rgb)
    */
-  renderLink(t, e, s, o, n, r, a, u, l, p) {
-    o && this.visible_links.push(o), !a && o && (a = o.color || this.link_type_colors[o.type]), a || (a = this.default_link_color), o !== null && this.highlighted_links[o.id] && (a = "#FFF"), u = u || D.RIGHT, l = l || D.LEFT;
-    const f = h.distance(e, s);
-    this.render_connections_border && this.ds.scale > 0.6 && (t.lineWidth = this.connections_width + 4), t.lineJoin = "round", p = p || 1, p > 1 && (t.lineWidth = 0.5), t.beginPath();
-    for (let g = 0; g < p; g += 1) {
-      const y = (g - (p - 1) * 0.5) * 5;
-      if (this.links_render_mode === lt.SPLINE_LINK) {
-        t.moveTo(e[0], e[1] + y);
-        let d = 0, _ = 0, m = 0, b = 0;
-        switch (u) {
-          case D.LEFT:
-            d = f * -0.25;
+  renderLink(t, e, s, n, i, o, l, a, r, c) {
+    n && this.visible_links.push(n), !l && n && (l = n.color || this.link_type_colors[n.type]), l || (l = this.default_link_color), n !== null && this.highlighted_links[n.id] && (l = "#FFF"), a = a || L.RIGHT, r = r || L.LEFT;
+    const d = h.distance(e, s);
+    this.render_connections_border && this.ds.scale > 0.6 && (t.lineWidth = this.connections_width + 4), t.lineJoin = "round", c = c || 1, c > 1 && (t.lineWidth = 0.5), t.beginPath();
+    for (let _ = 0; _ < c; _ += 1) {
+      const m = (_ - (c - 1) * 0.5) * 5;
+      if (this.links_render_mode === rt.SPLINE_LINK) {
+        t.moveTo(e[0], e[1] + m);
+        let p = 0, f = 0, v = 0, y = 0;
+        switch (a) {
+          case L.LEFT:
+            p = d * -0.25;
             break;
-          case D.RIGHT:
-            d = f * 0.25;
+          case L.RIGHT:
+            p = d * 0.25;
             break;
-          case D.UP:
-            _ = f * -0.25;
+          case L.UP:
+            f = d * -0.25;
             break;
-          case D.DOWN:
-            _ = f * 0.25;
+          case L.DOWN:
+            f = d * 0.25;
             break;
         }
-        switch (l) {
-          case D.LEFT:
-            m = f * -0.25;
+        switch (r) {
+          case L.LEFT:
+            v = d * -0.25;
             break;
-          case D.RIGHT:
-            m = f * 0.25;
+          case L.RIGHT:
+            v = d * 0.25;
             break;
-          case D.UP:
-            b = f * -0.25;
+          case L.UP:
+            y = d * -0.25;
             break;
-          case D.DOWN:
-            b = f * 0.25;
+          case L.DOWN:
+            y = d * 0.25;
             break;
         }
         t.bezierCurveTo(
-          e[0] + d,
-          e[1] + _ + y,
-          s[0] + m,
-          s[1] + b + y,
+          e[0] + p,
+          e[1] + f + m,
+          s[0] + v,
+          s[1] + y + m,
           s[0],
-          s[1] + y
+          s[1] + m
         );
-      } else if (this.links_render_mode === lt.LINEAR_LINK) {
-        t.moveTo(e[0], e[1] + y);
-        let d = 0, _ = 0, m = 0, b = 0;
-        switch (u) {
-          case D.LEFT:
-            d = -1;
+      } else if (this.links_render_mode === rt.LINEAR_LINK) {
+        t.moveTo(e[0], e[1] + m);
+        let p = 0, f = 0, v = 0, y = 0;
+        switch (a) {
+          case L.LEFT:
+            p = -1;
             break;
-          case D.RIGHT:
-            d = 1;
+          case L.RIGHT:
+            p = 1;
             break;
-          case D.UP:
-            _ = -1;
+          case L.UP:
+            f = -1;
             break;
-          case D.DOWN:
-            _ = 1;
-            break;
-        }
-        switch (l) {
-          case D.LEFT:
-            m = -1;
-            break;
-          case D.RIGHT:
-            m = 1;
-            break;
-          case D.UP:
-            b = -1;
-            break;
-          case D.DOWN:
-            b = 1;
+          case L.DOWN:
+            f = 1;
             break;
         }
-        const v = 15;
+        switch (r) {
+          case L.LEFT:
+            v = -1;
+            break;
+          case L.RIGHT:
+            v = 1;
+            break;
+          case L.UP:
+            y = -1;
+            break;
+          case L.DOWN:
+            y = 1;
+            break;
+        }
+        const g = 15;
         t.lineTo(
-          e[0] + d * v,
-          e[1] + _ * v + y
+          e[0] + p * g,
+          e[1] + f * g + m
         ), t.lineTo(
-          s[0] + m * v,
-          s[1] + b * v + y
-        ), t.lineTo(s[0], s[1] + y);
-      } else if (this.links_render_mode === lt.STRAIGHT_LINK) {
+          s[0] + v * g,
+          s[1] + y * g + m
+        ), t.lineTo(s[0], s[1] + m);
+      } else if (this.links_render_mode === rt.STRAIGHT_LINK) {
         t.moveTo(e[0], e[1]);
-        let d = e[0], _ = e[1], m = s[0], b = s[1];
-        u === D.RIGHT ? d += 10 : _ += 10, l === D.LEFT ? m -= 10 : b -= 10, t.lineTo(d, _), t.lineTo((d + m) * 0.5, _), t.lineTo((d + m) * 0.5, b), t.lineTo(m, b), t.lineTo(s[0], s[1]);
+        let p = e[0], f = e[1], v = s[0], y = s[1];
+        a === L.RIGHT ? p += 10 : f += 10, r === L.LEFT ? v -= 10 : y -= 10, t.lineTo(p, f), t.lineTo((p + v) * 0.5, f), t.lineTo((p + v) * 0.5, y), t.lineTo(v, y), t.lineTo(s[0], s[1]);
       } else
         return;
     }
-    this.render_connections_border && this.ds.scale > 0.6 && !n && (t.strokeStyle = "rgba(0,0,0,0.5)", t.stroke()), t.lineWidth = this.connections_width, t.fillStyle = t.strokeStyle = a, t.stroke();
-    const c = this.computeConnectionPoint(e, s, 0.5, u, l);
-    if (o && o._pos && (o._pos[0] = c[0], o._pos[1] = c[1]), this.ds.scale >= 0.6 && this.highquality_render && l !== D.CENTER) {
+    this.render_connections_border && this.ds.scale > 0.6 && !i && (t.strokeStyle = "rgba(0,0,0,0.5)", t.stroke()), t.lineWidth = this.connections_width, t.fillStyle = t.strokeStyle = l, t.stroke();
+    const u = this.computeConnectionPoint(e, s, 0.5, a, r);
+    if (n && n._pos && (n._pos[0] = u[0], n._pos[1] = u[1]), this.ds.scale >= 0.6 && this.highquality_render && r !== L.CENTER) {
       if (this.render_connection_arrows) {
-        const g = this.computeConnectionPoint(
+        const _ = this.computeConnectionPoint(
           e,
           s,
           0.25,
-          u,
-          l
-        ), y = this.computeConnectionPoint(
+          a,
+          r
+        ), m = this.computeConnectionPoint(
           e,
           s,
           0.26,
-          u,
-          l
-        ), d = this.computeConnectionPoint(
+          a,
+          r
+        ), p = this.computeConnectionPoint(
           e,
           s,
           0.75,
-          u,
-          l
-        ), _ = this.computeConnectionPoint(
+          a,
+          r
+        ), f = this.computeConnectionPoint(
           e,
           s,
           0.76,
-          u,
-          l
+          a,
+          r
         );
-        let m = 0, b = 0;
-        this.render_curved_connections ? (m = -Math.atan2(y[0] - g[0], y[1] - g[1]), b = -Math.atan2(_[0] - d[0], _[1] - d[1])) : b = m = s[1] > e[1] ? 0 : Math.PI, t.save(), t.translate(g[0], g[1]), t.rotate(m), t.beginPath(), t.moveTo(-5, -3), t.lineTo(0, 7), t.lineTo(5, -3), t.fill(), t.restore(), t.save(), t.translate(d[0], d[1]), t.rotate(b), t.beginPath(), t.moveTo(-5, -3), t.lineTo(0, 7), t.lineTo(5, -3), t.fill(), t.restore();
+        let v = 0, y = 0;
+        this.render_curved_connections ? (v = -Math.atan2(m[0] - _[0], m[1] - _[1]), y = -Math.atan2(f[0] - p[0], f[1] - p[1])) : y = v = s[1] > e[1] ? 0 : Math.PI, t.save(), t.translate(_[0], _[1]), t.rotate(v), t.beginPath(), t.moveTo(-5, -3), t.lineTo(0, 7), t.lineTo(5, -3), t.fill(), t.restore(), t.save(), t.translate(p[0], p[1]), t.rotate(y), t.beginPath(), t.moveTo(-5, -3), t.lineTo(0, 7), t.lineTo(5, -3), t.fill(), t.restore();
       }
-      t.beginPath(), t.arc(c[0], c[1], 5, 0, Math.PI * 2), t.fill();
+      t.beginPath(), t.arc(u[0], u[1], 5, 0, Math.PI * 2), t.fill();
     }
-    if (r) {
-      t.fillStyle = a;
-      for (let g = 0; g < 5; ++g) {
-        const y = (h.getTime() * 1e-3 + g * 0.2) % 1, d = this.computeConnectionPoint(
+    if (o) {
+      t.fillStyle = l;
+      for (let _ = 0; _ < 5; ++_) {
+        const m = (h.getTime() * 1e-3 + _ * 0.2) % 1, p = this.computeConnectionPoint(
           e,
           s,
-          y,
-          u,
-          l
+          m,
+          a,
+          r
         );
-        t.beginPath(), t.arc(d[0], d[1], 5, 0, 2 * Math.PI), t.fill();
+        t.beginPath(), t.arc(p[0], p[1], 5, 0, 2 * Math.PI), t.fill();
       }
     }
   }
-  computeConnectionPoint(t, e, s, o = D.RIGHT, n = D.LEFT) {
-    const r = h.distance(t, e), a = t, u = [t[0], t[1]], l = [e[0], e[1]], p = e;
-    switch (o) {
-      case D.LEFT:
-        u[0] += r * -0.25;
-        break;
-      case D.RIGHT:
-        u[0] += r * 0.25;
-        break;
-      case D.UP:
-        u[1] += r * -0.25;
-        break;
-      case D.DOWN:
-        u[1] += r * 0.25;
-        break;
-    }
+  computeConnectionPoint(t, e, s, n = L.RIGHT, i = L.LEFT) {
+    const o = h.distance(t, e), l = t, a = [t[0], t[1]], r = [e[0], e[1]], c = e;
     switch (n) {
-      case D.LEFT:
-        l[0] += r * -0.25;
+      case L.LEFT:
+        a[0] += o * -0.25;
         break;
-      case D.RIGHT:
-        l[0] += r * 0.25;
+      case L.RIGHT:
+        a[0] += o * 0.25;
         break;
-      case D.UP:
-        l[1] += r * -0.25;
+      case L.UP:
+        a[1] += o * -0.25;
         break;
-      case D.DOWN:
-        l[1] += r * 0.25;
+      case L.DOWN:
+        a[1] += o * 0.25;
         break;
     }
-    const f = (1 - s) * (1 - s) * (1 - s), c = 3 * ((1 - s) * (1 - s)) * s, g = 3 * (1 - s) * (s * s), y = s * s * s, d = f * a[0] + c * u[0] + g * l[0] + y * p[0], _ = f * a[1] + c * u[1] + g * l[1] + y * p[1];
-    return [d, _];
+    switch (i) {
+      case L.LEFT:
+        r[0] += o * -0.25;
+        break;
+      case L.RIGHT:
+        r[0] += o * 0.25;
+        break;
+      case L.UP:
+        r[1] += o * -0.25;
+        break;
+      case L.DOWN:
+        r[1] += o * 0.25;
+        break;
+    }
+    const d = (1 - s) * (1 - s) * (1 - s), u = 3 * ((1 - s) * (1 - s)) * s, _ = 3 * (1 - s) * (s * s), m = s * s * s, p = d * l[0] + u * a[0] + _ * r[0] + m * c[0], f = d * l[1] + u * a[1] + _ * r[1] + m * c[1];
+    return [p, f];
   }
   drawExecutionOrder(t) {
     t.shadowColor = "transparent", t.globalAlpha = 0.25, t.textAlign = "center", t.strokeStyle = "white", t.globalAlpha = 0.75;
     const e = this.visible_nodes;
     for (let s = 0; s < e.length; ++s) {
-      const o = e[s];
+      const n = e[s];
       t.fillStyle = "black", t.fillRect(
-        o.pos[0] - h.NODE_TITLE_HEIGHT,
-        o.pos[1] - h.NODE_TITLE_HEIGHT,
+        n.pos[0] - h.NODE_TITLE_HEIGHT,
+        n.pos[1] - h.NODE_TITLE_HEIGHT,
         h.NODE_TITLE_HEIGHT,
         h.NODE_TITLE_HEIGHT
-      ), o.order === 0 && t.strokeRect(
-        o.pos[0] - h.NODE_TITLE_HEIGHT + 0.5,
-        o.pos[1] - h.NODE_TITLE_HEIGHT + 0.5,
+      ), n.order === 0 && t.strokeRect(
+        n.pos[0] - h.NODE_TITLE_HEIGHT + 0.5,
+        n.pos[1] - h.NODE_TITLE_HEIGHT + 0.5,
         h.NODE_TITLE_HEIGHT,
         h.NODE_TITLE_HEIGHT
       ), t.fillStyle = "#FFF", t.fillText(
-        `${o.order}`,
-        o.pos[0] + h.NODE_TITLE_HEIGHT * -0.5,
-        o.pos[1] - 6
+        `${n.order}`,
+        n.pos[0] + h.NODE_TITLE_HEIGHT * -0.5,
+        n.pos[1] - 6
       );
     }
     t.globalAlpha = 1;
   }
   /** draws the widgets stored inside a node */
-  drawNodeWidgets(t, e, s, o) {
+  drawNodeWidgets(t, e, s, n) {
     if (!t.widgets || !t.widgets.length)
       return;
-    const n = t.size[0], r = t.widgets;
+    const i = t.size[0], o = t.widgets;
     e += 2;
-    const a = h.NODE_WIDGET_HEIGHT, u = this.ds.scale > 0.5;
+    const l = h.NODE_WIDGET_HEIGHT, a = this.ds.scale > 0.5;
     s.save(), s.globalAlpha = this.editor_alpha;
-    const l = h.WIDGET_OUTLINE_COLOR, p = h.WIDGET_BGCOLOR, f = h.WIDGET_TEXT_COLOR, c = h.WIDGET_SECONDARY_TEXT_COLOR, g = 15;
-    for (let y = 0; y < r.length; ++y) {
-      const d = r[y];
-      if (d.hidden)
+    const r = h.WIDGET_OUTLINE_COLOR, c = h.WIDGET_BGCOLOR, d = h.WIDGET_TEXT_COLOR, u = h.WIDGET_SECONDARY_TEXT_COLOR, _ = 15;
+    for (let m = 0; m < o.length; ++m) {
+      const p = o[m];
+      if (p.hidden)
         continue;
-      let _ = e;
-      d.y && (_ = d.y), d.last_y = _, s.strokeStyle = l, s.fillStyle = "#222", s.textAlign = "left", d.disabled && (s.globalAlpha *= 0.5);
-      const m = d.width || n;
-      switch (d.type) {
+      let f = e;
+      p.y && (f = p.y), p.last_y = f, s.strokeStyle = r, s.fillStyle = "#222", s.textAlign = "left", p.disabled && (s.globalAlpha *= 0.5);
+      const v = p.width || i;
+      switch (p.type) {
         case "button":
-          d.clicked && (s.fillStyle = "#AAA", d.clicked = !1, this.dirty_canvas = !0), s.fillRect(g, _, m - g * 2, a), u && !d.disabled && !h.ignore_all_widget_events && s.strokeRect(g, _, m - g * 2, a), u && (s.textAlign = "center", s.fillStyle = f, s.fillText(d.name, m * 0.5, _ + a * 0.7));
+          p.clicked && (s.fillStyle = "#AAA", p.clicked = !1, this.dirty_canvas = !0), s.fillRect(_, f, v - _ * 2, l), a && !p.disabled && !h.ignore_all_widget_events && s.strokeRect(_, f, v - _ * 2, l), a && (s.textAlign = "center", s.fillStyle = d, s.fillText(p.name, v * 0.5, f + l * 0.7));
           break;
         case "toggle":
-          s.textAlign = "left", s.strokeStyle = l, s.fillStyle = p, s.beginPath(), u ? s.roundRect(g, _, m - g * 2, a, [a * 0.5]) : s.rect(g, _, m - g * 2, a), s.fill(), u && !d.disabled && !h.ignore_all_widget_events && s.stroke(), s.fillStyle = d.value ? "#89A" : "#333", s.beginPath(), s.arc(m - g * 2, _ + a * 0.5, a * 0.36, 0, Math.PI * 2), s.fill(), u && (s.fillStyle = c, d.name !== null && s.fillText(d.name, g * 2, _ + a * 0.7), s.fillStyle = d.value ? f : c, s.textAlign = "right", s.fillText(
-            d.value ? d.options.on || "true" : d.options.off || "false",
-            m - 40,
-            _ + a * 0.7
+          s.textAlign = "left", s.strokeStyle = r, s.fillStyle = c, s.beginPath(), a ? s.roundRect(_, f, v - _ * 2, l, [l * 0.5]) : s.rect(_, f, v - _ * 2, l), s.fill(), a && !p.disabled && !h.ignore_all_widget_events && s.stroke(), s.fillStyle = p.value ? "#89A" : "#333", s.beginPath(), s.arc(v - _ * 2, f + l * 0.5, l * 0.36, 0, Math.PI * 2), s.fill(), a && (s.fillStyle = u, p.name !== null && s.fillText(p.name, _ * 2, f + l * 0.7), s.fillStyle = p.value ? d : u, s.textAlign = "right", s.fillText(
+            p.value ? p.options.on || "true" : p.options.off || "false",
+            v - 40,
+            f + l * 0.7
           ));
           break;
         case "slider":
-          s.fillStyle = p, s.fillRect(g, _, m - g * 2, a);
-          const b = d.options.max - d.options.min, v = (d.value - d.options.min) / b;
-          if (s.fillStyle = o === d ? "#89A" : "#678", s.fillRect(g, _, v * (m - g * 2), a), u && !d.disabled && s.strokeRect(g, _, m - g * 2, a), d.marker) {
-            const O = (+d.marker - d.options.min) / b;
-            s.fillStyle = "#AA9", s.fillRect(g + O * (m - g * 2), _, 2, a);
+          s.fillStyle = c, s.fillRect(_, f, v - _ * 2, l);
+          const y = p.options.max - p.options.min, g = (p.value - p.options.min) / y;
+          if (s.fillStyle = n === p ? "#89A" : "#678", s.fillRect(_, f, g * (v - _ * 2), l), a && !p.disabled && s.strokeRect(_, f, v - _ * 2, l), p.marker) {
+            const N = (+p.marker - p.options.min) / y;
+            s.fillStyle = "#AA9", s.fillRect(_ + N * (v - _ * 2), f, 2, l);
           }
-          u && (s.textAlign = "center", s.fillStyle = f, s.fillText(
-            `${d.name}  ${Number(d.value).toFixed(3)}`,
-            m * 0.5,
-            _ + a * 0.7
+          a && (s.textAlign = "center", s.fillStyle = d, s.fillText(
+            `${p.name}  ${Number(p.value).toFixed(3)}`,
+            v * 0.5,
+            f + l * 0.7
           ));
           break;
         case "number":
         case "combo":
-          if (s.textAlign = "left", s.strokeStyle = l, s.fillStyle = p, s.beginPath(), u ? s.roundRect(g, _, m - g * 2, a, [a * 0.5]) : s.rect(g, _, m - g * 2, a), s.fill(), u)
-            if (!d.disabled && !h.ignore_all_widget_events && s.stroke(), s.fillStyle = f, !d.disabled && !h.ignore_all_widget_events && (s.beginPath(), s.moveTo(g + 16, _ + 5), s.lineTo(g + 6, _ + a * 0.5), s.lineTo(g + 16, _ + a - 5), s.fill(), s.beginPath(), s.moveTo(m - g - 16, _ + 5), s.lineTo(m - g - 6, _ + a * 0.5), s.lineTo(m - g - 16, _ + a - 5), s.fill()), s.fillStyle = c, s.fillText(d.name, g * 2 + 5, _ + a * 0.7), s.fillStyle = f, s.textAlign = "right", d.type === "number")
+          if (s.textAlign = "left", s.strokeStyle = r, s.fillStyle = c, s.beginPath(), a ? s.roundRect(_, f, v - _ * 2, l, [l * 0.5]) : s.rect(_, f, v - _ * 2, l), s.fill(), a)
+            if (!p.disabled && !h.ignore_all_widget_events && s.stroke(), s.fillStyle = d, !p.disabled && !h.ignore_all_widget_events && (s.beginPath(), s.moveTo(_ + 16, f + 5), s.lineTo(_ + 6, f + l * 0.5), s.lineTo(_ + 16, f + l - 5), s.fill(), s.beginPath(), s.moveTo(v - _ - 16, f + 5), s.lineTo(v - _ - 6, f + l * 0.5), s.lineTo(v - _ - 16, f + l - 5), s.fill()), s.fillStyle = u, s.fillText(p.name, _ * 2 + 5, f + l * 0.7), s.fillStyle = d, s.textAlign = "right", p.type === "number")
               s.fillText(
-                Number(d.value).toFixed(
-                  d.options.precision !== void 0 ? d.options.precision : 3
+                Number(p.value).toFixed(
+                  p.options.precision !== void 0 ? p.options.precision : 3
                 ),
-                m - g * 2 - 20,
-                _ + a * 0.7
+                v - _ * 2 - 20,
+                f + l * 0.7
               );
             else {
-              let O = d.value;
-              if (d.options.values) {
-                let N = d.options.values;
-                N.constructor === Function && (N = N()), N && N.constructor !== Array && (O = N[d.value]);
+              let N = p.value;
+              if (p.options.values) {
+                let E = p.options.values;
+                E.constructor === Function && (E = E()), E && E.constructor !== Array && (N = E[p.value]);
               }
               s.fillText(
-                O,
-                m - g * 2 - 20,
-                _ + a * 0.7
+                N,
+                v - _ * 2 - 20,
+                f + l * 0.7
               );
             }
           break;
         case "string":
         case "text":
-          s.textAlign = "left", s.strokeStyle = l, s.fillStyle = p, s.beginPath(), u ? s.roundRect(g, _, m - g * 2, a, [a * 0.5]) : s.rect(g, _, m - g * 2, a), s.fill(), u && (d.disabled || s.stroke(), s.save(), s.beginPath(), s.rect(g, _, m - g * 2, a), s.clip(), s.fillStyle = c, d.name !== null && s.fillText(d.name, g * 2, _ + a * 0.7), s.fillStyle = f, s.textAlign = "right", s.fillText(String(d.value).substr(0, d.options.max_length || 30), m - g * 2, _ + a * 0.7), s.restore());
+          s.textAlign = "left", s.strokeStyle = r, s.fillStyle = c, s.beginPath(), a ? s.roundRect(_, f, v - _ * 2, l, [l * 0.5]) : s.rect(_, f, v - _ * 2, l), s.fill(), a && (p.disabled || s.stroke(), s.save(), s.beginPath(), s.rect(_, f, v - _ * 2, l), s.clip(), s.fillStyle = u, p.name !== null && s.fillText(p.name, _ * 2, f + l * 0.7), s.fillStyle = d, s.textAlign = "right", s.fillText(String(p.value).substr(0, p.options.max_length || 30), v - _ * 2, f + l * 0.7), s.restore());
           break;
         default:
-          d.draw && d.draw(s, t, m, _, a);
+          p.draw && p.draw(s, t, v, f, l);
           break;
       }
-      e += (d.computeSize ? d.computeSize(m)[1] : a) + 4, s.globalAlpha = this.editor_alpha;
+      e += (p.computeSize ? p.computeSize(v)[1] : l) + 4, s.globalAlpha = this.editor_alpha;
     }
     s.restore(), s.textAlign = "left";
   }
 };
-let R = q;
-R.temp = new Float32Array(4);
-R.temp_vec2 = new Float32Array(2);
-R.tmp_area = new Float32Array(4);
-R.margin_area = new Float32Array(4);
-R.link_bounding = new Float32Array(4);
-R.tempA = [0, 0];
-R.tempB = [0, 0];
-class ct {
+let P = K;
+P.temp = new Float32Array(4);
+P.temp_vec2 = new Float32Array(2);
+P.tmp_area = new Float32Array(4);
+P.margin_area = new Float32Array(4);
+P.link_bounding = new Float32Array(4);
+P.tempA = [0, 0];
+P.tempB = [0, 0];
+class ht {
   constructor(e = "Group") {
-    this.fontSize = h.DEFAULT_GROUP_FONT_SIZE, this._nodes = [], this.graph = null, this._bounding = new Float32Array([10, 10, 140, 80]), this.title = e, this.color = T.node_colors.pale_blue ? T.node_colors.pale_blue.groupcolor : "#AAA", this._pos = this._bounding.subarray(0, 2), this._size = this._bounding.subarray(2, 4);
+    this.fontSize = h.DEFAULT_GROUP_FONT_SIZE, this._nodes = [], this.graph = null, this._bounding = new Float32Array([10, 10, 140, 80]), this.title = e, this.color = b.node_colors.pale_blue ? b.node_colors.pale_blue.groupcolor : "#AAA", this._pos = this._bounding.subarray(0, 2), this._size = this._bounding.subarray(2, 4);
   }
   get bounding() {
     return this._bounding;
@@ -1716,7 +1717,7 @@ class ct {
     !e || e.length < 2 || (this._size[0] = Math.max(140, e[0]), this._size[1] = Math.max(80, e[1]));
   }
   configure(e) {
-    e.bounding, this.title = e.title, this._bounding.set(e.bounding), this.color = e.color, this.font = e.font;
+    this.title = e.title, this._bounding.set(e.bounding), this.color = e.color, this.font = e.font;
   }
   serialize() {
     const e = this._bounding;
@@ -1732,63 +1733,63 @@ class ct {
       font: this.font
     };
   }
-  move(e, s, o) {
-    if (this._pos[0] += e, this._pos[1] += s, !o)
-      for (let n = 0; n < this._nodes.length; ++n) {
-        const r = this._nodes[n];
-        r.pos[0] += e, r.pos[1] += s;
+  move(e, s, n) {
+    if (this._pos[0] += e, this._pos[1] += s, !n)
+      for (let i = 0; i < this._nodes.length; ++i) {
+        const o = this._nodes[i];
+        o.pos[0] += e, o.pos[1] += s;
       }
   }
   recomputeInsideNodes() {
     this._nodes.length = 0;
     const e = this.graph._nodes, s = new Float32Array(4);
-    for (let o = 0; o < e.length; ++o) {
-      const n = e[o];
-      n.getBounding(s), h.overlapBounding(this._bounding, s) && this._nodes.push(n);
+    for (let n = 0; n < e.length; ++n) {
+      const i = e[n];
+      i.getBounding(s), h.overlapBounding(this._bounding, s) && this._nodes.push(i);
     }
   }
   /** checks if a point is inside the shape of a node */
-  isPointInside(e, s, o = 0, n = !1) {
-    let r = this.graph && this.graph.isLive() ? 0 : h.NODE_TITLE_HEIGHT;
-    return n && (r = 0), this.pos[0] - 4 - o < e && this.pos[0] + this.size[0] + 4 + o > e && this.pos[1] - r - o < s && this.pos[1] + this.size[1] + o > s;
+  isPointInside(e, s, n = 0, i = !1) {
+    let o = this.graph && this.graph.isLive() ? 0 : h.NODE_TITLE_HEIGHT;
+    return i && (o = 0), this.pos[0] - 4 - n < e && this.pos[0] + this.size[0] + 4 + n > e && this.pos[1] - o - n < s && this.pos[1] + this.size[1] + n > s;
   }
   /** Forces to redraw or the main canvas (LGraphNode) or the bg canvas (links) */
   setDirtyCanvas(e, s = !1) {
     this.graph && this.graph.sendActionToCanvas("setDirty", [e, s]);
   }
 }
-let ut;
-const At = new Uint8Array(16);
-function Lt() {
-  if (!ut && (ut = typeof crypto < "u" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto), !ut))
+let at;
+const St = new Uint8Array(16);
+function At() {
+  if (!at && (at = typeof crypto < "u" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto), !at))
     throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
-  return ut(At);
+  return at(St);
 }
-const $ = [];
+const z = [];
 for (let t = 0; t < 256; ++t)
-  $.push((t + 256).toString(16).slice(1));
-function Dt(t, e = 0) {
-  return ($[t[e + 0]] + $[t[e + 1]] + $[t[e + 2]] + $[t[e + 3]] + "-" + $[t[e + 4]] + $[t[e + 5]] + "-" + $[t[e + 6]] + $[t[e + 7]] + "-" + $[t[e + 8]] + $[t[e + 9]] + "-" + $[t[e + 10]] + $[t[e + 11]] + $[t[e + 12]] + $[t[e + 13]] + $[t[e + 14]] + $[t[e + 15]]).toLowerCase();
+  z.push((t + 256).toString(16).slice(1));
+function Lt(t, e = 0) {
+  return (z[t[e + 0]] + z[t[e + 1]] + z[t[e + 2]] + z[t[e + 3]] + "-" + z[t[e + 4]] + z[t[e + 5]] + "-" + z[t[e + 6]] + z[t[e + 7]] + "-" + z[t[e + 8]] + z[t[e + 9]] + "-" + z[t[e + 10]] + z[t[e + 11]] + z[t[e + 12]] + z[t[e + 13]] + z[t[e + 14]] + z[t[e + 15]]).toLowerCase();
 }
-const Pt = typeof crypto < "u" && crypto.randomUUID && crypto.randomUUID.bind(crypto), yt = {
-  randomUUID: Pt
+const Dt = typeof crypto < "u" && crypto.randomUUID && crypto.randomUUID.bind(crypto), mt = {
+  randomUUID: Dt
 };
-function tt(t, e, s) {
-  if (yt.randomUUID && !e && !t)
-    return yt.randomUUID();
+function Q(t, e, s) {
+  if (mt.randomUUID && !e && !t)
+    return mt.randomUUID();
   t = t || {};
-  const o = t.random || (t.rng || Lt)();
-  if (o[6] = o[6] & 15 | 64, o[8] = o[8] & 63 | 128, e) {
+  const n = t.random || (t.rng || At)();
+  if (n[6] = n[6] & 15 | 64, n[8] = n[8] & 63 | 128, e) {
     s = s || 0;
-    for (let n = 0; n < 16; ++n)
-      e[s + n] = o[n];
+    for (let i = 0; i < 16; ++i)
+      e[s + i] = n[i];
     return e;
   }
-  return Dt(o);
+  return Lt(n);
 }
 class it {
-  constructor(e, s, o, n, r, a) {
-    this.data = null, this._pos = [0, 0], this._last_time = 0, this.id = e, this.type = s, this.origin_id = o, this.origin_slot = n, this.target_id = r, this.target_slot = a;
+  constructor(e, s, n, i, o, l) {
+    this.data = null, this._pos = [0, 0], this._last_time = 0, this.id = e, this.type = s, this.origin_id = n, this.origin_slot = i, this.target_id = o, this.target_slot = l;
   }
   static configure(e) {
     return Array.isArray(e) ? new it(e[0], e[5], e[1], e[2], e[3], e[4]) : new it(e.id, e.type, e.origin_id, e.origin_slot, e.target_id, e.target_slot);
@@ -1804,9 +1805,9 @@ class it {
     ];
   }
 }
-const _t = class {
+const ft = class {
   constructor(t) {
-    this.desc = "", this.pos = [0, 0], this.subgraph = null, this.skip_subgraph_button = !1, this.priority = 0, this.removable = !0, this.clonable = !0, this.collapsable = !0, this.titleMode = Z.NORMAL_TITLE, this.serialize_widgets = !1, this.hide_in_node_lists = !1, this.block_delete = !1, this.ignore_remove = !1, this.last_serialization = null, this._relative_id = null, this.exec_version = 0, this.action_call = null, this.execute_triggered = 0, this.action_triggered = 0, this.console = [], this.title = t || "Unnamed", this.size = [h.NODE_WIDTH, 60], this.graph = null, this.pos = [10, 10], h.use_uuids ? this.id = tt() : this.id = -1, this.type = null, this.inputs = [], this.outputs = [], this.connections = [], this.properties = {}, this.properties_info = [], this.flags = {};
+    this.desc = "", this.pos = [0, 0], this.subgraph = null, this.skip_subgraph_button = !1, this.priority = 0, this.removable = !0, this.clonable = !0, this.collapsable = !0, this.titleMode = q.NORMAL_TITLE, this.serialize_widgets = !1, this.hide_in_node_lists = !1, this.block_delete = !1, this.ignore_remove = !1, this.last_serialization = null, this._relative_id = null, this.exec_version = 0, this.action_call = null, this.execute_triggered = 0, this.action_triggered = 0, this.console = [], this.title = t || "Unnamed", this.size = [h.NODE_WIDTH, 60], this.graph = null, this.pos = [10, 10], h.use_uuids ? this.id = Q() : this.id = -1, this.type = null, this.inputs = [], this.outputs = [], this.connections = [], this.properties = {}, this.properties_info = [], this.flags = {};
   }
   get slotLayout() {
     return "slotLayout" in this.constructor ? this.constructor.slotLayout : null;
@@ -1816,34 +1817,34 @@ const _t = class {
     this.graph && this.graph._version++;
     for (const s in t) {
       if (s === "properties") {
-        for (const o in t.properties)
-          this.properties[o] = t.properties[o], this.onPropertyChanged && this.onPropertyChanged(o, t.properties[o]);
+        for (const n in t.properties)
+          this.properties[n] = t.properties[n], this.onPropertyChanged && this.onPropertyChanged(n, t.properties[n]);
         continue;
       }
       t[s] !== null && (typeof t[s] == "object" ? this[s] && this[s].configure ? this[s].configure(t[s]) : this[s] = h.cloneObject(t[s], this[s]) : this[s] = t[s]);
     }
-    t.title || (this.title = pt(this, "title") || this.title);
+    t.title || (this.title = ct(this, "title") || this.title);
     const e = t.bgColor;
     if (e !== null && (this.bgcolor || (this.bgcolor = e)), this.inputs)
       for (let s = 0; s < this.inputs.length; ++s) {
-        const o = this.inputs[s], n = this.graph ? this.graph.links[o.link] : null;
-        o.properties || (o.properties = {}), this.onConnectionsChange && this.onConnectionsChange(B.INPUT, s, !0, n, o), this.onInputAdded && this.onInputAdded(o);
+        const n = this.inputs[s], i = this.graph ? this.graph.links[n.link] : null;
+        n.properties || (n.properties = {}), this.onConnectionChange && this.onConnectionChange(G.INPUT, s, !0, i, n), this.onInputAdded && this.onInputAdded(n);
       }
     if (this.outputs)
       for (let s = 0; s < this.outputs.length; ++s) {
-        const o = this.outputs[s];
-        if (o.properties || (o.properties = {}), !!o.links) {
-          for (let n = 0; n < o.links.length; ++n) {
-            const r = this.graph ? this.graph.links[o.links[n]] : null;
-            this.onConnectionsChange && this.onConnectionsChange(B.OUTPUT, s, !0, r, o);
+        const n = this.outputs[s];
+        if (n.properties || (n.properties = {}), !!n.links) {
+          for (let i = 0; i < n.links.length; ++i) {
+            const o = this.graph ? this.graph.links[n.links[i]] : null;
+            this.onConnectionChange && this.onConnectionChange(G.OUTPUT, s, !0, o, n);
           }
-          this.onOutputAdded && this.onOutputAdded(o);
+          this.onOutputAdded && this.onOutputAdded(n);
         }
       }
     if (this.widgets) {
       for (let s = 0; s < this.widgets.length; ++s) {
-        const o = this.widgets[s];
-        o && o.options && o.options.property && this.properties[o.options.property] && (o.value = JSON.parse(JSON.stringify(this.properties[o.options.property])));
+        const n = this.widgets[s];
+        n && n.options && n.options.property && this.properties[n.options.property] && (n.value = JSON.parse(JSON.stringify(this.properties[n.options.property])));
       }
       if (t.widgets_values)
         for (let s = 0; s < t.widgets_values.length; ++s)
@@ -1862,7 +1863,7 @@ const _t = class {
       order: this.order,
       mode: this.mode
     };
-    if (this.constructor === _t && this.last_serialization)
+    if (this.constructor === ft && this.last_serialization)
       return this.last_serialization;
     if (this.inputs && (t.inputs = this.inputs), this.outputs) {
       for (let e = 0; e < this.outputs.length; e++)
@@ -1883,12 +1884,12 @@ const _t = class {
       return null;
     const s = h.cloneObject(this.serialize());
     if (s.inputs)
-      for (let o = 0; o < s.inputs.length; ++o)
-        s.inputs[o].link = null;
+      for (let n = 0; n < s.inputs.length; ++n)
+        s.inputs[n].link = null;
     if (s.outputs)
-      for (let o = 0; o < s.outputs.length; ++o)
-        s.outputs[o].links && (s.outputs[o].links.length = 0);
-    return delete s.id, h.use_uuids && (s.id = tt()), e.configure(s), e;
+      for (let n = 0; n < s.outputs.length; ++n)
+        s.outputs[n].links && (s.outputs[n].links.length = 0);
+    return delete s.id, h.use_uuids && (s.id = Q()), e.configure(s), e;
   }
   /** serialize and stringify */
   toString() {
@@ -1917,10 +1918,10 @@ const _t = class {
       return;
     const s = this.properties[t];
     if (this.properties[t] = e, this.graph && this.graph._version++, this.onPropertyChanged && this.onPropertyChanged(t, e, s) === !1 && (this.properties[t] = s), this.widgets)
-      for (let o = 0; o < this.widgets.length; ++o) {
-        const n = this.widgets[o];
-        if (n && n.options.property === t) {
-          n.value = e;
+      for (let n = 0; n < this.widgets.length; ++n) {
+        const i = this.widgets[n];
+        if (i && i.options.property === t) {
+          i.value = e;
           break;
         }
       }
@@ -1942,20 +1943,20 @@ const _t = class {
   setInputSlotProperty(t, e, s) {
     if (!this.inputs || !this.graph || t === -1 || t >= this.inputs.length)
       return;
-    const o = this.inputs[t];
-    if (!o || (o.properties || (o.properties = {}), s === o.properties[e]))
+    const n = this.inputs[t];
+    if (!n || (n.properties || (n.properties = {}), s === n.properties[e]))
       return;
-    const n = o.properties[e];
-    o.properties[e] = s, this.graph && this.graph._version++, this.onSlotPropertyChanged && this.onSlotPropertyChanged(B.INPUT, t, o, e, s, n) === !1 && (o.properties[e] = n);
+    const i = n.properties[e];
+    n.properties[e] = s, this.graph && this.graph._version++, this.onSlotPropertyChanged && this.onSlotPropertyChanged(G.INPUT, t, n, e, s, i) === !1 && (n.properties[e] = i);
   }
   setOutputSlotProperty(t, e, s) {
     if (!this.outputs || !this.graph || t === -1 || t >= this.outputs.length)
       return;
-    const o = this.outputs[t];
-    if (!o || (o.properties || (o.properties = {}), s === o.properties[e]))
+    const n = this.outputs[t];
+    if (!n || (n.properties || (n.properties = {}), s === n.properties[e]))
       return;
-    const n = o.properties[e];
-    o.properties[e] = s, this.graph && this.graph._version++, this.onSlotPropertyChanged && this.onSlotPropertyChanged(B.OUTPUT, t, o, e, s, n) === !1 && (o.properties[e] = n);
+    const i = n.properties[e];
+    n.properties[e] = s, this.graph && this.graph._version++, this.onSlotPropertyChanged && this.onSlotPropertyChanged(G.OUTPUT, t, n, e, s, i) === !1 && (n.properties[e] = i);
   }
   /** sets the output data */
   setOutputData(t, e) {
@@ -1963,9 +1964,9 @@ const _t = class {
       return;
     const s = this.outputs[t];
     if (s && (h.serialize_slot_data ? s._data = e : s._data = void 0, this.outputs[t].links))
-      for (let o = 0; o < this.outputs[t].links.length; o++) {
-        const n = this.outputs[t].links[o], r = this.graph.links[n];
-        r && (r.data = e);
+      for (let n = 0; n < this.outputs[t].links.length; n++) {
+        const i = this.outputs[t].links[n], o = this.graph.links[i];
+        o && (o.data = e);
       }
   }
   /** sets the output data */
@@ -1974,14 +1975,14 @@ const _t = class {
       return;
     const s = this.outputs[t];
     if (s && (s.type = e, this.outputs[t].links))
-      for (let o = this.outputs[t].links.length - 1; o >= 0; o--) {
-        const n = this.outputs[t].links[o], r = this.graph.links[n];
-        if (r) {
-          r.type = e;
-          const a = this.graph.getNodeById(r.target_id);
-          if (a) {
-            const u = a.getInputInfo(r.target_slot);
-            u && !h.isValidConnection(e, u.type) && a.disconnectInput(r.target_slot);
+      for (let n = this.outputs[t].links.length - 1; n >= 0; n--) {
+        const i = this.outputs[t].links[n], o = this.graph.links[i];
+        if (o) {
+          o.type = e;
+          const l = this.graph.getNodeById(o.target_id);
+          if (l) {
+            const a = l.getInputInfo(o.target_slot);
+            a && !h.isValidConnection(e, a.type) && l.disconnectInput(o.target_slot);
           }
         }
       }
@@ -1999,13 +2000,13 @@ const _t = class {
   getInputData(t, e) {
     if (!this.inputs || !this.graph || t >= this.inputs.length || this.inputs[t].link === null)
       return;
-    const s = this.inputs[t].link, o = this.graph.links[s];
-    if (!o)
+    const s = this.inputs[t].link, n = this.graph.links[s];
+    if (!n)
       return h.debug && console.error(`Link not found in slot ${t}!`, this, this.inputs[t], s), null;
     if (!e)
-      return o.data;
-    const n = this.graph.getNodeById(o.origin_id);
-    return n && (n.updateOutputData ? n.updateOutputData(o.origin_slot) : n.onExecute && n.onExecute(null, {})), o.data;
+      return n.data;
+    const i = this.graph.getNodeById(n.origin_id);
+    return i && (i.updateOutputData ? i.updateOutputData(n.origin_slot) : i.onExecute && i.onExecute(null, {})), n.data;
   }
   /**
    * Retrieves the input data type (in case this supports multiple input types)
@@ -2018,11 +2019,11 @@ const _t = class {
     const e = this.inputs[t].link, s = this.graph.links[e];
     if (!s)
       return h.debug && console.error(`Link not found in slot ${t}!`, this, this.inputs[t], e), null;
-    const o = this.graph.getNodeById(s.origin_id);
-    if (!o)
+    const n = this.graph.getNodeById(s.origin_id);
+    if (!n)
       return s.type;
-    const n = o.outputs[s.origin_slot];
-    return n && n.type !== -1 ? n.type : null;
+    const i = n.outputs[s.origin_slot];
+    return i && i.type !== -1 ? i.type : null;
   }
   /**
    * Retrieves the input data from one slot using its name instead of slot number
@@ -2064,9 +2065,9 @@ const _t = class {
       const e = this.inputs[t].link, s = this.graph.links[e];
       if (!s)
         return h.debug && console.error(`Link not found in slot ${t}!`, this, this.inputs[t], e), null;
-      const o = this.graph.getNodeById(s.origin_id);
-      if (o)
-        return o;
+      const n = this.graph.getNodeById(s.origin_id);
+      if (n)
+        return n;
     }
     return null;
   }
@@ -2075,11 +2076,11 @@ const _t = class {
     if (!this.inputs || !this.inputs.length || !this.graph)
       return this.properties ? this.properties[t] : null;
     for (let e = 0, s = this.inputs.length; e < s; ++e) {
-      const o = this.inputs[e];
-      if (t === o.name && o.link !== null) {
-        const n = this.graph.links[o.link];
-        if (n)
-          return n.data;
+      const n = this.inputs[e];
+      if (t === n.name && n.link !== null) {
+        const i = this.graph.links[n.link];
+        if (i)
+          return i.data;
       }
     }
     return this.properties[t];
@@ -2090,12 +2091,12 @@ const _t = class {
       return;
     const s = this.inputs[t];
     if (s && (s.type = e, s.link)) {
-      const o = s.link, n = this.graph.links[o];
-      n.type = e;
-      const r = this.graph.getNodeById(n.origin_id);
-      if (r) {
-        const a = r.getOutputInfo(n.origin_slot);
-        a && !h.isValidConnection(a.type, e) && r.disconnectOutput(n.origin_slot);
+      const n = s.link, i = this.graph.links[n];
+      i.type = e;
+      const o = this.graph.getNodeById(i.origin_id);
+      if (o) {
+        const l = o.getOutputInfo(i.origin_slot);
+        l && !h.isValidConnection(l.type, e) && o.disconnectOutput(i.origin_slot);
       }
     }
   }
@@ -2136,8 +2137,8 @@ const _t = class {
       const e = this.outputs[t];
       if (e.links) {
         const s = [];
-        for (const o of e.links)
-          s.push(this.graph.links[o]);
+        for (const n of e.links)
+          s.push(this.graph.links[n]);
         return s;
       }
     }
@@ -2155,9 +2156,9 @@ const _t = class {
       const e = this.outputs[t];
       if (e.links) {
         const s = [];
-        for (const o of e.links) {
-          const n = this.graph.links[o], r = this.graph.getNodeById(n.target_id);
-          s.push(r.inputs[n.target_slot]);
+        for (const n of e.links) {
+          const i = this.graph.links[n], o = this.graph.getNodeById(i.target_id);
+          s.push(o.inputs[i.target_slot]);
         }
         return s;
       }
@@ -2189,11 +2190,11 @@ const _t = class {
     if (!e.links || e.links.length === 0)
       return null;
     const s = [];
-    for (let o = 0; o < e.links.length; o++) {
-      const n = e.links[o], r = this.graph.links[n];
-      if (r) {
-        const a = this.graph.getNodeById(r.target_id);
-        a && s.push(a);
+    for (let n = 0; n < e.links.length; n++) {
+      const i = e.links[n], o = this.graph.links[i];
+      if (o) {
+        const l = this.graph.getNodeById(o.target_id);
+        l && s.push(l);
       }
     }
     return s;
@@ -2215,11 +2216,11 @@ const _t = class {
   }
   addOnTriggerInput() {
     const t = this.findInputSlotIndexByName("onTrigger");
-    return t === -1 ? (this.addInput("onTrigger", k.EVENT, { optional: !0, nameLocked: !0 }), this.findInputSlotIndexByName("onTrigger")) : t;
+    return t === -1 ? (this.addInput("onTrigger", O.EVENT, { optional: !0, nameLocked: !0 }), this.findInputSlotIndexByName("onTrigger")) : t;
   }
   addOnExecutedOutput() {
     const t = this.findOutputSlotIndexByName("onExecuted");
-    return t === -1 ? (this.addOutput("onExecuted", k.ACTION, { optional: !0, nameLocked: !0 }), this.findOutputSlotIndexByName("onExecuted")) : t;
+    return t === -1 ? (this.addOutput("onExecuted", O.ACTION, { optional: !0, nameLocked: !0 }), this.findOutputSlotIndexByName("onExecuted")) : t;
   }
   onAfterExecuteNode(t, e) {
     const s = this.findOutputSlotIndexByName("onExecuted");
@@ -2227,16 +2228,16 @@ const _t = class {
   }
   changeMode(t) {
     switch (t) {
-      case W.ON_EVENT:
+      case Y.ON_EVENT:
         break;
-      case W.ON_TRIGGER:
+      case Y.ON_TRIGGER:
         this.addOnTriggerInput(), this.addOnExecutedOutput();
         break;
-      case W.NEVER:
+      case Y.NEVER:
         break;
-      case W.ALWAYS:
+      case Y.ALWAYS:
         break;
-      case W.ON_REQUEST:
+      case Y.ON_REQUEST:
         break;
       default:
         return !1;
@@ -2259,9 +2260,9 @@ const _t = class {
   trigger(t, e, s) {
     if (!(!this.outputs || !this.outputs.length)) {
       this.graph && (this.graph._last_trigger_time = h.getTime());
-      for (let o = 0; o < this.outputs.length; ++o) {
-        const n = this.outputs[o];
-        !n || n.type !== k.EVENT || t && n.name !== t || this.triggerSlot(o, e, null, s);
+      for (let n = 0; n < this.outputs.length; ++n) {
+        const i = this.outputs[n];
+        !i || i.type !== O.EVENT || t && i.name !== t || this.triggerSlot(n, e, null, s);
       }
     }
   }
@@ -2271,7 +2272,7 @@ const _t = class {
    * @param param
    * @param link_id in case you want to trigger and specific output link in a slot
    */
-  triggerSlot(t, e, s, o = {}) {
+  triggerSlot(t, e, s, n = {}) {
     if (!this.outputs)
       return;
     if (t === null) {
@@ -2279,28 +2280,28 @@ const _t = class {
       return;
     }
     typeof t != "number" && console.warn("slot must be a number, use node.trigger('name') if you want to use a string");
-    const n = this.outputs[t];
-    if (!n)
+    const i = this.outputs[t];
+    if (!i)
       return;
-    const r = n.links;
-    if (!(!r || !r.length)) {
+    const o = i.links;
+    if (!(!o || !o.length)) {
       this.graph && (this.graph._last_trigger_time = h.getTime());
-      for (let a = 0; a < r.length; ++a) {
-        const u = r[a];
-        if (s !== null && s !== u)
+      for (let l = 0; l < o.length; ++l) {
+        const a = o[l];
+        if (s !== null && s !== a)
           continue;
-        const l = this.graph.links[r[a]];
-        if (!l)
+        const r = this.graph.links[o[l]];
+        if (!r)
           continue;
-        l._last_time = h.getTime();
-        const p = this.graph.getNodeById(l.target_id);
-        if (p) {
-          if (p.inputs[l.target_slot], o.link = l, o.originNode = this, p.mode === W.ON_TRIGGER)
-            o.action_call || (o.action_call = `${this.id}_trigg_${Math.floor(Math.random() * 9999)}`), p.onExecute && p.doExecute(e, o);
-          else if (p.onAction) {
-            o.action_call || (o.action_call = `${this.id}_act_${Math.floor(Math.random() * 9999)}`);
-            const f = p.inputs[l.target_slot];
-            p.actionDo(f.name, e, o);
+        r._last_time = h.getTime();
+        const c = this.graph.getNodeById(r.target_id);
+        if (c) {
+          if (c.inputs[r.target_slot], n.link = r, n.originNode = this, c.mode === Y.ON_TRIGGER)
+            n.action_call || (n.action_call = `${this.id}_trigg_${Math.floor(Math.random() * 9999)}`), c.onExecute && c.doExecute(e, n);
+          else if (c.onAction) {
+            n.action_call || (n.action_call = `${this.id}_act_${Math.floor(Math.random() * 9999)}`);
+            const d = c.inputs[r.target_slot];
+            c.actionDo(d.name, e, n);
           }
         }
       }
@@ -2317,14 +2318,14 @@ const _t = class {
     const s = this.outputs[t];
     if (!s)
       return;
-    const o = s.links;
-    if (!(!o || !o.length))
-      for (let n = 0; n < o.length; ++n) {
-        const r = o[n];
-        if (e !== null && e !== r)
+    const n = s.links;
+    if (!(!n || !n.length))
+      for (let i = 0; i < n.length; ++i) {
+        const o = n[i];
+        if (e !== null && e !== o)
           continue;
-        const a = this.graph.links[o[n]];
-        a && (a._last_time = 0);
+        const l = this.graph.links[n[i]];
+        l && (l._last_time = 0);
       }
   }
   /**
@@ -2342,12 +2343,12 @@ const _t = class {
    * @param type string defining the output type ("vec3","number",...)
    * @param extra_info this can be used to have special properties of the property (like values, etc)
    */
-  addProperty(t, e, s, o) {
-    const n = { name: t, type: s, default_value: e };
-    if (o)
-      for (const r in o)
-        n[r] = o[r];
-    return this.properties_info || (this.properties_info = []), this.properties_info.push(n), this.properties || (this.properties = {}), this.properties[t] = e, n;
+  addProperty(t, e, s, n) {
+    const i = { name: t, type: s, default_value: e };
+    if (n)
+      for (const o in n)
+        i[o] = n[o];
+    return this.properties_info || (this.properties_info = []), this.properties_info.push(i), this.properties || (this.properties = {}), this.properties[t] = e, i;
   }
   /**
    * add a new output slot to use in this node
@@ -2355,12 +2356,12 @@ const _t = class {
    * @param type string defining the output type ("vec3","number",...)
    * @param extra_info this can be used to have special properties of an output (label, special color, position, etc)
    */
-  addOutput(t, e = k.DEFAULT, s) {
-    const o = { name: t, type: e, links: [], properties: {} };
+  addOutput(t, e = O.DEFAULT, s) {
+    const n = { name: t, type: e, links: [], properties: {} };
     if (s)
-      for (const n in s)
-        o[n] = s[n];
-    return (o.shape === null || o.shape === A.DEFAULT) && (e === "array" ? o.shape = A.GRID_SHAPE : (e === k.EVENT || e === k.ACTION) && (o.shape = A.BOX_SHAPE)), (e === k.EVENT || e === k.ACTION) && (o.shape = A.BOX_SHAPE), this.outputs || (this.outputs = []), this.outputs.push(o), this.onOutputAdded && this.onOutputAdded(o), h.auto_load_slot_types && h.registerNodeAndSlotType(this, e, !0), this.setSize(this.computeSize()), this.setDirtyCanvas(!0, !0), o;
+      for (const i in s)
+        n[i] = s[i];
+    return (n.shape === null || n.shape === S.DEFAULT) && (e === "array" ? n.shape = S.GRID_SHAPE : (e === O.EVENT || e === O.ACTION) && (n.shape = S.BOX_SHAPE)), (e === O.EVENT || e === O.ACTION) && (n.shape = S.BOX_SHAPE), this.outputs || (this.outputs = []), this.outputs.push(n), this.onOutputAdded && this.onOutputAdded(n), h.auto_load_slot_types && h.registerNodeAndSlotType(this, e, !0), this.setSize(this.computeSize()), this.setDirtyCanvas(!0, !0), n;
   }
   /** remove an existing output slot */
   removeOutput(t) {
@@ -2369,10 +2370,10 @@ const _t = class {
     for (let s = t; s < this.outputs.length; ++s) {
       if (!this.outputs[s] || !this.outputs[s].links)
         continue;
-      const o = this.outputs[s].links;
-      for (let n = 0; n < o.length; ++n) {
-        const r = this.graph.links[o[n]];
-        r && (r.origin_slot -= 1);
+      const n = this.outputs[s].links;
+      for (let i = 0; i < n.length; ++i) {
+        const o = this.graph.links[n[i]];
+        o && (o.origin_slot -= 1);
       }
     }
     this.setSize(this.computeSize()), this.onOutputRemoved && this.onOutputRemoved(t, e), this.setDirtyCanvas(!0, !0);
@@ -2381,18 +2382,18 @@ const _t = class {
     const s = this.outputs[t];
     if (s === null || e < 0 || e > this.outputs.length - 1)
       return;
-    const o = this.outputs[e];
+    const n = this.outputs[e];
     if (s.links)
-      for (const n of s.links) {
-        const r = this.graph.links[n];
-        r.origin_slot = e;
+      for (const i of s.links) {
+        const o = this.graph.links[i];
+        o.origin_slot = e;
       }
-    if (o.links)
-      for (const n of o.links) {
-        const r = this.graph.links[n];
-        r.origin_slot = t;
+    if (n.links)
+      for (const i of n.links) {
+        const o = this.graph.links[i];
+        o.origin_slot = t;
       }
-    this.outputs[e] = s, this.outputs[t] = o;
+    this.outputs[e] = s, this.outputs[t] = n;
   }
   /**
    * add a new input slot to use in this node
@@ -2400,12 +2401,12 @@ const _t = class {
    * @param type string defining the input type ("vec3","number",...), it its a generic one use 0
    * @param extra_info this can be used to have special properties of an input (label, color, position, etc)
    */
-  addInput(t, e = k.DEFAULT, s) {
-    const o = { name: t, type: e, link: null, properties: {} };
+  addInput(t, e = O.DEFAULT, s) {
+    const n = { name: t, type: e, link: null, properties: {} };
     if (s)
-      for (const n in s)
-        o[n] = s[n];
-    return (o.shape === null || o.shape === A.DEFAULT) && (e === "array" ? o.shape = A.GRID_SHAPE : (e === k.EVENT || e === k.ACTION) && (o.shape = A.BOX_SHAPE)), this.inputs || (this.inputs = []), this.inputs.push(o), this.setSize(this.computeSize()), this.onInputAdded && this.onInputAdded(o), h.registerNodeAndSlotType(this, e), this.setDirtyCanvas(!0, !0), o;
+      for (const i in s)
+        n[i] = s[i];
+    return (n.shape === null || n.shape === S.DEFAULT) && (e === "array" ? n.shape = S.GRID_SHAPE : (e === O.EVENT || e === O.ACTION) && (n.shape = S.BOX_SHAPE)), this.inputs || (this.inputs = []), this.inputs.push(n), this.setSize(this.computeSize()), this.onInputAdded && this.onInputAdded(n), h.registerNodeAndSlotType(this, e), this.setDirtyCanvas(!0, !0), n;
   }
   /** remove an existing input slot */
   removeInput(t) {
@@ -2414,8 +2415,8 @@ const _t = class {
     for (let s = t; s < this.inputs.length; ++s) {
       if (!this.inputs[s])
         continue;
-      const o = this.graph.links[this.inputs[s].link];
-      o && (o.target_slot -= 1);
+      const n = this.graph.links[this.inputs[s].link];
+      n && (n.target_slot -= 1);
     }
     this.setSize(this.computeSize()), this.onInputRemoved && this.onInputRemoved(t, e[0]), this.setDirtyCanvas(!0, !0);
   }
@@ -2423,16 +2424,16 @@ const _t = class {
     const s = this.inputs[t];
     if (s === null || e < 0 || e > this.inputs.length - 1)
       return;
-    const o = this.inputs[e];
+    const n = this.inputs[e];
     if (s.link !== null) {
-      const n = this.graph.links[s.link];
-      n.target_slot = e;
+      const i = this.graph.links[s.link];
+      i.target_slot = e;
     }
-    if (o.link !== null) {
-      const n = this.graph.links[o.link];
-      n.target_slot = t;
+    if (n.link !== null) {
+      const i = this.graph.links[n.link];
+      i.target_slot = t;
     }
-    this.inputs[e] = s, this.inputs[t] = o;
+    this.inputs[e] = s, this.inputs[t] = n;
   }
   /**
    * add an special connection to this node (used for special kinds of graphs)
@@ -2441,56 +2442,56 @@ const _t = class {
    * @param pos position of the connection inside the node
    * @param direction if is input or output
    */
-  addConnection(t, e, s, o) {
-    const n = {
+  addConnection(t, e, s, n) {
+    const i = {
       name: t,
       type: e,
       pos: s,
-      direction: o,
+      direction: n,
       links: null
     };
-    return this.connections.push(n), n;
+    return this.connections.push(i), i;
   }
   /** computes the size of a node according to its inputs and output slots */
   computeSize(t = [0, 0]) {
-    const e = pt(this, "overrideSize");
+    const e = ct(this, "overrideSize");
     if (e)
       return e.concat();
     let s = Math.max(
       this.inputs ? this.inputs.length : 1,
       this.outputs ? this.outputs.length : 1
     );
-    const o = t;
+    const n = t;
     s = Math.max(s, 1);
-    const n = h.NODE_TEXT_SIZE, r = p(this.title);
-    let a = 0, u = 0;
+    const i = h.NODE_TEXT_SIZE, o = c(this.title);
+    let l = 0, a = 0;
     if (this.inputs)
-      for (let f = 0, c = this.inputs.length; f < c; ++f) {
-        const g = this.inputs[f], y = g.label || g.name || "", d = p(y);
-        a < d && (a = d);
+      for (let d = 0, u = this.inputs.length; d < u; ++d) {
+        const _ = this.inputs[d], m = _.label || _.name || "", p = c(m);
+        l < p && (l = p);
       }
     if (this.outputs)
-      for (let f = 0, c = this.outputs.length; f < c; ++f) {
-        const g = this.outputs[f], y = g.label || g.name || "", d = p(y);
-        u < d && (u = d);
+      for (let d = 0, u = this.outputs.length; d < u; ++d) {
+        const _ = this.outputs[d], m = _.label || _.name || "", p = c(m);
+        a < p && (a = p);
       }
-    if (o[0] = Math.max(a + u + 10, r), o[0] = Math.max(o[0], h.NODE_WIDTH), this.widgets && this.widgets.length)
-      for (const f of this.widgets)
-        o[0] = Math.max(o[0], f.width || h.NODE_WIDTH * 1.5);
-    o[1] = (this.constructor.slot_start_y || 0) + s * h.NODE_SLOT_HEIGHT;
-    let l = 0;
+    if (n[0] = Math.max(l + a + 10, o), n[0] = Math.max(n[0], h.NODE_WIDTH), this.widgets && this.widgets.length)
+      for (const d of this.widgets)
+        n[0] = Math.max(n[0], d.width || h.NODE_WIDTH * 1.5);
+    n[1] = (this.constructor.slot_start_y || 0) + s * h.NODE_SLOT_HEIGHT;
+    let r = 0;
     if (this.widgets && this.widgets.length) {
-      for (let f = 0, c = this.widgets.length; f < c; ++f) {
-        const g = this.widgets[f];
-        g.hidden || (g.computeSize ? l += g.computeSize(o[0])[1] + 4 : l += h.NODE_WIDGET_HEIGHT + 4);
+      for (let d = 0, u = this.widgets.length; d < u; ++d) {
+        const _ = this.widgets[d];
+        _.hidden || (_.computeSize ? r += _.computeSize(n[0])[1] + 4 : r += h.NODE_WIDGET_HEIGHT + 4);
       }
-      l += 8;
+      r += 8;
     }
-    this.widgets_up ? o[1] = Math.max(o[1], l) : this.widgets_start_y !== null ? o[1] = Math.max(o[1], l + this.widgets_start_y) : o[1] += l;
-    function p(f) {
-      return f ? n * f.length * 0.6 : 0;
+    this.widgets_up ? n[1] = Math.max(n[1], r) : this.widgets_start_y !== null ? n[1] = Math.max(n[1], r + this.widgets_start_y) : n[1] += r;
+    function c(d) {
+      return d ? i * d.length * 0.6 : 0;
     }
-    return this.constructor.min_height && o[1] < this.constructor.min_height && (o[1] = this.constructor.min_height), o[1] += 6, o;
+    return this.constructor.min_height && n[1] < this.constructor.min_height && (n[1] = this.constructor.min_height), n[1] += 6, n;
   }
   /**
    * returns all the info available about a property of this node.
@@ -2514,18 +2515,18 @@ const _t = class {
    * https://github.com/jagenjo/litegraph.js/blob/master/guides/README.md#node-widgets
    * @return created widget
    */
-  addWidget(t, e, s, o, n) {
-    this.widgets || (this.widgets = []), !n && o && o.constructor === Object && (n = o, o = null), n && n.constructor === String && (n = { property: n }), o && o.constructor === String && (n || (n = {}), n.property = o, o = null), o && o.constructor !== Function && (console.warn("addWidget: callback must be a function"), o = null);
-    const r = {
+  addWidget(t, e, s, n, i) {
+    this.widgets || (this.widgets = []), !i && n && n.constructor === Object && (i = n, n = null), i && i.constructor === String && (i = { property: i }), n && n.constructor === String && (i || (i = {}), i.property = n, n = null), n && n.constructor !== Function && (console.warn("addWidget: callback must be a function"), n = null);
+    const o = {
       type: t.toLowerCase(),
       name: e,
       value: s,
-      callback: o,
-      options: n || {}
+      callback: n,
+      options: i || {}
     };
-    if (r.options.y !== void 0 && (r.y = r.options.y), !o && !r.options.callback && !r.options.property && console.warn("LiteGraph addWidget(...) without a callback or property assigned"), t === "combo" && !r.options.values)
+    if (o.options.y !== void 0 && (o.y = o.options.y), !n && !o.options.callback && !o.options.property && console.warn("LiteGraph addWidget(...) without a callback or property assigned"), t === "combo" && !o.options.values)
       throw "LiteGraph addWidget('combo',...) requires to pass values in options: { values:['red','blue'] }";
-    return this.widgets.push(r), this.setSize(this.computeSize()), r;
+    return this.widgets.push(o), this.setSize(this.computeSize()), o;
   }
   addCustomWidget(t) {
     return this.widgets || (this.widgets = []), this.widgets.push(t), this.setSize(this.computeSize()), t;
@@ -2541,9 +2542,9 @@ const _t = class {
     return t = t || new Float32Array(4), t[0] = this.pos[0] - 4, t[1] = this.pos[1] - h.NODE_TITLE_HEIGHT, t[2] = this.size[0] + 4, t[3] = this.flags.collapsed ? h.NODE_TITLE_HEIGHT : this.size[1] + h.NODE_TITLE_HEIGHT, this.onBounding && this.onBounding(t), t;
   }
   /** checks if a point is inside the shape of a node */
-  isPointInside(t, e, s = 0, o = !1) {
-    let n = this.graph && this.graph.isLive() ? 0 : h.NODE_TITLE_HEIGHT;
-    if (o && (n = 0), this.flags && this.flags.collapsed) {
+  isPointInside(t, e, s = 0, n = !1) {
+    let i = this.graph && this.graph.isLive() ? 0 : h.NODE_TITLE_HEIGHT;
+    if (n && (i = 0), this.flags && this.flags.collapsed) {
       if (h.isInsideRectangle(
         t,
         e,
@@ -2553,7 +2554,7 @@ const _t = class {
         h.NODE_TITLE_HEIGHT + 2 * s
       ))
         return !0;
-    } else if (this.pos[0] - 4 - s < t && this.pos[0] + this.size[0] + 4 + s > t && this.pos[1] - n - s < e && this.pos[1] + this.size[1] + s > e)
+    } else if (this.pos[0] - 4 - s < t && this.pos[0] + this.size[0] + 4 + s > t && this.pos[1] - i - s < e && this.pos[1] + this.size[1] + s > e)
       return !0;
     return !1;
   }
@@ -2561,9 +2562,9 @@ const _t = class {
   getSlotInPosition(t, e) {
     const s = [0, 0];
     if (this.inputs)
-      for (let o = 0, n = this.inputs.length; o < n; ++o) {
-        const r = this.inputs[o];
-        if (this.getConnectionPos(!0, o, s), h.isInsideRectangle(
+      for (let n = 0, i = this.inputs.length; n < i; ++n) {
+        const o = this.inputs[n];
+        if (this.getConnectionPos(!0, n, s), h.isInsideRectangle(
           t,
           e,
           s[0] - 10,
@@ -2571,12 +2572,12 @@ const _t = class {
           20,
           10
         ))
-          return { input: r, slot: o, link_pos: s };
+          return { input: o, slot: n, link_pos: s };
       }
     if (this.outputs)
-      for (let o = 0, n = this.outputs.length; o < n; ++o) {
-        const r = this.outputs[o];
-        if (this.getConnectionPos(!1, o, s), h.isInsideRectangle(
+      for (let n = 0, i = this.outputs.length; n < i; ++n) {
+        const o = this.outputs[n];
+        if (this.getConnectionPos(!1, n, s), h.isInsideRectangle(
           t,
           e,
           s[0] - 10,
@@ -2584,7 +2585,7 @@ const _t = class {
           20,
           10
         ))
-          return { output: r, slot: o, link_pos: s };
+          return { output: o, slot: n, link_pos: s };
       }
     return null;
   }
@@ -2600,17 +2601,17 @@ const _t = class {
   findInputSlotIndexByName(t, e = !1, s) {
     if (!this.inputs)
       return -1;
-    for (let o = 0, n = this.inputs.length; o < n; ++o)
-      if (!(e && this.inputs[o].link && this.inputs[o].link !== null) && !(s && s.includes(this.inputs[o].type)) && (!t || t === this.inputs[o].name))
-        return o;
+    for (let n = 0, i = this.inputs.length; n < i; ++n)
+      if (!(e && this.inputs[n].link && this.inputs[n].link !== null) && !(s && s.includes(this.inputs[n].type)) && (!t || t === this.inputs[n].name))
+        return n;
     return -1;
   }
   findInputSlotByName(t, e = !1, s) {
     if (!this.inputs)
       return null;
-    for (let o = 0, n = this.inputs.length; o < n; ++o)
-      if (!(e && this.inputs[o].link && this.inputs[o].link !== null) && !(s && s.includes(this.inputs[o].type)) && (!t || t === this.inputs[o].name))
-        return this.inputs[o];
+    for (let n = 0, i = this.inputs.length; n < i; ++n)
+      if (!(e && this.inputs[n].link && this.inputs[n].link !== null) && !(s && s.includes(this.inputs[n].type)) && (!t || t === this.inputs[n].name))
+        return this.inputs[n];
     return null;
   }
   /**
@@ -2621,17 +2622,17 @@ const _t = class {
   findOutputSlotIndexByName(t, e = !1, s) {
     if (!this.outputs)
       return -1;
-    for (let o = 0, n = this.outputs.length; o < n; ++o)
-      if (!(e && this.outputs[o].links && this.outputs[o].links !== null) && !(s && s.includes(this.outputs[o].type)) && (!t || t === this.outputs[o].name))
-        return o;
+    for (let n = 0, i = this.outputs.length; n < i; ++n)
+      if (!(e && this.outputs[n].links && this.outputs[n].links !== null) && !(s && s.includes(this.outputs[n].type)) && (!t || t === this.outputs[n].name))
+        return n;
     return -1;
   }
   findOutputSlotByName(t, e = !1, s) {
     if (!this.outputs)
       return null;
-    for (let o = 0, n = this.outputs.length; o < n; ++o)
-      if (!(e && this.outputs[o].links && this.outputs[o].links !== null) && !(s && s.includes(this.outputs[o].type)) && (!t || t === this.outputs[o].name))
-        return this.outputs[o];
+    for (let n = 0, i = this.outputs.length; n < i; ++n)
+      if (!(e && this.outputs[n].links && this.outputs[n].links !== null) && !(s && s.includes(this.outputs[n].type)) && (!t || t === this.outputs[n].name))
+        return this.outputs[n];
     return null;
   }
   /**
@@ -2666,98 +2667,98 @@ const _t = class {
    * @param {boolean} preferFreeSlot if we want a free slot (if not found, will return the first of the type anyway)
    * @return {number_or_object} the slot (-1 if not found)
    */
-  findSlotByType(t, e, s, o = !1, n = !1) {
-    o = o || !1, n = n || !1;
-    const r = t ? this.inputs : this.outputs;
-    if (!r)
+  findSlotByType(t, e, s, n = !1, i = !1) {
+    n = n || !1, i = i || !1;
+    const o = t ? this.inputs : this.outputs;
+    if (!o)
       return s ? null : -1;
     (e === "" || e === "*") && (e = 0);
-    for (let a = 0, u = r.length; a < u; ++a) {
-      const l = `${e}`.toLowerCase().split(","), f = `${r[a].type === "0" || r[a].type === "*" ? "0" : r[a].type}`.toLowerCase().split(",");
-      for (let c = 0; c < l.length; c++)
-        for (let g = 0; g < f.length; g++)
-          if (l[c] === "_event_" && (l[c] = k.EVENT), f[c] === "_event_" && (f[c] = k.EVENT), l[c] === "*" && (l[c] = k.DEFAULT), f[c] === "*" && (f[c] = k.DEFAULT), l[c] === f[g]) {
-            const y = r[a];
-            if (o && y.links && y.links !== null || y.link && y.link !== null)
+    for (let l = 0, a = o.length; l < a; ++l) {
+      const r = `${e}`.toLowerCase().split(","), d = `${o[l].type === "0" || o[l].type === "*" ? "0" : o[l].type}`.toLowerCase().split(",");
+      for (let u = 0; u < r.length; u++)
+        for (let _ = 0; _ < d.length; _++)
+          if (r[u] === "_event_" && (r[u] = O.EVENT), d[u] === "_event_" && (d[u] = O.EVENT), r[u] === "*" && (r[u] = O.DEFAULT), d[u] === "*" && (d[u] = O.DEFAULT), r[u] === d[_]) {
+            const m = o[l];
+            if (n && m.links && m.links !== null || m.link && m.link !== null)
               continue;
-            return s ? y : a;
+            return s ? m : l;
           }
     }
-    if (o && !n)
-      for (let a = 0, u = r.length; a < u; ++a) {
-        const l = `${e}`.toLowerCase().split(","), f = `${r[a].type === "0" || r[a].type === "*" ? "0" : r[a].type}`.toLowerCase().split(",");
-        for (let c = 0; c < l.length; c++)
-          for (let g = 0; g < f.length; g++)
-            if (l[c] === "*" && (l[c] = k.DEFAULT), f[c] === "*" && (f[c] = k.DEFAULT), l[c] === f[g])
-              return s ? r[a] : a;
+    if (n && !i)
+      for (let l = 0, a = o.length; l < a; ++l) {
+        const r = `${e}`.toLowerCase().split(","), d = `${o[l].type === "0" || o[l].type === "*" ? "0" : o[l].type}`.toLowerCase().split(",");
+        for (let u = 0; u < r.length; u++)
+          for (let _ = 0; _ < d.length; _++)
+            if (r[u] === "*" && (r[u] = O.DEFAULT), d[u] === "*" && (d[u] = O.DEFAULT), r[u] === d[_])
+              return s ? o[l] : l;
       }
     return s ? null : -1;
   }
   /**
    * connect this node output to the input of another node BY TYPE
-   * @method connectByType
-   * @param {number_or_string} slot (could be the number of the slot or the string with the name of the slot)
-   * @param {LGraphNode} node the target node
-   * @param {string} target_type the input slot type of the target node
-   * @return {object} the link_info is created, otherwise null
+   * @param slot (could be the number of the slot or the string with the name of the slot)
+   * @param targetNode
+   * @param targetSlotType
+   * @param optsIn
    */
-  connectByTypeInput(t, e, s, o = {}) {
-    const r = Object.assign({
+  connectByTypeInput(t, e, s, n = {}) {
+    const o = Object.assign({
       createEventInCase: !0,
       firstFreeIfOutputGeneralInCase: !0,
       generalTypeInCase: !0
-    }, o);
+    }, n);
     e && e.constructor === Number && (e = this.graph.getNodeById(e));
-    let a = s;
-    s === k.EVENT ? a = k.ACTION : s === k.ACTION && (a = k.EVENT);
-    const u = e.findInputSlotIndexByType(a, !0);
-    if (u >= 0 && u !== null)
-      return h.debug && console.debug(`CONNbyTYPE type ${s} for ${u}`), this.connect(t, e, u);
-    if (h.debug && console.log(`type ${s} not found or not free?`), r.createEventInCase && s === k.EVENT)
+    let l = s;
+    s === O.EVENT ? l = O.ACTION : s === O.ACTION && (l = O.EVENT);
+    const a = e.findInputSlotIndexByType(l, !0);
+    if (a >= 0 && a !== null)
+      return h.debug && console.debug(`CONNbyTYPE type ${s} for ${a}`), this.connect(t, e, a);
+    if (h.debug && console.log(`type ${s} not found or not free?`), o.createEventInCase && s === O.EVENT)
       return h.debug && console.debug(`connect WILL CREATE THE onTrigger ${s} to ${e}`), this.connect(t, e, -1);
-    if (r.generalTypeInCase) {
-      const l = e.findInputSlotIndexByType(k.DEFAULT, !0, !0);
-      if (h.debug && console.debug("connect TO a general type (*, 0), if not found the specific type ", s, " to ", e, "RES_SLOT:", l), l >= 0)
-        return this.connect(t, e, l);
+    if (o.generalTypeInCase) {
+      const r = e.findInputSlotIndexByType(O.DEFAULT, !0, !0);
+      if (h.debug && console.debug("connect TO a general type (*, 0), if not found the specific type ", s, " to ", e, "RES_SLOT:", r), r >= 0)
+        return this.connect(t, e, r);
     }
-    if (r.firstFreeIfOutputGeneralInCase && (s === 0 || s === "*" || s === "")) {
-      const l = e.findInputSlotIndexByName(null, !0, [k.EVENT]);
-      if (h.debug && console.debug("connect TO TheFirstFREE ", s, " to ", e, "RES_SLOT:", l), l >= 0)
-        return this.connect(t, e, l);
+    if (o.firstFreeIfOutputGeneralInCase && (s === 0 || s === "*" || s === "")) {
+      const r = e.findInputSlotIndexByName(null, !0, [O.EVENT]);
+      if (h.debug && console.debug("connect TO TheFirstFREE ", s, " to ", e, "RES_SLOT:", r), r >= 0)
+        return this.connect(t, e, r);
     }
     return h.debug && console.error("no way to connect type: ", s, " to targetNODE ", e), null;
   }
   /**
    * connect this node input to the output of another node BY TYPE
-   * @method connectByType
-   * @param {number_or_string} slot (could be the number of the slot or the string with the name of the slot)
-   * @param {LGraphNode} node the target node
-   * @param {string} target_type the output slot type of the target node
-   * @return {object} the link_info is created, otherwise null
+   * @param slot (could be the number of the slot or the string with the name of the slot)
+   * @param sourceNode
+   * @param sourceSlotType
+   * @param optsIn
    */
-  connectByTypeOutput(t, e, s, o = {}) {
-    const r = Object.assign({
+  connectByTypeOutput(t, e, s, n = {}) {
+    const o = Object.assign({
       createEventInCase: !0,
       firstFreeIfInputGeneralInCase: !0,
       generalTypeInCase: !0
-    }, o);
+    }, n);
     e && e.constructor === Number && (e = this.graph.getNodeById(e));
-    let a = s;
-    if (s === k.EVENT ? a = k.ACTION : s === k.ACTION && (a = k.EVENT), sourceSlot = e.findOutputSlotIndexByType(a, !0), sourceSlot >= 0 && sourceSlot !== null)
-      return console.debug(`CONNbyTYPE OUT! type ${s} for ${sourceSlot} to ${a}`), e.connect(sourceSlot, this, t);
-    if (r.generalTypeInCase) {
-      const u = e.findOutputSlotIndexByType(0, !0, !0);
-      if (u >= 0)
-        return e.connect(u, this, t);
+    let l = s;
+    s === O.EVENT ? l = O.ACTION : s === O.ACTION && (l = O.EVENT);
+    const a = e.findOutputSlotIndexByType(l, !0);
+    if (a >= 0 && a !== null)
+      return console.debug(`CONNbyTYPE OUT! type ${s} for ${a} to ${l}`), e.connect(a, this, t);
+    if (o.generalTypeInCase) {
+      const r = e.findOutputSlotIndexByType(0, !0, !0);
+      if (r >= 0)
+        return e.connect(r, this, t);
     }
-    if ((r.createEventInCase && s === k.EVENT || s === k.ACTION) && h.do_add_triggers_slots) {
-      const u = e.addOnExecutedOutput();
-      return e.connect(u, this, t);
+    if ((o.createEventInCase && s === O.EVENT || s === O.ACTION) && h.do_add_triggers_slots) {
+      const r = e.addOnExecutedOutput();
+      return e.connect(r, this, t);
     }
-    if (r.firstFreeIfInputGeneralInCase && (s === 0 || s === "*" || s === "")) {
-      const u = e.findOutputSlotIndexByName(null, !0, [k.EVENT, k.ACTION]);
-      if (u >= 0)
-        return e.connect(u, this, t);
+    if (o.firstFreeIfInputGeneralInCase && (s === 0 || s === "*" || s === "")) {
+      const r = e.findOutputSlotIndexByName(null, !0, [O.EVENT, O.ACTION]);
+      if (r >= 0)
+        return e.connect(r, this, t);
     }
     return console.error("no way to connect byOUT type: ", s, " to sourceNODE ", e), console.error(`type OUT! ${s} not found or not free?`), null;
   }
@@ -2787,64 +2788,64 @@ const _t = class {
         return h.debug && console.error(
           `Connect: Error, no slot of name ${s}`
         ), null;
-    } else if (s === k.EVENT)
+    } else if (s === O.EVENT)
       if (h.do_add_triggers_slots)
-        e.changeMode(W.ON_TRIGGER), s = e.findInputSlotIndexByName("onTrigger");
+        e.changeMode(Y.ON_TRIGGER), s = e.findInputSlotIndexByName("onTrigger");
       else
         return h.debug && console.error("Connect: Error, can't connect event target slot"), null;
     else if (!e.inputs || s >= e.inputs.length)
       return h.debug && console.error("Connect: Error, slot number not found"), null;
-    let o = !1;
-    const n = e.inputs[s];
-    let r = null;
-    const a = this.outputs[t];
+    let n = !1;
+    const i = e.inputs[s];
+    let o = null;
+    const l = this.outputs[t];
     if (!this.outputs[t])
       return h.debug && (console.warn(`Connect: Invalid slot passed: ${t}`), console.warn(this.outputs)), null;
-    if (e.onBeforeConnectInput && (s = e.onBeforeConnectInput(s)), s === -1 || s === null || !h.isValidConnection(a.type, n.type))
-      return this.setDirtyCanvas(!1, !0), o && this.graph.connectionChange(this, r), console.warn("Connect: Invalid connection: ", s, a.type, n.type), null;
-    if (h.debug && console.debug("valid connection", a.type, n.type), e.onConnectInput && e.onConnectInput(s, a.type, a, this, t) === !1)
-      return h.debug && console.debug("onConnectInput blocked", a.type, n.type), null;
-    if (this.onConnectOutput && this.onConnectOutput(t, n.type, n, e, s) === !1)
-      return h.debug && console.debug("onConnectOutput blocked", a.type, n.type), null;
-    if (e.inputs[s] && e.inputs[s].link !== null && (this.graph.beforeChange(), e.disconnectInput(s, { doProcessChange: !1 }), o = !0), a.links !== null && a.links.length)
-      switch (a.type) {
-        case k.EVENT:
-          h.allow_multi_output_for_events || (this.graph.beforeChange(), this.disconnectOutput(t, null, { doProcessChange: !1 }), o = !0);
+    if (e.onBeforeConnectInput && (s = e.onBeforeConnectInput(s)), s === -1 || s === null || !h.isValidConnection(l.type, i.type))
+      return this.setDirtyCanvas(!1, !0), n && this.graph.connectionChange(this, o), console.warn("Connect: Invalid connection: ", s, l.type, i.type), null;
+    if (h.debug && console.debug("valid connection", l.type, i.type), e.onConnectInput && e.onConnectInput(s, l.type, l, this, t) === !1)
+      return h.debug && console.debug("onConnectInput blocked", l.type, i.type), null;
+    if (this.onConnectOutput && this.onConnectOutput(t, i.type, i, e, s) === !1)
+      return h.debug && console.debug("onConnectOutput blocked", l.type, i.type), null;
+    if (e.inputs[s] && e.inputs[s].link !== null && (this.graph.beforeChange(), e.disconnectInput(s, { doProcessChange: !1 }), n = !0), l.links !== null && l.links.length)
+      switch (l.type) {
+        case O.EVENT:
+          h.allow_multi_output_for_events || (this.graph.beforeChange(), this.disconnectOutput(t, null, { doProcessChange: !1 }), n = !0);
           break;
       }
-    let u;
-    return h.use_uuids ? u = tt() : u = ++this.graph.last_link_id, r = new it(
-      u,
-      n.type || a.type,
+    let a;
+    return h.use_uuids ? a = Q() : a = ++this.graph.last_link_id, o = new it(
+      a,
+      i.type || l.type,
       this.id,
       t,
       e.id,
       s
-    ), this.graph.links[r.id] && console.error("Link already exists in graph!", r.id, r, this.graph.links[r.id]), this.graph.links[r.id] = r, a.links === null && (a.links = []), a.links.push(r.id), e.inputs[s].link = r.id, this.graph && this.graph._version++, this.onConnectionsChange && this.onConnectionsChange(
-      B.OUTPUT,
+    ), this.graph.links[o.id] && console.error("Link already exists in graph!", o.id, o, this.graph.links[o.id]), this.graph.links[o.id] = o, l.links === null && (l.links = []), l.links.push(o.id), e.inputs[s].link = o.id, this.graph && this.graph._version++, this.onConnectionChange && this.onConnectionChange(
+      G.OUTPUT,
       t,
       !0,
-      r,
-      a
-    ), e.onConnectionsChange && e.onConnectionsChange(
-      B.INPUT,
+      o,
+      l
+    ), e.onConnectionChange && e.onConnectionChange(
+      G.INPUT,
       s,
       !0,
-      r,
-      n
+      o,
+      i
     ), this.graph && this.graph.onNodeConnectionChange && (this.graph.onNodeConnectionChange(
-      B.INPUT,
+      G.INPUT,
       e,
       s,
       this,
       t
     ), this.graph.onNodeConnectionChange(
-      B.OUTPUT,
+      G.OUTPUT,
       this,
       t,
       e,
       s
-    )), this.setDirtyCanvas(!1, !0), this.graph.afterChange(), this.graph.connectionChange(this, r), r;
+    )), this.setDirtyCanvas(!1, !0), this.graph.afterChange(), this.graph.connectionChange(this, o), o;
   }
   /**
    * disconnect one output to an specific node
@@ -2858,79 +2859,79 @@ const _t = class {
         return h.debug && console.error(`Connect: Error, no slot of name ${t}`), !1;
     } else if (!this.outputs || t >= this.outputs.length)
       return h.debug && console.error("Connect: Error, slot number not found"), !1;
-    const o = this.outputs[t];
-    if (!o || !o.links || o.links.length === 0)
+    const n = this.outputs[t];
+    if (!n || !n.links || n.links.length === 0)
       return !1;
     if (e) {
       if (e.constructor === Number && (e = this.graph.getNodeById(e)), !e)
         throw "Target Node not found";
-      for (let n = 0, r = o.links.length; n < r; n++) {
-        const a = o.links[n], u = this.graph.links[a];
-        if (u.target_id === e.id) {
-          o.links.splice(n, 1);
-          const l = e.inputs[u.target_slot];
-          l.link = null, delete this.graph.links[a], this.graph && this.graph._version++, e.onConnectionsChange && e.onConnectionsChange(
-            B.INPUT,
-            u.target_slot,
+      for (let i = 0, o = n.links.length; i < o; i++) {
+        const l = n.links[i], a = this.graph.links[l];
+        if (a.target_id === e.id) {
+          n.links.splice(i, 1);
+          const r = e.inputs[a.target_slot];
+          r.link = null, delete this.graph.links[l], this.graph && this.graph._version++, e.onConnectionChange && e.onConnectionChange(
+            G.INPUT,
+            a.target_slot,
             !1,
-            u,
-            l
-          ), this.onConnectionsChange && this.onConnectionsChange(
-            B.OUTPUT,
+            a,
+            r
+          ), this.onConnectionChange && this.onConnectionChange(
+            G.OUTPUT,
             t,
             !1,
-            u,
-            o
+            a,
+            n
           ), this.graph && this.graph.onNodeConnectionChange && this.graph.onNodeConnectionChange(
-            B.OUTPUT,
+            G.OUTPUT,
             this,
             t
           ), this.graph && this.graph.onNodeConnectionChange && (this.graph.onNodeConnectionChange(
-            B.OUTPUT,
+            G.OUTPUT,
             this,
             t
           ), this.graph.onNodeConnectionChange(
-            B.INPUT,
+            G.INPUT,
             e,
-            u.target_slot
+            a.target_slot
           ));
           break;
         }
       }
     } else {
-      for (let n = 0, r = o.links.length; n < r; n++) {
-        const a = o.links[n], u = this.graph.links[a];
-        if (!u)
+      for (let i = 0, o = n.links.length; i < o; i++) {
+        const l = n.links[i], a = this.graph.links[l];
+        if (!a)
           continue;
-        const l = this.graph.getNodeById(u.target_id);
-        let p = null;
-        this.graph && this.graph._version++, l && (p = l.inputs[u.target_slot], p.link = null, l.onConnectionsChange && l.onConnectionsChange(
-          B.INPUT,
-          u.target_slot,
+        const r = this.graph.getNodeById(a.target_id);
+        let c = null;
+        this.graph && this.graph._version++, r && (c = r.inputs[a.target_slot], c.link = null, r.onConnectionChange && r.onConnectionChange(
+          G.INPUT,
+          a.target_slot,
           !1,
-          u,
-          p
+          a,
+          c
         ), this.graph && this.graph.onNodeConnectionChange && this.graph.onNodeConnectionChange(
-          B.INPUT,
-          l,
-          u.target_slot
-        )), delete this.graph.links[a], this.onConnectionsChange && this.onConnectionsChange(
-          B.OUTPUT,
+          G.INPUT,
+          r,
+          a.target_slot
+        )), delete this.graph.links[l], this.onConnectionChange && this.onConnectionChange(
+          G.OUTPUT,
           t,
           !1,
-          u,
-          o
+          a,
+          n
         ), this.graph && this.graph.onNodeConnectionChange && (this.graph.onNodeConnectionChange(
-          B.OUTPUT,
+          G.OUTPUT,
           this,
           t
         ), this.graph.onNodeConnectionChange(
-          B.INPUT,
-          l,
-          u.target_slot
+          G.INPUT,
+          r,
+          a.target_slot
         ));
       }
-      o.links = null;
+      n.links = null;
     }
     return this.setDirtyCanvas(!1, !0), this.graph.connectionChange(this), !0;
   }
@@ -2948,59 +2949,61 @@ const _t = class {
     const s = this.inputs[t];
     if (!s)
       return !1;
-    const o = this.inputs[t].link;
-    if (o !== null) {
+    const n = this.inputs[t].link;
+    if (n !== null) {
       this.inputs[t].link = null;
-      const n = this.graph.links[o];
-      if (n) {
-        const r = this.graph.getNodeById(n.origin_id);
-        if (!r)
+      const i = this.graph.links[n];
+      if (i) {
+        const o = this.graph.getNodeById(i.origin_id);
+        if (!o)
           return !1;
-        const a = r.outputs[n.origin_slot];
-        if (!a || !a.links || a.links.length === 0)
+        const l = o.outputs[i.origin_slot];
+        if (!l || !l.links || l.links.length === 0)
           return !1;
-        for (let u = 0, l = a.links.length; u < l; u++)
-          if (a.links[u] === o) {
-            a.links.splice(u, 1);
+        for (let a = 0, r = l.links.length; a < r; a++) {
+          if (l.links[a] === n) {
+            l.links.splice(a, 1);
             break;
           }
-        delete this.graph.links[o], this.graph && this.graph._version++, this.onConnectionsChange && this.onConnectionsChange(
-          B.INPUT,
-          t,
-          !1,
-          n,
-          s
-        ), r.onConnectionsChange && r.onConnectionsChange(
-          B.OUTPUT,
-          i,
-          !1,
-          n,
-          a
-        ), this.graph && this.graph.onNodeConnectionChange && (this.graph.onNodeConnectionChange(
-          B.OUTPUT,
-          r,
-          i
-        ), this.graph.onNodeConnectionChange(B.INPUT, this, t));
+          delete this.graph.links[n], this.graph && this.graph._version++, this.onConnectionChange && this.onConnectionChange(
+            G.INPUT,
+            t,
+            !1,
+            i,
+            s
+          ), o.onConnectionChange && o.onConnectionChange(
+            G.OUTPUT,
+            a,
+            !1,
+            i,
+            l
+          ), this.graph && this.graph.onNodeConnectionChange && (this.graph.onNodeConnectionChange(
+            G.OUTPUT,
+            o,
+            a
+          ), this.graph.onNodeConnectionChange(G.INPUT, this, t));
+        }
       }
     }
     return this.setDirtyCanvas(!1, !0), this.graph && this.graph.connectionChange(this), !0;
   }
   /**
    * returns the center of a connection point in canvas coords
-   * @param is_input true if if a input slot, false if it is an output
-   * @param slot (could be the number of the slot or the string with the name of the slot)
+   * @param is_input true if an input slot, false if it is an output
+   * @param slotNumber
    * @param out a place to store the output, to free garbage
+   * @param ignore_collapsed
    * @return the position
    */
-  getConnectionPos(t, e, s = [0, 0], o = !1) {
-    let n = 0;
-    t && this.inputs && (n = this.inputs.length), !t && this.outputs && (n = this.outputs.length);
-    const r = h.NODE_SLOT_HEIGHT * 0.5;
-    if (this.flags.collapsed && !o) {
-      const a = this._collapsed_width || h.NODE_COLLAPSED_WIDTH;
-      return this.horizontal ? (s[0] = this.pos[0] + a * 0.5, t ? s[1] = this.pos[1] - h.NODE_TITLE_HEIGHT : s[1] = this.pos[1]) : (t ? s[0] = this.pos[0] : s[0] = this.pos[0] + a, s[1] = this.pos[1] - h.NODE_TITLE_HEIGHT * 0.5), s;
+  getConnectionPos(t, e, s = [0, 0], n = !1) {
+    let i = 0;
+    t && this.inputs && (i = this.inputs.length), !t && this.outputs && (i = this.outputs.length);
+    const o = h.NODE_SLOT_HEIGHT * 0.5;
+    if (this.flags.collapsed && !n) {
+      const l = this._collapsed_width || h.NODE_COLLAPSED_WIDTH;
+      return this.horizontal ? (s[0] = this.pos[0] + l * 0.5, t ? s[1] = this.pos[1] - h.NODE_TITLE_HEIGHT : s[1] = this.pos[1]) : (t ? s[0] = this.pos[0] : s[0] = this.pos[0] + l, s[1] = this.pos[1] - h.NODE_TITLE_HEIGHT * 0.5), s;
     }
-    return t && e === -1 ? (s[0] = this.pos[0] + h.NODE_TITLE_HEIGHT * 0.5, s[1] = this.pos[1] + h.NODE_TITLE_HEIGHT * 0.5, s) : t && n > e && this.inputs[e].pos ? (s[0] = this.pos[0] + this.inputs[e].pos[0], s[1] = this.pos[1] + this.inputs[e].pos[1], s) : !t && n > e && this.outputs[e].pos ? (s[0] = this.pos[0] + this.outputs[e].pos[0], s[1] = this.pos[1] + this.outputs[e].pos[1], s) : this.horizontal ? (s[0] = this.pos[0] + (e + 0.5) * (this.size[0] / n), t ? s[1] = this.pos[1] - h.NODE_TITLE_HEIGHT : s[1] = this.pos[1] + this.size[1], s) : (t ? s[0] = this.pos[0] + r : s[0] = this.pos[0] + this.size[0] + 1 - r, s[1] = this.pos[1] + (e + 0.7) * h.NODE_SLOT_HEIGHT + (this.constructor.slot_start_y || 0), s);
+    return t && e === -1 ? (s[0] = this.pos[0] + h.NODE_TITLE_HEIGHT * 0.5, s[1] = this.pos[1] + h.NODE_TITLE_HEIGHT * 0.5, s) : t && i > e && this.inputs[e].pos ? (s[0] = this.pos[0] + this.inputs[e].pos[0], s[1] = this.pos[1] + this.inputs[e].pos[1], s) : !t && i > e && this.outputs[e].pos ? (s[0] = this.pos[0] + this.outputs[e].pos[0], s[1] = this.pos[1] + this.outputs[e].pos[1], s) : this.horizontal ? (s[0] = this.pos[0] + (e + 0.5) * (this.size[0] / i), t ? s[1] = this.pos[1] - h.NODE_TITLE_HEIGHT : s[1] = this.pos[1] + this.size[1], s) : (t ? s[0] = this.pos[0] + o : s[0] = this.pos[0] + this.size[0] + 1 - o, s[1] = this.pos[1] + (e + 0.7) * h.NODE_SLOT_HEIGHT + (this.constructor.slot_start_y || 0), s);
   }
   /** Force align to grid */
   alignToGrid() {
@@ -3008,7 +3011,7 @@ const _t = class {
   }
   /** Console output */
   trace(t) {
-    this.console || (this.console = []), this.console.push(t), this.console.length > _t.MAX_CONSOLE && this.console.shift(), this.graph.onNodeTrace && this.graph.onNodeTrace(this, t);
+    this.console || (this.console = []), this.console.push(t), this.console.length > ft.MAX_CONSOLE && this.console.shift(), this.graph.onNodeTrace && this.graph.onNodeTrace(this, t);
   }
   /** Forces to redraw or the main canvas (LGraphNode) or the bg canvas (links) */
   setDirtyCanvas(t, e = !1) {
@@ -3022,18 +3025,18 @@ const _t = class {
       s.setDirtyCanvas(!0);
     }, e;
   }
-  /** Allows to get onMouseMove and onMouseUp events even if the mouse is out of focus */
+  /** Allows getting onMouseMove and onMouseUp events even if the mouse is out of focus */
   captureInput(t) {
     if (!this.graph || !this.graph.list_of_graphcanvas)
       return;
     const e = this.graph.list_of_graphcanvas;
     for (let s = 0; s < e.length; ++s) {
-      const o = e[s];
-      !t && o.node_capturing_input !== this || (o.node_capturing_input = t ? this : null);
+      const n = e[s];
+      !t && n.node_capturing_input !== this || (n.node_capturing_input = t ? this : null);
     }
   }
   isShowingTitle(t) {
-    return this.titleMode === Z.TRANSPARENT_TITLE || this.titleMode === Z.NO_TITLE ? !1 : (this.titleMode === Z.AUTOHIDE_TITLE && t, !0);
+    return this.titleMode === q.TRANSPARENT_TITLE || this.titleMode === q.NO_TITLE ? !1 : (this.titleMode === q.AUTOHIDE_TITLE && t, !0);
   }
   /** Collapse the node to make it smaller on the canvas */
   collapse(t = !1) {
@@ -3050,19 +3053,19 @@ const _t = class {
     ];
   }
   getOptionalSlots() {
-    return pt(this, "optionalSlots");
+    return ct(this, "optionalSlots");
   }
 };
-let et = _t;
-et.MAX_CONSOLE = 100;
-function Et() {
+let tt = ft;
+tt.MAX_CONSOLE = 100;
+function Tt() {
   let t = [];
-  return t = t.concat(bt), t = t.concat([k.ACTION]), t = t.concat(h.slot_types_in.map((e) => e.toUpperCase())), t;
+  return t = t.concat(yt), t = t.concat([O.ACTION]), t = t.concat(h.slot_types_in.map((e) => e.toUpperCase())), t;
 }
-function Rt() {
-  return Et().map(X);
+function Pt() {
+  return Tt().map(W);
 }
-class V extends et {
+class X extends tt {
   constructor(e) {
     super(e), this.properties = {
       name: "",
@@ -3079,20 +3082,20 @@ class V extends et {
     ), h.graph_inputs_outputs_use_combo_widget ? this.typeWidget = this.addWidget(
       "combo",
       "Type",
-      X(this.properties.type),
+      W(this.properties.type),
       this.setType.bind(this),
-      { values: Rt }
+      { values: Pt }
     ) : this.typeWidget = this.addWidget(
       "text",
       "Type",
-      X(this.properties.type),
+      W(this.properties.type),
       this.setType.bind(this)
     ), this.valueWidget = this.addWidget(
       "number",
       "Value",
       this.properties.value,
-      (o) => {
-        s.setProperty("value", o);
+      (n) => {
+        s.setProperty("value", n);
       }
     ), this.widgets_up = !0;
   }
@@ -3105,7 +3108,7 @@ class V extends et {
   setType(e) {
     e || (e = "*");
     let s = e;
-    e === "-1" || e === "Action" ? s = k.ACTION : e === "-2" || e === "Event" ? s = k.EVENT : e === "0" && (s = "*"), this.setProperty("type", s);
+    e === "-1" || e === "Action" ? s = O.ACTION : e === "-2" || e === "Event" ? s = O.EVENT : e === "0" && (s = "*"), this.setProperty("type", s);
   }
   onConfigure() {
     this.updateType();
@@ -3117,9 +3120,9 @@ class V extends et {
   /** ensures the type in the node output and the type in the associated graph input are the same */
   updateType() {
     const e = this.properties.type;
-    this.typeWidget.value = X(e);
+    this.typeWidget.value = W(e);
     const s = this.outputs[0];
-    s.type !== e && (h.isValidConnection(s.type, e) || this.disconnectOutput(0), s.type = e), e === "array" ? s.shape = A.GRID_SHAPE : e === k.EVENT || e === k.ACTION ? s.shape = A.BOX_SHAPE : s.shape = A.DEFAULT, e === "number" ? (this.valueWidget.type = "number", this.valueWidget.value = 0) : e === "boolean" ? (this.valueWidget.type = "toggle", this.valueWidget.value = !0) : e === "string" ? (this.valueWidget.type = "text", this.valueWidget.value = "") : (this.valueWidget.type = null, this.valueWidget.value = null), this.properties.value = this.valueWidget.value, this.graph && this.nameInGraph && Tt(e) ? (this.graph.changeInputType(this.nameInGraph, e), s.type !== e && this.setOutputDataType(0, e)) : console.error("[GraphInput] Can't change output to type", e, this.graph, this.nameInGraph);
+    s.type !== e && (h.isValidConnection(s.type, e) || this.disconnectOutput(0), s.type = e), e === "array" ? s.shape = S.GRID_SHAPE : e === O.EVENT || e === O.ACTION ? s.shape = S.BOX_SHAPE : s.shape = S.DEFAULT, e === "number" ? (this.valueWidget.type = "number", this.valueWidget.value = 0) : e === "boolean" ? (this.valueWidget.type = "toggle", this.valueWidget.value = !0) : e === "string" ? (this.valueWidget.type = "text", this.valueWidget.value = "") : (this.valueWidget.type = null, this.valueWidget.value = null), this.properties.value = this.valueWidget.value, this.graph && this.nameInGraph && bt(e) ? (this.graph.changeInputType(this.nameInGraph, e), s.type !== e && this.setOutputDataType(0, e)) : console.error("[GraphInput] Can't change output to type", e, this.graph, this.nameInGraph);
   }
   /** this is executed AFTER the property has changed */
   onPropertyChanged(e, s) {
@@ -3134,7 +3137,7 @@ class V extends et {
     return this.flags.collapsed ? this.properties.name : this.title;
   }
   onAction(e, s) {
-    this.properties.type === k.EVENT && this.triggerSlot(0, s);
+    this.properties.type === O.EVENT && this.triggerSlot(0, s);
   }
   onExecute() {
     const e = this.properties.name, s = this.graph.inputs[e];
@@ -3148,27 +3151,27 @@ class V extends et {
     this.nameInGraph && this.graph.removeInput(this.nameInGraph);
   }
 }
-V.slotLayout = {
+X.slotLayout = {
   inputs: [],
   outputs: [
     { name: "", type: "number" }
   ]
 };
 h.registerNodeType({
-  class: V,
+  class: X,
   title: "Input",
   desc: "Input of the graph",
   type: "graph/input",
   hide_in_node_lists: !0
 });
-function Nt() {
+function Et() {
   let t = [];
-  return t = t.concat(bt), t = t.concat([k.EVENT]), t = t.concat(h.slot_types_out), t;
+  return t = t.concat(yt), t = t.concat([O.EVENT]), t = t.concat(h.slot_types_out), t;
 }
-function Mt() {
-  return Nt().map(X);
+function Rt() {
+  return Et().map(W);
 }
-class j extends et {
+class V extends tt {
   constructor(e) {
     super(e), this.properties = {
       name: "",
@@ -3182,13 +3185,13 @@ class j extends et {
     ), h.graph_inputs_outputs_use_combo_widget ? this.typeWidget = this.addWidget(
       "combo",
       "Type",
-      X(this.properties.type),
+      W(this.properties.type),
       this.setType.bind(this),
-      { values: Mt }
+      { values: Rt }
     ) : this.typeWidget = this.addWidget(
       "text",
       "Type",
-      X(this.properties.type),
+      W(this.properties.type),
       this.setType.bind(this)
     ), this.widgets_up = !0;
   }
@@ -3201,7 +3204,7 @@ class j extends et {
   setType(e) {
     e || (e = "*");
     let s = e;
-    e === "-1" || e === "Action" ? s = k.ACTION : e === "-2" || e === "Event" ? s = k.EVENT : e === "0" && (s = "*"), this.setProperty("type", s);
+    e === "-1" || e === "Action" ? s = O.ACTION : e === "-2" || e === "Event" ? s = O.EVENT : e === "0" && (s = "*"), this.setProperty("type", s);
   }
   onConfigure() {
     this.updateType();
@@ -3213,7 +3216,7 @@ class j extends et {
   updateType() {
     let e = this.properties.type;
     const s = this.inputs[0];
-    this.typeWidget && (this.typeWidget.value = X(e)), e === "array" ? s.shape = A.GRID_SHAPE : e === k.EVENT || e === k.ACTION ? s.shape = A.BOX_SHAPE : s.shape = A.DEFAULT, s.type !== e && ((e === "action" || e === "event") && (e = k.EVENT), h.isValidConnection(s.type, e) || this.disconnectInput(0), s.type = e), this.graph && this.nameInGraph && Tt(e) ? (this.graph.changeOutputType(this.nameInGraph, e), s.type !== e && this.setInputDataType(0, e)) : console.error("Can't change GraphOutput to type", e, this.graph, this.nameInGraph);
+    this.typeWidget && (this.typeWidget.value = W(e)), e === "array" ? s.shape = S.GRID_SHAPE : e === O.EVENT || e === O.ACTION ? s.shape = S.BOX_SHAPE : s.shape = S.DEFAULT, s.type !== e && ((e === "action" || e === "event") && (e = O.EVENT), h.isValidConnection(s.type, e) || this.disconnectInput(0), s.type = e), this.graph && this.nameInGraph && bt(e) ? (this.graph.changeOutputType(this.nameInGraph, e), s.type !== e && this.setInputDataType(0, e)) : console.error("Can't change GraphOutput to type", e, this.graph, this.nameInGraph);
   }
   /** this is executed AFTER the property has changed */
   onPropertyChanged(e, s) {
@@ -3227,12 +3230,12 @@ class j extends et {
   getTitle() {
     return this.flags.collapsed ? this.properties.name : this.title;
   }
-  onAction(e, s, o) {
-    const n = this.getParentSubgraph();
-    if (!n)
+  onAction(e, s, n) {
+    const i = this.getParentSubgraph();
+    if (!i)
       return;
-    const r = n.findOutputSlotIndexByName(this.properties.name);
-    r === null || n.outputs[r] === null || n.triggerSlot(r, s);
+    const o = i.findOutputSlotIndexByName(this.properties.name);
+    o === null || i.outputs[o] === null || i.triggerSlot(o, s);
   }
   onExecute() {
     const e = this.getInputData(0);
@@ -3242,26 +3245,26 @@ class j extends et {
     this.nameInGraph && this.graph.removeOutput(this.nameInGraph);
   }
 }
-j.slotLayout = {
+V.slotLayout = {
   inputs: [
     { name: "", type: "" }
   ],
   outputs: []
 };
 h.registerNodeType({
-  class: j,
+  class: V,
   title: "Output",
   desc: "Output of the graph",
   type: "graph/output",
   hide_in_node_lists: !0
 });
-var Gt = /* @__PURE__ */ ((t) => (t[t.STATUS_STOPPED = 1] = "STATUS_STOPPED", t[t.STATUS_RUNNING = 2] = "STATUS_RUNNING", t))(Gt || {});
-const Ot = class {
+var Mt = /* @__PURE__ */ ((t) => (t[t.STATUS_STOPPED = 1] = "STATUS_STOPPED", t[t.STATUS_RUNNING = 2] = "STATUS_RUNNING", t))(Mt || {});
+const Nt = class {
   constructor(t) {
     this.supported_types = null, this.vars = {}, this.extra = {}, this.inputs = {}, this.outputs = {}, this.links = {}, this.list_of_graphcanvas = [], this._nodes = [], this._groups = [], this._nodes_by_id = {}, this._nodes_executable = null, this._nodes_in_order = [], this._version = -1, this._last_trigger_time = 0, this._is_subgraph = !1, this._subgraph_node = null, this.nodes_executing = [], this.nodes_actioning = [], this.nodes_executedAction = [], this.execution_timer_id = -1, this.execution_time = 0, this.errors_in_execution = !1, h.debug && console.log("Graph created"), this.list_of_graphcanvas = null, this.clear(), t && this.configure(t);
   }
   getSupportedTypes() {
-    return this.supported_types || Ot.DEFAULT_SUPPORTED_TYPES;
+    return this.supported_types || Nt.DEFAULT_SUPPORTED_TYPES;
   }
   /*
      * Gets the root graph above any subgraphs.
@@ -3287,7 +3290,7 @@ const Ot = class {
   }
   /** Attach Canvas to this graph */
   attachCanvas(t) {
-    if (!(t instanceof T))
+    if (!(t instanceof b))
       throw "attachCanvas expects a LGraphCanvas instance";
     t.graph && t.graph !== this && t.graph.detachCanvas(t), t.graph = this, this.list_of_graphcanvas || (this.list_of_graphcanvas = []), this.list_of_graphcanvas.push(t);
   }
@@ -3328,38 +3331,38 @@ const Ot = class {
    * @param limit
    */
   runStep(t = 1, e = !1, s) {
-    const o = h.getTime();
-    this.globaltime = 1e-3 * (o - this.starttime);
-    const n = this._nodes_executable ? this._nodes_executable : this._nodes;
-    if (!n)
+    const n = h.getTime();
+    this.globaltime = 1e-3 * (n - this.starttime);
+    const i = this._nodes_executable ? this._nodes_executable : this._nodes;
+    if (!i)
       return;
-    if (s = s || n.length, e) {
-      for (let u = 0; u < t; u++) {
-        for (let l = 0; l < s; ++l) {
-          const p = n[l];
-          p.mode === W.ALWAYS && p.onExecute && p.doExecute();
+    if (s = s || i.length, e) {
+      for (let a = 0; a < t; a++) {
+        for (let r = 0; r < s; ++r) {
+          const c = i[r];
+          c.mode === Y.ALWAYS && c.onExecute && c.doExecute();
         }
         this.fixedtime += this.fixedtime_lapse, this.onExecuteStep && this.onExecuteStep();
       }
       this.onAfterExecute && this.onAfterExecute();
     } else
       try {
-        for (let u = 0; u < t; u++) {
-          for (let l = 0; l < s; ++l) {
-            const p = n[l];
-            p.mode === W.ALWAYS && p.onExecute && p.onExecute(null, {});
+        for (let a = 0; a < t; a++) {
+          for (let r = 0; r < s; ++r) {
+            const c = i[r];
+            c.mode === Y.ALWAYS && c.onExecute && c.onExecute(null, {});
           }
           this.fixedtime += this.fixedtime_lapse, this.onExecuteStep && this.onExecuteStep();
         }
         this.onAfterExecute && this.onAfterExecute(), this.errors_in_execution = !1;
-      } catch (u) {
+      } catch (a) {
         if (this.errors_in_execution = !0, h.throw_errors)
-          throw u;
-        h.debug && console.log(`Error during execution: ${u}`), this.stop();
+          throw a;
+        h.debug && console.log(`Error during execution: ${a}`), this.stop();
       }
-    const r = h.getTime();
-    let a = r - o;
-    a === 0 && (a = 1), this.execution_time = 1e-3 * a, this.globaltime += 1e-3 * a, this.iteration += 1, this.elapsed_time = (r - this.last_update_time) * 1e-3, this.last_update_time = r, this.nodes_executing = [], this.nodes_actioning = [], this.nodes_executedAction = [];
+    const o = h.getTime();
+    let l = o - n;
+    l === 0 && (l = 1), this.execution_time = 1e-3 * l, this.globaltime += 1e-3 * l, this.iteration += 1, this.elapsed_time = (o - this.last_update_time) * 1e-3, this.last_update_time = o, this.nodes_executing = [], this.nodes_actioning = [], this.nodes_executedAction = [];
   }
   /**
    * Updates the graph execution order according to relevance of the nodes (nodes with only outputs have more relevance than
@@ -3375,56 +3378,56 @@ const Ot = class {
   }
   *computeExecutionOrderRecursive(t = !1, e) {
     for (const s of this.computeExecutionOrder(t, e))
-      if (yield s, s.is(J))
-        for (const o of s.subgraph.computeExecutionOrderRecursive(t, e))
-          yield o;
+      if (yield s, s.is(Z))
+        for (const n of s.subgraph.computeExecutionOrderRecursive(t, e))
+          yield n;
   }
   /** This is more internal, it computes the executable nodes in order and returns it */
   computeExecutionOrder(t = !1, e) {
     let s = [];
-    const o = [], n = {}, r = {}, a = {};
-    for (let l = 0, p = this._nodes.length; l < p; ++l) {
-      const f = this._nodes[l];
-      if (t && !f.onExecute)
+    const n = [], i = {}, o = {}, l = {};
+    for (let r = 0, c = this._nodes.length; r < c; ++r) {
+      const d = this._nodes[r];
+      if (t && !d.onExecute)
         continue;
-      n[f.id] = f;
-      let c = 0;
-      if (f.inputs)
-        for (let g = 0, y = f.inputs.length; g < y; g++)
-          f.inputs[g] && f.inputs[g].link !== null && (c += 1);
-      c === 0 ? (o.push(f), e && (f._level = 1)) : (e && (f._level = 0), a[f.id] = c);
+      i[d.id] = d;
+      let u = 0;
+      if (d.inputs)
+        for (let _ = 0, m = d.inputs.length; _ < m; _++)
+          d.inputs[_] && d.inputs[_].link !== null && (u += 1);
+      u === 0 ? (n.push(d), e && (d._level = 1)) : (e && (d._level = 0), l[d.id] = u);
     }
-    for (; o.length !== 0; ) {
-      const l = o.shift();
-      if (s.push(l), delete n[l.id], !!l.outputs)
-        for (let p = 0; p < l.outputs.length; p++) {
-          const f = l.outputs[p];
-          if (!(f === null || f.links === null || f.links.length === 0))
-            for (let c = 0; c < f.links.length; c++) {
-              const g = f.links[c], y = this.links[g];
-              if (!y || r[y.id])
+    for (; n.length !== 0; ) {
+      const r = n.shift();
+      if (s.push(r), delete i[r.id], !!r.outputs)
+        for (let c = 0; c < r.outputs.length; c++) {
+          const d = r.outputs[c];
+          if (!(d === null || d.links === null || d.links.length === 0))
+            for (let u = 0; u < d.links.length; u++) {
+              const _ = d.links[u], m = this.links[_];
+              if (!m || o[m.id])
                 continue;
-              const d = this.getNodeById(y.target_id);
-              if (d === null) {
-                r[y.id] = !0;
+              const p = this.getNodeById(m.target_id);
+              if (p === null) {
+                o[m.id] = !0;
                 continue;
               }
-              e && (!d._level || d._level <= l._level) && (d._level = l._level + 1), r[y.id] = !0, a[d.id] -= 1, a[d.id] === 0 && o.push(d);
+              e && (!p._level || p._level <= r._level) && (p._level = r._level + 1), o[m.id] = !0, l[p.id] -= 1, l[p.id] === 0 && n.push(p);
             }
         }
     }
-    for (const l of Object.keys(n).sort())
-      s.push(n[l]);
+    for (const r of Object.keys(i).sort())
+      s.push(i[r]);
     s.length !== this._nodes.length && h.debug && console.warn("something went wrong, nodes missing");
-    const u = s.length;
-    for (let l = 0; l < u; ++l)
-      s[l].order = l;
-    s = s.sort((l, p) => {
-      const f = l.constructor.priority || l.priority || 0, c = p.constructor.priority || p.priority || 0;
-      return f === c ? l.order - p.order : f - c;
+    const a = s.length;
+    for (let r = 0; r < a; ++r)
+      s[r].order = r;
+    s = s.sort((r, c) => {
+      const d = r.constructor.priority || r.priority || 0, u = c.constructor.priority || c.priority || 0;
+      return d === u ? r.order - c.order : d - u;
     });
-    for (let l = 0; l < u; ++l)
-      s[l].order = l;
+    for (let r = 0; r < a; ++r)
+      s[r].order = r;
     return s;
   }
   /**
@@ -3433,43 +3436,43 @@ const Ot = class {
    * @return an array with all the LGraphNodes that affect this node, in order of execution
    */
   getAncestors(t) {
-    const e = [], s = [t], o = {};
+    const e = [], s = [t], n = {};
     for (; s.length; ) {
-      const n = s.shift();
-      if (n.inputs) {
-        !o[n.id] && n !== t && (o[n.id] = !0, e.push(n));
-        for (let r = 0; r < n.inputs.length; ++r) {
-          const a = n.getInputNode(r);
-          a && !e.includes(a) && s.push(a);
+      const i = s.shift();
+      if (i.inputs) {
+        !n[i.id] && i !== t && (n[i.id] = !0, e.push(i));
+        for (let o = 0; o < i.inputs.length; ++o) {
+          const l = i.getInputNode(o);
+          l && !e.includes(l) && s.push(l);
         }
       }
     }
-    return e.sort((n, r) => n.order - r.order), e;
+    return e.sort((i, o) => i.order - o.order), e;
   }
   /**
    * Positions every node in a more readable manner
    */
   arrange(t = 100, e = st.HORIZONTAL_LAYOUT) {
-    const s = this.computeExecutionOrder(!1, !0), o = [];
-    for (let r = 0; r < s.length; ++r) {
-      const a = s[r], u = a._level || 1;
-      o[u] || (o[u] = []), o[u].push(a);
+    const s = this.computeExecutionOrder(!1, !0), n = [];
+    for (let o = 0; o < s.length; ++o) {
+      const l = s[o], a = l._level || 1;
+      n[a] || (n[a] = []), n[a].push(l);
     }
-    let n = t;
-    for (let r = 0; r < o.length; ++r) {
-      const a = o[r];
-      if (!a)
+    let i = t;
+    for (let o = 0; o < n.length; ++o) {
+      const l = n[o];
+      if (!l)
         continue;
-      let u = 100, l = t + h.NODE_TITLE_HEIGHT;
-      for (let p = 0; p < a.length; ++p) {
-        const f = a[p];
-        f.pos[0] = e === st.VERTICAL_LAYOUT ? l : n, f.pos[1] = e === st.VERTICAL_LAYOUT ? n : l;
-        const c = e === st.VERTICAL_LAYOUT ? 1 : 0;
-        f.size[c] > u && (u = f.size[c]);
-        const g = e === st.VERTICAL_LAYOUT ? 0 : 1;
-        l += f.size[g] + t + h.NODE_TITLE_HEIGHT;
+      let a = 100, r = t + h.NODE_TITLE_HEIGHT;
+      for (let c = 0; c < l.length; ++c) {
+        const d = l[c];
+        d.pos[0] = e === st.VERTICAL_LAYOUT ? r : i, d.pos[1] = e === st.VERTICAL_LAYOUT ? i : r;
+        const u = e === st.VERTICAL_LAYOUT ? 1 : 0;
+        d.size[u] > a && (a = d.size[u]);
+        const _ = e === st.VERTICAL_LAYOUT ? 0 : 1;
+        r += d.size[_] + t + h.NODE_TITLE_HEIGHT;
       }
-      n += u + t;
+      i += a + t;
     }
     this.setDirtyCanvas(!0, !0);
   }
@@ -3544,21 +3547,21 @@ const Ot = class {
    * @param params parameters in array format
    * @param mode node mode
    */
-  sendEventToAllNodes(t, e = [], s = W.ALWAYS) {
+  sendEventToAllNodes(t, e = [], s = Y.ALWAYS) {
     if (this._nodes_in_order ? this._nodes_in_order : this._nodes)
-      for (const n of this.iterateNodesInOrder()) {
-        if (n.type === "basic/subgraph" && t !== "onExecute") {
-          n.mode === s && n.sendEventToAllNodes(t, e, s);
+      for (const i of this.iterateNodesInOrder()) {
+        if (i.type === "basic/subgraph" && t !== "onExecute") {
+          i.mode === s && i.sendEventToAllNodes(t, e, s);
           continue;
         }
-        !n[t] || n.mode !== s || (e === void 0 ? n[t]() : e && e.constructor === Array ? n[t].apply(n, e) : n[t](e));
+        !i[t] || i.mode !== s || (e === void 0 ? i[t]() : e && e.constructor === Array ? i[t].apply(i, e) : i[t](e));
       }
   }
   sendActionToCanvas(t, e = []) {
     if (this.list_of_graphcanvas)
       for (let s = 0; s < this.list_of_graphcanvas.length; ++s) {
-        const o = this.list_of_graphcanvas[s];
-        o[t] && o[t].apply(o, e);
+        const n = this.list_of_graphcanvas[s];
+        n[t] && n[t].apply(n, e);
       }
   }
   addGroup(t) {
@@ -3570,36 +3573,35 @@ const Ot = class {
    * @param options
    */
   add(t, e = {}) {
-    if (t.id !== -1 && this._nodes_by_id[t.id] !== null && (console.warn(
-      "LiteGraph: there is already a node with this ID, changing it",
-      t.id
-    ), h.use_uuids ? t.id = tt() : t.id = ++this.last_node_id), e.pos && (isNaN(e.pos[0]) || isNaN(e.pos[1])))
+    if (console.log(t.id, this._nodes_by_id[t.id]), t.id !== -1 && this._nodes_by_id[t.id] && (console.warn(
+      `LiteGraph：已经有一个节点具有此ID，请修改它：${t.id}`
+    ), h.use_uuids ? t.id = Q() : t.id = ++this.last_node_id), e.pos && (isNaN(e.pos[0]) || isNaN(e.pos[1])))
       throw "LiteGraph: Node position contained NaN(s)!";
     if (this._nodes.length >= h.MAX_NUMBER_OF_NODES)
       throw "LiteGraph: max number of nodes in a graph reached";
-    return h.use_uuids ? t.id || (t.id = tt()) : t.id === null || t.id === -1 ? t.id = ++this.last_node_id : this.last_node_id < t.id && (this.last_node_id = t.id), t.graph = this, this._version++, this._nodes.push(t), this._nodes_by_id[t.id] = t, e.pos && (t.pos = e.pos), t.onAdded && t.onAdded(this), this.config.align_to_grid && t.alignToGrid(), e.skipComputeOrder || this.updateExecutionOrder(), this.onNodeAdded && this.onNodeAdded(t, e), this.setDirtyCanvas(!0), this.change(), t;
+    return h.use_uuids ? t.id || (t.id = Q()) : t.id === null || t.id === -1 ? t.id = ++this.last_node_id : this.last_node_id < t.id && (this.last_node_id = t.id), t.graph = this, this._version++, this._nodes.push(t), this._nodes_by_id[t.id] = t, e.pos && (t.pos = e.pos), t.onAdded && t.onAdded(this), this.config.align_to_grid && t.alignToGrid(), e.skipComputeOrder || this.updateExecutionOrder(), this.onNodeAdded && this.onNodeAdded(t, e), this.setDirtyCanvas(!0), this.change(), t;
   }
   /** Removes a node from the graph */
   remove(t, e = {}) {
-    if (t instanceof ct) {
-      const o = this._groups.indexOf(t);
-      o !== -1 && this._groups.splice(o, 1), t.graph = null, this._version++, this.setDirtyCanvas(!0, !0), this.change();
+    if (t instanceof ht) {
+      const n = this._groups.indexOf(t);
+      n !== -1 && this._groups.splice(n, 1), t.graph = null, this._version++, this.setDirtyCanvas(!0, !0), this.change();
       return;
     }
     if (this._nodes_by_id[t.id] === null || t.ignore_remove)
       return;
     if (this.beforeChange(), t.inputs)
-      for (let o = 0; o < t.inputs.length; o++)
-        t.inputs[o].link !== null && t.disconnectInput(o);
+      for (let n = 0; n < t.inputs.length; n++)
+        t.inputs[n].link !== null && t.disconnectInput(n);
     if (t.outputs)
-      for (let o = 0; o < t.outputs.length; o++) {
-        const n = t.outputs[o];
-        n.links !== null && n.links.length && t.disconnectOutput(o);
+      for (let n = 0; n < t.outputs.length; n++) {
+        const i = t.outputs[n];
+        i.links !== null && i.links.length && t.disconnectOutput(n);
       }
     if (t.onRemoved && t.onRemoved(e), t.graph = null, this._version++, this.list_of_graphcanvas)
-      for (let o = 0; o < this.list_of_graphcanvas.length; ++o) {
-        const n = this.list_of_graphcanvas[o];
-        n.selected_nodes[t.id] && delete n.selected_nodes[t.id], n.node_dragged === t && (n.node_dragged = null);
+      for (let n = 0; n < this.list_of_graphcanvas.length; ++n) {
+        const i = this.list_of_graphcanvas[n];
+        i.selected_nodes[t.id] && delete i.selected_nodes[t.id], i.node_dragged === t && (i.node_dragged = null);
       }
     const s = this._nodes.indexOf(t);
     s !== -1 && this._nodes.splice(s, 1), delete this._nodes_by_id[t.id], this.onNodeRemoved && this.onNodeRemoved(t, e), this.sendActionToCanvas("checkPanels"), this.setDirtyCanvas(!0, !0), this.afterChange(), this.change(), this.updateExecutionOrder();
@@ -3613,10 +3615,10 @@ const Ot = class {
     const e = this.getNodeById(t);
     if (e !== null)
       return e;
-    for (const s of this.iterateNodesOfClass(J)) {
-      const o = s.subgraph.getNodeByIdRecursive(t);
-      if (o)
-        return o;
+    for (const s of this.iterateNodesOfClass(Z)) {
+      const n = s.subgraph.getNodeByIdRecursive(t);
+      if (n)
+        return n;
     }
     return null;
   }
@@ -3640,7 +3642,7 @@ const Ot = class {
    */
   findNodesByType(t, e = []) {
     t = t.toLowerCase(), e.length = 0;
-    for (let s = 0, o = this._nodes.length; s < o; ++s)
+    for (let s = 0, n = this._nodes.length; s < n; ++s)
       this._nodes[s].type.toLowerCase() === t && e.push(this._nodes[s]);
     return e;
   }
@@ -3686,7 +3688,7 @@ const Ot = class {
    */
   findNodesByTitle(t) {
     const e = [];
-    for (let s = 0, o = this._nodes.length; s < o; ++s)
+    for (let s = 0, n = this._nodes.length; s < n; ++s)
       this._nodes[s].title === t && e.push(this._nodes[s]);
     return e;
   }
@@ -3698,15 +3700,15 @@ const Ot = class {
    * @param margin
    * @return the node at this position or null
    */
-  getNodeOnPos(t, e, s, o) {
+  getNodeOnPos(t, e, s, n) {
     s = s || this._nodes;
-    const n = null;
-    for (let r = s.length - 1; r >= 0; r--) {
-      const a = s[r], u = a.titleMode === Z.NO_TITLE;
-      if (a.isPointInside(t, e, o, u))
-        return a;
+    const i = null;
+    for (let o = s.length - 1; o >= 0; o--) {
+      const l = s[o], a = l.titleMode === q.NO_TITLE;
+      if (l.isPointInside(t, e, n, a))
+        return l;
     }
-    return n;
+    return i;
   }
   /**
    * Returns the top-most group in that position
@@ -3716,9 +3718,9 @@ const Ot = class {
    */
   getGroupOnPos(t, e) {
     for (let s = this._groups.length - 1; s >= 0; s--) {
-      const o = this._groups[s];
-      if (o.isPointInside(t, e, 2, !0))
-        return o;
+      const n = this._groups[s];
+      if (n.isPointInside(t, e, 2, !0))
+        return n;
     }
     return null;
   }
@@ -3730,20 +3732,20 @@ const Ot = class {
   checkNodeTypes() {
     let t = !1;
     for (let e = 0; e < this._nodes.length; e++) {
-      const s = this._nodes[e], o = h.registered_node_types[s.type];
-      if (s.constructor === o.class)
+      const s = this._nodes[e], n = h.registered_node_types[s.type];
+      if (s.constructor === n.class)
         continue;
       console.log(`node being replaced by newer version: ${s.type}`);
-      const n = h.createNode(s.type);
-      t = !0, this._nodes[e] = n, n.configure(s.serialize()), n.graph = this, this._nodes_by_id[n.id] = n, s.inputs && (n.inputs = s.inputs.concat()), s.outputs && (n.outputs = s.outputs.concat());
+      const i = h.createNode(s.type);
+      t = !0, this._nodes[e] = i, i.configure(s.serialize()), i.graph = this, this._nodes_by_id[i.id] = i, s.inputs && (i.inputs = s.inputs.concat()), s.outputs && (i.outputs = s.outputs.concat());
     }
     return this.updateExecutionOrder(), t;
   }
   // ********** GLOBALS *****************
   onAction(t, e, s = {}) {
-    for (const o of this.iterateNodesOfClass(V))
-      if (o.properties.name === t) {
-        o.actionDo(t, e, s);
+    for (const n of this.iterateNodesOfClass(X))
+      if (n.properties.name === t) {
+        n.actionDo(t, e, s);
         break;
       }
   }
@@ -3876,27 +3878,27 @@ const Ot = class {
   /** Creates an Object containing all the info about this graph; it can be serialized */
   serialize() {
     const t = [];
-    for (let n = 0, r = this._nodes.length; n < r; ++n)
-      t.push(this._nodes[n].serialize());
+    for (let i = 0, o = this._nodes.length; i < o; ++i)
+      t.push(this._nodes[i].serialize());
     const e = [];
-    for (const n in this.links) {
-      let r = this.links[n];
-      if (!r.serialize) {
+    for (const i in this.links) {
+      let o = this.links[i];
+      if (!o.serialize) {
         console.error(
           "weird LLink bug, link info is not a LLink but a regular object",
-          r
+          o
         );
-        const a = it.configure(r);
-        for (const u in r)
-          a[u] = r[u];
-        this.links[n] = a, r = a;
+        const l = it.configure(o);
+        for (const a in o)
+          l[a] = o[a];
+        this.links[i] = l, o = l;
       }
-      e.push(r.serialize());
+      e.push(o.serialize());
     }
     const s = [];
-    for (let n = 0; n < this._groups.length; ++n)
-      s.push(this._groups[n].serialize());
-    const o = {
+    for (let i = 0; i < this._groups.length; ++i)
+      s.push(this._groups[i].serialize());
+    const n = {
       last_node_id: this.last_node_id,
       last_link_id: this.last_link_id,
       nodes: t,
@@ -3906,7 +3908,7 @@ const Ot = class {
       extra: this.extra,
       version: h.VERSION
     };
-    return this.onSerialize && this.onSerialize(o), o;
+    return this.onSerialize && this.onSerialize(n), n;
   }
   /**
    * Configure a graph from a JSON string
@@ -3920,112 +3922,112 @@ const Ot = class {
     e || this.clear();
     const s = t.nodes;
     if (t.links && t.links.constructor === Array) {
-      const n = [];
-      for (let r = 0; r < t.links.length; ++r) {
-        const a = t.links[r];
-        if (!a) {
+      const i = [];
+      for (let o = 0; o < t.links.length; ++o) {
+        const l = t.links[o];
+        if (!l) {
           console.warn("serialized graph link data contains errors, skipping.");
           continue;
         }
-        const u = it.configure(a);
-        n[u.id] = u;
+        const a = it.configure(l);
+        i[a.id] = a;
       }
-      t.links = n;
+      t.links = i;
     }
-    for (const n in t)
-      n === "nodes" || n === "groups" || (this[n] = t[n]);
-    let o = !1;
+    for (const i in t)
+      i === "nodes" || i === "groups" || (this[i] = t[i]);
+    let n = !1;
     if (this._nodes = [], s) {
-      for (let n = 0, r = s.length; n < r; ++n) {
-        const a = s[n];
-        let u = h.createNode(a.type, a.title);
-        u || (console.error(
-          `Node not found or has errors: ${a.type}`
-        ), u = new et(), u.last_serialization = a, u.has_errors = !0, o = !0), u.id = a.id, this.add(u, { addedBy: "configure", skipComputeOrder: !0 });
+      for (let i = 0, o = s.length; i < o; ++i) {
+        const l = s[i];
+        let a = h.createNode(l.type, l.title);
+        a || (console.error(
+          `Node not found or has errors: ${l.type}`
+        ), a = new tt(), a.last_serialization = l, a.has_errors = !0, n = !0), a.id = l.id, this.add(a, { addedBy: "configure", skipComputeOrder: !0 });
       }
-      for (let n = 0, r = s.length; n < r; ++n) {
-        const a = s[n], u = this.getNodeById(a.id);
-        u && u.configure(a);
+      for (let i = 0, o = s.length; i < o; ++i) {
+        const l = s[i], a = this.getNodeById(l.id);
+        a && a.configure(l);
       }
     }
     if (this._groups.length = 0, t.groups)
-      for (let n = 0; n < t.groups.length; ++n) {
-        const r = new ct();
-        r.configure(t.groups[n]), this.addGroup(r);
+      for (let i = 0; i < t.groups.length; ++i) {
+        const o = new ht();
+        o.configure(t.groups[i]), this.addGroup(o);
       }
-    return this.updateExecutionOrder(), this.extra = t.extra || {}, this.onConfigure && this.onConfigure(t), this._version++, this.setDirtyCanvas(!0, !0), o;
+    return this.updateExecutionOrder(), this.extra = t.extra || {}, this.onConfigure && this.onConfigure(t), this._version++, this.setDirtyCanvas(!0, !0), n;
   }
   load(t, e) {
     const s = this;
     if (t.constructor === File || t.constructor === Blob) {
-      const n = new FileReader();
-      n.addEventListener("load", (r) => {
-        const a = JSON.parse(n.result);
-        s.configure(a), e && e(a);
-      }), n.readAsText(t);
+      const i = new FileReader();
+      i.addEventListener("load", (o) => {
+        const l = JSON.parse(i.result);
+        s.configure(l), e && e(l);
+      }), i.readAsText(t);
       return;
     }
-    const o = new XMLHttpRequest();
-    o.open("GET", t, !0), o.send(null), o.onload = function(n) {
-      if (o.status !== 200) {
-        console.error("Error loading graph:", o.status, o.response);
+    const n = new XMLHttpRequest();
+    n.open("GET", t, !0), n.send(null), n.onload = function(i) {
+      if (n.status !== 200) {
+        console.error("Error loading graph:", n.status, n.response);
         return;
       }
-      const r = JSON.parse(o.response);
-      s.configure(r), e && e(r);
-    }, o.onerror = function(n) {
-      console.error("Error loading graph:", n);
+      const o = JSON.parse(n.response);
+      s.configure(o), e && e(o);
+    }, n.onerror = function(i) {
+      console.error("Error loading graph:", i);
     };
   }
 };
-let kt = Ot;
-kt.DEFAULT_SUPPORTED_TYPES = ["number", "string", "boolean"];
-function It(t) {
+let Ot = Nt;
+Ot.DEFAULT_SUPPORTED_TYPES = ["number", "string", "boolean"];
+function kt(t) {
   const e = { nodeIDs: {}, linkIDs: {} };
   for (const s of t.nodes) {
-    const o = s.id, n = tt();
-    if (s.id = n, e.nodeIDs[o] || e.nodeIDs[n])
-      throw new Error(`New/old node UUID wasn't unique in changed map! ${o} ${n}`);
-    e.nodeIDs[o] = n, e.nodeIDs[n] = o;
+    const n = s.id, i = Q();
+    if (s.id = i, e.nodeIDs[n] || e.nodeIDs[i])
+      throw new Error(`New/old node UUID wasn't unique in changed map! ${n} ${i}`);
+    e.nodeIDs[n] = i, e.nodeIDs[i] = n;
   }
   for (const s of t.links) {
-    const o = s[0], n = tt();
-    if (s[0] = n, e.linkIDs[o] || e.linkIDs[n])
-      throw new Error(`New/old link UUID wasn't unique in changed map! ${o} ${n}`);
-    e.linkIDs[o] = n, e.linkIDs[n] = o;
-    const r = s[1], a = s[3];
-    if (!e.nodeIDs[r])
-      throw new Error(`Old node UUID not found in mapping! ${r}`);
-    if (s[1] = e.nodeIDs[r], !e.nodeIDs[a])
-      throw new Error(`Old node UUID not found in mapping! ${a}`);
-    s[3] = e.nodeIDs[a];
+    const n = s[0], i = Q();
+    if (s[0] = i, e.linkIDs[n] || e.linkIDs[i])
+      throw new Error(`New/old link UUID wasn't unique in changed map! ${n} ${i}`);
+    e.linkIDs[n] = i, e.linkIDs[i] = n;
+    const o = s[1], l = s[3];
+    if (!e.nodeIDs[o])
+      throw new Error(`Old node UUID not found in mapping! ${o}`);
+    if (s[1] = e.nodeIDs[o], !e.nodeIDs[l])
+      throw new Error(`Old node UUID not found in mapping! ${l}`);
+    s[3] = e.nodeIDs[l];
   }
   for (const s of t.nodes) {
-    for (const o of s.inputs)
-      o.link && (o.link = e.linkIDs[o.link]);
-    for (const o of s.outputs)
-      o.links && (o.links = o.links.map((n) => e.linkIDs[n]));
+    for (const n of s.inputs)
+      n.link && (n.link = e.linkIDs[n.link]);
+    for (const n of s.outputs)
+      n.links && (n.links = n.links.map((i) => e.linkIDs[i]));
   }
   for (const s of t.nodes)
     if (s.type === "graph/subgraph") {
-      const o = It(s.subgraph);
-      e.nodeIDs = { ...e.nodeIDs, ...o.nodeIDs }, e.linkIDs = { ...e.linkIDs, ...o.linkIDs };
+      const n = kt(s.subgraph);
+      e.nodeIDs = { ...e.nodeIDs, ...n.nodeIDs }, e.linkIDs = { ...e.linkIDs, ...n.linkIDs };
     }
   return e;
 }
-function Bt(t, e) {
+function Gt(t, e) {
   for (const s of t.iterateNodesInOrderRecursive())
     s.onReassignID && s.onReassignID(e);
 }
-const wt = class extends et {
+const It = class extends tt {
   constructor(t, e) {
     super(t), this.properties = {
       enabled: !0
-    }, this.size = [140, 80], this.enabled = !0, this.subgraph = (e || wt.default_lgraph_factory)(), this.subgraph._subgraph_node = this, this.subgraph._is_subgraph = !0;
-    const s = (o, n) => {
-      const r = n.bind(this);
-      return function(...a) {
-        o == null || o.apply(this, a), r(...a);
+    }, this.size = [140, 80], this.enabled = !0, this.subgraph = (e || It.default_lgraph_factory)(), this.subgraph._subgraph_node = this, this.subgraph._is_subgraph = !0;
+    const s = (n, i) => {
+      const o = i.bind(this);
+      return function(...l) {
+        n == null || n.apply(this, l), o(...l);
       };
     };
     this.subgraph.onTrigger = s(this.subgraph.onTrigger, this.onSubgraphTrigger), this.subgraph.onNodeAdded = s(this.subgraph.onNodeAdded, this.onSubgraphNodeAdded), this.subgraph.onNodeRemoved = s(this.subgraph.onNodeRemoved, this.onSubgraphNodeRemoved), this.subgraph.onInputAdded = s(this.subgraph.onInputAdded, this.onSubgraphNewInput), this.subgraph.onInputRenamed = s(this.subgraph.onInputRenamed, this.onSubgraphRenamedInput), this.subgraph.onInputTypeChanged = s(this.subgraph.onInputTypeChanged, this.onSubgraphTypeChangeInput), this.subgraph.onInputRemoved = s(this.subgraph.onInputRemoved, this.onSubgraphRemovedInput), this.subgraph.onOutputAdded = s(this.subgraph.onOutputAdded, this.onSubgraphNewOutput), this.subgraph.onOutputRenamed = s(this.subgraph.onOutputRenamed, this.onSubgraphRenamedOutput), this.subgraph.onOutputTypeChanged = s(this.subgraph.onOutputTypeChanged, this.onSubgraphTypeChangeOutput), this.subgraph.onOutputRemoved = s(this.subgraph.onOutputRemoved, this.onSubgraphRemovedOutput);
@@ -4045,17 +4047,17 @@ const wt = class extends et {
       yield t, t = (e = t._subgraph_node) == null ? void 0 : e.graph;
   }
   onDblClick(t, e, s) {
-    const o = this;
+    const n = this;
     setTimeout(() => {
-      s.openSubgraph(o.subgraph);
+      s.openSubgraph(n.subgraph);
     }, 10);
   }
   onAction(t, e, s) {
-    const { originNode: o, link: n } = s;
-    if (!o || !n)
+    const { originNode: n, link: i } = s;
+    if (!n || !i)
       return;
-    const r = n.target_slot;
-    this.getInnerGraphInputByIndex(r).triggerSlot(0, e);
+    const o = i.target_slot;
+    this.getInnerGraphInputByIndex(o).triggerSlot(0, e);
   }
   onExecute() {
     if (this.enabled = this.getInputOrProperty("enabled"), !!this.enabled) {
@@ -4074,7 +4076,7 @@ const wt = class extends et {
   sendEventToAllNodes(t, e, s) {
     this.enabled && this.subgraph.sendEventToAllNodes(t, e, s);
   }
-  onDrawBackground(t, e, s, o) {
+  onDrawBackground(t, e, s, n) {
   }
   // override onMouseDown(e, localpos, graphcanvas)
   // {
@@ -4106,12 +4108,12 @@ const wt = class extends et {
   onSubgraphTrigger(t, e) {
   }
   onSubgraphNodeAdded(t, e) {
-    var s, o;
-    (s = this.graph) != null && s.onNodeAdded && (e.subgraphs || (e.subgraphs = []), e.subgraphs.push(this), (o = this.graph) == null || o.onNodeAdded(t, e));
+    var s, n;
+    (s = this.graph) != null && s.onNodeAdded && (e.subgraphs || (e.subgraphs = []), e.subgraphs.push(this), (n = this.graph) == null || n.onNodeAdded(t, e));
   }
   onSubgraphNodeRemoved(t, e) {
-    var s, o;
-    (s = this.graph) != null && s.onNodeRemoved && (e.subgraphs || (e.subgraphs = []), e.subgraphs.push(this), (o = this.graph) == null || o.onNodeRemoved(t, e));
+    var s, n;
+    (s = this.graph) != null && s.onNodeRemoved && (e.subgraphs || (e.subgraphs = []), e.subgraphs.push(this), (n = this.graph) == null || n.onNodeRemoved(t, e));
   }
   onSubgraphNewInput(t, e) {
     this.findInputSlotIndexByName(t) === -1 && this.addInput(t, e);
@@ -4120,15 +4122,15 @@ const wt = class extends et {
     const s = this.findInputSlotIndexByName(t);
     if (s === -1)
       return;
-    const o = this.getInputInfo(s);
-    o.name = e;
+    const n = this.getInputInfo(s);
+    n.name = e;
   }
   onSubgraphTypeChangeInput(t, e, s) {
-    const o = this.findInputSlotIndexByName(t);
-    if (o === -1)
+    const n = this.findInputSlotIndexByName(t);
+    if (n === -1)
       return;
-    const n = this.getInputInfo(o);
-    n.type = s;
+    const i = this.getInputInfo(n);
+    i.type = s;
   }
   onSubgraphRemovedInput(t) {
     const e = this.findInputSlotIndexByName(t);
@@ -4142,15 +4144,15 @@ const wt = class extends et {
     const s = this.findOutputSlotIndexByName(t);
     if (s === -1)
       return;
-    const o = this.getOutputInfo(s);
-    o.name = e;
+    const n = this.getOutputInfo(s);
+    n.name = e;
   }
   onSubgraphTypeChangeOutput(t, e, s) {
-    const o = this.findOutputSlotIndexByName(t);
-    if (o === -1)
+    const n = this.findOutputSlotIndexByName(t);
+    if (n === -1)
       return;
-    const n = this.getOutputInfo(o);
-    n.type = s;
+    const i = this.getOutputInfo(n);
+    i.type = s;
   }
   onSubgraphRemovedOutput(t) {
     const e = this.findOutputSlotIndexByName(t);
@@ -4172,123 +4174,123 @@ const wt = class extends et {
     console.error("TEST subgraph resize");
   }
   serialize() {
-    const t = et.prototype.serialize.call(this);
+    const t = tt.prototype.serialize.call(this);
     return t.subgraph = this.subgraph.serialize(), t;
   }
   // no need to define node.configure, the default method detects node.subgraph and passes the object to node.subgraph.configure()
   onConfigure(t) {
     super.onConfigure && super.onConfigure(t), this.subgraph._is_subgraph = !0, this.subgraph._subgraph_node = this;
     for (const e of this.subgraph.iterateNodesInOrder())
-      (e.is(V) || e.is(j)) && (e.properties.subgraphID = this.id);
+      (e.is(X) || e.is(V)) && (e.properties.subgraphID = this.id);
   }
   onReassignID() {
     for (const t of this.subgraph.iterateNodesInOrder())
-      (t.is(V) || t.is(j)) && (t.properties.subgraphID = this.id);
+      (t.is(X) || t.is(V)) && (t.properties.subgraphID = this.id);
   }
   clone(t = { forNode: {} }) {
-    var n, r, a, u;
+    var i, o, l, a;
     const e = h.createNode(this.type), s = this.serialize();
-    let o = null;
+    let n = null;
     if (h.use_uuids) {
-      const l = h.cloneObject(s.subgraph);
-      o = It(l), s.subgraph = l;
+      const r = h.cloneObject(s.subgraph);
+      n = kt(r), s.subgraph = r;
     }
-    return delete s.id, delete s.inputs, delete s.outputs, e.configure(s), h.use_uuids && Bt(e.subgraph, o), (n = t.forNode)[r = this.id] || (n[r] = {}), t.forNode[this.id].subgraphNewIDMapping = o, (a = t.forNode)[u = e.id] || (a[u] = {}), t.forNode[e.id].subgraphNewIDMapping = o, e;
+    return delete s.id, delete s.inputs, delete s.outputs, e.configure(s), h.use_uuids && Gt(e.subgraph, n), (i = t.forNode)[o = this.id] || (i[o] = {}), t.forNode[this.id].subgraphNewIDMapping = n, (l = t.forNode)[a = e.id] || (l[a] = {}), t.forNode[e.id].subgraphNewIDMapping = n, e;
   }
   buildFromNodes(t) {
-    var m, b;
-    if (t = t.filter((v) => !v.is(V) && !v.is(j)), t.length === 0)
+    var v, y;
+    if (t = t.filter((g) => !g.is(X) && !g.is(V)), t.length === 0)
       return;
-    const e = {}, s = {}, o = {}, n = t.reduce((v, O) => (v[O.id] = O, v), {});
-    let r = Number.MAX_SAFE_INTEGER, a = 0, u = Number.MAX_SAFE_INTEGER, l = 0;
-    for (const v of Object.values(t))
-      r = Math.min(v.pos[0], r), a = Math.max(v.pos[0] + v.size[0], a), u = Math.min(v.pos[1], u), l = Math.max(v.pos[1] + v.size[1], l);
-    const p = {};
-    for (const v of t) {
-      p[v.id] = v;
-      for (let O = 0; O < v.inputs.length; O++) {
-        const N = v.getInputLink(O);
-        if (N) {
-          const E = v.getConnectionPos(!0, O), G = v.getInputInfo(O), x = v.getInputNode(O);
-          x && (p[x.id] = x), n[N.origin_id] !== null ? o[N.id] = [N, E] : e[N.id] = [N, E, G.name];
+    const e = {}, s = {}, n = {}, i = t.reduce((g, N) => (g[N.id] = N, g), {});
+    let o = Number.MAX_SAFE_INTEGER, l = 0, a = Number.MAX_SAFE_INTEGER, r = 0;
+    for (const g of Object.values(t))
+      o = Math.min(g.pos[0], o), l = Math.max(g.pos[0] + g.size[0], l), a = Math.min(g.pos[1], a), r = Math.max(g.pos[1] + g.size[1], r);
+    const c = {};
+    for (const g of t) {
+      c[g.id] = g;
+      for (let N = 0; N < g.inputs.length; N++) {
+        const E = g.getInputLink(N);
+        if (E) {
+          const T = g.getConnectionPos(!0, N), M = g.getInputInfo(N), F = g.getInputNode(N);
+          F && (c[F.id] = F), i[E.origin_id] !== null ? n[E.id] = [E, T] : e[E.id] = [E, T, M.name];
         }
       }
-      for (let O = 0; O < v.outputs.length; O++) {
-        const N = v.getOutputLinks(O);
-        for (const E of N) {
-          const G = v.getConnectionPos(!1, O), x = v.getOutputInfo(O), w = v.graph.getNodeById(E.target_id);
-          w && (p[w.id] = w), n[E.target_id] !== null ? o[E.id] = [E, G] : s[E.id] = [E, G, x.name];
+      for (let N = 0; N < g.outputs.length; N++) {
+        const E = g.getOutputLinks(N);
+        for (const T of E) {
+          const M = g.getConnectionPos(!1, N), F = g.getOutputInfo(N), I = g.graph.getNodeById(T.target_id);
+          I && (c[I.id] = I), i[T.target_id] !== null ? n[T.id] = [T, M] : s[T.id] = [T, M, F.name];
         }
       }
     }
-    const f = Object.values(e), c = Object.values(s);
-    f.sort((v, O) => v[1][1] - O[1][1]), c.sort((v, O) => v[1][1] - O[1][1]), h.debug && (console.debug("NODES", Object.keys(t)), console.debug("IN", Object.keys(e)), console.debug("OUT", Object.keys(s)), console.debug("INNER", Object.keys(o)));
-    const g = {}, y = {};
-    for (const v of t) {
-      const O = [v.pos[0] - r, v.pos[1] - u], N = v.id;
-      v.graph.remove(v, { removedBy: "moveIntoSubgraph" }), this.subgraph.add(v, { addedBy: "moveIntoSubgraph", prevNodeID: N }), v.pos = O, p[N] = v, p[v.id] = v;
+    const d = Object.values(e), u = Object.values(s);
+    d.sort((g, N) => g[1][1] - N[1][1]), u.sort((g, N) => g[1][1] - N[1][1]), h.debug && (console.debug("NODES", Object.keys(t)), console.debug("IN", Object.keys(e)), console.debug("OUT", Object.keys(s)), console.debug("INNER", Object.keys(n)));
+    const _ = {}, m = {};
+    for (const g of t) {
+      const N = [g.pos[0] - o, g.pos[1] - a], E = g.id;
+      g.graph.remove(g, { removedBy: "moveIntoSubgraph" }), this.subgraph.add(g, { addedBy: "moveIntoSubgraph", prevNodeID: E }), g.pos = N, c[E] = g, c[g.id] = g;
     }
-    let d = 0, _ = 0;
-    for (const [v, O, N] of f) {
-      let E = null;
-      if (g[v.origin_id] && (E = g[v.origin_id][v.origin_slot]), !E && (E = this.addGraphInput(N, v.type, [-200, d]), d += E.innerNode.size[1] + h.NODE_SLOT_HEIGHT, !E)) {
-        console.error("Failed creating subgraph output pair!", v);
+    let p = 0, f = 0;
+    for (const [g, N, E] of d) {
+      let T = null;
+      if (_[g.origin_id] && (T = _[g.origin_id][g.origin_slot]), !T && (T = this.addGraphInput(E, g.type, [-200, p]), p += T.innerNode.size[1] + h.NODE_SLOT_HEIGHT, !T)) {
+        console.error("Failed creating subgraph output pair!", g);
         continue;
       }
-      const G = p[v.origin_id], x = p[v.target_id];
-      G.connect(v.origin_slot, this, E.outerInputIndex), E.innerNode.connect(0, x, v.target_slot), g[m = v.origin_id] || (g[m] = {}), g[v.origin_id][v.origin_slot] = E;
+      const M = c[g.origin_id], F = c[g.target_id];
+      M.connect(g.origin_slot, this, T.outerInputIndex), T.innerNode.connect(0, F, g.target_slot), _[v = g.origin_id] || (_[v] = {}), _[g.origin_id][g.origin_slot] = T;
     }
-    for (const [v, O, N] of c) {
-      let E = null;
-      if (y[v.target_id] && (E = y[v.target_id][v.target_slot]), !E && (E = this.addGraphOutput(N, v.type, [a - r + 200, _]), _ += E.innerNode.size[1] + h.NODE_SLOT_HEIGHT, !E)) {
-        console.error("Failed creating subgraph output pair!", v);
+    for (const [g, N, E] of u) {
+      let T = null;
+      if (m[g.target_id] && (T = m[g.target_id][g.target_slot]), !T && (T = this.addGraphOutput(E, g.type, [l - o + 200, f]), f += T.innerNode.size[1] + h.NODE_SLOT_HEIGHT, !T)) {
+        console.error("Failed creating subgraph output pair!", g);
         continue;
       }
-      const G = p[v.origin_id], x = p[v.target_id];
-      G.connect(v.origin_slot, E.innerNode, 0), this.connect(E.outerOutputIndex, x, v.target_slot), y[b = v.target_id] || (y[b] = {}), y[v.target_id][v.origin_slot] = E;
+      const M = c[g.origin_id], F = c[g.target_id];
+      M.connect(g.origin_slot, T.innerNode, 0), this.connect(T.outerOutputIndex, F, g.target_slot), m[y = g.target_id] || (m[y] = {}), m[g.target_id][g.origin_slot] = T;
     }
-    for (const [v, O] of Object.values(o)) {
-      const N = p[v.origin_id], E = p[v.target_id];
-      N.connect(v.origin_slot, E, v.target_slot);
+    for (const [g, N] of Object.values(n)) {
+      const E = c[g.origin_id], T = c[g.target_id];
+      E.connect(g.origin_slot, T, g.target_slot);
     }
   }
   addGraphInput(t, e, s) {
     t = this.getValidGraphInputName(t);
-    const o = h.createNode(V);
-    if (o === null)
+    const n = h.createNode(X);
+    if (n === null)
       return null;
-    let n = e;
-    e === BuiltInSlotType.EVENT ? n = BuiltInSlotType.ACTION : e === BuiltInSlotType.ACTION && (e = BuiltInSlotType.EVENT), console.warn("[Subgraph] addGraphInput", t, e, n, s), o.setProperty("name", t), o.setProperty("type", e), o.properties.subgraphID = this.id, this.subgraph.add(o);
-    const r = o.computeSize();
-    s && (o.pos = [s[0] - r[0] * 0.5, s[1] - r[1] * 0.5]), this.subgraph.addInput(t, n, null);
-    const a = this.inputs.length - 1, u = this.inputs[a];
-    return { innerNode: o, outerInput: u, outerInputIndex: a };
+    let i = e;
+    e === O.EVENT ? i = O.ACTION : e === O.ACTION && (e = O.EVENT), console.warn("[Subgraph] addGraphInput", t, e, i, s), n.setProperty("name", t), n.setProperty("type", e), n.properties.subgraphID = this.id, this.subgraph.add(n);
+    const o = n.computeSize();
+    s && (n.pos = [s[0] - o[0] * 0.5, s[1] - o[1] * 0.5]), this.subgraph.addInput(t, i, null);
+    const l = this.inputs.length - 1, a = this.inputs[l];
+    return { innerNode: n, outerInput: a, outerInputIndex: l };
   }
   addGraphOutput(t, e, s) {
     t = this.getValidGraphOutputName(t);
-    const o = h.createNode(j);
-    if (o === null)
+    const n = h.createNode(V);
+    if (n === null)
       return null;
-    let n = e;
-    e === BuiltInSlotType.EVENT ? e = BuiltInSlotType.ACTION : e === BuiltInSlotType.ACTION && (n = BuiltInSlotType.EVENT), console.warn("[Subgraph] addGraphOutput", t, e, n, s), o.setProperty("name", t), o.setProperty("type", e), o.properties.subgraphID = this.id, this.subgraph.add(o);
-    const r = o.computeSize();
-    s && (o.pos = [s[0], s[1] - r[1] * 0.5]), this.subgraph.addOutput(t, n, null);
-    const a = this.outputs.length - 1, u = this.outputs[a];
-    return { innerNode: o, outerOutput: u, outerOutputIndex: a };
+    let i = e;
+    e === O.EVENT ? e = O.ACTION : e === O.ACTION && (i = O.EVENT), console.warn("[Subgraph] addGraphOutput", t, e, i, s), n.setProperty("name", t), n.setProperty("type", e), n.properties.subgraphID = this.id, this.subgraph.add(n);
+    const o = n.computeSize();
+    s && (n.pos = [s[0], s[1] - o[1] * 0.5]), this.subgraph.addOutput(t, i, null);
+    const l = this.outputs.length - 1, a = this.outputs[l];
+    return { innerNode: n, outerOutput: a, outerOutputIndex: l };
   }
   removeGraphInput(t) {
     if (this.findInputSlotIndexByName(t) === null) {
       console.error("[Subgraph] No input in slot!", t);
       return;
     }
-    const s = this.subgraph.findNodesByClass(V).filter((o) => o.properties.name === t);
+    const s = this.subgraph.findNodesByClass(X).filter((n) => n.properties.name === t);
     if (s.length > 0)
-      for (const o of s)
-        this.subgraph.remove(o);
+      for (const n of s)
+        this.subgraph.remove(n);
     else {
       console.warn("[Subgraph] No GraphInputs found on input removal", t);
-      const o = this.findInputSlotIndexByName(t);
-      o !== -1 && this.removeInput(o);
+      const n = this.findInputSlotIndexByName(t);
+      n !== -1 && this.removeInput(n);
     }
   }
   removeGraphOutput(t) {
@@ -4296,35 +4298,35 @@ const wt = class extends et {
       console.error("[Subgraph] No output in slot!", t);
       return;
     }
-    const s = this.subgraph.findNodesByClass(j).filter((o) => o.properties.name === t);
+    const s = this.subgraph.findNodesByClass(V).filter((n) => n.properties.name === t);
     if (s.length > 0)
-      for (const o of s)
-        this.subgraph.remove(o);
+      for (const n of s)
+        this.subgraph.remove(n);
     else {
       console.warn("[Subgraph] No GraphOutputs found on output removal", t);
-      const o = this.findOutputSlotIndexByName(t);
-      o !== -1 && this.removeOutput(o);
+      const n = this.findOutputSlotIndexByName(t);
+      n !== -1 && this.removeOutput(n);
     }
   }
   getValidGraphInputName(t) {
     t || (t = "newInput");
-    let e = t, s = this.getInnerGraphInput(e), o = 1;
+    let e = t, s = this.getInnerGraphInput(e), n = 1;
     for (; s !== null; )
-      e = `${t}_${o++}`, s = this.getInnerGraphInput(e);
+      e = `${t}_${n++}`, s = this.getInnerGraphInput(e);
     return e;
   }
   getValidGraphOutputName(t) {
     t || (t = "newOutput");
-    let e = t, s = this.getInnerGraphOutput(e), o = 1;
+    let e = t, s = this.getInnerGraphOutput(e), n = 1;
     for (; s !== null; )
-      e = `${t}_${o++}`, s = this.getInnerGraphOutput(e);
+      e = `${t}_${n++}`, s = this.getInnerGraphOutput(e);
     return e;
   }
   getInnerGraphOutput(t) {
-    return this.subgraph._nodes.find((s) => s.is(j) && s.properties.name === t) || null;
+    return this.subgraph._nodes.find((s) => s.is(V) && s.properties.name === t) || null;
   }
   getInnerGraphInput(t) {
-    return this.subgraph._nodes.find((s) => s.is(V) && s.properties.name === t) || null;
+    return this.subgraph._nodes.find((s) => s.is(X) && s.properties.name === t) || null;
   }
   getInnerGraphOutputByIndex(t) {
     const e = this.getOutputInfo(t);
@@ -4335,179 +4337,179 @@ const wt = class extends et {
     return e ? this.getInnerGraphInput(e.name) : null;
   }
   moveNodesToParentGraph(t) {
-    if (t = t.filter((d) => !d.is(V) && !d.is(j)), t.length === 0)
+    if (t = t.filter((p) => !p.is(X) && !p.is(V)), t.length === 0)
       return;
     const e = this, s = e.graph;
-    let o = Number.MAX_SAFE_INTEGER, n = 0, r = Number.MAX_SAFE_INTEGER, a = 0;
-    for (const d of Object.values(t))
-      o = Math.min(d.pos[0], o), n = Math.max(d.pos[0] + d.size[0], n), r = Math.min(d.pos[1], r), a = Math.max(d.pos[1] + d.size[1], a);
-    const u = n - o, l = a - r, p = e.pos[0] + e.size[0] / 2 - u / 2, f = e.pos[1] + e.size[1] / 2 - l / 2, c = {}, g = {};
-    for (const [d, _] of t.entries())
-      g[_.id] = _;
-    for (const d of t)
-      for (const _ of d.iterateAllLinks()) {
-        const m = _.target_id === d.id, b = d.getConnectionPos(m, m ? _.target_slot : _.origin_slot);
-        g[_.origin_id] !== null && g[_.target_id] !== null && (c[_.id] = [_, b]);
+    let n = Number.MAX_SAFE_INTEGER, i = 0, o = Number.MAX_SAFE_INTEGER, l = 0;
+    for (const p of Object.values(t))
+      n = Math.min(p.pos[0], n), i = Math.max(p.pos[0] + p.size[0], i), o = Math.min(p.pos[1], o), l = Math.max(p.pos[1] + p.size[1], l);
+    const a = i - n, r = l - o, c = e.pos[0] + e.size[0] / 2 - a / 2, d = e.pos[1] + e.size[1] / 2 - r / 2, u = {}, _ = {};
+    for (const [p, f] of t.entries())
+      _[f.id] = f;
+    for (const p of t)
+      for (const f of p.iterateAllLinks()) {
+        const v = f.target_id === p.id, y = p.getConnectionPos(v, v ? f.target_slot : f.origin_slot);
+        _[f.origin_id] !== null && _[f.target_id] !== null && (u[f.id] = [f, y]);
       }
-    const y = {};
-    for (const [d, _] of t.entries()) {
-      const m = [_.pos[0] - o + p, _.pos[1] - r + f], b = _.id;
-      _.graph.remove(_, { removedBy: "moveOutOfSubgraph" }), s.add(_, { addedBy: "moveOutOfSubgraph", prevNodeID: b }), _.pos = m, y[b] = _;
+    const m = {};
+    for (const [p, f] of t.entries()) {
+      const v = [f.pos[0] - n + c, f.pos[1] - o + d], y = f.id;
+      f.graph.remove(f, { removedBy: "moveOutOfSubgraph" }), s.add(f, { addedBy: "moveOutOfSubgraph", prevNodeID: y }), f.pos = v, m[y] = f;
     }
-    for (const [d, _] of Object.values(c)) {
-      const m = g[d.origin_id], b = g[d.target_id];
-      m.connect(d.origin_slot, b, d.target_slot);
+    for (const [p, f] of Object.values(u)) {
+      const v = _[p.origin_id], y = _[p.target_id];
+      v.connect(p.origin_slot, y, p.target_slot);
     }
-    return y;
+    return m;
   }
   convertNodesToSubgraphInputs(t) {
-    var u;
-    if (t = t.filter((l) => !l.is(V) && !l.is(j)), t.length === 0)
+    var a;
+    if (t = t.filter((r) => !r.is(X) && !r.is(V)), t.length === 0)
       return;
-    const e = ht(t, (l) => l.id), s = [], o = {}, n = this.subgraph;
-    for (const l of t)
-      for (const p of l.iterateAllLinks()) {
-        if (e[p.origin_id] === null)
+    const e = ut(t, (r) => r.id), s = [], n = {}, i = this.subgraph;
+    for (const r of t)
+      for (const c of r.iterateAllLinks()) {
+        if (e[c.origin_id] === null)
           throw new Error("Can't convert to input with an origin link outward");
-        if (e[p.target_id] === null) {
-          s.push(p);
-          const f = [0, 0];
-          l.getConnectionPos(!1, p.target_slot, f), o[l.id] = [[l.pos[0], l.pos[1]], f];
+        if (e[c.target_id] === null) {
+          s.push(c);
+          const d = [0, 0];
+          r.getConnectionPos(!1, c.target_slot, d), n[r.id] = [[r.pos[0], r.pos[1]], d];
         }
       }
-    const r = this.moveNodesToParentGraph(t), a = {};
-    for (const l of s) {
-      const p = n.getNodeById(l.target_id), f = p.getInputInfo(l.target_slot);
-      a[u = l.origin_id] || (a[u] = {});
-      let c = a[l.origin_id][l.origin_slot];
-      if (c === null) {
-        const y = this.getValidGraphInputName(f.name);
-        c = this.addGraphInput(y, f.type), a[l.origin_id][l.origin_slot] = c;
-        const [d, _] = o[l.origin_id], m = c.innerNode.pos, b = c.innerNode.computeSize(), v = c.innerNode.getConnectionPos(!0, 0), O = [c.innerNode.pos[0] - v[0], c.innerNode.pos[1] - v[1]], N = [_[0] + O[0] - b[0], _[1] + O[1]];
-        console.warn("newPos", m, "size", c.innerNode.size, "connPos", _, "newConPos", v, "offset", O), c.innerNode.pos = N;
+    const o = this.moveNodesToParentGraph(t), l = {};
+    for (const r of s) {
+      const c = i.getNodeById(r.target_id), d = c.getInputInfo(r.target_slot);
+      l[a = r.origin_id] || (l[a] = {});
+      let u = l[r.origin_id][r.origin_slot];
+      if (u === null) {
+        const m = this.getValidGraphInputName(d.name);
+        u = this.addGraphInput(m, d.type), l[r.origin_id][r.origin_slot] = u;
+        const [p, f] = n[r.origin_id], v = u.innerNode.pos, y = u.innerNode.computeSize(), g = u.innerNode.getConnectionPos(!0, 0), N = [u.innerNode.pos[0] - g[0], u.innerNode.pos[1] - g[1]], E = [f[0] + N[0] - y[0], f[1] + N[1]];
+        console.warn("newPos", v, "size", u.innerNode.size, "connPos", f, "newConPos", g, "offset", N), u.innerNode.pos = E;
       }
-      r[l.origin_id].connect(l.origin_slot, this, c.outerInputIndex), c.innerNode.connect(0, p, l.target_slot);
+      o[r.origin_id].connect(r.origin_slot, this, u.outerInputIndex), u.innerNode.connect(0, c, r.target_slot);
     }
   }
   convertNodesToSubgraphOutputs(t) {
-    var u;
-    if (t = t.filter((l) => !l.is(V) && !l.is(j)), t.length === 0)
+    var a;
+    if (t = t.filter((r) => !r.is(X) && !r.is(V)), t.length === 0)
       return;
-    const e = ht(t, (l) => l.id), s = [], o = {}, n = this.subgraph;
-    for (const l of t)
-      for (const p of l.iterateAllLinks())
-        if (e[p.origin_id] === null) {
-          s.push(p);
-          const f = [0, 0];
-          l.getConnectionPos(!0, p.origin_slot, f), o[l.id] = [[l.pos[0], l.pos[1]], f];
-        } else if (e[p.target_id] === null)
+    const e = ut(t, (r) => r.id), s = [], n = {}, i = this.subgraph;
+    for (const r of t)
+      for (const c of r.iterateAllLinks())
+        if (e[c.origin_id] === null) {
+          s.push(c);
+          const d = [0, 0];
+          r.getConnectionPos(!0, c.origin_slot, d), n[r.id] = [[r.pos[0], r.pos[1]], d];
+        } else if (e[c.target_id] === null)
           throw new Error("Can't convert to input with an origin link outward");
-    const r = this.moveNodesToParentGraph(t), a = {};
-    for (const l of s) {
-      const p = n.getNodeById(l.origin_id), f = p.getOutputInfo(l.origin_slot);
-      a[u = l.target_id] || (a[u] = {});
-      let c = a[l.target_id][l.target_slot];
-      if (c === null) {
-        c = this.addGraphOutput(name, f.type), a[l.target_id][l.target_slot] = c;
-        const [y, d] = o[l.target_id], _ = c.innerNode.getConnectionPos(!0, 0), m = [c.innerNode.pos[0] - _[0], c.innerNode.pos[1] - _[1]], b = [d[0] + m[0], d[1] + m[1]];
-        c.innerNode.pos = b;
+    const o = this.moveNodesToParentGraph(t), l = {};
+    for (const r of s) {
+      const c = i.getNodeById(r.origin_id), d = c.getOutputInfo(r.origin_slot);
+      l[a = r.target_id] || (l[a] = {});
+      let u = l[r.target_id][r.target_slot];
+      if (u === null) {
+        u = this.addGraphOutput(name, d.type), l[r.target_id][r.target_slot] = u;
+        const [m, p] = n[r.target_id], f = u.innerNode.getConnectionPos(!0, 0), v = [u.innerNode.pos[0] - f[0], u.innerNode.pos[1] - f[1]], y = [p[0] + v[0], p[1] + v[1]];
+        u.innerNode.pos = y;
       }
-      const g = r[l.target_id];
-      p.connect(l.origin_slot, c.innerNode, 0), this.connect(c.outerOutputIndex, g, l.target_slot);
+      const _ = o[r.target_id];
+      c.connect(r.origin_slot, u.innerNode, 0), this.connect(u.outerOutputIndex, _, r.target_slot);
     }
   }
 };
-let J = wt;
-J.default_lgraph_factory = () => new kt();
-J.slotLayout = {
+let Z = It;
+Z.default_lgraph_factory = () => new Ot();
+Z.slotLayout = {
   inputs: [],
   outputs: []
 };
-J.propertyLayout = [
+Z.propertyLayout = [
   { name: "enabled", defaultValue: !0 }
 ];
-J.optionalSlots = {
+Z.optionalSlots = {
   outputs: [
     { name: "enabled", type: "boolean" }
   ]
 };
 h.registerNodeType({
-  class: J,
+  class: Z,
   title: "Subgraph",
   desc: "Graph inside a node",
   title_color: "#334",
   type: "graph/subgraph"
 });
-class C {
+class w {
   static onMenuCollapseAll() {
   }
   static onMenuNodeEdit() {
   }
   // refactor: there are different dialogs, some uses createDialog some dont
-  prompt(e = "", s, o, n, r = !1, a = null) {
-    const u = this, l = document.createElement("div");
-    if (l.is_modified = !1, l.className = "graphdialog rounded", r) {
-      let E = 5;
+  prompt(e = "", s, n, i, o = !1, l = null) {
+    const a = this, r = document.createElement("div");
+    if (r.is_modified = !1, r.className = "graphdialog rounded", o) {
+      let T = 5;
       typeof s != "string" && (s = JSON.stringify(s, null, 2));
-      const G = (s.match(/\n/g) || "").length + 1;
-      E = dt(G, 5, 10), l.innerHTML = `
+      const M = (s.match(/\n/g) || "").length + 1;
+      T = pt(M, 5, 10), r.innerHTML = `
 <span class='name'></span>
-<textarea autofocus rows='${E}' cols='30' class='value'></textarea>
+<textarea autofocus rows='${T}' cols='30' class='value'></textarea>
 <button class='rounded'>OK</button>
 `;
     } else
-      l.innerHTML = `
+      r.innerHTML = `
 <span class='name'></span>
 <input autofocus type='text' class='value'/>
 <button class='rounded'>OK</button>`;
-    l.close = function() {
-      u.prompt_box = null, l.parentNode && l.parentNode.removeChild(l);
+    r.close = function() {
+      a.prompt_box = null, r.parentNode && r.parentNode.removeChild(r);
     };
-    const f = T.active_canvas.canvas;
-    f.parentNode.appendChild(l), this.ds.scale > 1 && (l.style.transform = `scale(${this.ds.scale})`);
-    let c = null, g = 0;
-    h.pointerListenerAdd(l, "leave", (E) => {
-      g || h.dialog_close_on_mouse_leave && !l.is_modified && h.dialog_close_on_mouse_leave && E.buttons === 0 && (c = setTimeout(l.close, h.dialog_close_on_mouse_leave_delay));
-    }), h.pointerListenerAdd(l, "enter", (E) => {
-      h.dialog_close_on_mouse_leave && c && clearTimeout(c);
+    const d = b.active_canvas.canvas;
+    d.parentNode.appendChild(r), this.ds.scale > 1 && (r.style.transform = `scale(${this.ds.scale})`);
+    let u = null, _ = 0;
+    h.pointerListenerAdd(r, "leave", (T) => {
+      _ || h.dialog_close_on_mouse_leave && !r.is_modified && h.dialog_close_on_mouse_leave && T.buttons === 0 && (u = setTimeout(r.close, h.dialog_close_on_mouse_leave_delay));
+    }), h.pointerListenerAdd(r, "enter", (T) => {
+      h.dialog_close_on_mouse_leave && u && clearTimeout(u);
     });
-    const y = l.querySelectorAll("select");
-    y && y.forEach((E) => {
-      E.addEventListener("click", (G) => {
-        g++;
-      }), E.addEventListener("blur", (G) => {
-        g = 0;
-      }), E.addEventListener("change", (G) => {
-        g = -1;
+    const m = r.querySelectorAll("select");
+    m && m.forEach((T) => {
+      T.addEventListener("click", (M) => {
+        _++;
+      }), T.addEventListener("blur", (M) => {
+        _ = 0;
+      }), T.addEventListener("change", (M) => {
+        _ = -1;
       });
-    }), u.prompt_box && u.prompt_box.close(), u.prompt_box = l;
-    const d = l.querySelector(".name");
-    d.innerText = e;
-    const _ = l.querySelector(".value");
-    _.value = s;
-    const m = _;
-    if (m.addEventListener("keydown", function(E) {
-      if (l.is_modified = !0, E.keyCode === 27)
-        l.close();
-      else if (E.keyCode === 13 && E.target instanceof Element && E.target.localName !== "textarea")
-        o && o(this.value), l.close();
+    }), a.prompt_box && a.prompt_box.close(), a.prompt_box = r;
+    const p = r.querySelector(".name");
+    p.innerText = e;
+    const f = r.querySelector(".value");
+    f.value = s;
+    const v = f;
+    if (v.addEventListener("keydown", function(T) {
+      if (r.is_modified = !0, T.keyCode === 27)
+        r.close();
+      else if (T.keyCode === 13 && T.target instanceof Element && T.target.localName !== "textarea")
+        n && n(this.value), r.close();
       else
         return;
-      E.preventDefault(), E.stopPropagation();
-    }), a)
-      for (const [E, G] of Object.entries(a))
-        m.style[E] = G;
-    l.querySelector("button").addEventListener("click", (E) => {
-      o && o(m.value), u.setDirty(!0), l.close();
+      T.preventDefault(), T.stopPropagation();
+    }), l)
+      for (const [T, M] of Object.entries(l))
+        v.style[T] = M;
+    r.querySelector("button").addEventListener("click", (T) => {
+      n && n(v.value), a.setDirty(!0), r.close();
     });
-    const v = f.getBoundingClientRect();
-    let O = -20, N = -20;
-    return v && (O -= v.left, N -= v.top), n ? (l.style.left = `${n.clientX}px`, l.style.top = `${n.clientY}px`) : (l.style.left = `${f.width * 0.5 + O}px`, l.style.top = `${f.height * 0.5 + N}px`), console.warn(l.style.left, l.style.top), console.warn(n), setTimeout(() => {
-      m.focus();
-    }, 10), ft(l), l;
+    const g = d.getBoundingClientRect();
+    let N = -20, E = -20;
+    return g && (N -= g.left, E -= g.top), i ? (r.style.left = `${i.clientX}px`, r.style.top = `${i.clientY}px`) : (r.style.left = `${d.width * 0.5 + N}px`, r.style.top = `${d.height * 0.5 + E}px`), console.warn(r.style.left, r.style.top), console.warn(i), setTimeout(() => {
+      v.focus();
+    }, 10), dt(r), r;
   }
   showSearchBox(e, s = {}) {
-    const o = {
+    const n = {
       slotFrom: null,
       node_from: null,
       node_to: null,
@@ -4522,498 +4524,498 @@ class C {
       show_all_if_empty: !0,
       show_all_on_open: h.search_show_all_on_open
     };
-    s = Object.assign(o, s);
-    const n = this, r = T.active_canvas, a = r.canvas, u = a.ownerDocument || document, l = e, p = document.createElement("div");
-    p.className = "litegraph litesearchbox graphdialog rounded", p.innerHTML = "<span class='name'>Search</span> <input autofocus type='text' class='value rounded'/>", s.do_type_filter && (p.innerHTML += "<select class='slot_in_type_filter'><option value=''></option></select>", p.innerHTML += "<select class='slot_out_type_filter'><option value=''></option></select>"), p.innerHTML += "<div class='helper'></div>", u.fullscreenElement ? u.fullscreenElement.appendChild(p) : (u.body.appendChild(p), u.body.style.overflow = "hidden");
-    let f = null, c = null;
-    if (s.do_type_filter && (f = p.querySelector(".slot_in_type_filter"), c = p.querySelector(".slot_out_type_filter")), p.close = function() {
-      n.search_box = null, this.blur(), a.focus(), u.body.style.overflow = "", setTimeout(() => {
-        n.canvas.focus();
-      }, 20), p.parentNode && p.parentNode.removeChild(p);
-    }, this.ds.scale > 1 && (p.style.transform = `scale(${this.ds.scale})`), s.hide_on_mouse_leave) {
-      let w = 0, P = null;
-      h.pointerListenerAdd(p, "enter", (S) => {
-        P && (clearTimeout(P), P = null);
-      }), h.pointerListenerAdd(p, "leave", (S) => {
-        w || (P = setTimeout(() => {
-          p.close();
+    s = Object.assign(n, s);
+    const i = this, o = b.active_canvas, l = o.canvas, a = l.ownerDocument || document, r = e, c = document.createElement("div");
+    c.className = "litegraph litesearchbox graphdialog rounded", c.innerHTML = "<span class='name'>Search</span> <input autofocus type='text' class='value rounded'/>", s.do_type_filter && (c.innerHTML += "<select class='slot_in_type_filter'><option value=''></option></select>", c.innerHTML += "<select class='slot_out_type_filter'><option value=''></option></select>"), c.innerHTML += "<div class='helper'></div>", a.fullscreenElement ? a.fullscreenElement.appendChild(c) : (a.body.appendChild(c), a.body.style.overflow = "hidden");
+    let d = null, u = null;
+    if (s.do_type_filter && (d = c.querySelector(".slot_in_type_filter"), u = c.querySelector(".slot_out_type_filter")), c.close = function() {
+      i.search_box = null, this.blur(), l.focus(), a.body.style.overflow = "", setTimeout(() => {
+        i.canvas.focus();
+      }, 20), c.parentNode && c.parentNode.removeChild(c);
+    }, this.ds.scale > 1 && (c.style.transform = `scale(${this.ds.scale})`), s.hide_on_mouse_leave) {
+      let I = 0, D = null;
+      h.pointerListenerAdd(c, "enter", (C) => {
+        D && (clearTimeout(D), D = null);
+      }), h.pointerListenerAdd(c, "leave", (C) => {
+        I || (D = setTimeout(() => {
+          c.close();
         }, 500));
-      }), s.do_type_filter && (f.addEventListener("click", (S) => {
-        w++;
-      }), f.addEventListener("blur", (S) => {
-        w = 0;
-      }), f.addEventListener("change", (S) => {
-        w = -1;
-      }), c.addEventListener("click", (S) => {
-        w++;
-      }), c.addEventListener("blur", (S) => {
-        w = 0;
-      }), c.addEventListener("change", (S) => {
-        w = -1;
+      }), s.do_type_filter && (d.addEventListener("click", (C) => {
+        I++;
+      }), d.addEventListener("blur", (C) => {
+        I = 0;
+      }), d.addEventListener("change", (C) => {
+        I = -1;
+      }), u.addEventListener("click", (C) => {
+        I++;
+      }), u.addEventListener("blur", (C) => {
+        I = 0;
+      }), u.addEventListener("change", (C) => {
+        I = -1;
       }));
     }
-    n.search_box && n.search_box.close(), n.search_box = p;
-    const g = p.querySelector(".helper");
-    let y = null, d = null, _ = null;
-    const m = (w) => {
-      if (w)
-        if (n.onSearchBoxSelection)
-          n.onSearchBoxSelection(w, l, r);
+    i.search_box && i.search_box.close(), i.search_box = c;
+    const _ = c.querySelector(".helper");
+    let m = null, p = null, f = null;
+    const v = (I) => {
+      if (I)
+        if (i.onSearchBoxSelection)
+          i.onSearchBoxSelection(I, r, o);
         else {
-          const P = h.searchbox_extras[w.toLowerCase()];
-          P && (w = P.type), r.graph.beforeChange();
-          const S = h.createNode(w);
-          if (S && (S.pos = r.convertEventToCanvasOffset(
-            l
-          ), r.graph.add(S)), P && P.data) {
-            if (P.data.properties)
-              for (const I in P.data.properties)
-                S.addProperty(`${I}`, P.data.properties[I]);
-            if (P.data.inputs) {
-              S.inputs = [];
-              for (const I in P.data.inputs)
-                S.addInput(
-                  P.data.inputs[I][0],
-                  P.data.inputs[I][1]
+          const D = h.searchbox_extras[I.toLowerCase()];
+          D && (I = D.type), o.graph.beforeChange();
+          const C = h.createNode(I);
+          if (C && (C.pos = o.convertEventToCanvasOffset(
+            r
+          ), o.graph.add(C)), D && D.data) {
+            if (D.data.properties)
+              for (const k in D.data.properties)
+                C.addProperty(`${k}`, D.data.properties[k]);
+            if (D.data.inputs) {
+              C.inputs = [];
+              for (const k in D.data.inputs)
+                C.addInput(
+                  D.data.inputs[k][0],
+                  D.data.inputs[k][1]
                 );
             }
-            if (P.data.outputs) {
-              S.outputs = [];
-              for (const I in P.data.outputs)
-                S.addOutput(
-                  P.data.outputs[I][0],
-                  P.data.outputs[I][1]
+            if (D.data.outputs) {
+              C.outputs = [];
+              for (const k in D.data.outputs)
+                C.addOutput(
+                  D.data.outputs[k][0],
+                  D.data.outputs[k][1]
                 );
             }
-            P.data.title && (S.title = P.data.title), P.data.json && S.configure(P.data.json);
+            D.data.title && (C.title = D.data.title), D.data.json && C.configure(D.data.json);
           }
           if (s.node_from) {
-            let I = null;
+            let k = null;
             switch (typeof s.slotFrom) {
               case "string":
-                I = s.node_from.findOutputSlotIndexByName(s.slotFrom);
+                k = s.node_from.findOutputSlotIndexByName(s.slotFrom);
                 break;
               case "object":
-                s.slotFrom.name ? I = s.node_from.findOutputSlotIndexByName(s.slotFrom.name) : I = -1, I === -1 && typeof s.slotFrom.slot_index < "u" && (I = s.slotFrom.slot_index);
+                s.slotFrom.name ? k = s.node_from.findOutputSlotIndexByName(s.slotFrom.name) : k = -1, k === -1 && typeof s.slotFrom.slot_index < "u" && (k = s.slotFrom.slot_index);
                 break;
               case "number":
-                I = s.slotFrom;
+                k = s.slotFrom;
                 break;
               default:
-                I = 0;
+                k = 0;
             }
-            I = I, typeof s.node_from.outputs[I] !== void 0 && I !== null && I > -1 && s.node_from.connectByTypeInput(I, S, s.node_from.outputs[I].type);
+            k = k, typeof s.node_from.outputs[k] !== void 0 && k !== null && k > -1 && s.node_from.connectByTypeInput(k, C, s.node_from.outputs[k].type);
           }
           if (s.node_to) {
-            let I = null;
+            let k = null;
             switch (typeof s.slotFrom) {
               case "string":
-                I = s.node_to.findInputSlotIndexByName(s.slotFrom);
+                k = s.node_to.findInputSlotIndexByName(s.slotFrom);
                 break;
               case "number":
-                I = s.slotFrom;
+                k = s.slotFrom;
                 break;
               default:
-                I = 0;
+                k = 0;
             }
-            typeof s.node_to.inputs[I] !== void 0 && I !== null && I > -1 && s.node_to.connectByTypeOutput(I, S, s.node_to.inputs[I].type);
+            typeof s.node_to.inputs[k] !== void 0 && k !== null && k > -1 && s.node_to.connectByTypeOutput(k, C, s.node_to.inputs[k].type);
           }
-          r.graph.afterChange();
+          o.graph.afterChange();
         }
-      p.close();
-    }, b = (w) => {
-      const P = _;
-      _ && _.classList.remove("selected"), _ ? (_ = w ? _.nextSibling : _.previousSibling, _ || (_ = P)) : _ = w ? g.childNodes[0] : g.childNodes[g.childNodes.length], _ && (_.classList.add("selected"), _.scrollIntoView({ block: "end", behavior: "smooth" }));
-    }, v = (w, P, S, I, M, U = {}) => {
-      const H = Object.assign({
+      c.close();
+    }, y = (I) => {
+      const D = f;
+      f && f.classList.remove("selected"), f ? (f = I ? f.nextSibling : f.previousSibling, f || (f = D)) : f = I ? _.childNodes[0] : _.childNodes[_.childNodes.length], f && (f.classList.add("selected"), f.scrollIntoView({ block: "end", behavior: "smooth" }));
+    }, g = (I, D, C, k, R, x = {}) => {
+      const B = Object.assign({
         skipFilter: !1,
         inTypeOverride: null,
         outTypeOverride: null
-      }, U), F = h.registered_node_types[w];
-      if (F.hide_in_node_lists || P && F.filter !== P || (!s.show_all_if_empty || S) && !w.toLowerCase().includes(S))
+      }, x), H = h.registered_node_types[I];
+      if (H.hide_in_node_lists || D && H.filter !== D || (!s.show_all_if_empty || C) && !I.toLowerCase().includes(C))
         return !1;
-      if (s.do_type_filter && !H.skipFilter) {
-        const ot = w;
-        let K = I == null ? void 0 : I.value;
-        if (H.inTypeOverride !== null && (K = H.inTypeOverride), I && K && h.registered_slot_in_types[K] && h.registered_slot_in_types[K].nodes && h.registered_slot_in_types[K].nodes.includes(ot) === !1 || (K = M == null ? void 0 : M.value, H.outTypeOverride !== null && (K = H.outTypeOverride), M && K && h.registered_slot_out_types[K] && h.registered_slot_out_types[K].nodes && h.registered_slot_out_types[K].nodes.includes(ot) === !1))
+      if (s.do_type_filter && !B.skipFilter) {
+        const nt = I;
+        let j = k == null ? void 0 : k.value;
+        if (B.inTypeOverride !== null && (j = B.inTypeOverride), k && j && h.registered_slot_in_types[j] && h.registered_slot_in_types[j].nodes && h.registered_slot_in_types[j].nodes.includes(nt) === !1 || (j = R == null ? void 0 : R.value, B.outTypeOverride !== null && (j = B.outTypeOverride), R && j && h.registered_slot_out_types[j] && h.registered_slot_out_types[j].nodes && h.registered_slot_out_types[j].nodes.includes(nt) === !1))
           return !1;
       }
       return !0;
-    }, O = () => {
-      d = null;
-      let w = N.value;
-      if (y = null, g.innerHTML = "", !w && !s.show_all_if_empty)
+    }, N = () => {
+      p = null;
+      let I = E.value;
+      if (m = null, _.innerHTML = "", !I && !s.show_all_if_empty)
         return;
-      if (n.onSearchBox) {
-        const S = n.onSearchBox(g, w, r);
-        if (S)
-          for (let I = 0; I < S.length; ++I)
-            P(S[I]);
+      if (i.onSearchBox) {
+        const C = i.onSearchBox(_, I, o);
+        if (C)
+          for (let k = 0; k < C.length; ++k)
+            D(C[k]);
       } else {
-        let S = 0;
-        w = w.toLowerCase();
-        const I = r.filter || r.graph.filter;
-        let M, U;
-        s.do_type_filter && n.search_box ? (M = n.search_box.querySelector(".slot_in_type_filter"), U = n.search_box.querySelector(".slot_out_type_filter")) : (M = null, U = null);
-        for (const H in h.searchbox_extras) {
-          const F = h.searchbox_extras[H];
-          if ((!s.show_all_if_empty || w) && !F.desc.toLowerCase().includes(w))
+        let C = 0;
+        I = I.toLowerCase();
+        const k = o.filter || o.graph.filter;
+        let R, x;
+        s.do_type_filter && i.search_box ? (R = i.search_box.querySelector(".slot_in_type_filter"), x = i.search_box.querySelector(".slot_out_type_filter")) : (R = null, x = null);
+        for (const B in h.searchbox_extras) {
+          const H = h.searchbox_extras[B];
+          if ((!s.show_all_if_empty || I) && !H.desc.toLowerCase().includes(I))
             continue;
-          const ot = h.registered_node_types[F.type];
-          if (!(ot && ot.filter !== I) && v(F.type, I, w, M, U) && (P(F.desc, "searchbox_extra"), T.search_limit !== -1 && S++ > T.search_limit))
+          const nt = h.registered_node_types[H.type];
+          if (!(nt && nt.filter !== k) && g(H.type, k, I, R, x) && (D(H.desc, "searchbox_extra"), b.search_limit !== -1 && C++ > b.search_limit))
             break;
         }
-        let nt = null;
+        let et = null;
         if (Array.prototype.filter)
-          Object.keys(h.registered_node_types).filter((F) => v(F, I, w, M, U));
+          et = Object.keys(h.registered_node_types).filter((H) => g(H, k, I, R, x));
         else {
-          nt = [];
-          for (const H in h.registered_node_types)
-            v(H, I, w, M, U) && nt.push(H);
+          et = [];
+          for (const B in h.registered_node_types)
+            g(B, k, I, R, x) && et.push(B);
         }
-        for (let H = 0; H < nt.length && (P(nt[H]), !(T.search_limit !== -1 && S++ > T.search_limit)); H++)
+        for (let B = 0; B < et.length && (D(et[B]), !(b.search_limit !== -1 && C++ > b.search_limit)); B++)
           ;
-        if (s.show_general_after_typefiltered && (M != null && M.value || U != null && U.value)) {
-          const H = [];
-          for (const F in h.registered_node_types)
-            v(F, I, w, M, U, { inTypeOverride: M && M.value ? "*" : null, outTypeOverride: U && U.value ? "*" : null }) && H.push(F);
-          for (let F = 0; F < H.length && (P(H[F], "generic_type"), !(T.search_limit !== -1 && S++ > T.search_limit)); F++)
+        if (s.show_general_after_typefiltered && (R != null && R.value || x != null && x.value)) {
+          const B = [];
+          for (const H in h.registered_node_types)
+            g(H, k, I, R, x, { inTypeOverride: R && R.value ? "*" : null, outTypeOverride: x && x.value ? "*" : null }) && B.push(H);
+          for (let H = 0; H < B.length && (D(B[H], "generic_type"), !(b.search_limit !== -1 && C++ > b.search_limit)); H++)
             ;
         }
-        if ((M != null && M.value || U != null && U.value) && (g == null ? void 0 : g.childNodes.length) === 0 && s.show_general_if_none_on_typefilter) {
-          const H = [];
-          for (const F in h.registered_node_types)
-            v(F, I, w, M, U, { skipFilter: !0 }) && H.push(F);
-          for (let F = 0; F < H.length && (P(H[F], "not_in_filter"), !(T.search_limit !== -1 && S++ > T.search_limit)); F++)
+        if ((R != null && R.value || x != null && x.value) && (_ == null ? void 0 : _.childNodes.length) === 0 && s.show_general_if_none_on_typefilter) {
+          const B = [];
+          for (const H in h.registered_node_types)
+            g(H, k, I, R, x, { skipFilter: !0 }) && B.push(H);
+          for (let H = 0; H < B.length && (D(B[H], "not_in_filter"), !(b.search_limit !== -1 && C++ > b.search_limit)); H++)
             ;
         }
       }
-      function P(S, I) {
-        const M = document.createElement("div");
-        y || (y = S), M.innerText = S, M.dataset.type = escape(S), M.className = "litegraph lite-search-item", I && (M.className += ` ${I}`), M.addEventListener("click", function(U) {
-          m(unescape(this.dataset.type));
-        }), g.appendChild(M);
+      function D(C, k) {
+        const R = document.createElement("div");
+        m || (m = C), R.innerText = C, R.dataset.type = escape(C), R.className = "litegraph lite-search-item", k && (R.className += ` ${k}`), R.addEventListener("click", function(x) {
+          v(unescape(this.dataset.type));
+        }), _.appendChild(R);
       }
     };
-    let N = p.querySelector("input");
-    if (N && (N.addEventListener("blur", function(w) {
+    let E = c.querySelector("input");
+    if (E && (E.addEventListener("blur", function(I) {
       this.focus();
-    }), N.addEventListener("keydown", (w) => {
-      if (w.keyCode === 38)
-        b(!1);
-      else if (w.keyCode === 40)
-        b(!0);
-      else if (w.keyCode === 27)
-        p.close();
-      else if (w.keyCode === 13)
-        _ ? m(_.innerHTML) : y ? m(y) : p.close();
+    }), E.addEventListener("keydown", (I) => {
+      if (I.keyCode === 38)
+        y(!1);
+      else if (I.keyCode === 40)
+        y(!0);
+      else if (I.keyCode === 27)
+        c.close();
+      else if (I.keyCode === 13)
+        f ? v(f.innerHTML) : m ? v(m) : c.close();
       else {
-        d && clearInterval(d), d = setTimeout(O, h.search_box_refresh_interval_ms);
+        p && clearInterval(p), p = setTimeout(N, h.search_box_refresh_interval_ms);
         return;
       }
-      return w.preventDefault(), w.stopPropagation(), w.stopImmediatePropagation(), !0;
+      return I.preventDefault(), I.stopPropagation(), I.stopImmediatePropagation(), !0;
     })), s.do_type_filter) {
-      if (f) {
-        const w = h.slot_types_in, P = w.length;
-        (s.type_filter_in === k.EVENT || s.type_filter_in === k.ACTION) && (s.type_filter_in = "_event_");
-        for (let S = 0; S < P; S++) {
-          const I = document.createElement("option");
-          I.value = w[S], I.innerHTML = w[S], f.appendChild(I), s.type_filter_in !== null && `${s.type_filter_in}`.toLowerCase() === `${w[S]}`.toLowerCase() && (I.selected = !0);
+      if (d) {
+        const I = h.slot_types_in, D = I.length;
+        (s.type_filter_in === O.EVENT || s.type_filter_in === O.ACTION) && (s.type_filter_in = "_event_");
+        for (let C = 0; C < D; C++) {
+          const k = document.createElement("option");
+          k.value = I[C], k.innerHTML = I[C], d.appendChild(k), s.type_filter_in !== null && `${s.type_filter_in}`.toLowerCase() === `${I[C]}`.toLowerCase() && (k.selected = !0);
         }
-        f.addEventListener("change", O);
+        d.addEventListener("change", N);
       }
-      if (c) {
-        const w = h.slot_types_out, P = w.length;
-        (s.type_filter_out === k.EVENT || s.type_filter_out === k.ACTION) && (s.type_filter_out = "_event_");
-        for (let S = 0; S < P; S++) {
-          const I = document.createElement("option");
-          I.value = w[S], I.innerHTML = w[S], c.appendChild(I), s.type_filter_out !== null && `${s.type_filter_out}`.toLowerCase() === `${w[S]}`.toLowerCase() && (I.selected = !0);
+      if (u) {
+        const I = h.slot_types_out, D = I.length;
+        (s.type_filter_out === O.EVENT || s.type_filter_out === O.ACTION) && (s.type_filter_out = "_event_");
+        for (let C = 0; C < D; C++) {
+          const k = document.createElement("option");
+          k.value = I[C], k.innerHTML = I[C], u.appendChild(k), s.type_filter_out !== null && `${s.type_filter_out}`.toLowerCase() === `${I[C]}`.toLowerCase() && (k.selected = !0);
         }
-        c.addEventListener("change", O);
+        u.addEventListener("change", N);
       }
     }
-    const E = a.getBoundingClientRect(), G = (l ? l.clientX : E.left + E.width * 0.5) - 80, x = (l ? l.clientY : E.top + E.height * 0.5) - 20;
-    return p.style.left = `${G}px`, p.style.top = `${x}px`, l.layerY > E.height - 200 && (g.style.maxHeight = `${E.height - l.layerY - 20}px`), N.focus(), s.show_all_on_open && O(), p;
+    const T = l.getBoundingClientRect(), M = (r ? r.clientX : T.left + T.width * 0.5) - 80, F = (r ? r.clientY : T.top + T.height * 0.5) - 20;
+    return c.style.left = `${M}px`, c.style.top = `${F}px`, r.layerY > T.height - 200 && (_.style.maxHeight = `${T.height - r.layerY - 20}px`), E.focus(), s.show_all_on_open && N(), c;
   }
   showShowNodePanel(e) {
     this.closePanels();
-    const s = this.getCanvasWindow(), o = this, n = this.createPanel(e.title || "", {
+    const s = this.getCanvasWindow(), n = this, i = this.createPanel(e.title || "", {
       closable: !0,
       window: s,
       onOpen() {
       },
       onClose() {
-        o.node_panel = null;
+        n.node_panel = null;
       }
     });
-    o.node_panel = n, n.id = "node-panel", n.node = e, n.classList.add("settings");
-    function r() {
-      n.content.innerHTML = "", n.addHTML(`<span class='node_type'>${e.type}</span><span class='node_desc'>${e.constructor.desc || ""}</span><span class='separator'></span>`), n.addHTML("<h3>Properties</h3>");
-      const a = function(l, p) {
-        switch (o.graph.beforeChange(e), l) {
+    n.node_panel = i, i.id = "node-panel", i.node = e, i.classList.add("settings");
+    function o() {
+      i.content.innerHTML = "", i.addHTML(`<span class='node_type'>${e.type}</span><span class='node_desc'>${e.constructor.desc || ""}</span><span class='separator'></span>`), i.addHTML("<h3>Properties</h3>");
+      const l = function(r, c) {
+        switch (n.graph.beforeChange(e), r) {
           case "Title":
-            e.title = p;
+            e.title = c;
             break;
           case "Mode":
-            const f = Object.values(Q).indexOf(p);
-            f >= W.ALWAYS && Q[f] ? e.changeMode(f) : console.warn(`unexpected mode: ${p}`);
+            const d = Object.values(J).indexOf(c);
+            d >= Y.ALWAYS && J[d] ? e.changeMode(d) : console.warn(`unexpected mode: ${c}`);
             break;
           case "Color":
-            T.node_colors[p] ? (e.color = T.node_colors[p].color, e.bgcolor = T.node_colors[p].bgcolor) : console.warn(`unexpected color: ${p}`);
+            b.node_colors[c] ? (e.color = b.node_colors[c].color, e.bgcolor = b.node_colors[c].bgcolor) : console.warn(`unexpected color: ${c}`);
             break;
           default:
-            e.setProperty(l, p);
+            e.setProperty(r, c);
             break;
         }
-        o.graph.afterChange(), o.dirty_canvas = !0;
+        n.graph.afterChange(), n.dirty_canvas = !0;
       };
-      n.addWidget("string", "Title", e.title, {}, a), n.addWidget("combo", "Mode", Q[e.mode], { values: Q }, a);
-      let u = "";
-      e.color !== void 0 && (u = Object.keys(T.node_colors).filter((l) => T.node_colors[l].color === e.color)[0]), n.addWidget("combo", "Color", u, { values: Object.keys(T.node_colors) }, a);
-      for (const l in e.properties) {
-        const p = e.properties[l], f = e.getPropertyInfo(l);
-        f.type, !(e.onAddPropertyToPanel && e.onAddPropertyToPanel(l, n)) && n.addWidget(f.widget || f.type, l, p, f, a);
+      i.addWidget("string", "Title", e.title, {}, l), i.addWidget("combo", "Mode", J[e.mode], { values: J }, l);
+      let a = "";
+      e.color !== void 0 && (a = Object.keys(b.node_colors).filter((r) => b.node_colors[r].color === e.color)[0]), i.addWidget("combo", "Color", a, { values: Object.keys(b.node_colors) }, l);
+      for (const r in e.properties) {
+        const c = e.properties[r], d = e.getPropertyInfo(r);
+        d.type, !(e.onAddPropertyToPanel && e.onAddPropertyToPanel(r, i)) && i.addWidget(d.widget || d.type, r, c, d, l);
       }
-      n.addSeparator(), e.onShowCustomPanelInfo && e.onShowCustomPanelInfo(n), n.footer.innerHTML = "", n.addButton("Delete", () => {
-        e.block_delete || (e.graph.remove(e), n.close());
+      i.addSeparator(), e.onShowCustomPanelInfo && e.onShowCustomPanelInfo(i), i.footer.innerHTML = "", i.addButton("Delete", () => {
+        e.block_delete || (e.graph.remove(e), i.close());
       }).classList.add("delete");
     }
-    n.inner_showCodePad = function(a) {
-      n.classList.remove("settings"), n.classList.add("centered"), n.alt_content.innerHTML = "<textarea class='code'></textarea>";
-      const u = n.alt_content.querySelector("textarea"), l = function() {
-        n.toggleAltContent(!1), n.toggleFooterVisibility(!0), u.parentNode.removeChild(u), n.classList.add("settings"), n.classList.remove("centered"), r();
+    i.inner_showCodePad = function(l) {
+      i.classList.remove("settings"), i.classList.add("centered"), i.alt_content.innerHTML = "<textarea class='code'></textarea>";
+      const a = i.alt_content.querySelector("textarea"), r = function() {
+        i.toggleAltContent(!1), i.toggleFooterVisibility(!0), a.parentNode.removeChild(a), i.classList.add("settings"), i.classList.remove("centered"), o();
       };
-      u.value = e.properties[a], u.addEventListener("keydown", (c) => {
-        c.code === "Enter" && c.ctrlKey && (e.setProperty(a, u.value), l());
-      }), n.toggleAltContent(!0), n.toggleFooterVisibility(!1), u.style.height = "calc(100% - 40px)";
-      const p = n.addButton("Assign", () => {
-        e.setProperty(a, u.value), l();
+      a.value = e.properties[l], a.addEventListener("keydown", (u) => {
+        u.code === "Enter" && u.ctrlKey && (e.setProperty(l, a.value), r());
+      }), i.toggleAltContent(!0), i.toggleFooterVisibility(!1), a.style.height = "calc(100% - 40px)";
+      const c = i.addButton("Assign", () => {
+        e.setProperty(l, a.value), r();
       });
-      n.alt_content.appendChild(p);
-      const f = n.addButton("Close", l);
-      f.style.float = "right", n.alt_content.appendChild(f);
-    }, r(), this.canvas.parentNode.appendChild(n);
+      i.alt_content.appendChild(c);
+      const d = i.addButton("Close", r);
+      d.style.float = "right", i.alt_content.appendChild(d);
+    }, o(), this.canvas.parentNode.appendChild(i);
   }
   showSubgraphPropertiesDialog(e) {
     console.log("showing subgraph properties dialog");
     const s = this.canvas.parentNode.querySelector(".subgraph_dialog");
     s && s.close();
-    const o = this.createPanel("Subgraph Inputs", { closable: !0, width: 500 });
-    o.node = e, o.classList.add("subgraph_dialog");
-    const n = e;
-    if (!n.subgraph) {
+    const n = this.createPanel("Subgraph Inputs", { closable: !0, width: 500 });
+    n.node = e, n.classList.add("subgraph_dialog");
+    const i = e;
+    if (!i.subgraph) {
       console.warn("subnode without subgraph!");
       return;
     }
-    function a() {
-      if (o.clear(), e.inputs)
-        for (let d = 0; d < e.inputs.length; ++d) {
-          const _ = e.inputs[d];
-          if (_.not_subgraph_input)
+    function l() {
+      if (n.clear(), e.inputs)
+        for (let p = 0; p < e.inputs.length; ++p) {
+          const f = e.inputs[p];
+          if (f.not_subgraph_input)
             continue;
-          const m = `
+          const v = `
 <button class="delete">&#10005;</button>
 <button class="move_up">↑</button>
 <button class="move_down">↓</button>
 <span class='bullet_icon'></span>
 <span class='name'></span>
-<span class='type'></span>`, b = o.addHTML(m, "subgraph_property");
-          b.dataset.name = _.name, b.dataset.slot = `${d}`, b.querySelector(".name").innerText = _.name, b.querySelector(".type").innerText = X(_.type), b.querySelector(".delete").addEventListener("click", function(N) {
-            const E = this.parentNode.dataset.name;
-            n.removeGraphInput(E), a();
+<span class='type'></span>`, y = n.addHTML(v, "subgraph_property");
+          y.dataset.name = f.name, y.dataset.slot = `${p}`, y.querySelector(".name").innerText = f.name, y.querySelector(".type").innerText = W(f.type), y.querySelector(".delete").addEventListener("click", function(E) {
+            const T = this.parentNode.dataset.name;
+            i.removeGraphInput(T), l();
           });
-          const v = b.querySelector(".move_up");
-          v.disabled = d <= 0, v.addEventListener("click", function(N) {
-            const E = +this.parentNode.dataset.slot;
-            E < 0 || (n.moveInput(E, E - 1), a());
+          const g = y.querySelector(".move_up");
+          g.disabled = p <= 0, g.addEventListener("click", function(E) {
+            const T = +this.parentNode.dataset.slot;
+            T < 0 || (i.moveInput(T, T - 1), l());
           });
-          const O = b.querySelector(".move_down");
-          O.disabled = d >= e.inputs.length - 1, O.addEventListener("click", function(N) {
-            const E = +this.parentNode.dataset.slot;
-            E > e.inputs.length - 1 || (n.moveInput(E, E + 1), a());
+          const N = y.querySelector(".move_down");
+          N.disabled = p >= e.inputs.length - 1, N.addEventListener("click", function(E) {
+            const T = +this.parentNode.dataset.slot;
+            T > e.inputs.length - 1 || (i.moveInput(T, T + 1), l());
           });
         }
     }
-    const u = `
+    const a = `
 +
 <span class='label'>Name</span>
 <input class='name'/>
 <span class='label'>Type</span>
 <select class='type'></select>
-<button>+</button>`, l = o.addHTML(u, "subgraph_property extra", !0), p = l.querySelector(".name"), f = l.querySelector(".type"), c = l.querySelector("button");
-    for (const d of Et()) {
-      const _ = document.createElement("option");
-      _.value = d, _.innerHTML = X(d), f.appendChild(_), d === "*" && (_.selected = !0);
+<button>+</button>`, r = n.addHTML(a, "subgraph_property extra", !0), c = r.querySelector(".name"), d = r.querySelector(".type"), u = r.querySelector("button");
+    for (const p of Tt()) {
+      const f = document.createElement("option");
+      f.value = p, f.innerHTML = W(p), d.appendChild(f), p === "*" && (f.selected = !0);
     }
-    const g = () => {
-      const d = p.value;
-      let _ = f.value;
-      _ === "-1" ? _ = k.ACTION : _ === "-2" && (_ = k.EVENT), !(!d || e.findInputSlotIndexByName(d) !== -1) && (this.addGraphInputNode(e, d, _), p.value = "", f.value = "", a(), p.focus());
-    }, y = (d) => {
-      d.keyCode === 13 ? (g(), d.preventDefault()) : d.keyCode === 27 && (o.close(), d.preventDefault());
+    const _ = () => {
+      const p = c.value;
+      let f = d.value;
+      f === "-1" ? f = O.ACTION : f === "-2" && (f = O.EVENT), !(!p || e.findInputSlotIndexByName(p) !== -1) && (this.addGraphInputNode(e, p, f), c.value = "", d.value = "", l(), c.focus());
+    }, m = (p) => {
+      p.keyCode === 13 ? (_(), p.preventDefault()) : p.keyCode === 27 && (n.close(), p.preventDefault());
     };
-    return c.addEventListener("click", g), p.addEventListener("keydown", y), f.addEventListener("keydown", y), a(), this.canvas.parentNode.appendChild(o), p.focus(), o;
+    return u.addEventListener("click", _), c.addEventListener("keydown", m), d.addEventListener("keydown", m), l(), this.canvas.parentNode.appendChild(n), c.focus(), n;
   }
   showSubgraphPropertiesDialogRight(e) {
     const s = this.canvas.parentNode.querySelector(".subgraph_dialog");
     s && s.close();
-    const o = this.createPanel("Subgraph Outputs", { closable: !0, width: 500 });
-    o.node = e, o.classList.add("subgraph_dialog");
-    const n = e;
-    if (!n.subgraph) {
+    const n = this.createPanel("Subgraph Outputs", { closable: !0, width: 500 });
+    n.node = e, n.classList.add("subgraph_dialog");
+    const i = e;
+    if (!i.subgraph) {
       console.warn("subnode without subgraph!");
       return;
     }
-    function a() {
-      if (o.clear(), e.outputs)
-        for (let d = 0; d < e.outputs.length; ++d) {
-          const _ = e.outputs[d];
-          if (_.not_subgraph_output)
+    function l() {
+      if (n.clear(), e.outputs)
+        for (let p = 0; p < e.outputs.length; ++p) {
+          const f = e.outputs[p];
+          if (f.not_subgraph_output)
             continue;
-          const m = `
+          const v = `
 <button>&#10005;</button>
 <button class="move_up">↑</button>
 <button class="move_down">↓</button>
 <span class='bullet_icon'></span>
 <span class='name'></span>
-<span class='type'></span>`, b = o.addHTML(m, "subgraph_property");
-          b.dataset.name = _.name, b.dataset.slot = `${d}`, b.querySelector(".name").innerText = _.name, b.querySelector(".type").innerText = X(_.type), b.querySelector("button").addEventListener("click", function(N) {
-            const E = this.parentNode.dataset.name;
-            n.removeGraphOutput(E), a();
+<span class='type'></span>`, y = n.addHTML(v, "subgraph_property");
+          y.dataset.name = f.name, y.dataset.slot = `${p}`, y.querySelector(".name").innerText = f.name, y.querySelector(".type").innerText = W(f.type), y.querySelector("button").addEventListener("click", function(E) {
+            const T = this.parentNode.dataset.name;
+            i.removeGraphOutput(T), l();
           });
-          const v = b.querySelector(".move_up");
-          v.disabled = d <= 0, v.addEventListener("click", function(N) {
-            const E = +this.parentNode.dataset.slot;
-            E < 0 || (n.moveOutput(E, E - 1), a());
+          const g = y.querySelector(".move_up");
+          g.disabled = p <= 0, g.addEventListener("click", function(E) {
+            const T = +this.parentNode.dataset.slot;
+            T < 0 || (i.moveOutput(T, T - 1), l());
           });
-          const O = b.querySelector(".move_down");
-          O.disabled = d >= e.outputs.length - 1, O.addEventListener("click", function(N) {
-            const E = +this.parentNode.dataset.slot;
-            E > e.outputs.length - 1 || (n.moveOutput(E, E + 1), a());
+          const N = y.querySelector(".move_down");
+          N.disabled = p >= e.outputs.length - 1, N.addEventListener("click", function(E) {
+            const T = +this.parentNode.dataset.slot;
+            T > e.outputs.length - 1 || (i.moveOutput(T, T + 1), l());
           });
         }
     }
-    const u = `
+    const a = `
 +
 <span class='label'>Name</span>
 <input class='name'/>
 <span class='label'>Type</span>
 <select class='type'></select>
-<button>+</button>`, l = o.addHTML(u, "subgraph_property extra", !0), p = l.querySelector(".name"), f = l.querySelector(".type"), c = l.querySelector("button");
-    for (const d of Nt()) {
-      const _ = document.createElement("option");
-      _.value = d, _.innerHTML = X(d), f.appendChild(_), d === "*" && (_.selected = !0);
+<button>+</button>`, r = n.addHTML(a, "subgraph_property extra", !0), c = r.querySelector(".name"), d = r.querySelector(".type"), u = r.querySelector("button");
+    for (const p of Et()) {
+      const f = document.createElement("option");
+      f.value = p, f.innerHTML = W(p), d.appendChild(f), p === "*" && (f.selected = !0);
     }
-    const g = () => {
-      const d = p.value;
-      let _ = f.value;
-      _ === "-1" ? _ = k.ACTION : _ === "-2" && (_ = k.EVENT), !(!d || e.findOutputSlotIndexByName(d) !== -1) && (this.addGraphOutputNode(e, d, _), p.value = "", f.value = "", a(), p.focus());
-    }, y = (d) => {
-      d.keyCode === 13 ? (g(), d.preventDefault()) : d.keyCode === 27 && (o.close(), d.preventDefault());
+    const _ = () => {
+      const p = c.value;
+      let f = d.value;
+      f === "-1" ? f = O.ACTION : f === "-2" && (f = O.EVENT), !(!p || e.findOutputSlotIndexByName(p) !== -1) && (this.addGraphOutputNode(e, p, f), c.value = "", d.value = "", l(), c.focus());
+    }, m = (p) => {
+      p.keyCode === 13 ? (_(), p.preventDefault()) : p.keyCode === 27 && (n.close(), p.preventDefault());
     };
-    return c.addEventListener("click", g), p.addEventListener("keydown", y), f.addEventListener("keydown", y), a(), this.canvas.parentNode.appendChild(o), p.focus(), o;
+    return u.addEventListener("click", _), c.addEventListener("keydown", m), d.addEventListener("keydown", m), l(), this.canvas.parentNode.appendChild(n), c.focus(), n;
   }
   showConnectionMenu(e = {}) {
-    const s = e.nodeFrom && e.slotFrom, o = !s && e.nodeTo && e.slotTo;
-    if (!s && !o)
+    const s = e.nodeFrom && e.slotFrom, n = !s && e.nodeTo && e.slotTo;
+    if (!s && !n)
       return console.warn("No data passed to showConnectionMenu"), !1;
-    const n = s ? e.nodeFrom : e.nodeTo, r = s ? e.slotFrom : e.slotTo;
-    let a, u = null;
-    switch (typeof r) {
+    const i = s ? e.nodeFrom : e.nodeTo, o = s ? e.slotFrom : e.slotTo;
+    let l, a = null;
+    switch (typeof o) {
       case "string":
-        u = s ? n.findOutputSlotIndexByName(r) : n.findInputSlotIndexByName(r), a = s ? n.outputs[r] : n.inputs[r];
+        a = s ? i.findOutputSlotIndexByName(o) : i.findInputSlotIndexByName(o), l = s ? i.outputs[o] : i.inputs[o];
         break;
       case "object":
-        a = r, u = s ? n.findOutputSlotIndexByName(a.name) : n.findInputSlotIndexByName(a.name);
+        l = o, a = s ? i.findOutputSlotIndexByName(l.name) : i.findInputSlotIndexByName(l.name);
         break;
       case "number":
-        u = r, a = s ? n.outputs[u] : n.inputs[u];
+        a = o, l = s ? i.outputs[a] : i.inputs[a];
         break;
       default:
-        return console.error("Can't get slot information", r), !1;
+        return console.error("Can't get slot information", o), !1;
     }
-    const l = [{ content: "Add Node" }, Y.SEPARATOR];
-    n.graph._is_subgraph && (s ? l.push({ content: "Add Subgraph Output" }) : l.push({ content: "Add Subgraph Input" }), l.push(Y.SEPARATOR)), this.allow_searchbox && (l.push({ content: "Search" }), l.push(Y.SEPARATOR));
-    const p = a.type === k.EVENT ? "_event_" : a.type, f = s ? h.slot_types_default_out : h.slot_types_default_in, c = f[p];
-    if (console.warn("FROMSL", f, c), f && f[p])
-      if (Array.isArray(c))
-        for (const b of c) {
-          const v = typeof b == "string" ? b : (b == null ? void 0 : b.title) || (b == null ? void 0 : b.node);
-          l.push({ content: v, value: b });
+    const r = [{ content: "Add Node" }, $.SEPARATOR];
+    i.graph._is_subgraph && (s ? r.push({ content: "Add Subgraph Output" }) : r.push({ content: "Add Subgraph Input" }), r.push($.SEPARATOR)), this.allow_searchbox && (r.push({ content: "Search" }), r.push($.SEPARATOR));
+    const c = l.type === O.EVENT ? "_event_" : l.type, d = s ? h.slot_types_default_out : h.slot_types_default_in, u = d[c];
+    if (console.warn("FROMSL", d, u), d && d[c])
+      if (Array.isArray(u))
+        for (const y of u) {
+          const g = typeof y == "string" ? y : (y == null ? void 0 : y.title) || (y == null ? void 0 : y.node);
+          r.push({ content: g, value: y });
         }
       else
-        throw new TypeError(`Invalid default slot specifier, must be an array: ${c}`);
-    const g = (b) => {
-      const v = n.graph._subgraph_node, O = [b.canvasX, b.canvasY];
-      v.addGraphInput(a.name, a.type, O).innerNode.connect(0, n, u);
-    }, y = (b) => {
-      const v = n.graph._subgraph_node, O = [b.canvasX, b.canvasY], N = v.addGraphOutput(a.name, a.type, O);
-      n.connect(u, N.innerNode, 0);
-    }, d = (b) => {
-      const v = Object.assign(e, {
+        throw new TypeError(`Invalid default slot specifier, must be an array: ${u}`);
+    const _ = (y) => {
+      const g = i.graph._subgraph_node, N = [y.canvasX, y.canvasY];
+      g.addGraphInput(l.name, l.type, N).innerNode.connect(0, i, a);
+    }, m = (y) => {
+      const g = i.graph._subgraph_node, N = [y.canvasX, y.canvasY], E = g.addGraphOutput(l.name, l.type, N);
+      i.connect(a, E.innerNode, 0);
+    }, p = (y) => {
+      const g = Object.assign(e, {
         position: [e.e.canvasX, e.e.canvasY]
       });
-      this.createDefaultNodeForSlot(b, v) ? console.log("node created", b) : console.error("node not in defaults", b);
-    }, _ = (b, v, O) => {
-      switch (b.content) {
+      this.createDefaultNodeForSlot(y, g) ? console.log("node created", y) : console.error("node not in defaults", y);
+    }, f = (y, g, N) => {
+      switch (y.content) {
         case "Add Node":
-          T.onMenuAdd(b, v, O, m, (N) => {
-            s ? e.nodeFrom.connectByTypeInput(u, N, p) : e.nodeTo.connectByTypeOutput(u, N, p);
+          b.onMenuAdd(y, g, N, v, (E) => {
+            s ? e.nodeFrom.connectByTypeInput(a, E, c) : e.nodeTo.connectByTypeOutput(a, E, c);
           });
           break;
         case "Add Subgraph Input":
-          g(this.adjustMouseEvent(O));
+          _(this.adjustMouseEvent(N));
           break;
         case "Add Subgraph Output":
-          y(this.adjustMouseEvent(O));
+          m(this.adjustMouseEvent(N));
           break;
         case "Search":
-          s ? this.showSearchBox(O, { node_from: e.nodeFrom, slotFrom: a, type_filter_in: p }) : this.showSearchBox(O, { node_to: e.nodeTo, slotFrom: a, type_filter_out: p });
+          s ? this.showSearchBox(N, { node_from: e.nodeFrom, slotFrom: l, type_filter_in: c }) : this.showSearchBox(N, { node_to: e.nodeTo, slotFrom: l, type_filter_out: c });
           break;
         default:
-          d(b.value);
+          p(y.value);
           break;
       }
     };
-    let m = new z(l, {
+    let v = new U(r, {
       event: e.e,
-      title: (a && a.name !== "" ? a.name + (p ? " | " : "") : "") + (a && p ? p : ""),
-      callback: _
+      title: (l && l.name !== "" ? l.name + (c ? " | " : "") : "") + (l && c ? c : ""),
+      callback: f
     });
     return !1;
   }
   getLinkMenuOptions(e) {
-    const s = this.graph.getNodeById(e.origin_id), o = this.graph.getNodeById(e.target_id);
-    let n = null;
-    s && s.outputs && s.outputs[e.origin_slot] && (n = s.outputs[e.origin_slot].type);
-    let r = null;
-    o && o.outputs && o.outputs[e.target_slot] && (r = o.inputs[e.target_slot].type);
-    const a = (f) => {
-      console.debug("node autoconnect"), !(!f.inputs || !f.inputs.length || !f.outputs || !f.outputs.length) && s.connectByTypeInput(e.origin_slot, f, n) && (f.connectByTypeInput(e.target_slot, o, r), f.pos[0] -= f.size[0] * 0.5);
-    }, u = (f, c, g, y, d) => {
-      T.onMenuAdd(f, c, g, y, a);
-    }, l = () => {
+    const s = this.graph.getNodeById(e.origin_id), n = this.graph.getNodeById(e.target_id);
+    let i = null;
+    s && s.outputs && s.outputs[e.origin_slot] && (i = s.outputs[e.origin_slot].type);
+    let o = null;
+    n && n.outputs && n.outputs[e.target_slot] && (o = n.inputs[e.target_slot].type);
+    const l = (d) => {
+      console.debug("node autoconnect"), !(!d.inputs || !d.inputs.length || !d.outputs || !d.outputs.length) && s.connectByTypeInput(e.origin_slot, d, i) && (d.connectByTypeInput(e.target_slot, n, o), d.pos[0] -= d.size[0] * 0.5);
+    }, a = (d, u, _, m, p) => {
+      b.onMenuAdd(d, u, _, m, l);
+    }, r = () => {
       this.graph.removeLink(e.id);
     };
-    let p = [
+    let c = [
       {
         content: "Add Node",
         has_submenu: !0,
-        callback: u
+        callback: a
       },
-      Y.SEPARATOR,
+      $.SEPARATOR,
       {
         content: "Delete",
         has_submenu: !0,
-        callback: l
+        callback: r
       },
-      Y.SEPARATOR
+      $.SEPARATOR
     ];
-    return this.graph.onGetLinkMenuOptions && (p = this.graph.onGetLinkMenuOptions(p, e)), s.getExtraLinkOptions && (p = s.getExtraLinkOptions(this, e, B.OUTPUT, p)), o.getExtraLinkOptions && (p = o.getExtraLinkOptions(this, e, B.INPUT, p)), p;
+    return this.graph.onGetLinkMenuOptions && (c = this.graph.onGetLinkMenuOptions(c, e)), s.getExtraLinkOptions && (c = s.getExtraLinkOptions(this, e, G.OUTPUT, c)), n.getExtraLinkOptions && (c = n.getExtraLinkOptions(this, e, G.INPUT, c)), c;
   }
   showLinkMenu(e, s) {
-    const o = this.getLinkMenuOptions(e);
-    return new z(o, {
+    const n = this.getLinkMenuOptions(e);
+    return new U(n, {
       event: s,
       title: e.data !== null ? e.data.constructor.name : null,
       extra: e
@@ -5022,113 +5024,113 @@ class C {
   /*
      * Shows a popup for editing one of the LGraphNode.properties.
      */
-  showEditPropertyValue(e, s, o = {}) {
+  showEditPropertyValue(e, s, n = {}) {
     if (!e || e.properties[s] === void 0 || h.ignore_all_widget_events)
       return;
-    const n = e.getPropertyInfo(s), r = n.type;
-    let a = "";
-    if (r === "string" || r === "number" || r === "array" || r === "object")
-      if (n.multiline) {
-        let y = e.properties[s], d = 5;
-        if (r !== "string") {
-          y = JSON.stringify(y, null, 2);
-          const _ = (y.match(/\n/g) || "").length + 1;
-          d = dt(_, 5, 10);
+    const i = e.getPropertyInfo(s), o = i.type;
+    let l = "";
+    if (o === "string" || o === "number" || o === "array" || o === "object")
+      if (i.multiline) {
+        let m = e.properties[s], p = 5;
+        if (o !== "string") {
+          m = JSON.stringify(m, null, 2);
+          const f = (m.match(/\n/g) || "").length + 1;
+          p = pt(f, 5, 10);
         }
-        a = `<textarea autofocus type='text' rows='${d}' cols='30' class='value'>${y || ""}</textarea>`;
+        l = `<textarea autofocus type='text' rows='${p}' cols='30' class='value'>${m || ""}</textarea>`;
       } else
-        a = "<input autofocus type='text' class='value'/>";
-    else if ((r === "enum" || r === "combo") && n.values) {
-      a = "<select autofocus type='text' class='value'>";
-      for (const y in n.values) {
-        let d = y;
-        Array.isArray(n.values) && (d = n.values[y]), a += `<option value='${d}' ${d === e.properties[s] ? "selected" : ""}>${n.values[y]}</option>`;
+        l = "<input autofocus type='text' class='value'/>";
+    else if ((o === "enum" || o === "combo") && i.values) {
+      l = "<select autofocus type='text' class='value'>";
+      for (const m in i.values) {
+        let p = m;
+        Array.isArray(i.values) && (p = i.values[m]), l += `<option value='${p}' ${p === e.properties[s] ? "selected" : ""}>${i.values[m]}</option>`;
       }
-      a += "</select>";
-    } else if (r === "boolean" || r === "toggle")
-      a = `<input autofocus type='checkbox' class='value' ${e.properties[s] ? "checked" : ""}/>`;
+      l += "</select>";
+    } else if (o === "boolean" || o === "toggle")
+      l = `<input autofocus type='checkbox' class='value' ${e.properties[s] ? "checked" : ""}/>`;
     else {
-      console.warn(`unknown type: ${r}`);
+      console.warn(`unknown type: ${o}`);
       return;
     }
-    const u = this.createDialog(
-      `<span class='name'>${n.label ? n.label : s}</span>${a}<button>OK</button>`,
-      o
+    const a = this.createDialog(
+      `<span class='name'>${i.label ? i.label : s}</span>${l}<button>OK</button>`,
+      n
     );
-    let l = null;
-    if ((r === "enum" || r === "combo") && n.values)
-      l = u.querySelector("select"), l.addEventListener("change", (y) => {
-        u.modified(), c(y.target.value);
+    let r = null;
+    if ((o === "enum" || o === "combo") && i.values)
+      r = a.querySelector("select"), r.addEventListener("change", (m) => {
+        a.modified(), u(m.target.value);
       });
-    else if (r === "boolean" || r === "toggle")
-      l = u.querySelector("input"), l && l.addEventListener("click", (y) => {
-        u.modified(), c(!!l.checked);
+    else if (o === "boolean" || o === "toggle")
+      r = a.querySelector("input"), r && r.addEventListener("click", (m) => {
+        a.modified(), u(!!r.checked);
       });
-    else if (n.multiline ? l = u.querySelector("textarea") : l = u.querySelector("input"), l) {
-      l.addEventListener("blur", function(d) {
+    else if (i.multiline ? r = a.querySelector("textarea") : r = a.querySelector("input"), r) {
+      r.addEventListener("blur", function(p) {
         this.focus();
       });
-      let y = e.properties[s] !== void 0 ? e.properties[s] : "";
-      if (r !== "string") {
-        let d = null;
-        n.multiline && (d = 2), y = JSON.stringify(y, null, d);
+      let m = e.properties[s] !== void 0 ? e.properties[s] : "";
+      if (o !== "string") {
+        let p = null;
+        i.multiline && (p = 2), m = JSON.stringify(m, null, p);
       }
-      if (l.value = y, l.addEventListener("keydown", (d) => {
-        let _ = !1;
-        d.keyCode === 27 ? (u.close(), _ = !0) : d.keyCode === 13 && !n.multiline ? (f(), _ = !0) : d.keyCode !== 13 && u.modified(), _ && (d.preventDefault(), d.stopPropagation());
-      }), n.inputStyle)
-        for (const [d, _] of Object.entries(n.inputStyle))
-          l.style[d] = _;
+      if (r.value = m, r.addEventListener("keydown", (p) => {
+        let f = !1;
+        p.keyCode === 27 ? (a.close(), f = !0) : p.keyCode === 13 && !i.multiline ? (d(), f = !0) : p.keyCode !== 13 && a.modified(), f && (p.preventDefault(), p.stopPropagation());
+      }), i.inputStyle)
+        for (const [p, f] of Object.entries(i.inputStyle))
+          r.style[p] = f;
     }
-    l && l.focus();
-    const p = () => {
-      o.onclose && o.onclose(), u.close(), e.setDirtyCanvas(!0, !0);
-    }, f = () => {
-      r !== "boolean" && r !== "toggle" ? c(l.value) : p();
-    }, c = (y) => {
-      n && n.values && n.values.constructor === Object && n.values[y] !== void 0 && (y = n.values[y]), typeof e.properties[s] == "number" && (y = Number(y)), (r === "array" || r === "object") && (y = JSON.parse(y)), e.setProperty(s, y), p();
+    r && r.focus();
+    const c = () => {
+      n.onclose && n.onclose(), a.close(), e.setDirtyCanvas(!0, !0);
+    }, d = () => {
+      o !== "boolean" && o !== "toggle" ? u(r.value) : c();
+    }, u = (m) => {
+      i && i.values && i.values.constructor === Object && i.values[m] !== void 0 && (m = i.values[m]), typeof e.properties[s] == "number" && (m = Number(m)), (o === "array" || o === "object") && (m = JSON.parse(m)), e.setProperty(s, m), c();
     };
-    return u.querySelector("button").addEventListener("click", f), ft(u), u;
+    return a.querySelector("button").addEventListener("click", d), dt(a), a;
   }
   // TODO refactor, theer are different dialog, some uses createDialog, some dont
   createDialog(e, s = { checkForInput: !1, closeOnLeave: !0, closeOnLeave_checkModified: !0 }) {
-    const o = document.createElement("div");
-    o.className = "graphdialog", o.innerHTML = e, o.is_modified = !1;
-    const n = this.canvas.getBoundingClientRect();
-    let r = -20, a = -20;
-    if (n && (r -= n.left, a -= n.top), s.position ? (r = s.position[0], a = s.position[1]) : s.event ? (r = s.event.clientX, a = s.event.clientY) : (r += this.canvas.width * 0.5, a += this.canvas.height * 0.5), o.style.left = `${r}px`, o.style.top = `${a}px`, this.canvas.parentNode.appendChild(o), s.checkForInput) {
-      const f = o.querySelectorAll("input");
-      f && f.forEach((c) => {
-        c.addEventListener("keydown", (g) => {
-          if (o.modified(), g.keyCode === 27)
-            o.close();
-          else if (g.keyCode !== 13)
+    const n = document.createElement("div");
+    n.className = "graphdialog", n.innerHTML = e, n.is_modified = !1;
+    const i = this.canvas.getBoundingClientRect();
+    let o = -20, l = -20;
+    if (i && (o -= i.left, l -= i.top), s.position ? (o = s.position[0], l = s.position[1]) : s.event ? (o = s.event.clientX, l = s.event.clientY) : (o += this.canvas.width * 0.5, l += this.canvas.height * 0.5), n.style.left = `${o}px`, n.style.top = `${l}px`, this.canvas.parentNode.appendChild(n), s.checkForInput) {
+      const d = n.querySelectorAll("input");
+      d && d.forEach((u) => {
+        u.addEventListener("keydown", (_) => {
+          if (n.modified(), _.keyCode === 27)
+            n.close();
+          else if (_.keyCode !== 13)
             return;
-          g.preventDefault(), g.stopPropagation();
-        }), c.focus();
+          _.preventDefault(), _.stopPropagation();
+        }), u.focus();
       });
     }
-    o.modified = function() {
-      o.is_modified = !0;
-    }, o.close = function() {
-      o.parentNode && o.parentNode.removeChild(o);
+    n.modified = function() {
+      n.is_modified = !0;
+    }, n.close = function() {
+      n.parentNode && n.parentNode.removeChild(n);
     };
-    let u = null, l = 0;
-    o.addEventListener("mouseleave", (f) => {
-      l || (s.closeOnLeave || h.dialog_close_on_mouse_leave) && !o.is_modified && h.dialog_close_on_mouse_leave && f.buttons === 0 && (u = setTimeout(o.close, h.dialog_close_on_mouse_leave_delay));
-    }), o.addEventListener("mouseenter", (f) => {
-      (s.closeOnLeave || h.dialog_close_on_mouse_leave) && u && clearTimeout(u);
+    let a = null, r = 0;
+    n.addEventListener("mouseleave", (d) => {
+      r || (s.closeOnLeave || h.dialog_close_on_mouse_leave) && !n.is_modified && h.dialog_close_on_mouse_leave && d.buttons === 0 && (a = setTimeout(n.close, h.dialog_close_on_mouse_leave_delay));
+    }), n.addEventListener("mouseenter", (d) => {
+      (s.closeOnLeave || h.dialog_close_on_mouse_leave) && a && clearTimeout(a);
     });
-    const p = o.querySelectorAll("select");
-    return p && p.forEach((f) => {
-      f.addEventListener("click", (c) => {
-        l++;
-      }), f.addEventListener("blur", (c) => {
-        l = 0;
-      }), f.addEventListener("change", (c) => {
-        l = -1;
+    const c = n.querySelectorAll("select");
+    return c && c.forEach((d) => {
+      d.addEventListener("click", (u) => {
+        r++;
+      }), d.addEventListener("blur", (u) => {
+        r = 0;
+      }), d.addEventListener("change", (u) => {
+        r = -1;
       });
-    }), o;
+    }), n;
   }
   getCanvasMenuOptions() {
     let e = null;
@@ -5136,12 +5138,12 @@ class C {
       {
         content: "Add Node",
         has_submenu: !0,
-        callback: T.onMenuAdd
+        callback: b.onMenuAdd
       },
-      { content: "Add Group", callback: T.onGroupAdd }
+      { content: "Add Group", callback: b.onGroupAdd }
       // { content: "Arrange", callback: that.graph.arrange },
       // {content:"Collapse All", callback: LGraphCanvas.onMenuCollapseAll }
-    ], this._graph_stack && this._graph_stack.length > 0 && e.push(Y.SEPARATOR, {
+    ], this._graph_stack && this._graph_stack.length > 0 && e.push($.SEPARATOR, {
       content: "Close subgraph",
       callback: this.closeSubgraph.bind(this)
     })), this.getExtraMenuOptions) {
@@ -5157,108 +5159,108 @@ class C {
         content: "Inputs",
         has_submenu: !0,
         disabled: !0,
-        callback: T.showMenuNodeOptionalInputs
+        callback: b.showMenuNodeOptionalInputs
       },
       {
         content: "Outputs",
         has_submenu: !0,
         disabled: !0,
-        callback: T.showMenuNodeOptionalOutputs
+        callback: b.showMenuNodeOptionalOutputs
       },
-      Y.SEPARATOR,
+      $.SEPARATOR,
       {
         content: "Properties",
         has_submenu: !0,
         disabled: h.ignore_all_widget_events,
-        callback: T.onShowMenuNodeProperties
+        callback: b.onShowMenuNodeProperties
       },
-      Y.SEPARATOR,
+      $.SEPARATOR,
       {
         content: "Title",
         value: { name: "title", type: "string" },
-        callback: T.onShowPropertyEditor
+        callback: b.onShowPropertyEditor
       },
       {
         content: "Mode",
         has_submenu: !0,
-        callback: T.onMenuNodeMode
+        callback: b.onMenuNodeMode
       }
     ], e.resizable !== !1 && s.push({
       content: "Resize",
-      callback: T.onMenuResizeNode
+      callback: b.onMenuResizeNode
     }), s.push(
       {
         content: "Collapse",
-        callback: T.onMenuNodeCollapse
+        callback: b.onMenuNodeCollapse
       },
-      { content: "Pin", callback: T.onMenuNodePin },
+      { content: "Pin", callback: b.onMenuNodePin },
       {
         content: "Colors",
         has_submenu: !0,
-        callback: T.onMenuNodeColors
+        callback: b.onMenuNodeColors
       },
       {
         content: "Shapes",
         has_submenu: !0,
-        callback: T.onMenuNodeShapes
+        callback: b.onMenuNodeShapes
       },
-      Y.SEPARATOR
+      $.SEPARATOR
     ));
-    const o = e.getOptionalSlots();
-    if (o && (o.inputs && o.inputs.length > 0 && typeof s[0] == "object" && (s[0].disabled = !1), o.outputs && o.outputs.length && typeof s[1] == "object" && (s[1].disabled = !1)), e.getExtraMenuOptions) {
-      const r = e.getExtraMenuOptions(this, s);
-      r && (r.push(Y.SEPARATOR), s = r.concat(s));
+    const n = e.getOptionalSlots();
+    if (n && (n.inputs && n.inputs.length > 0 && typeof s[0] == "object" && (s[0].disabled = !1), n.outputs && n.outputs.length && typeof s[1] == "object" && (s[1].disabled = !1)), e.getExtraMenuOptions) {
+      const o = e.getExtraMenuOptions(this, s);
+      o && (o.push($.SEPARATOR), s = o.concat(s));
     }
     e.clonable !== !1 && s.push({
       content: "Clone",
-      callback: T.onMenuNodeClone
+      callback: b.onMenuNodeClone
     }), s.push({
       content: "To Subgraph",
-      callback: T.onMenuNodeToSubgraph
+      callback: b.onMenuNodeToSubgraph
     });
-    let n = Object.values(this.selected_nodes || {});
-    if (n.length || (n = [e]), n = n.filter((r) => !r.is(V) && !r.is(j)), s.push({
+    let i = Object.values(this.selected_nodes || {});
+    if (i.length || (i = [e]), i = i.filter((o) => !o.is(X) && !o.is(V)), s.push({
       content: "To Parent Graph",
-      disabled: !e.graph._is_subgraph || n.length === 0,
-      callback: T.onMenuNodeToParentGraph
+      disabled: !e.graph._is_subgraph || i.length === 0,
+      callback: b.onMenuNodeToParentGraph
     }), e.graph._is_subgraph) {
-      const r = (p) => {
-        let f = 0;
-        const c = ht(p, (g) => g.id);
-        for (const g of p)
-          for (const y of g.iterateAllLinks()) {
-            if (c[y.origin_id] === null)
+      const o = (c) => {
+        let d = 0;
+        const u = ut(c, (_) => _.id);
+        for (const _ of c)
+          for (const m of _.iterateAllLinks()) {
+            if (u[m.origin_id] === null)
               return 0;
-            c[y.target_id] === null && (f += 1);
+            u[m.target_id] === null && (d += 1);
           }
-        return f;
-      }, a = (p) => {
-        let f = 0;
-        const c = ht(p, (g) => g.id);
-        for (const g of p)
-          for (const y of g.iterateAllLinks())
-            if (c[y.origin_id] === null)
-              f += 1;
-            else if (c[y.target_id] === null)
+        return d;
+      }, l = (c) => {
+        let d = 0;
+        const u = ut(c, (_) => _.id);
+        for (const _ of c)
+          for (const m of _.iterateAllLinks())
+            if (u[m.origin_id] === null)
+              d += 1;
+            else if (u[m.target_id] === null)
               return 0;
-        return f;
-      }, u = r(n);
+        return d;
+      }, a = o(i);
       s.push({
-        content: `To Subgraph Input${u > 1 ? "s" : ""}`,
-        disabled: u === 0,
-        callback: T.onMenuNodeToSubgraphInputs
+        content: `To Subgraph Input${a > 1 ? "s" : ""}`,
+        disabled: a === 0,
+        callback: b.onMenuNodeToSubgraphInputs
       });
-      const l = a(n);
+      const r = l(i);
       s.push({
-        content: `To Subgraph Output${l > 1 ? "s" : ""}`,
-        disabled: l === 0,
-        callback: T.onMenuNodeToSubgraphOutputs
+        content: `To Subgraph Output${r > 1 ? "s" : ""}`,
+        disabled: r === 0,
+        callback: b.onMenuNodeToSubgraphOutputs
       });
     }
-    return s.push(Y.SEPARATOR, {
+    return s.push($.SEPARATOR, {
       content: "Remove",
       disabled: !(e.removable !== !1 && !e.block_delete),
-      callback: T.onMenuNodeRemove
+      callback: b.onMenuNodeRemove
     }), e.graph && e.graph.onGetNodeMenuOptions && (s = e.graph.onGetNodeMenuOptions(s, e)), s;
   }
   getGroupMenuOptions(e) {
@@ -5266,184 +5268,185 @@ class C {
       {
         content: "Title",
         value: { name: "title", type: "string" },
-        callback: T.onShowPropertyEditor
+        callback: b.onShowPropertyEditor
       },
       {
         content: "Color",
         has_submenu: !0,
-        callback: T.onMenuNodeColors
+        callback: b.onMenuNodeColors
       },
       {
         content: "Font size",
         value: { name: "fontSize", type: "number" },
-        callback: T.onShowPropertyEditor
+        callback: b.onShowPropertyEditor
       },
-      Y.SEPARATOR,
-      { content: "Remove", callback: T.onMenuNodeRemove }
+      $.SEPARATOR,
+      { content: "Remove", callback: b.onMenuNodeRemove }
     ];
   }
   /** Called when mouse right click */
   processContextMenu(e, s) {
-    const n = T.active_canvas.getCanvasWindow(), r = s;
-    let a = null, u = null, l = null;
-    e !== null && (l = e.item, e.type === "node" && (a = e.item), e.type === "link" && (u = e.item));
-    let p = null;
-    const f = {
-      event: r,
-      extra: l
-    };
-    a !== null && (f.title = a.type);
+    const i = b.active_canvas.getCanvasWindow(), o = s;
+    let l = null, a = null, r = null;
+    e !== null && (r = e.item, e.type === "node" && (l = e.item), e.type === "link" && (a = e.item));
     let c = null;
-    a !== null && (c = a.getSlotInPosition(r.canvasX, r.canvasY), T.active_node = a);
-    const g = (_) => {
-      const m = _.slot;
-      a.graph.beforeChange(), m.input ? a.removeInput(m.slot) : m.output && a.removeOutput(m.slot), a.graph.afterChange();
-    }, y = (_) => {
-      const m = _.slot;
-      a.graph.beforeChange(), m.output ? a.disconnectOutput(m.slot) : m.input && a.disconnectInput(m.slot), a.graph.afterChange();
-    }, d = (_) => {
-      const m = _.slot, b = m.input ? a.getInputInfo(m.slot) : a.getOutputInfo(m.slot), v = this.createDialog(
-        "<span class='name'>Name</span><input autofocus type='text'/><button>OK</button>",
-        f
-      ), O = v.querySelector("input");
-      O && b && (O.value = b.label || "");
-      const N = () => {
-        a.graph.beforeChange(), O.value && (b && (b.label = O.value), this.setDirty(!0)), v.close(), a.graph.afterChange();
-      };
-      v.querySelector("button").addEventListener("click", N), O.addEventListener("keydown", (E) => {
-        if (v.is_modified = !0, E.keyCode === 27)
-          v.close();
-        else if (E.keyCode === 13)
-          N();
-        else if (E.keyCode !== 13 && E.target instanceof Element && E.target.localName !== "textarea")
-          return;
-        E.preventDefault(), E.stopPropagation();
-      }), O.focus();
+    const d = {
+      event: o,
+      extra: r
     };
-    if (c) {
-      if (p = [], a.getSlotMenuOptions)
-        p = a.getSlotMenuOptions(c);
+    l !== null && (d.title = l.type);
+    let u = null;
+    l !== null && (u = l.getSlotInPosition(o.canvasX, o.canvasY), b.active_node = l);
+    const _ = (f) => {
+      const v = f.slot;
+      l.graph.beforeChange(), v.input ? l.removeInput(v.slot) : v.output && l.removeOutput(v.slot), l.graph.afterChange();
+    }, m = (f) => {
+      const v = f.slot;
+      l.graph.beforeChange(), v.output ? l.disconnectOutput(v.slot) : v.input && l.disconnectInput(v.slot), l.graph.afterChange();
+    }, p = (f) => {
+      const v = f.slot, y = v.input ? l.getInputInfo(v.slot) : l.getOutputInfo(v.slot), g = this.createDialog(
+        "<span class='name'>Name</span><input autofocus type='text'/><button>OK</button>",
+        d
+      ), N = g.querySelector("input");
+      N && y && (N.value = y.label || "");
+      const E = () => {
+        l.graph.beforeChange(), N.value && (y && (y.label = N.value), this.setDirty(!0)), g.close(), l.graph.afterChange();
+      };
+      g.querySelector("button").addEventListener("click", E), N.addEventListener("keydown", (T) => {
+        if (g.is_modified = !0, T.keyCode === 27)
+          g.close();
+        else if (T.keyCode === 13)
+          E();
+        else if (T.keyCode !== 13 && T.target instanceof Element && T.target.localName !== "textarea")
+          return;
+        T.preventDefault(), T.stopPropagation();
+      }), N.focus();
+    };
+    if (u) {
+      if (c = [], l.getSlotMenuOptions)
+        c = l.getSlotMenuOptions(u);
       else {
-        c && c.output && c.output.links && c.output.links.length && p.push({ content: "Disconnect Links", slot: c, callback: y });
-        const m = c.input || c.output;
-        m.removable && p.push(
-          m.locked ? "Cannot remove" : { content: "Remove Slot", slot: c, callback: g }
-        ), m.nameLocked || p.push({ content: "Rename Slot", slot: c, callback: d });
+        u && u.output && u.output.links && u.output.links.length && c.push({ content: "Disconnect Links", slot: u, callback: m });
+        const v = u.input || u.output;
+        v.removable && c.push(
+          v.locked ? "Cannot remove" : { content: "Remove Slot", slot: u, callback: _ }
+        ), v.nameLocked || c.push({ content: "Rename Slot", slot: u, callback: p });
       }
-      const _ = (c.input ? c.input.type : c.output.type) || "*";
-      f.title = X(_);
-    } else if (a)
-      p = this.getNodeMenuOptions(a);
-    else if (u)
-      p = this.getLinkMenuOptions(u);
+      const f = (u.input ? u.input.type : u.output.type) || "*";
+      d.title = W(f);
+    } else if (l)
+      c = this.getNodeMenuOptions(l);
+    else if (a)
+      c = this.getLinkMenuOptions(a);
     else {
-      p = this.getCanvasMenuOptions();
-      const _ = this.graph.getGroupOnPos(
-        r.canvasX,
-        r.canvasY
+      c = this.getCanvasMenuOptions();
+      const f = this.graph.getGroupOnPos(
+        o.canvasX,
+        o.canvasY
       );
-      _ && p.push(Y.SEPARATOR, {
+      f && c.push($.SEPARATOR, {
         content: "Edit Group",
         has_submenu: !0,
         submenu: {
           title: "Group",
-          extra: _,
-          options: this.getGroupMenuOptions(_)
+          extra: f,
+          options: this.getGroupMenuOptions(f)
         }
       });
     }
-    p && new z(p, f, n);
+    c && new U(c, d, i);
   }
   createPanel(e, s = {}) {
-    const o = s.window || window, n = document.createElement("div");
-    if (n.className = "litegraph dialog", n.innerHTML = `
+    const n = s.window || window, i = document.createElement("div");
+    if (i.className = "litegraph dialog", i.innerHTML = `
 <div class='dialog-header'><span class='dialog-title'></span></div>
 <div class='dialog-content'></div>
 <div style='display:none;' class='dialog-alt-content'></div>
-<div class='dialog-footer'></div>`, n.header = n.querySelector(".dialog-header"), s.width && (n.style.width = s.width + (s.width.constructor === Number ? "px" : "")), s.height && (n.style.height = s.height + (s.height.constructor === Number ? "px" : "")), s.closable) {
-      const r = document.createElement("span");
-      r.innerHTML = "&#10005;", r.classList.add("close"), r.addEventListener("click", () => {
-        n.close();
-      }), n.header.appendChild(r);
+<div class='dialog-footer'></div>`, i.header = i.querySelector(".dialog-header"), s.width && (i.style.width = s.width + (s.width.constructor === Number ? "px" : "")), s.height && (i.style.height = s.height + (s.height.constructor === Number ? "px" : "")), s.closable) {
+      const o = document.createElement("span");
+      o.innerHTML = "&#10005;", o.classList.add("close"), o.addEventListener("click", () => {
+        i.close();
+      }), i.header.appendChild(o);
     }
-    return s.onOpen && (n.onOpen = s.onOpen), s.onClose && (n.onClose = s.onClose), n.title_element = n.querySelector(".dialog-title"), n.title_element.innerText = e, n.content = n.querySelector(".dialog-content"), n.alt_content = n.querySelector(".dialog-alt-content"), n.footer = n.querySelector(".dialog-footer"), n.close = function() {
-      n.onClose && typeof n.onClose == "function" && n.onClose(), n.parentNode && n.parentNode.removeChild(n), this.parentNode && this.parentNode.removeChild(this);
-    }, n.toggleAltContent = function(r = !1) {
-      typeof r < "u" || (n.alt_content.style.display, n.alt_content.style.display), n.alt_content.style.display = vTo, n.content.style.display = vAlt;
-    }, n.toggleFooterVisibility = function(r = !1) {
-      let a;
-      typeof r < "u" ? a = r ? "block" : "none" : a = n.footer.style.display !== "block" ? "block" : "none", n.footer.style.display = a;
-    }, n.clear = function() {
+    return s.onOpen && (i.onOpen = s.onOpen), s.onClose && (i.onClose = s.onClose), i.title_element = i.querySelector(".dialog-title"), i.title_element.innerText = e, i.content = i.querySelector(".dialog-content"), i.alt_content = i.querySelector(".dialog-alt-content"), i.footer = i.querySelector(".dialog-footer"), i.close = function() {
+      i.onClose && typeof i.onClose == "function" && i.onClose(), i.parentNode && i.parentNode.removeChild(i), this.parentNode && this.parentNode.removeChild(this);
+    }, i.toggleAltContent = function(o = !1) {
+      let l, a;
+      typeof o < "u" ? (l = o ? "block" : "none", a = o ? "none" : "block") : (l = i.alt_content.style.display !== "block" ? "block" : "none", a = i.alt_content.style.display !== "block" ? "none" : "block"), i.alt_content.style.display = l, i.content.style.display = a;
+    }, i.toggleFooterVisibility = function(o = !1) {
+      let l;
+      typeof o < "u" ? l = o ? "block" : "none" : l = i.footer.style.display !== "block" ? "block" : "none", i.footer.style.display = l;
+    }, i.clear = function() {
       this.content.innerHTML = "";
-    }, n.addHTML = function(r, a, u) {
-      const l = document.createElement("div");
-      return a && (l.className = a), l.innerHTML = r, u ? n.footer.appendChild(l) : n.content.appendChild(l), l;
-    }, n.addButton = function(r, a, u) {
-      const l = document.createElement("button");
-      return l.innerText = r, l.options = u, l.classList.add("btn"), l.addEventListener("click", a), n.footer.appendChild(l), l;
-    }, n.addSeparator = function() {
+    }, i.addHTML = function(o, l, a) {
       const r = document.createElement("div");
-      return r.className = "separator", n.content.appendChild(r), r;
-    }, n.addWidget = function(r, a, u, l = {}, p) {
-      let f = String(u);
-      r = r.toLowerCase(), r === "number" && (f = u.toFixed(3));
-      const c = document.createElement("div");
-      c.className = "property", c.innerHTML = "<span class='property_name'></span><span class='property_value'></span>";
-      const g = c.querySelector(".property_name");
-      g.innerText = l.label || a;
-      const y = c.querySelector(".property_value");
-      if (y.innerText = f, c.dataset.property = a, c.dataset.type = l.type || r, c.options = l, c.value = u, r === "code")
-        c.addEventListener("click", function(_) {
-          n.inner_showCodePad(this.dataset.property);
+      return l && (r.className = l), r.innerHTML = o, a ? i.footer.appendChild(r) : i.content.appendChild(r), r;
+    }, i.addButton = function(o, l, a) {
+      const r = document.createElement("button");
+      return r.innerText = o, r.options = a, r.classList.add("btn"), r.addEventListener("click", l), i.footer.appendChild(r), r;
+    }, i.addSeparator = function() {
+      const o = document.createElement("div");
+      return o.className = "separator", i.content.appendChild(o), o;
+    }, i.addWidget = function(o, l, a, r = {}, c) {
+      let d = String(a);
+      o = o.toLowerCase(), o === "number" && (d = a.toFixed(3));
+      const u = document.createElement("div");
+      u.className = "property", u.innerHTML = "<span class='property_name'></span><span class='property_value'></span>";
+      const _ = u.querySelector(".property_name");
+      _.innerText = r.label || l;
+      const m = u.querySelector(".property_value");
+      if (m.innerText = d, u.dataset.property = l, u.dataset.type = r.type || o, u.options = r, u.value = a, o === "code")
+        u.addEventListener("click", function(f) {
+          i.inner_showCodePad(this.dataset.property);
         });
-      else if (r === "boolean")
-        c.classList.add("boolean"), u && c.classList.add("bool-on"), c.addEventListener("click", function() {
-          const _ = this.dataset.property;
+      else if (o === "boolean")
+        u.classList.add("boolean"), a && u.classList.add("bool-on"), u.addEventListener("click", function() {
+          const f = this.dataset.property;
           this.value = !this.value, this.classList.toggle("bool-on");
-          const m = this.querySelector(".property_value");
-          m.innerText = this.value ? "true" : "false", d(_, this.value);
+          const v = this.querySelector(".property_value");
+          v.innerText = this.value ? "true" : "false", p(f, this.value);
         });
-      else if (r === "string" || r === "number")
-        y.setAttribute("contenteditable", "true"), y.addEventListener("keydown", function(_) {
-          _.code === "Enter" && (r !== "string" || !_.shiftKey) && (_.preventDefault(), this.blur());
-        }), y.addEventListener("blur", function() {
-          let _ = this.innerText;
-          const m = this.parentNode, b = m.dataset.property;
-          m.dataset.type === "number" && (_ = Number(_)), d(b, _);
+      else if (o === "string" || o === "number")
+        m.setAttribute("contenteditable", "true"), m.addEventListener("keydown", function(f) {
+          f.code === "Enter" && (o !== "string" || !f.shiftKey) && (f.preventDefault(), this.blur());
+        }), m.addEventListener("blur", function() {
+          let f = this.innerText;
+          const v = this.parentNode, y = v.dataset.property;
+          v.dataset.type === "number" && (f = Number(f)), p(y, f);
         });
-      else if ((r === "enum" || r === "combo") && "values" in l) {
-        const _ = T.getPropertyPrintableValue(u, l.values);
-        y.innerText = _, y.addEventListener("click", function(m) {
-          let b = l.values || [];
-          typeof b == "function" && (console.error("Values by callback not supported in panel.addWidget!", b), b = []);
-          const O = this.parentNode.dataset.property, N = this, E = Array.from(b).map((x) => ({ content: x }));
-          new z(E, {
-            event: m,
+      else if ((o === "enum" || o === "combo") && "values" in r) {
+        const f = b.getPropertyPrintableValue(a, r.values);
+        m.innerText = f, m.addEventListener("click", function(v) {
+          let y = r.values || [];
+          typeof y == "function" && (console.error("Values by callback not supported in panel.addWidget!", y), y = []);
+          const N = this.parentNode.dataset.property, E = this, T = Array.from(y).map((F) => ({ content: F }));
+          new U(T, {
+            event: v,
             className: "dark",
-            callback: G
-          }, o);
-          function G(x, w, P) {
-            return N.innerText = x.content, d(O, x.content), !1;
+            callback: M
+          }, n);
+          function M(F, I, D) {
+            return E.innerText = F.content, p(N, F.content), !1;
           }
         });
       }
-      n.content.appendChild(c);
-      function d(_, m) {
-        l.callback && l.callback(_, m, l), p && p(_, m, l);
+      i.content.appendChild(u);
+      function p(f, v) {
+        r.callback && r.callback(f, v, r), c && c(f, v, r);
       }
-      return c;
-    }, n.onOpen && typeof n.onOpen == "function" && n.onOpen(), n;
+      return u;
+    }, i.onOpen && typeof i.onOpen == "function" && i.onOpen(), i;
   }
   checkPanels() {
     if (!this.canvas)
       return;
     const e = this.canvas.parentNode.querySelectorAll(".litegraph.dialog");
     for (let s = 0; s < e.length; ++s) {
-      const o = e[s];
-      if (o.node && (o.node.graph || o.close(), o.node.graph !== this.graph)) {
-        if (o.node.is(J) && this.graph._is_subgraph && this.graph === o.node.subgraph)
+      const n = e[s];
+      if (n.node && (n.node.graph || n.close(), n.node.graph !== this.graph)) {
+        if (n.node.is(Z) && this.graph._is_subgraph && this.graph === n.node.subgraph)
           continue;
-        o.close();
+        n.close();
       }
     }
   }
@@ -5452,414 +5455,414 @@ class C {
     e && e.close(), e = document.querySelector("#option-panel"), e && e.close();
   }
 }
-C.onShowPropertyEditor = function(t, e, s, o, n) {
-  const r = t.value;
-  console.log(r);
-  const a = r.name, u = n[a], l = document.createElement("div");
-  l.is_modified = !1, l.className = "graphdialog", l.innerHTML = "<span class='name'></span><input autofocus type='text' class='value'/><button>OK</button>", l.close = function() {
-    l.parentNode && l.parentNode.removeChild(l);
+w.onShowPropertyEditor = function(t, e, s, n, i) {
+  const o = t.value;
+  console.log(o);
+  const l = o.name, a = i[l], r = document.createElement("div");
+  r.is_modified = !1, r.className = "graphdialog", r.innerHTML = "<span class='name'></span><input autofocus type='text' class='value'/><button>OK</button>", r.close = function() {
+    r.parentNode && r.parentNode.removeChild(r);
   };
-  const p = l.querySelector(".name");
-  p.innerText = a;
-  const f = l.querySelector(".value");
-  if (f && (f.value = u, f.addEventListener("blur", function(N) {
+  const c = r.querySelector(".name");
+  c.innerText = l;
+  const d = r.querySelector(".value");
+  if (d && (d.value = a, d.addEventListener("blur", function(E) {
     this.focus();
-  }), f.addEventListener("keydown", (N) => {
-    if (l.is_modified = !0, N.keyCode === 27)
-      l.close();
-    else if (N.keyCode === 13)
-      m();
-    else if (N.keyCode !== 13 && N.target instanceof Element && N.target.localName !== "textarea")
+  }), d.addEventListener("keydown", (E) => {
+    if (r.is_modified = !0, E.keyCode === 27)
+      r.close();
+    else if (E.keyCode === 13)
+      v();
+    else if (E.keyCode !== 13 && E.target instanceof Element && E.target.localName !== "textarea")
       return;
-    N.preventDefault(), N.stopPropagation();
-  }), r.inputStyle))
-    for (const [N, E] of Object.entries(r.inputStyle))
-      f.style[N] = E;
-  const g = T.active_canvas.canvas, y = g.getBoundingClientRect();
-  let d = -20, _ = -20;
-  y && (d -= y.left, _ -= y.top), s ? (l.style.left = `${s.clientX + d}px`, l.style.top = `${s.clientY + _}px`) : (l.style.left = `${g.width * 0.5 + d}px`, l.style.top = `${g.height * 0.5 + _}px`);
-  const m = () => {
-    f && b(f.value);
-  }, b = (N) => {
-    r.type === "number" ? N = Number(N) : r.type === "boolean" && (N = !!N);
-    const E = n[a];
-    n[a] = N, n.onJSPropertyChanged && n.onJSPropertyChanged(a, N, E) === !1 && (n[a] = E), l.parentNode && l.parentNode.removeChild(l), n.setDirtyCanvas(!0, !0);
+    E.preventDefault(), E.stopPropagation();
+  }), o.inputStyle))
+    for (const [E, T] of Object.entries(o.inputStyle))
+      d.style[E] = T;
+  const _ = b.active_canvas.canvas, m = _.getBoundingClientRect();
+  let p = -20, f = -20;
+  m && (p -= m.left, f -= m.top), s ? (r.style.left = `${s.clientX + p}px`, r.style.top = `${s.clientY + f}px`) : (r.style.left = `${_.width * 0.5 + p}px`, r.style.top = `${_.height * 0.5 + f}px`);
+  const v = () => {
+    d && y(d.value);
+  }, y = (E) => {
+    o.type === "number" ? E = Number(E) : o.type === "boolean" && (E = !!E);
+    const T = i[l];
+    i[l] = E, i.onJSPropertyChanged && i.onJSPropertyChanged(l, E, T) === !1 && (i[l] = T), r.parentNode && r.parentNode.removeChild(r), i.setDirtyCanvas(!0, !0);
   };
-  l.querySelector("button").addEventListener("click", m), g.parentNode.appendChild(l), f && f.focus();
-  let O = null;
-  l.addEventListener("mouseleave", (N) => {
-    h.dialog_close_on_mouse_leave && !l.is_modified && h.dialog_close_on_mouse_leave && N.buttons === 0 && (O = setTimeout(l.close, h.dialog_close_on_mouse_leave_delay));
-  }), l.addEventListener("mouseenter", (N) => {
-    h.dialog_close_on_mouse_leave && O && clearTimeout(O);
-  }), ft(l);
+  r.querySelector("button").addEventListener("click", v), _.parentNode.appendChild(r), d && d.focus();
+  let N = null;
+  r.addEventListener("mouseleave", (E) => {
+    h.dialog_close_on_mouse_leave && !r.is_modified && h.dialog_close_on_mouse_leave && E.buttons === 0 && (N = setTimeout(r.close, h.dialog_close_on_mouse_leave_delay));
+  }), r.addEventListener("mouseenter", (E) => {
+    h.dialog_close_on_mouse_leave && N && clearTimeout(N);
+  }), dt(r);
 };
-C.onGroupAdd = function(t, e, s, o) {
-  const n = T.active_canvas;
-  n.getCanvasWindow();
-  const r = new ct();
-  r.pos = n.convertEventToCanvasOffset(s), n.graph.addGroup(r);
+w.onGroupAdd = function(t, e, s, n) {
+  const i = b.active_canvas;
+  i.getCanvasWindow();
+  const o = new ht();
+  o.pos = i.convertEventToCanvasOffset(s), i.graph.addGroup(o);
 };
-C.onMenuAdd = function(t, e, s, o, n) {
-  const r = T.active_canvas, a = r.getCanvasWindow(), u = r.graph;
-  if (!u)
+w.onMenuAdd = function(t, e, s, n, i) {
+  const o = b.active_canvas, l = o.getCanvasWindow(), a = o.graph;
+  if (!a)
     return;
-  function l(p, f) {
-    const c = h.getNodeTypesCategories(r.filter || u.filter).filter((d) => d.startsWith(p)), g = [];
-    c.map((d) => {
-      if (!d)
+  function r(c, d) {
+    const u = h.getNodeTypesCategories(o.filter || a.filter).filter((p) => p.startsWith(c)), _ = [];
+    u.map((p) => {
+      if (!p)
         return;
-      const _ = new RegExp(`^(${p})`), m = d.replace(_, "").split("/")[0], b = p === "" ? `${m}/` : `${p + m}/`;
-      let v = m;
-      v.includes("::") && (v = v.split("::")[1]), g.findIndex((N) => N.value === b) === -1 && g.push(
+      const f = new RegExp(`^(${c})`), v = p.replace(f, "").split("/")[0], y = c === "" ? `${v}/` : `${c + v}/`;
+      let g = v;
+      g.includes("::") && (g = g.split("::")[1]), _.findIndex((E) => E.value === y) === -1 && _.push(
         {
-          value: b,
-          content: v,
+          value: y,
+          content: g,
           has_submenu: !0,
-          callback(N, E, G, x) {
-            l(N.value, x);
+          callback(E, T, M, F) {
+            r(E.value, F);
           }
         }
       );
-    }), h.getNodeTypesInCategory(p.slice(0, -1), r.filter || u.filter).map((d) => {
-      if (d.hide_in_node_lists)
+    }), h.getNodeTypesInCategory(c.slice(0, -1), o.filter || a.filter).map((p) => {
+      if (p.hide_in_node_lists)
         return;
-      const _ = {
-        value: d.class,
-        content: d.title,
+      const f = {
+        value: p.class,
+        content: p.title,
         has_submenu: !1,
-        callback(m, b, v, O) {
-          const N = O.getFirstEvent();
-          r.graph.beforeChange();
-          const E = h.createNode(m.value);
-          E && (E.pos = r.convertEventToCanvasOffset(N), r.graph.add(E)), n && n(E), r.graph.afterChange();
+        callback(v, y, g, N) {
+          const E = N.getFirstEvent();
+          o.graph.beforeChange();
+          const T = h.createNode(v.value);
+          T && (T.pos = o.convertEventToCanvasOffset(E), o.graph.add(T)), i && i(T), o.graph.afterChange();
         }
       };
-      g.push(_);
-    }), new z(g, { event: s, parentMenu: f }, a);
+      _.push(f);
+    }), new U(_, { event: s, parentMenu: d }, l);
   }
-  return l("", o), !1;
+  return r("", n), !1;
 };
-C.showMenuNodeOptionalInputs = function(t, e, s, o, n) {
-  if (!n)
+w.showMenuNodeOptionalInputs = function(t, e, s, n, i) {
+  if (!i)
     return;
-  const r = this, u = T.active_canvas.getCanvasWindow(), l = n.getOptionalSlots().inputs;
-  let p = [];
-  if (l)
-    for (let c = 0; c < l.length; c++) {
-      const g = l[c];
-      if (!g) {
-        p.push(Y.SEPARATOR);
+  const o = this, a = b.active_canvas.getCanvasWindow(), r = i.getOptionalSlots().inputs;
+  let c = [];
+  if (r)
+    for (let u = 0; u < r.length; u++) {
+      const _ = r[u];
+      if (!_) {
+        c.push($.SEPARATOR);
         continue;
       }
-      let { name: y, type: d, options: _ } = g;
-      _ || (_ = {}), _.label && (y = _.label), _.removable = !0;
-      const m = { content: y, value: g };
-      d === k.ACTION && (m.className = "event"), p.push(m);
+      let { name: m, type: p, options: f } = _;
+      f || (f = {}), f.label && (m = f.label), f.removable = !0;
+      const v = { content: m, value: _ };
+      p === O.ACTION && (v.className = "event"), c.push(v);
     }
-  if (n.onMenuNodeInputs) {
-    const c = n.onMenuNodeInputs(p);
-    c && (p = c);
+  if (i.onMenuNodeInputs) {
+    const u = i.onMenuNodeInputs(c);
+    u && (c = u);
   }
-  if (!p.length) {
+  if (!c.length) {
     console.log("no input entries");
     return;
   }
-  new z(
-    p,
+  new U(
+    c,
     {
       event: s,
-      callback: f,
-      parentMenu: o,
-      node: n
-    },
-    u
-  );
-  function f(c, g, y, d) {
-    if (n && (c.callback && c.callback.call(r, n, c, y, d), c.value)) {
-      const _ = c.value;
-      n.graph.beforeChange(), n.addInput(_.name, _.type, _.options), n.onNodeOptionalInputAdd && n.onNodeOptionalInputAdd(c.value), n.setDirtyCanvas(!0, !0), n.graph.afterChange();
-    }
-  }
-  return !1;
-};
-C.showMenuNodeOptionalOutputs = function(t, e, s, o, n) {
-  if (!n)
-    return;
-  const r = this, u = T.active_canvas.getCanvasWindow(), l = n.getOptionalSlots().outputs;
-  let p = [];
-  if (l)
-    for (let c = 0; c < l.length; c++) {
-      const g = l[c];
-      if (!g) {
-        p.push(Y.SEPARATOR);
-        continue;
-      }
-      let { name: y, type: d, options: _ } = g;
-      if (n.flags && n.flags.skip_repeated_outputs && n.findOutputSlotIndexByName(g[0]) !== -1)
-        continue;
-      _ || (_ = {}), _.label && (y = _.label), _.removable = !0;
-      const m = { content: y, value: [y, d, _] };
-      d === k.EVENT && (m.className = "event"), p.push(m);
-    }
-  if (this.onMenuNodeOutputs && (p = this.onMenuNodeOutputs(p)), h.do_add_triggers_slots && n.findOutputSlotIndexByName("onExecuted") === -1 && p.push({ content: "On Executed", value: ["onExecuted", k.EVENT, { nameLocked: !0 }], className: "event" }), n.onMenuNodeOutputs) {
-    const c = n.onMenuNodeOutputs(p);
-    c && (p = c);
-  }
-  if (!p.length)
-    return;
-  const f = function(c, g, y, d) {
-    if (!n || (c.callback && c.callback.call(r, n, c, y, d), !c.value))
-      return;
-    const _ = c.value[1];
-    if (_ && (_.constructor === Object || _.constructor === Array)) {
-      const m = [];
-      for (const b in _)
-        m.push({ content: b, value: _[b] });
-      return new z(m, {
-        event: y,
-        callback: f,
-        parentMenu: o,
-        node: n
-      }), !1;
-    } else {
-      const m = c.value;
-      n.graph.beforeChange(), n.addOutput(m.name, m.type, m.options), n.onNodeOptionalOutputAdd && n.onNodeOptionalOutputAdd(c.value), n.setDirtyCanvas(!0, !0), n.graph.afterChange();
-    }
-  };
-  return new z(
-    p,
-    {
-      event: s,
-      callback: f,
-      parentMenu: o,
-      node: n
-    },
-    u
-  ), !1;
-};
-C.onMenuResizeNode = function(t, e, s, o, n) {
-  if (!n)
-    return;
-  const r = function(u) {
-    u.size = u.computeSize(), u.onResize && u.onResize(u.size);
-  }, a = T.active_canvas;
-  if (!a.selected_nodes || Object.keys(a.selected_nodes).length <= 1)
-    r(n);
-  else
-    for (const u in a.selected_nodes)
-      r(a.selected_nodes[u]);
-  n.setDirtyCanvas(!0, !0);
-};
-C.onShowMenuNodeProperties = function(t, e, s, o, n) {
-  if (!n || !n.properties)
-    return;
-  const r = T.active_canvas, a = r.getCanvasWindow(), u = [];
-  for (const p in n.properties) {
-    let f = n.properties[p] !== void 0 ? n.properties[p] : " ";
-    typeof f == "object" && (f = JSON.stringify(f));
-    const c = n.getPropertyInfo(p);
-    (c.type === "enum" || c.type === "combo") && (f = T.getPropertyPrintableValue(f, c.values)), f = T.decodeHTML(f), u.push({
-      content: `<span class='property_name'>${c.label ? c.label : p}</span><span class='property_value'>${f}</span>`,
-      value: p
-    });
-  }
-  if (!u.length)
-    return;
-  new z(
-    u,
-    {
-      event: s,
-      callback: l,
-      parentMenu: o,
-      allow_html: !0,
-      node: n
+      callback: d,
+      parentMenu: n,
+      node: i
     },
     a
   );
-  function l(p, f, c, g) {
-    if (!n)
+  function d(u, _, m, p) {
+    if (i && (u.callback && u.callback.call(o, i, u, m, p), u.value)) {
+      const f = u.value;
+      i.graph.beforeChange(), i.addInput(f.name, f.type, f.options), i.onNodeOptionalInputAdd && i.onNodeOptionalInputAdd(u.value), i.setDirtyCanvas(!0, !0), i.graph.afterChange();
+    }
+  }
+  return !1;
+};
+w.showMenuNodeOptionalOutputs = function(t, e, s, n, i) {
+  if (!i)
+    return;
+  const o = this, a = b.active_canvas.getCanvasWindow(), r = i.getOptionalSlots().outputs;
+  let c = [];
+  if (r)
+    for (let u = 0; u < r.length; u++) {
+      const _ = r[u];
+      if (!_) {
+        c.push($.SEPARATOR);
+        continue;
+      }
+      let { name: m, type: p, options: f } = _;
+      if (i.flags && i.flags.skip_repeated_outputs && i.findOutputSlotIndexByName(_[0]) !== -1)
+        continue;
+      f || (f = {}), f.label && (m = f.label), f.removable = !0;
+      const v = { content: m, value: [m, p, f] };
+      p === O.EVENT && (v.className = "event"), c.push(v);
+    }
+  if (this.onMenuNodeOutputs && (c = this.onMenuNodeOutputs(c)), h.do_add_triggers_slots && i.findOutputSlotIndexByName("onExecuted") === -1 && c.push({ content: "On Executed", value: ["onExecuted", O.EVENT, { nameLocked: !0 }], className: "event" }), i.onMenuNodeOutputs) {
+    const u = i.onMenuNodeOutputs(c);
+    u && (c = u);
+  }
+  if (!c.length)
+    return;
+  const d = function(u, _, m, p) {
+    if (!i || (u.callback && u.callback.call(o, i, u, m, p), !u.value))
       return;
-    const y = this.getBoundingClientRect();
-    r.showEditPropertyValue(n, p.value, {
-      position: [y.left, y.top]
+    const f = u.value[1];
+    if (f && (f.constructor === Object || f.constructor === Array)) {
+      const v = [];
+      for (const y in f)
+        v.push({ content: y, value: f[y] });
+      return new U(v, {
+        event: m,
+        callback: d,
+        parentMenu: n,
+        node: i
+      }), !1;
+    } else {
+      const v = u.value;
+      i.graph.beforeChange(), i.addOutput(v.name, v.type, v.options), i.onNodeOptionalOutputAdd && i.onNodeOptionalOutputAdd(u.value), i.setDirtyCanvas(!0, !0), i.graph.afterChange();
+    }
+  };
+  return new U(
+    c,
+    {
+      event: s,
+      callback: d,
+      parentMenu: n,
+      node: i
+    },
+    a
+  ), !1;
+};
+w.onMenuResizeNode = function(t, e, s, n, i) {
+  if (!i)
+    return;
+  const o = function(a) {
+    a.size = a.computeSize(), a.onResize && a.onResize(a.size);
+  }, l = b.active_canvas;
+  if (!l.selected_nodes || Object.keys(l.selected_nodes).length <= 1)
+    o(i);
+  else
+    for (const a in l.selected_nodes)
+      o(l.selected_nodes[a]);
+  i.setDirtyCanvas(!0, !0);
+};
+w.onShowMenuNodeProperties = function(t, e, s, n, i) {
+  if (!i || !i.properties)
+    return;
+  const o = b.active_canvas, l = o.getCanvasWindow(), a = [];
+  for (const c in i.properties) {
+    let d = i.properties[c] !== void 0 ? i.properties[c] : " ";
+    typeof d == "object" && (d = JSON.stringify(d));
+    const u = i.getPropertyInfo(c);
+    (u.type === "enum" || u.type === "combo") && (d = b.getPropertyPrintableValue(d, u.values)), d = b.decodeHTML(d), a.push({
+      content: `<span class='property_name'>${u.label ? u.label : c}</span><span class='property_value'>${d}</span>`,
+      value: c
+    });
+  }
+  if (!a.length)
+    return;
+  new U(
+    a,
+    {
+      event: s,
+      callback: r,
+      parentMenu: n,
+      allow_html: !0,
+      node: i
+    },
+    l
+  );
+  function r(c, d, u, _) {
+    if (!i)
+      return;
+    const m = this.getBoundingClientRect();
+    o.showEditPropertyValue(i, c.value, {
+      position: [m.left, m.top]
     });
   }
   return !1;
 };
-C.onResizeNode = function(t, e, s, o, n) {
-  n && (n.size = n.computeSize(), n.setDirtyCanvas(!0, !0));
+w.onResizeNode = function(t, e, s, n, i) {
+  i && (i.size = i.computeSize(), i.setDirtyCanvas(!0, !0));
 };
-C.onMenuNodeCollapse = function(t, e, s, o, n) {
-  n.graph.beforeChange(
+w.onMenuNodeCollapse = function(t, e, s, n, i) {
+  i.graph.beforeChange(
     /* ? */
   );
-  const r = function(u) {
-    u.collapse();
-  }, a = T.active_canvas;
-  if (!a.selected_nodes || Object.keys(a.selected_nodes).length <= 1)
-    r(n);
+  const o = function(a) {
+    a.collapse();
+  }, l = b.active_canvas;
+  if (!l.selected_nodes || Object.keys(l.selected_nodes).length <= 1)
+    o(i);
   else
-    for (const u in a.selected_nodes)
-      r(a.selected_nodes[u]);
-  n.graph.afterChange(
+    for (const a in l.selected_nodes)
+      o(l.selected_nodes[a]);
+  i.graph.afterChange(
     /* ? */
   );
 };
-C.onMenuNodePin = function(t, e, s, o, n) {
-  n.pin();
+w.onMenuNodePin = function(t, e, s, n, i) {
+  i.pin();
 };
-C.onMenuNodeMode = function(t, e, s, o, n) {
-  const r = Array.from(Q).map((u) => ({ content: u }));
-  new z(
-    r,
-    { event: s, callback: a, parentMenu: o, node: n }
+w.onMenuNodeMode = function(t, e, s, n, i) {
+  const o = Array.from(J).map((a) => ({ content: a }));
+  new U(
+    o,
+    { event: s, callback: l, parentMenu: n, node: i }
   );
-  function a(u) {
-    if (!n)
+  function l(a) {
+    if (!i)
       return;
-    const l = Object.values(Q).indexOf(u.content), p = function(c) {
-      l >= W.ALWAYS && Q[l] ? c.changeMode(l) : (console.warn(`unexpected mode: ${u}`), c.changeMode(W.ALWAYS));
-    }, f = T.active_canvas;
-    if (!f.selected_nodes || Object.keys(f.selected_nodes).length <= 1)
-      p(n);
+    const r = Object.values(J).indexOf(a.content), c = function(u) {
+      r >= Y.ALWAYS && J[r] ? u.changeMode(r) : (console.warn(`unexpected mode: ${a}`), u.changeMode(Y.ALWAYS));
+    }, d = b.active_canvas;
+    if (!d.selected_nodes || Object.keys(d.selected_nodes).length <= 1)
+      c(i);
     else
-      for (const c in f.selected_nodes)
-        p(f.selected_nodes[c]);
+      for (const u in d.selected_nodes)
+        c(d.selected_nodes[u]);
   }
   return !1;
 };
-C.onMenuNodeColors = function(t, e, s, o, n) {
-  if (!n)
+w.onMenuNodeColors = function(t, e, s, n, i) {
+  if (!i)
     throw "no node for color";
-  const r = [];
-  r.push({
+  const o = [];
+  o.push({
     value: null,
     content: "<span style='display: block; padding-left: 4px;'>No color</span>"
   });
-  for (const u in T.node_colors) {
-    const l = T.node_colors[u], p = {
-      value: u,
-      content: `<span style='display: block; color: #999; padding-left: 4px; border-left: 8px solid ${l.color}; background-color:${l.bgcolor}'>${u}</span>`
+  for (const a in b.node_colors) {
+    const r = b.node_colors[a], c = {
+      value: a,
+      content: `<span style='display: block; color: #999; padding-left: 4px; border-left: 8px solid ${r.color}; background-color:${r.bgcolor}'>${a}</span>`
     };
-    r.push(p);
+    o.push(c);
   }
-  new z(r, {
+  new U(o, {
     event: s,
-    callback: a,
-    parentMenu: o,
-    node: n,
+    callback: l,
+    parentMenu: n,
+    node: i,
     allow_html: !0
   });
-  function a(u) {
-    if (!n)
+  function l(a) {
+    if (!i)
       return;
-    const l = u.value ? T.node_colors[u.value] : null, p = function(c) {
-      l ? c instanceof ct ? c.color = l.groupcolor : (c.color = l.color, c.bgcolor = l.bgcolor) : (delete c.color, c instanceof et && delete c.bgcolor);
-    }, f = T.active_canvas;
-    if (!f.selected_nodes || Object.keys(f.selected_nodes).length <= 1)
-      p(n);
+    const r = a.value ? b.node_colors[a.value] : null, c = function(u) {
+      r ? u instanceof ht ? u.color = r.groupcolor : (u.color = r.color, u.bgcolor = r.bgcolor) : (delete u.color, u instanceof tt && delete u.bgcolor);
+    }, d = b.active_canvas;
+    if (!d.selected_nodes || Object.keys(d.selected_nodes).length <= 1)
+      c(i);
     else
-      for (const c in f.selected_nodes)
-        p(f.selected_nodes[c]);
-    n.setDirtyCanvas(!0, !0);
+      for (const u in d.selected_nodes)
+        c(d.selected_nodes[u]);
+    i.setDirtyCanvas(!0, !0);
   }
   return !1;
 };
-C.onMenuNodeShapes = function(t, e, s, o, n) {
-  if (!n)
+w.onMenuNodeShapes = function(t, e, s, n, i) {
+  if (!i)
     throw "no node passed";
-  const r = Array.from(vt).map((u) => ({ content: u }));
-  new z(r, {
+  const o = Array.from(gt).map((a) => ({ content: a }));
+  new U(o, {
     event: s,
-    callback: a,
-    parentMenu: o,
-    node: n
+    callback: l,
+    parentMenu: n,
+    node: i
   });
-  function a(u) {
-    if (!n)
+  function l(a) {
+    if (!i)
       return;
-    n.graph.beforeChange(
+    i.graph.beforeChange(
       /* ? */
     );
-    const l = function(f) {
-      f.shape = vt.indexOf(u.content);
-    }, p = T.active_canvas;
-    if (!p.selected_nodes || Object.keys(p.selected_nodes).length <= 1)
-      l(n);
+    const r = function(d) {
+      d.shape = gt.indexOf(a.content);
+    }, c = b.active_canvas;
+    if (!c.selected_nodes || Object.keys(c.selected_nodes).length <= 1)
+      r(i);
     else
-      for (const f in p.selected_nodes)
-        l(p.selected_nodes[f]);
-    n.graph.afterChange(
+      for (const d in c.selected_nodes)
+        r(c.selected_nodes[d]);
+    i.graph.afterChange(
       /* ? */
-    ), n.setDirtyCanvas(!0);
+    ), i.setDirtyCanvas(!0);
   }
   return !1;
 };
-C.onMenuNodeRemove = function(t, e, s, o, n) {
-  if (!n)
+w.onMenuNodeRemove = function(t, e, s, n, i) {
+  if (!i)
     throw "no node passed";
-  const r = n.graph;
-  r.beforeChange();
-  const a = function(l) {
-    l.removable !== !1 && r.remove(l);
-  }, u = T.active_canvas;
-  if (!u.selected_nodes || Object.keys(u.selected_nodes).length <= 1)
-    a(n);
+  const o = i.graph;
+  o.beforeChange();
+  const l = function(r) {
+    r.removable !== !1 && o.remove(r);
+  }, a = b.active_canvas;
+  if (!a.selected_nodes || Object.keys(a.selected_nodes).length <= 1)
+    l(i);
   else
-    for (const l in u.selected_nodes)
-      a(u.selected_nodes[l]);
-  r.afterChange(), n.setDirtyCanvas(!0, !0);
+    for (const r in a.selected_nodes)
+      l(a.selected_nodes[r]);
+  o.afterChange(), i.setDirtyCanvas(!0, !0);
 };
-C.onMenuNodeToSubgraph = function(t, e, s, o, n) {
-  const r = n.graph, a = T.active_canvas;
-  if (!a)
+w.onMenuNodeToSubgraph = function(t, e, s, n, i) {
+  const o = i.graph, l = b.active_canvas;
+  if (!l)
     return;
-  let u = Object.values(a.selected_nodes || {});
-  u.length || (u = [n]);
-  const l = h.createNode("graph/subgraph", null, { constructorArgs: [null] });
-  l.pos = n.pos.concat(), r.add(l), l.buildFromNodes(u), a.deselectAllNodes(), n.setDirtyCanvas(!0, !0);
+  let a = Object.values(l.selected_nodes || {});
+  a.length || (a = [i]);
+  const r = h.createNode("graph/subgraph", null, { constructorArgs: [null] });
+  r.pos = i.pos.concat(), o.add(r), r.buildFromNodes(a), l.deselectAllNodes(), i.setDirtyCanvas(!0, !0);
 };
-C.onMenuNodeToSubgraphInputs = function(t, e, s, o, n) {
-  const r = T.active_canvas;
-  if (!r)
+w.onMenuNodeToSubgraphInputs = function(t, e, s, n, i) {
+  const o = b.active_canvas;
+  if (!o)
     return;
-  const a = n.graph._subgraph_node;
-  if (!n.graph._is_subgraph || !a) {
-    console.error("[To Subgraph Inputs] Current graph is not a subgraph!", n.graph);
+  const l = i.graph._subgraph_node;
+  if (!i.graph._is_subgraph || !l) {
+    console.error("[To Subgraph Inputs] Current graph is not a subgraph!", i.graph);
     return;
   }
-  let u = Object.values(r.selected_nodes || {});
-  u.length || (u = [n]), a.convertNodesToSubgraphInputs(u), r.deselectAllNodes(), n.setDirtyCanvas(!0, !0);
+  let a = Object.values(o.selected_nodes || {});
+  a.length || (a = [i]), l.convertNodesToSubgraphInputs(a), o.deselectAllNodes(), i.setDirtyCanvas(!0, !0);
 };
-C.onMenuNodeToSubgraphOutputs = function(t, e, s, o, n) {
-  const r = T.active_canvas;
-  if (!r)
+w.onMenuNodeToSubgraphOutputs = function(t, e, s, n, i) {
+  const o = b.active_canvas;
+  if (!o)
     return;
-  const a = n.graph._subgraph_node;
-  if (!n.graph._is_subgraph || !a) {
-    console.error("[To Subgraph Outputs] Current graph is not a subgraph!", n.graph);
-    return;
-  }
-  let u = Object.values(r.selected_nodes || {});
-  u.length || (u = [n]), a.convertNodesToSubgraphOutputs(u), r.deselectAllNodes(), n.setDirtyCanvas(!0, !0);
-};
-C.onMenuNodeToParentGraph = function(t, e, s, o, n) {
-  const r = T.active_canvas;
-  if (!r)
-    return;
-  const a = n.graph._subgraph_node;
-  if (!n.graph._is_subgraph || !a) {
-    console.error("[To Parent Graph] Current graph is not a subgraph!", n.graph);
+  const l = i.graph._subgraph_node;
+  if (!i.graph._is_subgraph || !l) {
+    console.error("[To Subgraph Outputs] Current graph is not a subgraph!", i.graph);
     return;
   }
-  let u = Object.values(r.selected_nodes || {});
-  u.length || (u = [n]), a.moveNodesToParentGraph(u), r.deselectAllNodes(), n.setDirtyCanvas(!0, !0);
+  let a = Object.values(o.selected_nodes || {});
+  a.length || (a = [i]), l.convertNodesToSubgraphOutputs(a), o.deselectAllNodes(), i.setDirtyCanvas(!0, !0);
 };
-C.onMenuNodeClone = function(t, e, s, o, n) {
-  const r = T.active_canvas;
-  (!r.selected_nodes || Object.keys(r.selected_nodes).length <= 1) && r.selectNode(n), r.cloneSelection();
+w.onMenuNodeToParentGraph = function(t, e, s, n, i) {
+  const o = b.active_canvas;
+  if (!o)
+    return;
+  const l = i.graph._subgraph_node;
+  if (!i.graph._is_subgraph || !l) {
+    console.error("[To Parent Graph] Current graph is not a subgraph!", i.graph);
+    return;
+  }
+  let a = Object.values(o.selected_nodes || {});
+  a.length || (a = [i]), l.moveNodesToParentGraph(a), o.deselectAllNodes(), i.setDirtyCanvas(!0, !0);
 };
-class Ht {
+w.onMenuNodeClone = function(t, e, s, n, i) {
+  const o = b.active_canvas;
+  (!o.selected_nodes || Object.keys(o.selected_nodes).length <= 1) && o.selectNode(i), o.cloneSelection();
+};
+class Bt {
   constructor(e, s = !1) {
     this.offset = [0, 0], this.scale = 1, this.max_scale = 10, this.min_scale = 0.1, this.onredraw = null, this.enabled = !0, this.last_mouse = [0, 0], this.element = null, this.visible_area = new Float32Array([0, 0, 0, 0]), this.viewport = null, this.dragging = !1, this._binded_mouse_callback = null, e && (this.element = e, s || this.bindEvents(e));
   }
@@ -5875,26 +5878,26 @@ class Ht {
       this.visible_area[0] = this.visible_area[1] = this.visible_area[2] = this.visible_area[3] = 0;
       return;
     }
-    let s = this.element.width, o = this.element.height, n = -this.offset[0], r = -this.offset[1];
-    e && (n += e[0] / this.scale, r += e[1] / this.scale, s = e[2], o = e[3]);
-    const a = n + s / this.scale, u = r + o / this.scale;
-    this.visible_area[0] = n, this.visible_area[1] = r, this.visible_area[2] = a - n, this.visible_area[3] = u - r;
+    let s = this.element.width, n = this.element.height, i = -this.offset[0], o = -this.offset[1];
+    e && (i += e[0] / this.scale, o += e[1] / this.scale, s = e[2], n = e[3]);
+    const l = i + s / this.scale, a = o + n / this.scale;
+    this.visible_area[0] = i, this.visible_area[1] = o, this.visible_area[2] = l - i, this.visible_area[3] = a - o;
   }
   onMouse(e) {
     if (!this.enabled)
       return;
-    const s = this.element, o = s.getBoundingClientRect(), n = e, r = n.clientX - o.left, a = n.clientY - o.top;
-    n.canvasX = r, n.canvasX = a, n.dragging = this.dragging;
-    const u = !this.viewport || this.viewport && r >= this.viewport[0] && r < this.viewport[0] + this.viewport[2] && a >= this.viewport[1] && a < this.viewport[1] + this.viewport[3];
-    if (n.type === `${h.pointerevents_method}down` && u)
+    const s = this.element, n = s.getBoundingClientRect(), i = e, o = i.clientX - n.left, l = i.clientY - n.top;
+    i.canvasX = o, i.canvasX = l, i.dragging = this.dragging;
+    const a = !this.viewport || this.viewport && o >= this.viewport[0] && o < this.viewport[0] + this.viewport[2] && l >= this.viewport[1] && l < this.viewport[1] + this.viewport[3];
+    if (i.type === `${h.pointerevents_method}down` && a)
       this.dragging = !0, h.pointerListenerRemove(s, "move", this._binded_mouse_callback), h.pointerListenerAdd(document, "move", this._binded_mouse_callback), h.pointerListenerAdd(document, "up", this._binded_mouse_callback);
-    else if (n.type === `${h.pointerevents_method}move`) {
-      const l = r - this.last_mouse[0], p = a - this.last_mouse[1];
-      this.dragging && this.mouseDrag(l, p);
+    else if (i.type === `${h.pointerevents_method}move`) {
+      const r = o - this.last_mouse[0], c = l - this.last_mouse[1];
+      this.dragging && this.mouseDrag(r, c);
     } else
-      n.type === `${h.pointerevents_method}up` ? (this.dragging = !1, h.pointerListenerRemove(document, "move", this._binded_mouse_callback), h.pointerListenerRemove(document, "up", this._binded_mouse_callback), h.pointerListenerAdd(s, "move", this._binded_mouse_callback)) : u && (n.type === "mousewheel" || n.type === "wheel" || n.type === "DOMMouseScroll") && (n.eventType = "mousewheel", n.type === "wheel" ? n.wheel = -n.deltaY : n.wheel = n.wheelDeltaY !== null ? n.wheelDeltaY : n.detail * -60, n.delta = n.wheelDelta ? n.wheelDelta / 40 : n.deltaY ? -n.deltaY / 3 : 0, this.changeDeltaScale(1 + n.delta * 0.05, [n.clientX, n.clientY]));
-    if (this.last_mouse[0] = r, this.last_mouse[1] = a, u)
-      return n.preventDefault(), n.stopPropagation(), !1;
+      i.type === `${h.pointerevents_method}up` ? (this.dragging = !1, h.pointerListenerRemove(document, "move", this._binded_mouse_callback), h.pointerListenerRemove(document, "up", this._binded_mouse_callback), h.pointerListenerAdd(s, "move", this._binded_mouse_callback)) : a && (i.type === "mousewheel" || i.type === "wheel" || i.type === "DOMMouseScroll") && (i.eventType = "mousewheel", i.type === "wheel" ? i.wheel = -i.deltaY : i.wheel = i.wheelDeltaY !== null ? i.wheelDeltaY : i.detail * -60, i.delta = i.wheelDelta ? i.wheelDelta / 40 : i.deltaY ? -i.deltaY / 3 : 0, this.changeDeltaScale(1 + i.delta * 0.05, [i.clientX, i.clientY]));
+    if (this.last_mouse[0] = o, this.last_mouse[1] = l, a)
+      return i.preventDefault(), i.stopPropagation(), !1;
   }
   toCanvasContext(e) {
     e.scale(this.scale, this.scale), e.translate(this.offset[0], this.offset[1]);
@@ -5914,20 +5917,20 @@ class Ht {
   changeScale(e, s) {
     if (e < this.min_scale ? e = this.min_scale : e > this.max_scale && (e = this.max_scale), e === this.scale || !this.element)
       return;
-    const o = this.element.getBoundingClientRect();
-    if (!o)
+    const n = this.element.getBoundingClientRect();
+    if (!n)
       return;
     s = s || [
-      o.width * 0.5,
-      o.height * 0.5
-    ], s[0] -= o.left, s[1] -= o.top;
-    const n = this.convertCanvasToOffset(s);
+      n.width * 0.5,
+      n.height * 0.5
+    ], s[0] -= n.left, s[1] -= n.top;
+    const i = this.convertCanvasToOffset(s);
     this.scale = e, Math.abs(this.scale - 1) < 0.01 && (this.scale = 1);
-    const r = this.convertCanvasToOffset(s), a = [
-      r[0] - n[0],
-      r[1] - n[1]
+    const o = this.convertCanvasToOffset(s), l = [
+      o[0] - i[0],
+      o[1] - i[1]
     ];
-    this.offset[0] += a[0], this.offset[1] += a[1], this.onredraw && this.onredraw(this);
+    this.offset[0] += l[0], this.offset[1] += l[1], this.onredraw && this.onredraw(this);
   }
   changeDeltaScale(e, s) {
     this.changeScale(this.scale * e, s);
@@ -5936,9 +5939,9 @@ class Ht {
     this.scale = 1, this.offset[0] = 0, this.offset[1] = 0;
   }
 }
-const rt = class {
+const ot = class {
   constructor(t, e, s = {}) {
-    this.link_type_colors = {}, this.node_panel = null, this.options_panel = null, this.render_time = 0, this.allow_dragcanvas = !0, this.allow_dragnodes = !0, this.allow_interaction = !0, this.allow_reconnect_links = !0, this.allow_searchbox = !0, this.always_render_background = !1, this.background_image = rt.DEFAULT_BACKGROUND_IMAGE, this.block_click = !1, this.clear_background = !0, this.connecting_pos = null, this.connecting_slot = null, this.connecting_input = null, this.connecting_output = null, this.connections_width = 3, this.current_node = null, this.drag_mode = !1, this.dragging_rectangle = null, this.ds = new Ht(), this.editor_alpha = 1, this.filter = null, this.highquality_render = !0, this.skip_events = !1, this.last_mouse_position = [0, 0], this.last_click_position = [0, 0], this.last_click_position_offset = [0, 0], this.last_mouse_dragging = !1, this.links_render_mode = lt.SPLINE_LINK, this.live_mode = !1, this.mouse = [0, 0], this.offset_mouse = [0, 0], this.graph_mouse = [0, 0], this.node_widget = null, this.maxZoom = null, this.minZoom = null, this.multi_select = !1, this.over_link_center = null, this.pause_rendering = !1, this.read_only = !1, this.render_canvas_border = !0, this.render_collapsed_slots = !0, this.render_connection_arrows = !1, this.render_connections_border = !0, this.render_connections_shadows = !1, this.render_connections = !0, this.render_curved_connections = !1, this.render_execution_order = !1, this.render_link_tooltip = !0, this.render_only_selected = !0, this.render_shadows = !0, this.render_title_colored = !0, this.render_subgraph_panels = !0, this.render_subgraph_stack_header = !0, this.round_radius = 8, this.set_canvas_dirty_on_mouse_event = !0, this.show_info = !0, this.use_gradients = !1, this.visible_links = [], this.zoom_modify_alpha = !0, this.pointer_is_down = !1, this.pointer_is_double = !1, this._highlight_input = null, this._highlight_input_slot = null, this._highlight_output = null, this._graph_stack = [], this._bg_img = null, this._pattern = null, this._pattern_img = null, this.search_box = null, this.prompt_box = null, this._events_binded = !1, this.resizing_node = null, typeof t == "string" && (t = document.querySelector(t)), this.skip_events = s.skip_events || !1, this.title_text_font = `${h.NODE_TEXT_SIZE}px Arial`, this.inner_text_font = `normal ${h.NODE_SUBTEXT_SIZE}px Arial`, this.node_title_color = h.NODE_TITLE_COLOR, this.default_link_color = h.LINK_COLOR, this.link_type_colors = h.cloneObject(rt.DEFAULT_LINK_TYPE_COLORS), this.canvas_mouse = this.graph_mouse, this.visible_area = this.ds.visible_area, this.viewport = s.viewport || null, e && e.attachCanvas(this), this.setCanvas(t, s.skip_events), this.clear(), s.skip_render || this.startRendering(), this.autoresize = s.autoresize;
+    this.link_type_colors = {}, this.node_panel = null, this.options_panel = null, this.render_time = 0, this.allow_dragcanvas = !0, this.allow_dragnodes = !0, this.allow_interaction = !0, this.allow_reconnect_links = !0, this.allow_searchbox = !0, this.always_render_background = !1, this.background_image = ot.DEFAULT_BACKGROUND_IMAGE, this.block_click = !1, this.clear_background = !0, this.connecting_pos = null, this.connecting_slot = null, this.connecting_input = null, this.connecting_output = null, this.connections_width = 3, this.current_node = null, this.drag_mode = !1, this.dragging_rectangle = null, this.ds = new Bt(), this.editor_alpha = 1, this.filter = null, this.highquality_render = !0, this.skip_events = !1, this.last_mouse_position = [0, 0], this.last_click_position = [0, 0], this.last_click_position_offset = [0, 0], this.last_mouse_dragging = !1, this.links_render_mode = rt.SPLINE_LINK, this.live_mode = !1, this.mouse = [0, 0], this.offset_mouse = [0, 0], this.graph_mouse = [0, 0], this.node_widget = null, this.maxZoom = null, this.minZoom = null, this.multi_select = !1, this.over_link_center = null, this.pause_rendering = !1, this.read_only = !1, this.render_canvas_border = !0, this.render_collapsed_slots = !0, this.render_connection_arrows = !1, this.render_connections_border = !0, this.render_connections_shadows = !1, this.render_connections = !0, this.render_curved_connections = !1, this.render_execution_order = !1, this.render_link_tooltip = !0, this.render_only_selected = !0, this.render_shadows = !0, this.render_title_colored = !0, this.render_subgraph_panels = !0, this.render_subgraph_stack_header = !0, this.round_radius = 8, this.set_canvas_dirty_on_mouse_event = !0, this.show_info = !0, this.use_gradients = !1, this.visible_links = [], this.zoom_modify_alpha = !0, this.pointer_is_down = !1, this.pointer_is_double = !1, this._highlight_input = null, this._highlight_input_slot = null, this._highlight_output = null, this._graph_stack = [], this._bg_img = null, this._pattern = null, this._pattern_img = null, this.search_box = null, this.prompt_box = null, this._events_binded = !1, this.resizing_node = null, typeof t == "string" && (t = document.querySelector(t)), this.skip_events = s.skip_events || !1, this.title_text_font = `${h.NODE_TEXT_SIZE}px Arial`, this.inner_text_font = `normal ${h.NODE_SUBTEXT_SIZE}px Arial`, this.node_title_color = h.NODE_TITLE_COLOR, this.default_link_color = h.LINK_COLOR, this.link_type_colors = h.cloneObject(ot.DEFAULT_LINK_TYPE_COLORS), this.canvas_mouse = this.graph_mouse, this.visible_area = this.ds.visible_area, this.viewport = s.viewport || null, e && e.attachCanvas(this), this.setCanvas(t, s.skip_events), this.clear(), s.skip_render || this.startRendering(), this.autoresize = s.autoresize;
   }
   static getFileExtension(t) {
     const e = t.indexOf("?");
@@ -5955,9 +5958,9 @@ const rt = class {
       return String(t);
     if (e.constructor === Object) {
       let s = "";
-      for (const o in e)
-        if (e[o] === t) {
-          s = o;
+      for (const n in e)
+        if (e[n] === t) {
+          s = n;
           break;
         }
       return `${String(t)} (${s})`;
@@ -5997,10 +6000,10 @@ const rt = class {
     h.debug && (console.warn("SubGraph opened", t), console.warn("Graph inputs", t.inputs), console.warn("Graph outputs", t.outputs)), t.attachCanvas(this);
     const e = [0, 0];
     if (t._nodes.length > 0) {
-      let s = Number.MAX_SAFE_INTEGER, o = 0, n = Number.MAX_SAFE_INTEGER, r = 0;
-      for (const a of t.iterateNodesInOrder())
-        s = Math.min(a.pos[0], s), o = Math.max(a.pos[0] + a.size[0], o), n = Math.min(a.pos[1], n), r = Math.max(a.pos[1] + a.size[1], r);
-      e[0] = -(s + (o - s) / 2) + this.canvas.width / 2, e[1] = -(n + (r - n) / 2) + this.canvas.height / 2;
+      let s = Number.MAX_SAFE_INTEGER, n = 0, i = Number.MAX_SAFE_INTEGER, o = 0;
+      for (const l of t.iterateNodesInOrder())
+        s = Math.min(l.pos[0], s), n = Math.max(l.pos[0] + l.size[0], n), i = Math.min(l.pos[1], i), o = Math.max(l.pos[1] + l.size[1], o);
+      e[0] = -(s + (n - s) / 2) + this.canvas.width / 2, e[1] = -(i + (o - i) / 2) + this.canvas.height / 2;
     }
     this.ds.offset = e, this.ds.scale = 1, this.checkPanels(), this.setDirty(!0, !0);
   }
@@ -6012,8 +6015,8 @@ const rt = class {
   closeSubgraph() {
     if (!this._graph_stack || this._graph_stack.length === 0)
       return;
-    const t = this.graph._subgraph_node, { graph: e, offset: s, scale: o } = this._graph_stack.pop();
-    this.selected_nodes = {}, this.highlighted_links = {}, e.attachCanvas(this), this.setDirty(!0, !0), t && (this.centerOnNode(t), this.selectNodes([t])), this.ds.offset = s, this.ds.scale = o;
+    const t = this.graph._subgraph_node, { graph: e, offset: s, scale: n } = this._graph_stack.pop();
+    this.selected_nodes = {}, this.highlighted_links = {}, e.attachCanvas(this), this.setDirty(!0, !0), t && (this.centerOnNode(t), this.selectNodes([t])), this.ds.offset = s, this.ds.scale = n;
   }
   /** assigns a canvas */
   setCanvas(t, e = !1) {
@@ -6085,8 +6088,8 @@ const rt = class {
   adjustCanvasForHiDPI(t) {
     if (t || (t = window.devicePixelRatio), t === 1 || !this.canvas.parentNode)
       return;
-    const e = this.canvas.parentNode.getBoundingClientRect(), { width: s, height: o } = e;
-    this.canvas.width = s * t, this.canvas.height = o * t, this.canvas.style.width = `${s}px`, this.canvas.style.height = `${o}px`, this.canvas.getContext("2d").scale(t, t);
+    const e = this.canvas.parentNode.getBoundingClientRect(), { width: s, height: n } = e;
+    this.canvas.width = s * t, this.canvas.height = n * t, this.canvas.style.width = `${s}px`, this.canvas.style.height = `${n}px`, this.canvas.getContext("2d").scale(t, t);
   }
   /** starts rendering the content of the canvas when needed */
   startRendering() {
@@ -6108,114 +6111,114 @@ const rt = class {
     this.block_click = !0, this.last_mouseclick = 0;
   }
   createDefaultNodeForSlot(t, e = {}) {
-    const s = this, o = e.nodeFrom && e.slotFrom !== null, n = !o && e.nodeTo && e.slotTo !== null;
+    const s = this, n = e.nodeFrom && e.slotFrom !== null, i = !n && e.nodeTo && e.slotTo !== null;
     if (e = { ...{
       position: [0, 0],
       posAdd: [0, 0],
       posSizeFix: [0, 0]
-    }, ...e }, !o && !n)
+    }, ...e }, !n && !i)
       return console.warn(`No data passed to createDefaultNodeForSlot ${e.nodeFrom} ${e.slotFrom} ${e.nodeTo} ${e.slotTo}`), !1;
     if (!t)
       return console.warn("No type to createDefaultNodeForSlot"), !1;
-    const a = o ? e.nodeFrom : e.nodeTo;
-    let u = o ? e.slotFrom : e.slotTo, l = null;
-    switch (typeof u) {
+    const l = n ? e.nodeFrom : e.nodeTo;
+    let a = n ? e.slotFrom : e.slotTo, r = null;
+    switch (typeof a) {
       case "string":
-        l = o ? a.findOutputSlotIndexByName(u) : a.findInputSlotIndexByName(u), u = o ? a.outputs[u] : a.inputs[u];
+        r = n ? l.findOutputSlotIndexByName(a) : l.findInputSlotIndexByName(a), a = n ? l.outputs[a] : l.inputs[a];
         break;
       case "object":
-        l = o ? a.findOutputSlotIndexByName(u.name) : a.findInputSlotIndexByName(u.name);
+        r = n ? l.findOutputSlotIndexByName(a.name) : l.findInputSlotIndexByName(a.name);
         break;
       case "number":
-        l = u, u = o ? a.outputs[u] : a.inputs[u];
+        r = a, a = n ? l.outputs[a] : l.inputs[a];
         break;
       case "undefined":
       default:
-        return console.warn(`Cant get slot information ${u}`), !1;
+        return console.warn(`Cant get slot information ${a}`), !1;
     }
-    u = u, (!u || !l) && console.warn(`createDefaultNodeForSlot bad slotX ${u} ${l}`);
-    const p = u.type === k.EVENT ? "_event_" : u.type, f = o ? h.slot_types_default_out : h.slot_types_default_in, c = f[p];
-    if (f && c) {
-      u.link !== null || u.links && u.links.length > 0;
-      let g = null;
-      if (Array.isArray(c)) {
-        for (const y in c)
-          if (t === f[p][y] || t === "AUTO") {
-            g = f[p][y], h.debug && console.log(`opts.nodeType === slotTypesDefault[fromSlotType][typeX] :: ${t}`);
+    a = a, (!a || !r) && console.warn(`createDefaultNodeForSlot bad slotX ${a} ${r}`);
+    const c = a.type === O.EVENT ? "_event_" : a.type, d = n ? h.slot_types_default_out : h.slot_types_default_in, u = d[c];
+    if (d && u) {
+      a.link !== null || a.links && a.links.length > 0;
+      let _ = null;
+      if (Array.isArray(u)) {
+        for (const m in u)
+          if (t === d[c][m] || t === "AUTO") {
+            _ = d[c][m], h.debug && console.log(`opts.nodeType === slotTypesDefault[fromSlotType][typeX] :: ${t}`);
             break;
           }
       } else
-        throw new TypeError(`Invalid default slot specifier, must be an array: ${c}`);
-      if (g) {
-        let y = null;
-        typeof g == "object" && g.node && (y = g, g = g.node);
-        const d = h.createNode(g);
-        if (d) {
-          if (y) {
-            if (y.properties)
-              for (const v in y.properties)
-                d.addProperty(v, y.properties[v]);
-            if (y.inputs) {
-              d.inputs = [];
-              for (const v in y.inputs)
-                d.addOutput(
-                  y.inputs[v][0],
-                  y.inputs[v][1]
+        throw new TypeError(`Invalid default slot specifier, must be an array: ${u}`);
+      if (_) {
+        let m = null;
+        typeof _ == "object" && _.node && (m = _, _ = _.node);
+        const p = h.createNode(_);
+        if (p) {
+          if (m) {
+            if (m.properties)
+              for (const g in m.properties)
+                p.addProperty(g, m.properties[g]);
+            if (m.inputs) {
+              p.inputs = [];
+              for (const g in m.inputs)
+                p.addOutput(
+                  m.inputs[g][0],
+                  m.inputs[g][1]
                 );
             }
-            if (y.outputs) {
-              d.outputs = [];
-              for (const v in y.outputs)
-                d.addOutput(
-                  y.outputs[v][0],
-                  y.outputs[v][1]
+            if (m.outputs) {
+              p.outputs = [];
+              for (const g in m.outputs)
+                p.addOutput(
+                  m.outputs[g][0],
+                  m.outputs[g][1]
                 );
             }
-            y.title && (d.title = y.title), y.json && d.configure(y.json);
+            m.title && (p.title = m.title), m.json && p.configure(m.json);
           }
-          console.warn("PLACING", d.type, e);
-          const _ = e.position[0] + e.posAdd[0] + (e.posSizeFix[0] ? e.posSizeFix[0] * d.size[0] : 0), m = e.position[1] + e.posAdd[1] + (e.posSizeFix[1] ? e.posSizeFix[1] * d.size[1] : 0), b = [_, m];
-          return s.graph.add(d, { pos: b }), o ? e.nodeFrom.connectByTypeInput(l, d, p) : e.nodeTo.connectByTypeOutput(l, d, p), o && n && console.debug("connecting in between"), !0;
+          console.warn("PLACING", p.type, e);
+          const f = e.position[0] + e.posAdd[0] + (e.posSizeFix[0] ? e.posSizeFix[0] * p.size[0] : 0), v = e.position[1] + e.posAdd[1] + (e.posSizeFix[1] ? e.posSizeFix[1] * p.size[1] : 0), y = [f, v];
+          return s.graph.add(p, { pos: y }), n ? e.nodeFrom.connectByTypeInput(r, p, c) : e.nodeTo.connectByTypeOutput(r, p, c), n && i && console.debug("connecting in between"), !0;
         } else
-          console.log(`failed creating ${g}`);
+          console.log(`failed creating ${_}`);
       }
     }
     return !1;
   }
   /** returns true if a position (in graph space) is on top of a node little corner box */
   isOverNodeBox(t, e, s) {
-    const o = h.NODE_TITLE_HEIGHT;
+    const n = h.NODE_TITLE_HEIGHT;
     return !!h.isInsideRectangle(
       e,
       s,
       t.pos[0] + 2,
-      t.pos[1] + 2 - o,
-      o - 4,
-      o - 4
+      t.pos[1] + 2 - n,
+      n - 4,
+      n - 4
     );
   }
   /** returns slot index if a position (in graph space) is on top of a node input slot */
-  isOverNodeInput(t, e, s, o) {
+  isOverNodeInput(t, e, s, n) {
     if (t.inputs)
-      for (let n = 0, r = t.inputs.length; n < r; ++n) {
-        const a = t.getConnectionPos(!0, n);
-        let u = !1;
-        if (t.horizontal ? u = h.isInsideRectangle(
+      for (let i = 0, o = t.inputs.length; i < o; ++i) {
+        const l = t.getConnectionPos(!0, i);
+        let a = !1;
+        if (t.horizontal ? a = h.isInsideRectangle(
           e,
           s,
-          a[0] - 5,
-          a[1] - 10,
+          l[0] - 5,
+          l[1] - 10,
           10,
           20
-        ) : u = h.isInsideRectangle(
+        ) : a = h.isInsideRectangle(
           e,
           s,
-          a[0] - 10,
-          a[1] - 5,
+          l[0] - 10,
+          l[1] - 5,
           40,
           10
-        ), u)
-          return o && (o[0] = a[0], o[1] = a[1]), n;
+        ), a)
+          return n && (n[0] = l[0], n[1] = l[1]), i;
       }
     return -1;
   }
@@ -6223,39 +6226,39 @@ const rt = class {
    * returns the INDEX if a position (in graph space) is on top of a node output slot
    * @method isOverNodeOuput
    */
-  isOverNodeOutput(t, e, s, o) {
+  isOverNodeOutput(t, e, s, n) {
     if (t.outputs)
-      for (let n = 0, r = t.outputs.length; n < r; ++n) {
-        t.outputs[n];
-        const a = t.getConnectionPos(!1, n);
-        let u = !1;
-        if (t.horizontal ? u = h.isInsideRectangle(
+      for (let i = 0, o = t.outputs.length; i < o; ++i) {
+        t.outputs[i];
+        const l = t.getConnectionPos(!1, i);
+        let a = !1;
+        if (t.horizontal ? a = h.isInsideRectangle(
           e,
           s,
-          a[0] - 5,
-          a[1] - 10,
+          l[0] - 5,
+          l[1] - 10,
           10,
           20
-        ) : u = h.isInsideRectangle(
+        ) : a = h.isInsideRectangle(
           e,
           s,
-          a[0] - 10,
-          a[1] - 5,
+          l[0] - 10,
+          l[1] - 5,
           40,
           10
-        ), u)
-          return o && (o[0] = a[0], o[1] = a[1]), n;
+        ), a)
+          return n && (n[0] = l[0], n[1] = l[1]), i;
       }
     return -1;
   }
   findLinkCenterAtPos(t, e) {
     for (let s = 0; s < this.visible_links.length; ++s) {
-      const o = this.visible_links[s];
-      if (this.graph && this.graph.links[o.id] === null)
+      const n = this.visible_links[s];
+      if (this.graph && this.graph.links[n.id] === null)
         continue;
-      const n = o._pos;
-      if (!(!n || t < n[0] - 4 || t > n[0] + 4 || e < n[1] - 4 || e > n[1] + 4))
-        return o;
+      const i = n._pos;
+      if (!(!i || t < i[0] - 4 || t > i[0] + 4 || e < i[1] - 4 || e > i[1] + 4))
+        return n;
     }
     return null;
   }
@@ -6269,11 +6272,11 @@ const rt = class {
     const s = this.allow_interaction && !this.read_only;
     if (t.type === "keydown") {
       if (t.keyCode === 32 && !(t.metaKey || t.ctrlKey || t.shiftKey) && (this.dragging_canvas = !0, e = !0), t.keyCode === 27 && !(t.metaKey || t.ctrlKey || t.shiftKey) && (this.node_panel && this.node_panel.close(), this.options_panel && this.options_panel.close(), e = !0), s && (t.keyCode === 65 && t.ctrlKey && (this.selectNodes(), e = !0), t.code === "KeyX" && (t.metaKey || t.ctrlKey) && !t.shiftKey && this.selected_nodes && (this.cutToClipboard(), e = !0), t.code === "KeyC" && (t.metaKey || t.ctrlKey) && !t.shiftKey && this.selected_nodes && (this.copyToClipboard(), e = !0), t.code === "KeyV" && (t.metaKey || t.ctrlKey) && !t.shiftKey && this.pasteFromClipboard(), t.code === "KeyD" && (t.metaKey || t.ctrlKey) && !t.shiftKey && (this.cloneSelection(), e = !0), (t.keyCode === 46 || t.keyCode === 8) && t.target instanceof Element && t.target.localName !== "input" && t.target.localName !== "textarea" && (this.deleteSelectedNodes(), e = !0), this.selected_nodes))
-        for (const o in this.selected_nodes)
-          this.selected_nodes[o].onKeyDown && this.selected_nodes[o].onKeyDown(t);
+        for (const n in this.selected_nodes)
+          this.selected_nodes[n].onKeyDown && this.selected_nodes[n].onKeyDown(t);
     } else if (t.type === "keyup" && (t.keyCode === 32 && (this.dragging_canvas = !1), s && this.selected_nodes))
-      for (const o in this.selected_nodes)
-        this.selected_nodes[o].onKeyUp && this.selected_nodes[o].onKeyUp(t);
+      for (const n in this.selected_nodes)
+        this.selected_nodes[n].onKeyUp && this.selected_nodes[n].onKeyUp(t);
     if (this.graph.change(), e)
       return t.preventDefault(), t.stopImmediatePropagation(), !1;
   }
@@ -6288,39 +6291,39 @@ const rt = class {
     };
     let e = 0;
     const s = [];
-    for (const o in this.selected_nodes) {
-      const n = this.selected_nodes[o];
-      n._relative_id = e, s.push(n), e += 1;
+    for (const n in this.selected_nodes) {
+      const i = this.selected_nodes[n];
+      i._relative_id = e, s.push(i), e += 1;
     }
-    for (let o = 0; o < s.length; ++o) {
-      const n = s[o];
-      if (!n.clonable)
+    for (let n = 0; n < s.length; ++n) {
+      const i = s[n];
+      if (!i.clonable)
         continue;
-      const r = { forNode: {} }, a = n.clone(r);
-      if (!a) {
-        console.warn(`node type not found: ${n.type}`);
+      const o = { forNode: {} }, l = i.clone(o);
+      if (!l) {
+        console.warn(`node type not found: ${i.type}`);
         continue;
       }
-      if (t.nodes.push(a.serialize()), t.nodeCloneData[a.id] = {
-        prevNodeID: n.id,
-        cloneData: r
-      }, n.inputs && n.inputs.length)
-        for (let u = 0; u < n.inputs.length; ++u) {
-          const l = n.inputs[u];
-          if (!l || l.link === null)
+      if (t.nodes.push(l.serialize()), t.nodeCloneData[l.id] = {
+        prevNodeID: i.id,
+        cloneData: o
+      }, i.inputs && i.inputs.length)
+        for (let a = 0; a < i.inputs.length; ++a) {
+          const r = i.inputs[a];
+          if (!r || r.link === null)
             continue;
-          const p = this.graph.links[l.link];
-          if (!p)
+          const c = this.graph.links[r.link];
+          if (!c)
             continue;
-          const f = this.graph.getNodeById(
-            p.origin_id
+          const d = this.graph.getNodeById(
+            c.origin_id
           );
-          !f || !this.selected_nodes[f.id] || !this.selected_nodes[f.id].clonable || t.links.push([
-            f._relative_id,
-            p.origin_slot,
+          !d || !this.selected_nodes[d.id] || !this.selected_nodes[d.id].clonable || t.links.push([
+            d._relative_id,
+            c.origin_slot,
             // j,
-            n._relative_id,
-            p.target_slot
+            i._relative_id,
+            c.target_slot
           ]);
         }
     }
@@ -6335,84 +6338,84 @@ const rt = class {
       return;
     this.graph.beforeChange();
     const e = JSON.parse(t);
-    let s = null, o = null;
-    for (let r = 0; r < e.nodes.length; ++r)
-      s ? (s[0] > e.nodes[r].pos[0] && (s[0] = e.nodes[r].pos[0], o[0] = r), s[1] > e.nodes[r].pos[1] && (s[1] = e.nodes[r].pos[1], o[1] = r)) : (s = [e.nodes[r].pos[0], e.nodes[r].pos[1]], o = [r, r]);
-    const n = [];
-    for (let r = 0; r < e.nodes.length; ++r) {
-      const a = e.nodes[r], u = h.createNode(a.type);
-      if (u) {
-        u.configure(a), u.pos[0] += this.graph_mouse[0] - s[0], u.pos[1] += this.graph_mouse[1] - s[1];
-        const { cloneData: l, prevNodeID: p } = e.nodeCloneData[u.id];
-        this.graph.add(u, { doProcessChange: !1, addedBy: "paste", prevNodeID: p, cloneData: l }), n.push(u);
+    let s = null, n = null;
+    for (let o = 0; o < e.nodes.length; ++o)
+      s ? (s[0] > e.nodes[o].pos[0] && (s[0] = e.nodes[o].pos[0], n[0] = o), s[1] > e.nodes[o].pos[1] && (s[1] = e.nodes[o].pos[1], n[1] = o)) : (s = [e.nodes[o].pos[0], e.nodes[o].pos[1]], n = [o, o]);
+    const i = [];
+    for (let o = 0; o < e.nodes.length; ++o) {
+      const l = e.nodes[o], a = h.createNode(l.type);
+      if (a) {
+        a.configure(l), a.pos[0] += this.graph_mouse[0] - s[0], a.pos[1] += this.graph_mouse[1] - s[1];
+        const { cloneData: r, prevNodeID: c } = e.nodeCloneData[a.id];
+        this.graph.add(a, { doProcessChange: !1, addedBy: "paste", prevNodeID: c, cloneData: r }), i.push(a);
       }
     }
-    for (let r = 0; r < e.links.length; ++r) {
-      const a = e.links[r], u = n[a[0]], l = n[a[2]];
-      u && l ? u.connect(a[1], l, a[3]) : console.warn("Warning, nodes missing on pasting");
+    for (let o = 0; o < e.links.length; ++o) {
+      const l = e.links[o], a = i[l[0]], r = i[l[2]];
+      a && r ? a.connect(l[1], r, l[3]) : console.warn("Warning, nodes missing on pasting");
     }
-    this.selectNodes(n), this.graph.afterChange();
+    this.selectNodes(i), this.graph.afterChange();
   }
   cloneSelection() {
     if (!this.selected_nodes || Object.keys(this.selected_nodes).length === 0)
       return;
     this.graph.beforeChange();
     const t = {}, e = [], s = {};
-    for (const n of Object.values(this.selected_nodes))
-      for (const r of n.iterateAllLinks())
-        this.selected_nodes[r.origin_id] && this.selected_nodes[r.target_id] && e.push(r);
-    const o = function(n) {
-      if (n.clonable === !1)
+    for (const i of Object.values(this.selected_nodes))
+      for (const o of i.iterateAllLinks())
+        this.selected_nodes[o.origin_id] && this.selected_nodes[o.target_id] && e.push(o);
+    const n = function(i) {
+      if (i.clonable === !1)
         return;
-      const r = n.id, a = { forNode: {} }, u = n.clone(a);
-      u && (s[r] = u, u.pos = [n.pos[0] + 5, n.pos[1] + 5], n.graph.add(u, { addedBy: "cloneSelection", prevNodeID: r, prevNode: n, cloneData: a }), t[u.id] = u);
+      const o = i.id, l = { forNode: {} }, a = i.clone(l);
+      a && (s[o] = a, a.pos = [i.pos[0] + 5, i.pos[1] + 5], i.graph.add(a, { addedBy: "cloneSelection", prevNodeID: o, prevNode: i, cloneData: l }), t[a.id] = a);
     };
-    for (const n in this.selected_nodes)
-      o(this.selected_nodes[n]);
-    for (const n of e) {
-      const r = s[n.origin_id], a = s[n.target_id];
-      r && a && r.connect(n.origin_slot, a, n.target_slot);
+    for (const i in this.selected_nodes)
+      n(this.selected_nodes[i]);
+    for (const i of e) {
+      const o = s[i.origin_id], l = s[i.target_id];
+      o && l && o.connect(i.origin_slot, l, i.target_slot);
     }
     Object.keys(t).length && this.selectNodes(Object.values(t)), this.graph.afterChange(), this.setDirty(!0, !0);
   }
   processDrop(t) {
     const e = t;
     e.preventDefault(), this.adjustMouseEvent(e);
-    const s = e.clientX, o = e.clientY;
-    if (!(!this.viewport || this.viewport && s >= this.viewport[0] && s < this.viewport[0] + this.viewport[2] && o >= this.viewport[1] && o < this.viewport[1] + this.viewport[3]))
+    const s = e.clientX, n = e.clientY;
+    if (!(!this.viewport || this.viewport && s >= this.viewport[0] && s < this.viewport[0] + this.viewport[2] && n >= this.viewport[1] && n < this.viewport[1] + this.viewport[3]))
       return;
-    const r = [e.canvasX, e.canvasY], a = this.graph ? this.graph.getNodeOnPos(r[0], r[1]) : null;
-    if (!a) {
-      let u = null;
-      this.onDropItem && (u = this.onDropItem(e)), u || this.checkDropItem(e);
+    const o = [e.canvasX, e.canvasY], l = this.graph ? this.graph.getNodeOnPos(o[0], o[1]) : null;
+    if (!l) {
+      let a = null;
+      this.onDropItem && (a = this.onDropItem(e)), a || this.checkDropItem(e);
       return;
     }
-    if (a.onDropFile || a.onDropData) {
-      const u = e.dataTransfer.files;
-      if (u && u.length)
-        for (let l = 0; l < u.length; l++) {
-          const p = e.dataTransfer.files[0], f = p.name;
-          if (rt.getFileExtension(f), a.onDropFile && a.onDropFile(p), a.onDropData) {
-            const c = new FileReader();
-            c.onload = function(y) {
-              const d = y.target.result;
-              a.onDropData(d, f, p);
+    if (l.onDropFile || l.onDropData) {
+      const a = e.dataTransfer.files;
+      if (a && a.length)
+        for (let r = 0; r < a.length; r++) {
+          const c = e.dataTransfer.files[0], d = c.name;
+          if (ot.getFileExtension(d), l.onDropFile && l.onDropFile(c), l.onDropData) {
+            const u = new FileReader();
+            u.onload = function(m) {
+              const p = m.target.result;
+              l.onDropData(p, d, c);
             };
-            const g = p.type.split("/")[0];
-            g === "text" || g === "" ? c.readAsText(p) : g === "image" ? c.readAsDataURL(p) : c.readAsArrayBuffer(p);
+            const _ = c.type.split("/")[0];
+            _ === "text" || _ === "" ? u.readAsText(c) : _ === "image" ? u.readAsDataURL(c) : u.readAsArrayBuffer(c);
           }
         }
     }
-    return !!(a.onDropItem && a.onDropItem(e) || this.onDropItem && this.onDropItem(e));
+    return !!(l.onDropItem && l.onDropItem(e) || this.onDropItem && this.onDropItem(e));
   }
   checkDropItem(t) {
     const e = t;
     if (e.dataTransfer.files.length) {
-      const s = e.dataTransfer.files[0], o = rt.getFileExtension(s.name).toLowerCase(), n = h.node_types_by_file_extension[o];
-      if (n) {
+      const s = e.dataTransfer.files[0], n = ot.getFileExtension(s.name).toLowerCase(), i = h.node_types_by_file_extension[n];
+      if (i) {
         this.graph.beforeChange();
-        const r = h.createNode(n.type);
-        r.pos = [e.canvasX, e.canvasY], this.graph.add(r), r.onDropFile && r.onDropFile(s), this.graph.afterChange();
+        const o = h.createNode(i.type);
+        o.pos = [e.canvasX, e.canvasY], this.graph.add(o), o.onDropFile && o.onDropFile(s), this.graph.afterChange();
       }
     }
   }
@@ -6430,20 +6433,20 @@ const rt = class {
   selectNodes(t, e = !1) {
     e || this.deselectAllNodes(), t = t || this.graph._nodes, typeof t == "string" && (t = [t]);
     for (const s in t) {
-      const o = t[s];
-      if (o.is_selected) {
-        this.deselectNode(o);
+      const n = t[s];
+      if (n.is_selected) {
+        this.deselectNode(n);
         continue;
       }
-      if (!o.is_selected && o.onSelected && o.onSelected(), o.is_selected = !0, this.selected_nodes[o.id] = o, o.inputs)
-        for (let n = 0; n < o.inputs.length; ++n)
-          this.highlighted_links[o.inputs[n].link] = !0;
-      if (o.outputs)
-        for (let n = 0; n < o.outputs.length; ++n) {
-          const r = o.outputs[n];
-          if (r.links)
-            for (let a = 0; a < r.links.length; ++a)
-              this.highlighted_links[r.links[a]] = !0;
+      if (!n.is_selected && n.onSelected && n.onSelected(), n.is_selected = !0, this.selected_nodes[n.id] = n, n.inputs)
+        for (let i = 0; i < n.inputs.length; ++i)
+          this.highlighted_links[n.inputs[i].link] = !0;
+      if (n.outputs)
+        for (let i = 0; i < n.outputs.length; ++i) {
+          const o = n.outputs[i];
+          if (o.links)
+            for (let l = 0; l < o.links.length; ++l)
+              this.highlighted_links[o.links[l]] = !0;
         }
     }
     this.onSelectionChange && this.onSelectionChange(this.selected_nodes), this.setDirty(!0);
@@ -6458,8 +6461,8 @@ const rt = class {
         for (let e = 0; e < t.outputs.length; ++e) {
           const s = t.outputs[e];
           if (s.links)
-            for (let o = 0; o < s.links.length; ++o)
-              delete this.highlighted_links[s.links[o]];
+            for (let n = 0; n < s.links.length; ++n)
+              delete this.highlighted_links[s.links[n]];
         }
     }
   }
@@ -6469,8 +6472,8 @@ const rt = class {
       return;
     const t = this.graph._nodes;
     for (let e = 0, s = t.length; e < s; ++e) {
-      const o = t[e];
-      o.is_selected && (o.onDeselected && o.onDeselected(), o.is_selected = !1, this.onNodeDeselected && this.onNodeDeselected(o));
+      const n = t[e];
+      n.is_selected && (n.onDeselected && n.onDeselected(), n.is_selected = !1, this.onNodeDeselected && this.onNodeDeselected(n));
     }
     this.selected_nodes = {}, this.current_node = null, this.highlighted_links = {}, this.onSelectionChange && this.onSelectionChange(this.selected_nodes), this.setDirty(!0);
   }
@@ -6481,8 +6484,8 @@ const rt = class {
       const e = this.selected_nodes[t];
       if (!e.block_delete) {
         if (e.inputs && e.inputs.length && e.outputs && e.outputs.length && h.isValidConnection(e.inputs[0].type, e.outputs[0].type) && e.inputs[0].link && e.outputs[0].links && e.outputs[0].links.length) {
-          const s = e.graph.links[e.inputs[0].link], o = e.graph.links[e.outputs[0].links[0]], n = e.getInputNode(0), r = e.getOutputNodes(0)[0];
-          n && r && n.connect(s.origin_slot, r, o.target_slot);
+          const s = e.graph.links[e.inputs[0].link], n = e.graph.links[e.outputs[0].links[0]], i = e.getInputNode(0), o = e.getOutputNodes(0)[0];
+          i && o && i.connect(s.origin_slot, o, n.target_slot);
         }
         this.graph.remove(e), this.onNodeDeselected && this.onNodeDeselected(e);
       }
@@ -6499,104 +6502,104 @@ const rt = class {
    */
   adjustMouseEvent(t) {
     const e = t;
-    let s = 0, o = 0;
+    let s = 0, n = 0;
     if (this.canvas) {
-      const n = this.canvas.getBoundingClientRect();
-      s = e.clientX - n.left, o = e.clientY - n.top;
+      const i = this.canvas.getBoundingClientRect();
+      s = e.clientX - i.left, n = e.clientY - i.top;
     } else
-      s = e.clientX, o = e.clientY;
-    return this.last_mouse_position[0] = s, this.last_mouse_position[1] = o, e.canvasX = s / this.ds.scale - this.ds.offset[0], e.canvasY = o / this.ds.scale - this.ds.offset[1], e;
+      s = e.clientX, n = e.clientY;
+    return this.last_mouse_position[0] = s, this.last_mouse_position[1] = n, e.canvasX = s / this.ds.scale - this.ds.offset[0], e.canvasY = n / this.ds.scale - this.ds.offset[1], e;
   }
   /** process an event on widgets */
-  processNodeWidgets(t, e, s, o) {
+  processNodeWidgets(t, e, s, n) {
     if (!t.widgets || !t.widgets.length || h.ignore_all_widget_events)
       return null;
-    const n = e[0] - t.pos[0], r = e[1] - t.pos[1], a = t.size[0], u = this, l = this.getCanvasWindow();
-    for (let f = 0; f < t.widgets.length; ++f) {
-      const c = t.widgets[f];
-      if (!c || c.disabled)
+    const i = e[0] - t.pos[0], o = e[1] - t.pos[1], l = t.size[0], a = this, r = this.getCanvasWindow();
+    for (let d = 0; d < t.widgets.length; ++d) {
+      const u = t.widgets[d];
+      if (!u || u.disabled)
         continue;
-      const g = c.computeSize ? c.computeSize(a)[1] : h.NODE_WIDGET_HEIGHT, y = c.width || a;
-      if (c !== o && (n < 6 || n > y - 12 || r < c.last_y || r > c.last_y + g || c.last_y === void 0))
+      const _ = u.computeSize ? u.computeSize(l)[1] : h.NODE_WIDGET_HEIGHT, m = u.width || l;
+      if (u !== n && (i < 6 || i > m - 12 || o < u.last_y || o > u.last_y + _ || u.last_y === void 0))
         continue;
-      const d = c.value;
-      switch (c.type) {
+      const p = u.value;
+      switch (u.type) {
         case "button":
-          s.type === `${h.pointerevents_method}down` && (c.callback && setTimeout(() => {
-            c.callback(c, u, t, e, s);
-          }, 20), c.clicked = !0, this.dirty_canvas = !0);
+          s.type === `${h.pointerevents_method}down` && (u.callback && setTimeout(() => {
+            u.callback(u, a, t, e, s);
+          }, 20), u.clicked = !0, this.dirty_canvas = !0);
           break;
         case "slider":
-          c.options.max - c.options.min;
-          const _ = dt((n - 15) / (y - 30), 0, 1);
-          c.value = c.options.min + (c.options.max - c.options.min) * _, c.callback && setTimeout(() => {
-            p(c, c.value);
+          u.options.max - u.options.min;
+          const f = pt((i - 15) / (m - 30), 0, 1);
+          u.value = u.options.min + (u.options.max - u.options.min) * f, u.callback && setTimeout(() => {
+            c(u, u.value);
           }, 20), this.dirty_canvas = !0;
           break;
         case "number":
         case "combo":
-          const m = c.value;
-          if (s.type === `${h.pointerevents_method}move` && c.type === "number")
-            s.deltaX && (c.value += s.deltaX * (c.options.step || 0.1)), c.options.min !== null && c.value < c.options.min && (c.value = c.options.min), c.options.max !== null && c.value > c.options.max && (c.value = c.options.max);
+          const v = u.value;
+          if (s.type === `${h.pointerevents_method}move` && u.type === "number")
+            s.deltaX && (u.value += s.deltaX * (u.options.step || 0.1)), u.options.min !== null && u.value < u.options.min && (u.value = u.options.min), u.options.max !== null && u.value > u.options.max && (u.value = u.options.max);
           else if (s.type === `${h.pointerevents_method}down`) {
-            let b = c.options.values;
-            if (b && typeof b == "function") {
-              const N = c.options.values;
-              b = N(c, t);
+            let y = u.options.values;
+            if (y && typeof y == "function") {
+              const E = u.options.values;
+              y = E(u, t);
             }
-            let v = null;
-            c.type !== "number" && (v = Array.isArray(b) ? b : Object.keys(b));
-            const O = n < 40 ? -1 : n > y - 40 ? 1 : 0;
-            if (c.type === "number")
-              c.value += O * (c.options.step || 0.1), c.options.min !== null && c.value < c.options.min && (c.value = c.options.min), c.options.max !== null && c.value > c.options.max && (c.value = c.options.max);
-            else if (O) {
-              let N = -1;
-              this.last_mouseclick = 0, b.constructor === Object ? N = v.indexOf(String(c.value)) + O : N = v.indexOf(c.value) + O, N >= v.length && (N = v.length - 1), N < 0 && (N = 0), Array.isArray(b) ? c.value = b[N] : c.value = N;
+            let g = null;
+            u.type !== "number" && (g = Array.isArray(y) ? y : Object.keys(y));
+            const N = i < 40 ? -1 : i > m - 40 ? 1 : 0;
+            if (u.type === "number")
+              u.value += N * (u.options.step || 0.1), u.options.min !== null && u.value < u.options.min && (u.value = u.options.min), u.options.max !== null && u.value > u.options.max && (u.value = u.options.max);
+            else if (N) {
+              let E = -1;
+              this.last_mouseclick = 0, y.constructor === Object ? E = g.indexOf(String(u.value)) + N : E = g.indexOf(u.value) + N, E >= g.length && (E = g.length - 1), E < 0 && (E = 0), Array.isArray(y) ? u.value = y[E] : u.value = E;
             } else {
-              let N = function(x, w, P) {
-                let S = x.content;
-                return b !== v && (S = E.indexOf(S)), this.value = S, p(this, S), u.dirty_canvas = !0, !1;
+              let E = function(F, I, D) {
+                let C = F.content;
+                return y !== g && (C = T.indexOf(C)), this.value = C, c(this, C), a.dirty_canvas = !0, !1;
               };
-              const E = b !== v ? Object.values(b) : b, G = Array.from(E).map((x) => ({ content: x }));
-              new z(G, {
+              const T = y !== g ? Object.values(y) : y, M = Array.from(T).map((F) => ({ content: F }));
+              new U(M, {
                 scale: Math.max(1, this.ds.scale),
                 event: s,
                 className: "dark",
-                callback: N.bind(c)
-              }, l);
+                callback: E.bind(u)
+              }, r);
             }
-          } else if (s.type === `${h.pointerevents_method}up` && c.type === "number") {
-            const b = n < 40 ? -1 : n > y - 40 ? 1 : 0;
-            s.click_time < 200 && b === 0 && this.prompt("Value", c.value, function(v) {
-              this.value = Number(v), p(this, this.value);
-            }.bind(c), s);
+          } else if (s.type === `${h.pointerevents_method}up` && u.type === "number") {
+            const y = i < 40 ? -1 : i > m - 40 ? 1 : 0;
+            s.click_time < 200 && y === 0 && this.prompt("Value", u.value, function(g) {
+              this.value = Number(g), c(this, this.value);
+            }.bind(u), s);
           }
-          m !== c.value && setTimeout(
+          v !== u.value && setTimeout(
             function() {
-              p(this, this.value);
-            }.bind(c),
+              c(this, this.value);
+            }.bind(u),
             20
           ), this.dirty_canvas = !0;
           break;
         case "toggle":
-          s.type === `${h.pointerevents_method}down` && (c.value = !c.value, setTimeout(() => {
-            p(c, c.value);
+          s.type === `${h.pointerevents_method}down` && (u.value = !u.value, setTimeout(() => {
+            c(u, u.value);
           }, 20));
           break;
         case "string":
         case "text":
-          s.type === `${h.pointerevents_method}down` && this.prompt("Value", c.value, function(b) {
-            this.value = b, p(this, b);
-          }.bind(c), s, c.options ? c.options.multiline : !1, c.options.inputStyle);
+          s.type === `${h.pointerevents_method}down` && this.prompt("Value", u.value, function(y) {
+            this.value = y, c(this, y);
+          }.bind(u), s, u.options ? u.options.multiline : !1, u.options.inputStyle);
           break;
         default:
-          c.mouse && (this.dirty_canvas = c.mouse(s, [n, r], t));
+          u.mouse && (this.dirty_canvas = u.mouse(s, [i, o], t));
           break;
       }
-      return d !== c.value && (t.onWidgetChanged && t.onWidgetChanged(c, d), t.graph._version++), c;
+      return p !== u.value && (t.onWidgetChanged && t.onWidgetChanged(u, p), t.graph._version++), u;
     }
-    function p(f, c) {
-      f.value = c, f.options && f.options.property && t.properties[f.options.property] !== void 0 && t.setProperty(f.options.property, c), f.callback && f.callback(f.value, u, t, e, s);
+    function c(d, u) {
+      d.value = u, d.options && d.options.property && t.properties[d.options.property] !== void 0 && t.setProperty(d.options.property, u), d.callback && d.callback(d.value, a, t, e, s);
     }
     return null;
   }
@@ -6614,11 +6617,11 @@ const rt = class {
     }
     this.canvas.width === t && this.canvas.height === e || (this.canvas.width = t, this.canvas.height = e, this.bgcanvas.width = this.canvas.width, this.bgcanvas.height = this.canvas.height, this.adjustCanvasForHiDPI(), this.setDirty(!0, !0));
   }
-  isAreaClicked(t, e, s, o, n) {
-    let r = this.offset_mouse;
-    h.isInsideRectangle(r[0], r[1], t, e, s, o), r = this.last_click_position;
-    const a = r && h.isInsideRectangle(r[0], r[1], t, e, s, o), u = a && !this.block_click;
-    return a && n && this.blockClick(), u;
+  isAreaClicked(t, e, s, n, i) {
+    let o = this.offset_mouse;
+    h.isInsideRectangle(o[0], o[1], t, e, s, n), o = this.last_click_position;
+    const l = o && h.isInsideRectangle(o[0], o[1], t, e, s, n), a = l && !this.block_click;
+    return l && i && this.blockClick(), a;
   }
   /**
    * switches to live mode (node shapes are not rendered, only the content)
@@ -6631,8 +6634,8 @@ const rt = class {
     }
     const e = this, s = this.live_mode ? 1.1 : 0.9;
     this.live_mode && (this.live_mode = !1, this.editor_alpha = 0.1);
-    const o = setInterval(() => {
-      e.editor_alpha *= s, e.dirty_canvas = !0, e.dirty_bgcanvas = !0, s < 1 && e.editor_alpha < 0.01 && (clearInterval(o), s < 1 && (e.live_mode = !0)), s > 1 && e.editor_alpha > 0.99 && (clearInterval(o), e.editor_alpha = 1);
+    const n = setInterval(() => {
+      e.editor_alpha *= s, e.dirty_canvas = !0, e.dirty_bgcanvas = !0, s < 1 && e.editor_alpha < 0.01 && (clearInterval(n), s < 1 && (e.live_mode = !0)), s > 1 && e.editor_alpha > 0.99 && (clearInterval(n), e.editor_alpha = 1);
     }, 1);
   }
   onNodeSelectionChange() {
@@ -6654,179 +6657,179 @@ const rt = class {
     ]);
   }
   addGraphInputNode(t, e, s) {
-    const o = this.graph.findNodesByClass(V).find((a) => a.properties.name === e);
-    if (o) {
-      this.selectNodes([o]);
+    const n = this.graph.findNodesByClass(X).find((l) => l.properties.name === e);
+    if (n) {
+      this.selectNodes([n]);
       return;
     }
     (!s || s === "") && (s = "*");
-    const n = [
+    const i = [
       this.canvas.width * 0.25 / this.ds.scale - this.ds.offset[0],
       this.canvas.height * 0.5 / this.ds.scale - this.ds.offset[1]
     ];
     this.graph.beforeChange();
-    const r = t.addGraphInput(e, s, n);
-    if (r) {
-      const a = r.innerNode;
-      this.selectNodes([a]), this.graph.afterChange();
+    const o = t.addGraphInput(e, s, i);
+    if (o) {
+      const l = o.innerNode;
+      this.selectNodes([l]), this.graph.afterChange();
     } else
       console.error("graph input node not found:", s);
   }
   addGraphOutputNode(t, e, s) {
-    const o = this.graph.findNodesByClass(j).find((a) => a.properties.name === e);
-    if (o) {
-      this.selectNodes([o]);
+    const n = this.graph.findNodesByClass(V).find((l) => l.properties.name === e);
+    if (n) {
+      this.selectNodes([n]);
       return;
     }
     (!s || s === "") && (s = "*");
-    const n = [
+    const i = [
       this.canvas.width * 0.75 / this.ds.scale - this.ds.offset[0],
       this.canvas.height * 0.5 / this.ds.scale - this.ds.offset[1]
     ];
     this.graph.beforeChange();
-    const r = t.addGraphOutput(e, s, n);
-    if (r) {
-      const a = r.innerNode;
-      this.selectNodes([a]), this.graph.afterChange();
+    const o = t.addGraphOutput(e, s, i);
+    if (o) {
+      const l = o.innerNode;
+      this.selectNodes([l]), this.graph.afterChange();
     } else
       console.error("graph output node not found:", s);
   }
   getCanvasMenuOptions() {
-    return C.prototype.getCanvasMenuOptions.apply(this, arguments);
+    return w.prototype.getCanvasMenuOptions.apply(this, arguments);
   }
   getNodeMenuOptions(t) {
-    return C.prototype.getNodeMenuOptions.apply(this, arguments);
+    return w.prototype.getNodeMenuOptions.apply(this, arguments);
   }
   getLinkMenuOptions(t) {
-    return C.prototype.getLinkMenuOptions.apply(this, arguments);
+    return w.prototype.getLinkMenuOptions.apply(this, arguments);
   }
   getGroupMenuOptions(t) {
-    return C.prototype.getGroupMenuOptions.apply(this, arguments);
+    return w.prototype.getGroupMenuOptions.apply(this, arguments);
   }
   checkPanels() {
-    C.prototype.checkPanels.apply(this, arguments);
+    w.prototype.checkPanels.apply(this, arguments);
   }
   closePanels() {
-    C.prototype.closePanels.apply(this, arguments);
+    w.prototype.closePanels.apply(this, arguments);
   }
   createDialog(t, e) {
-    return C.prototype.createDialog.apply(this, arguments);
+    return w.prototype.createDialog.apply(this, arguments);
   }
   createPanel(t, e = {}) {
-    return C.prototype.createPanel.apply(this, arguments);
+    return w.prototype.createPanel.apply(this, arguments);
   }
   showSearchBox(t, e = {}) {
-    return C.prototype.showSearchBox.apply(this, arguments);
+    return w.prototype.showSearchBox.apply(this, arguments);
   }
-  prompt(t = "", e, s, o, n = !1, r = null) {
-    return C.prototype.prompt.apply(this, arguments);
+  prompt(t = "", e, s, n, i = !1, o = null) {
+    return w.prototype.prompt.apply(this, arguments);
   }
   showConnectionMenu(t = {}) {
-    return C.prototype.showConnectionMenu.apply(this, arguments);
+    return w.prototype.showConnectionMenu.apply(this, arguments);
   }
   showLinkMenu(t, e) {
-    return C.prototype.showLinkMenu.apply(this, arguments);
+    return w.prototype.showLinkMenu.apply(this, arguments);
   }
   showEditPropertyValue(t, e, s) {
-    return C.prototype.showEditPropertyValue.apply(this, arguments);
+    return w.prototype.showEditPropertyValue.apply(this, arguments);
   }
   showShowNodePanel(t) {
-    C.prototype.showShowNodePanel.apply(this, arguments);
+    w.prototype.showShowNodePanel.apply(this, arguments);
   }
   showSubgraphPropertiesDialog(t) {
-    return C.prototype.showSubgraphPropertiesDialog.apply(this, arguments);
+    return w.prototype.showSubgraphPropertiesDialog.apply(this, arguments);
   }
   showSubgraphPropertiesDialogRight(t) {
-    return C.prototype.showSubgraphPropertiesDialogRight.apply(this, arguments);
+    return w.prototype.showSubgraphPropertiesDialogRight.apply(this, arguments);
   }
   processContextMenu(t, e) {
-    C.prototype.processContextMenu.apply(this, arguments);
+    w.prototype.processContextMenu.apply(this, arguments);
   }
   /*
      * Events
      */
   processMouseMove(t) {
-    return at.prototype.processMouseMove.apply(this, arguments);
+    return lt.prototype.processMouseMove.apply(this, arguments);
   }
   processMouseDown(t) {
-    return at.prototype.processMouseDown.apply(this, arguments);
+    return lt.prototype.processMouseDown.apply(this, arguments);
   }
   processMouseUp(t) {
-    return at.prototype.processMouseUp.apply(this, arguments);
+    return lt.prototype.processMouseUp.apply(this, arguments);
   }
   processMouseWheel(t) {
-    return at.prototype.processMouseWheel.apply(this, arguments);
+    return lt.prototype.processMouseWheel.apply(this, arguments);
   }
   /*
      * Rendering
      */
   setZoom(t, e) {
-    R.prototype.setZoom.apply(this, arguments);
+    P.prototype.setZoom.apply(this, arguments);
   }
   bringToFront(t) {
-    R.prototype.bringToFront.apply(this, arguments);
+    P.prototype.bringToFront.apply(this, arguments);
   }
   sendToBack(t) {
-    R.prototype.sendToBack.apply(this, arguments);
+    P.prototype.sendToBack.apply(this, arguments);
   }
   computeVisibleNodes(t, e = []) {
-    return R.prototype.computeVisibleNodes.apply(this, arguments);
+    return P.prototype.computeVisibleNodes.apply(this, arguments);
   }
   draw(t = !1, e = !1) {
-    R.prototype.draw.apply(this, arguments);
+    P.prototype.draw.apply(this, arguments);
   }
   drawFrontCanvas() {
-    R.prototype.drawFrontCanvas.apply(this, arguments);
+    P.prototype.drawFrontCanvas.apply(this, arguments);
   }
   drawSubgraphPanel(t) {
-    R.prototype.drawSubgraphPanel.apply(this, arguments);
+    P.prototype.drawSubgraphPanel.apply(this, arguments);
   }
   drawSubgraphPanelLeft(t, e, s) {
-    R.prototype.drawSubgraphPanelLeft.apply(this, arguments);
+    P.prototype.drawSubgraphPanelLeft.apply(this, arguments);
   }
   drawSubgraphPanelRight(t, e, s) {
-    R.prototype.drawSubgraphPanelRight.apply(this, arguments);
+    P.prototype.drawSubgraphPanelRight.apply(this, arguments);
   }
-  drawButton(t, e, s, o, n, r = h.NODE_DEFAULT_COLOR, a = "#555", u = h.NODE_TEXT_COLOR, l = !0) {
-    return R.prototype.drawButton.apply(this, arguments);
+  drawButton(t, e, s, n, i, o = h.NODE_DEFAULT_COLOR, l = "#555", a = h.NODE_TEXT_COLOR, r = !0) {
+    return P.prototype.drawButton.apply(this, arguments);
   }
   drawBackCanvas() {
-    R.prototype.drawBackCanvas.apply(this, arguments);
+    P.prototype.drawBackCanvas.apply(this, arguments);
   }
   renderInfo(t, e = 10, s) {
-    R.prototype.renderInfo.apply(this, arguments);
+    P.prototype.renderInfo.apply(this, arguments);
   }
   drawNode(t, e) {
-    R.prototype.drawNode.apply(this, arguments);
+    P.prototype.drawNode.apply(this, arguments);
   }
   drawLinkTooltip(t, e) {
-    R.prototype.drawLinkTooltip.apply(this, arguments);
+    P.prototype.drawLinkTooltip.apply(this, arguments);
   }
-  drawNodeShape(t, e, s, o, n, r, a) {
-    R.prototype.drawNodeShape.apply(this, arguments);
+  drawNodeShape(t, e, s, n, i, o, l) {
+    P.prototype.drawNodeShape.apply(this, arguments);
   }
   drawConnections(t) {
-    R.prototype.drawConnections.apply(this, arguments);
+    P.prototype.drawConnections.apply(this, arguments);
   }
-  renderLink(t, e, s, o, n, r, a, u, l, p) {
-    R.prototype.renderLink.apply(this, arguments);
+  renderLink(t, e, s, n, i, o, l, a, r, c) {
+    P.prototype.renderLink.apply(this, arguments);
   }
-  computeConnectionPoint(t, e, s, o = D.RIGHT, n = D.LEFT) {
-    return R.prototype.computeConnectionPoint.apply(this, arguments);
+  computeConnectionPoint(t, e, s, n = L.RIGHT, i = L.LEFT) {
+    return P.prototype.computeConnectionPoint.apply(this, arguments);
   }
   drawExecutionOrder(t) {
-    R.prototype.drawExecutionOrder.apply(this, arguments);
+    P.prototype.drawExecutionOrder.apply(this, arguments);
   }
-  drawNodeWidgets(t, e, s, o) {
-    R.prototype.drawNodeWidgets.apply(this, arguments);
+  drawNodeWidgets(t, e, s, n) {
+    P.prototype.drawNodeWidgets.apply(this, arguments);
   }
   drawGroups(t, e) {
-    R.prototype.drawGroups.apply(this, arguments);
+    P.prototype.drawGroups.apply(this, arguments);
   }
 };
-let T = rt;
-T.DEFAULT_BACKGROUND_IMAGE = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQBJREFUeNrs1rEKwjAUhlETUkj3vP9rdmr1Ysammk2w5wdxuLgcMHyptfawuZX4pJSWZTnfnu/lnIe/jNNxHHGNn//HNbbv+4dr6V+11uF527arU7+u63qfa/bnmh8sWLBgwYJlqRf8MEptXPBXJXa37BSl3ixYsGDBMliwFLyCV/DeLIMFCxYsWLBMwSt4Be/NggXLYMGCBUvBK3iNruC9WbBgwYJlsGApeAWv4L1ZBgsWLFiwYJmCV/AK3psFC5bBggULloJX8BpdwXuzYMGCBctgwVLwCl7Be7MMFixYsGDBsu8FH1FaSmExVfAxBa/gvVmwYMGCZbBg/W4vAQYA5tRF9QYlv/QAAAAASUVORK5CYII=";
-T.node_colors = {
+let b = ot;
+b.DEFAULT_BACKGROUND_IMAGE = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQBJREFUeNrs1rEKwjAUhlETUkj3vP9rdmr1Ysammk2w5wdxuLgcMHyptfawuZX4pJSWZTnfnu/lnIe/jNNxHHGNn//HNbbv+4dr6V+11uF527arU7+u63qfa/bnmh8sWLBgwYJlqRf8MEptXPBXJXa37BSl3ixYsGDBMliwFLyCV/DeLIMFCxYsWLBMwSt4Be/NggXLYMGCBUvBK3iNruC9WbBgwYJlsGApeAWv4L1ZBgsWLFiwYJmCV/AK3psFC5bBggULloJX8BpdwXuzYMGCBctgwVLwCl7Be7MMFixYsGDBsu8FH1FaSmExVfAxBa/gvVmwYMGCZbBg/W4vAQYA5tRF9QYlv/QAAAAASUVORK5CYII=";
+b.node_colors = {
   red: { color: "#322", bgcolor: "#533", groupcolor: "#A88" },
   brown: { color: "#332922", bgcolor: "#593930", groupcolor: "#b06634" },
   green: { color: "#232", bgcolor: "#353", groupcolor: "#8A8" },
@@ -6837,13 +6840,13 @@ T.node_colors = {
   yellow: { color: "#432", bgcolor: "#653", groupcolor: "#b58b2a" },
   black: { color: "#222", bgcolor: "#000", groupcolor: "#444" }
 };
-T.DEFAULT_LINK_TYPE_COLORS = {
-  [k.ACTION]: h.ACTION_LINK_COLOR,
-  [k.EVENT]: h.EVENT_LINK_COLOR,
+b.DEFAULT_LINK_TYPE_COLORS = {
+  [O.ACTION]: h.ACTION_LINK_COLOR,
+  [O.EVENT]: h.EVENT_LINK_COLOR,
   number: "#AAA",
   node: "#DCA"
 };
-T.DEFAULT_CONNECTION_COLORS = {
+b.DEFAULT_CONNECTION_COLORS = {
   input_off: "#778",
   input_on: "#7F7",
   // "#BBD"
@@ -6851,162 +6854,162 @@ T.DEFAULT_CONNECTION_COLORS = {
   output_on: "#7F7"
   // "#BBD"
 };
-T.DEFAULT_CONNECTION_COLORS_BY_TYPE = {
+b.DEFAULT_CONNECTION_COLORS_BY_TYPE = {
   number: "#7F7",
   string: "#77F",
   boolean: "#F77"
 };
-T.DEFAULT_CONNECTION_COLORS_BY_TYPE_OFF = {
+b.DEFAULT_CONNECTION_COLORS_BY_TYPE_OFF = {
   number: "#474",
   string: "#447",
   boolean: "#744"
 };
-T.active_canvas = null;
-T.active_node = null;
-T.onMenuCollapseAll = C.onMenuCollapseAll;
-T.onMenuNodeEdit = C.onMenuNodeEdit;
-T.onShowPropertyEditor = C.onShowPropertyEditor;
-T.onGroupAdd = C.onGroupAdd;
-T.onMenuAdd = C.onMenuAdd;
-T.showMenuNodeOptionalInputs = C.showMenuNodeOptionalInputs;
-T.showMenuNodeOptionalOutputs = C.showMenuNodeOptionalOutputs;
-T.onShowMenuNodeProperties = C.onShowMenuNodeProperties;
-T.onResizeNode = C.onResizeNode;
-T.onMenuResizeNode = C.onMenuResizeNode;
-T.onMenuNodeCollapse = C.onMenuNodeCollapse;
-T.onMenuNodePin = C.onMenuNodePin;
-T.onMenuNodeMode = C.onMenuNodeMode;
-T.onMenuNodeColors = C.onMenuNodeColors;
-T.onMenuNodeShapes = C.onMenuNodeShapes;
-T.onMenuNodeRemove = C.onMenuNodeRemove;
-T.onMenuNodeClone = C.onMenuNodeClone;
-T.onMenuNodeToSubgraph = C.onMenuNodeToSubgraph;
-T.onMenuNodeToSubgraphInputs = C.onMenuNodeToSubgraphInputs;
-T.onMenuNodeToSubgraphOutputs = C.onMenuNodeToSubgraphOutputs;
-T.onMenuNodeToParentGraph = C.onMenuNodeToParentGraph;
-var Y = /* @__PURE__ */ ((t) => (t[t.SEPARATOR = 0] = "SEPARATOR", t))(Y || {});
-class z {
-  static trigger(e, s, o, n) {
-    const r = document.createEvent("CustomEvent");
-    return r.initCustomEvent(s, !0, !0, o), r.target = n, e.dispatchEvent && e.dispatchEvent(r), r;
+b.active_canvas = null;
+b.active_node = null;
+b.onMenuCollapseAll = w.onMenuCollapseAll;
+b.onMenuNodeEdit = w.onMenuNodeEdit;
+b.onShowPropertyEditor = w.onShowPropertyEditor;
+b.onGroupAdd = w.onGroupAdd;
+b.onMenuAdd = w.onMenuAdd;
+b.showMenuNodeOptionalInputs = w.showMenuNodeOptionalInputs;
+b.showMenuNodeOptionalOutputs = w.showMenuNodeOptionalOutputs;
+b.onShowMenuNodeProperties = w.onShowMenuNodeProperties;
+b.onResizeNode = w.onResizeNode;
+b.onMenuResizeNode = w.onMenuResizeNode;
+b.onMenuNodeCollapse = w.onMenuNodeCollapse;
+b.onMenuNodePin = w.onMenuNodePin;
+b.onMenuNodeMode = w.onMenuNodeMode;
+b.onMenuNodeColors = w.onMenuNodeColors;
+b.onMenuNodeShapes = w.onMenuNodeShapes;
+b.onMenuNodeRemove = w.onMenuNodeRemove;
+b.onMenuNodeClone = w.onMenuNodeClone;
+b.onMenuNodeToSubgraph = w.onMenuNodeToSubgraph;
+b.onMenuNodeToSubgraphInputs = w.onMenuNodeToSubgraphInputs;
+b.onMenuNodeToSubgraphOutputs = w.onMenuNodeToSubgraphOutputs;
+b.onMenuNodeToParentGraph = w.onMenuNodeToParentGraph;
+var $ = /* @__PURE__ */ ((t) => (t[t.SEPARATOR = 0] = "SEPARATOR", t))($ || {});
+class U {
+  static trigger(e, s, n, i) {
+    const o = document.createEvent("CustomEvent");
+    return o.initCustomEvent(s, !0, !0, n), o.target = i, e.dispatchEvent && e.dispatchEvent(o), o;
   }
   static isCursorOverElement(e, s) {
-    const o = e.clientX, n = e.clientY, r = s.getBoundingClientRect();
-    return r ? n > r.top && n < r.top + r.height && o > r.left && o < r.left + r.width : !1;
+    const n = e.clientX, i = e.clientY, o = s.getBoundingClientRect();
+    return o ? i > o.top && i < o.top + o.height && n > o.left && n < o.left + o.width : !1;
   }
   static closeAllContextMenus(e) {
     e = e || window;
     const s = e.document.querySelectorAll(".litecontextmenu");
     if (!s.length)
       return;
-    const o = Array.from(s);
-    for (const n of o)
-      n.close();
+    const n = Array.from(s);
+    for (const i of n)
+      i.close();
   }
-  constructor(e, s = {}, o) {
+  constructor(e, s = {}, n) {
     this.options = s;
-    const n = this;
+    const i = this;
     s.parentMenu && (s.parentMenu.constructor !== this.constructor ? (console.error(
       "parentMenu must be of class ContextMenu, ignoring it"
     ), s.parentMenu = null) : (this.parentMenu = s.parentMenu, this.parentMenu.lock = !0, this.parentMenu.current_submenu = this));
-    let r = null;
-    s.event && (r = s.event.constructor.name), r !== "MouseEvent" && r !== "CustomEvent" && r !== "PointerEvent" && (console.error(
-      `Event passed to ContextMenu is not of type MouseEvent or CustomEvent. Ignoring it. (${r})`
+    let o = null;
+    s.event && (o = s.event.constructor.name), o !== "MouseEvent" && o !== "CustomEvent" && o !== "PointerEvent" && (console.error(
+      `Event passed to ContextMenu is not of type MouseEvent or CustomEvent. Ignoring it. (${o})`
     ), s.event = null);
-    const a = document.createElement("div");
-    a.className = "litegraph litecontextmenu litemenubar-panel", s.className && (a.className += ` ${s.className}`), a.style.pointerEvents = "none", setTimeout(() => {
-      a.style.pointerEvents = "auto";
-    }, 100), h.pointerListenerAdd(a, "up", (c) => (c.preventDefault(), !0), !0), a.addEventListener(
+    const l = document.createElement("div");
+    l.className = "litegraph litecontextmenu litemenubar-panel", s.className && (l.className += ` ${s.className}`), l.style.pointerEvents = "none", setTimeout(() => {
+      l.style.pointerEvents = "auto";
+    }, 100), h.pointerListenerAdd(l, "up", (u) => (u.preventDefault(), !0), !0), l.addEventListener(
       "contextmenu",
-      (c) => (c.button !== 2 || c.preventDefault(), !1),
+      (u) => (u.button !== 2 || u.preventDefault(), !1),
       !0
-    ), a.close = () => {
-      a.parentNode.removeChild(a);
-    }, h.pointerListenerAdd(a, "down", (c) => {
-      if (c.button === 2)
-        return n.close(), c.preventDefault(), !0;
+    ), l.close = () => {
+      l.parentNode.removeChild(l);
+    }, h.pointerListenerAdd(l, "down", (u) => {
+      if (u.button === 2)
+        return i.close(), u.preventDefault(), !0;
     }, !0);
-    function u(c) {
-      const g = Number.parseInt(a.style.top);
-      return a.style.top = `${(g + c.deltaY * s.scroll_speed).toFixed()}px`, c.preventDefault(), !0;
+    function a(u) {
+      const _ = Number.parseInt(l.style.top);
+      return l.style.top = `${(_ + u.deltaY * s.scroll_speed).toFixed()}px`, u.preventDefault(), !0;
     }
-    if (s.scroll_speed || (s.scroll_speed = 0.1), a.addEventListener("wheel", u, !0), a.addEventListener("mousewheel", u, !0), this.root = a, s.title) {
-      const c = document.createElement("div");
-      c.className = "litemenu-title", c.innerHTML = s.title, a.appendChild(c);
+    if (s.scroll_speed || (s.scroll_speed = 0.1), l.addEventListener("wheel", a, !0), l.addEventListener("mousewheel", a, !0), this.root = l, s.title) {
+      const u = document.createElement("div");
+      u.className = "litemenu-title", u.innerHTML = s.title, l.appendChild(u);
     }
     this.values = [];
-    for (let c = 0; c < e.length; c++) {
-      const g = e[c];
-      let y = "";
-      g === 0 ? y = "" : typeof g == "string" ? y = g : y = g.content, this.addItem(y, g, s);
+    for (let u = 0; u < e.length; u++) {
+      const _ = e[u];
+      let m = "";
+      _ === 0 ? m = "" : typeof _ == "string" ? m = _ : m = _.content, this.addItem(m, _, s);
     }
-    h.pointerListenerAdd(a, "enter", (c) => {
-      a.closing_timer && clearTimeout(a.closing_timer);
+    h.pointerListenerAdd(l, "enter", (u) => {
+      l.closing_timer && clearTimeout(l.closing_timer);
     });
-    let l = document;
-    s.event && s.event.target instanceof Node && (l = s.event.target.ownerDocument), l || (l = document), l.fullscreenElement ? l.fullscreenElement.appendChild(a) : l.body.appendChild(a);
-    let p = s.left || 0, f = s.top || 0;
+    let r = document;
+    s.event && s.event.target instanceof Node && (r = s.event.target.ownerDocument), r || (r = document), r.fullscreenElement ? r.fullscreenElement.appendChild(l) : r.body.appendChild(l);
+    let c = s.left || 0, d = s.top || 0;
     if (s.event) {
-      if (p = s.event.clientX - 10, f = s.event.clientY - 10, s.title && (f -= 20), s.parentMenu) {
-        const y = s.parentMenu.root.getBoundingClientRect();
-        p = y.left + y.width;
+      if (c = s.event.clientX - 10, d = s.event.clientY - 10, s.title && (d -= 20), s.parentMenu) {
+        const m = s.parentMenu.root.getBoundingClientRect();
+        c = m.left + m.width;
       }
-      const c = document.body.getBoundingClientRect(), g = a.getBoundingClientRect();
-      c.height === 0 && console.error("document.body height is 0. That is dangerous, set html,body { height: 100%; }"), c.width && p > c.width - g.width - 10 && (p = c.width - g.width - 10), c.height && f > c.height - g.height - 10 && (f = c.height - g.height - 10);
+      const u = document.body.getBoundingClientRect(), _ = l.getBoundingClientRect();
+      u.height === 0 && console.error("document.body height is 0. That is dangerous, set html,body { height: 100%; }"), u.width && c > u.width - _.width - 10 && (c = u.width - _.width - 10), u.height && d > u.height - _.height - 10 && (d = u.height - _.height - 10);
     }
-    a.style.left = `${p}px`, a.style.top = `${f}px`, s.scale && (a.style.transform = `scale(${s.scale})`);
+    l.style.left = `${c}px`, l.style.top = `${d}px`, s.scale && (l.style.transform = `scale(${s.scale})`);
   }
-  addItem(e, s, o = {}) {
-    const n = this, r = document.createElement("div");
-    r.className = "litemenu-entry submenu";
-    let a = !1;
-    typeof s == "string" && (s = { content: s }), s === 0 ? r.classList.add("separator") : (r.innerHTML = s.title ? s.title : e, s.disabled && (a = !0, r.classList.add("disabled")), (s.submenu || s.has_submenu) && r.classList.add("has_submenu"), typeof s == "function" ? r.dataset.value = e : r.dataset.value = `${this.values.length}`, s.className && (r.className += ` ${s.className}`)), this.values.push(s), this.root.appendChild(r), a || r.addEventListener("click", p), o.autoopen && h.pointerListenerAdd(r, "enter", l);
-    const u = this;
-    function l(f) {
-      const c = this.value;
-      !c || !c.has_submenu || p.call(this, f);
+  addItem(e, s, n = {}) {
+    const i = this, o = document.createElement("div");
+    o.className = "litemenu-entry submenu";
+    let l = !1;
+    typeof s == "string" && (s = { content: s }), s === 0 ? o.classList.add("separator") : (o.innerHTML = s.title ? s.title : e, s.disabled && (l = !0, o.classList.add("disabled")), (s.submenu || s.has_submenu) && o.classList.add("has_submenu"), typeof s == "function" ? o.dataset.value = e : o.dataset.value = `${this.values.length}`, s.className && (o.className += ` ${s.className}`)), this.values.push(s), this.root.appendChild(o), l || o.addEventListener("click", c), n.autoopen && h.pointerListenerAdd(o, "enter", r);
+    const a = this;
+    function r(d) {
+      const u = this.value;
+      !u || !u.has_submenu || c.call(this, d);
     }
-    function p(f) {
-      const c = Number.parseInt(this.dataset.value), g = u.values[c];
-      h.debug && console.debug("ContextMenu inner_onclick", c, g);
-      const y = T.active_canvas;
-      if (!y)
+    function c(d) {
+      const u = Number.parseInt(this.dataset.value), _ = a.values[u];
+      h.debug && console.debug("ContextMenu inner_onclick", u, _);
+      const m = b.active_canvas;
+      if (!m)
         return;
-      const d = y.adjustMouseEvent(f);
-      let _ = !0;
-      if (n.current_submenu && n.current_submenu.close(d), o.callback && o.callback.call(
+      const p = m.adjustMouseEvent(d);
+      let f = !0;
+      if (i.current_submenu && i.current_submenu.close(p), n.callback && n.callback.call(
         this,
-        g,
-        o,
-        d,
+        _,
         n,
-        o.node
-      ) === !0 && (_ = !1), g && typeof g == "object" && (g.callback && !o.ignore_item_callbacks && g.disabled !== !0 && g.callback.call(
+        p,
+        i,
+        n.node
+      ) === !0 && (f = !1), _ && typeof _ == "object" && (_.callback && !n.ignore_item_callbacks && _.disabled !== !0 && _.callback.call(
         this,
-        g,
-        o,
-        d,
+        _,
         n,
-        o.extra
-      ) === !0 && (_ = !1), g.submenu)) {
-        if (!g.submenu.options)
+        p,
+        i,
+        n.extra
+      ) === !0 && (f = !1), _.submenu)) {
+        if (!_.submenu.options)
           throw "ContextMenu submenu needs options";
-        new z(g.submenu.options, {
-          callback: g.submenu.callback,
-          event: d,
-          parentMenu: n,
-          ignore_item_callbacks: g.submenu.ignore_item_callbacks,
-          title: g.submenu.title,
-          extra: g.submenu.extra,
-          autoopen: o.autoopen
-        }), _ = !1;
+        new U(_.submenu.options, {
+          callback: _.submenu.callback,
+          event: p,
+          parentMenu: i,
+          ignore_item_callbacks: _.submenu.ignore_item_callbacks,
+          title: _.submenu.title,
+          extra: _.submenu.extra,
+          autoopen: n.autoopen
+        }), f = !1;
       }
-      _ && !n.lock && n.close();
+      f && !i.lock && i.close();
     }
-    return r;
+    return o;
   }
   close(e, s) {
-    this.root.parentNode && this.root.parentNode.removeChild(this.root), this.parentMenu && !s && (this.parentMenu.lock = !1, this.parentMenu.current_submenu = null, e === void 0 ? this.parentMenu.close() : e && !z.isCursorOverElement(e, this.parentMenu.root) && z.trigger(this.parentMenu.root, `${h.pointerevents_method}leave`, e)), this.current_submenu && this.current_submenu.close(e, !0), this.root.closing_timer && clearTimeout(this.root.closing_timer);
+    this.root.parentNode && this.root.parentNode.removeChild(this.root), this.parentMenu && !s && (this.parentMenu.lock = !1, this.parentMenu.current_submenu = null, e === void 0 ? this.parentMenu.close() : e && !U.isCursorOverElement(e, this.parentMenu.root) && U.trigger(this.parentMenu.root, `${h.pointerevents_method}leave`, e)), this.current_submenu && this.current_submenu.close(e, !0), this.root.closing_timer && clearTimeout(this.root.closing_timer);
   }
   getTopMenu() {
     return this.options.parentMenu ? this.options.parentMenu.getTopMenu() : this;
@@ -7016,45 +7019,45 @@ class z {
   }
 }
 export {
-  bt as BASE_SLOT_TYPES,
-  A as BuiltInSlotShape,
-  k as BuiltInSlotType,
-  z as ContextMenu,
-  Y as ContextMenuSpecialItem,
-  D as Dir,
-  Ht as DragAndScale,
-  V as GraphInput,
-  j as GraphOutput,
-  B as LConnectionKind,
-  kt as LGraph,
-  T as LGraphCanvas,
-  at as LGraphCanvas_Events,
-  R as LGraphCanvas_Rendering,
-  C as LGraphCanvas_UI,
-  ct as LGraphGroup,
-  et as LGraphNode,
-  Gt as LGraphStatus,
+  yt as BASE_SLOT_TYPES,
+  S as BuiltInSlotShape,
+  O as BuiltInSlotType,
+  U as ContextMenu,
+  $ as ContextMenuSpecialItem,
+  L as Dir,
+  Bt as DragAndScale,
+  X as GraphInput,
+  V as GraphOutput,
+  G as LConnectionKind,
+  Ot as LGraph,
+  b as LGraphCanvas,
+  lt as LGraphCanvas_Events,
+  P as LGraphCanvas_Rendering,
+  w as LGraphCanvas_UI,
+  ht as LGraphGroup,
+  tt as LGraphNode,
+  Mt as LGraphStatus,
   it as LLink,
   st as LayoutDirection,
-  lt as LinkRenderMode,
-  Ft as LinkRenderModeNames,
+  rt as LinkRenderMode,
+  Ht as LinkRenderModeNames,
   h as LiteGraph,
-  gt as NODE_MODE_COLORS,
-  Q as NODE_MODE_NAMES,
-  W as NodeMode,
-  vt as SLOT_SHAPE_NAMES,
-  J as Subgraph,
-  Z as TitleMode,
-  dt as clamp,
-  X as getLitegraphTypeName,
-  Et as getSlotTypesIn,
-  Rt as getSlotTypesInFormatted,
-  Nt as getSlotTypesOut,
-  Mt as getSlotTypesOutFormatted,
-  mt as getStaticProperty,
-  pt as getStaticPropertyOnInstance,
-  Tt as isValidLitegraphType,
-  ft as makeDraggable,
-  It as reassignGraphIDs,
-  ht as toHashMap
+  _t as NODE_MODE_COLORS,
+  J as NODE_MODE_NAMES,
+  Y as NodeMode,
+  gt as SLOT_SHAPE_NAMES,
+  Z as Subgraph,
+  q as TitleMode,
+  pt as clamp,
+  W as getLitegraphTypeName,
+  Tt as getSlotTypesIn,
+  Pt as getSlotTypesInFormatted,
+  Et as getSlotTypesOut,
+  Rt as getSlotTypesOutFormatted,
+  vt as getStaticProperty,
+  ct as getStaticPropertyOnInstance,
+  bt as isValidLitegraphType,
+  dt as makeDraggable,
+  kt as reassignGraphIDs,
+  ut as toHashMap
 };

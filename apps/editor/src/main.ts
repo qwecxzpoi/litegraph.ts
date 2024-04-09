@@ -57,12 +57,9 @@ select.addEventListener('change', function (_e) {
   const option = this.options[this.selectedIndex] as OptionElemExt
   const url = option.dataset.url
 
-  if (url)
-    editor.graph.load(url)
-  else if (option.callback)
-    option.callback()
-  else
-    editor.graph.clear()
+  if (url) { editor.graph.load(url) }
+  else if (option.callback) { option.callback() }
+  else { editor.graph.clear() }
 })
 
 elem.querySelector<HTMLButtonElement>('#save')!.addEventListener('click', () => {
@@ -72,8 +69,7 @@ elem.querySelector<HTMLButtonElement>('#save')!.addEventListener('click', () => 
 
 elem.querySelector<HTMLButtonElement>('#load')!.addEventListener('click', () => {
   const data = localStorage.getItem('graphdemo_save')
-  if (data)
-    editor.graph.configure(JSON.parse(data))
+  if (data) { editor.graph.configure(JSON.parse(data)) }
   console.log('loaded')
 })
 
@@ -96,33 +92,30 @@ elem.querySelector<HTMLButtonElement>('#multiview')!.addEventListener('click', (
 
 function addDemo(name: string, url: string | (() => void)) {
   const option = document.createElement('option') as OptionElemExt
-  if (typeof url === 'string')
-    option.dataset.url = url
-  else if (typeof url === 'function')
-    option.callback = url
+  if (typeof url === 'string') { option.dataset.url = url }
+  else if (typeof url === 'function') { option.callback = url }
   option.innerHTML = name
   select.appendChild(option)
 }
 
 // some examples
-addDemo('Features', 'examples/features.json')
-addDemo('Benchmark', 'examples/benchmark.json')
-addDemo('Subgraph', 'examples/subgraph.json')
-addDemo('Audio', 'examples/audio.json')
-addDemo('Audio Delay', 'examples/audio_delay.json')
-addDemo('Audio Reverb', 'examples/audio_reverb.json')
-addDemo('MIDI Generation', 'examples/midi_generation.json')
-addDemo('autobackup', () => {
-  const data = localStorage.getItem('litegraphg demo backup')
-  if (!data)
-    return
-  const graph_data = JSON.parse(data)
-  editor.graph.configure(graph_data)
-})
+// addDemo('Features', 'examples/features.json')
+// addDemo('Benchmark', 'examples/benchmark.json')
+// addDemo('Subgraph', 'examples/subgraph.json')
+// addDemo('Audio', 'examples/audio.json')
+// addDemo('Audio Delay', 'examples/audio_delay.json')
+// addDemo('Audio Reverb', 'examples/audio_reverb.json')
+// addDemo('MIDI Generation', 'examples/midi_generation.json')
+// addDemo('autobackup', () => {
+//   const data = localStorage.getItem('litegraphg demo backup')
+//   if (!data) { return }
+//   const graph_data = JSON.parse(data)
+//   editor.graph.configure(graph_data)
+// })
 
 // let webgl_canvas: HTMLCanvasElement | null = null;
 
-// allows to use the WebGL nodes like textures
+// allows using the WebGL nodes like textures
 function enableWebGL() {
   // if (webgl_canvas) {
   //     webgl_canvas.style.display = (webgl_canvas.style.display == "none" ? "block" : "none");

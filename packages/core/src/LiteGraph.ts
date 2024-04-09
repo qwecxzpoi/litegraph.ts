@@ -1,12 +1,7 @@
-import type { LGraph } from './LGraph'
-import type { LGraphNode, LGraphNodeConstructor, LGraphNodeConstructorFactory, NodeTypeSpec, PropertyLayout, SearchboxExtra, SerializedLGraphNode, SlotLayout } from './LGraphNode'
-
-import type { PointerEventsMethod, SlotType, Vector2, Vector4 } from './types'
-import { BuiltInSlotType, NodeMode } from './types'
-
 import { getStaticProperty } from './utils'
-
-type TypeID = number
+import { BuiltInSlotType, NodeMode } from './types'
+import type { LGraphNode, LGraphNodeConstructor, LGraphNodeConstructorFactory, NodeTypeSpec, PropertyLayout, SearchboxExtra, SlotLayout } from './LGraphNode'
+import type { PointerEventsMethod, SlotType, Vector2, Vector4 } from './types'
 
 export interface LiteGraphCreateNodeOptions {
   constructorArgs?: any[]
@@ -148,50 +143,41 @@ export class LiteGraph {
 
   /** Register a node class so it can be listed when the user wants to create a new one */
   static registerNodeType<T extends LGraphNode>(config: LGraphNodeConstructor): void {
-    if (LiteGraph.debug)
-      console.log(`Node registered: ${config.type}`)
+    if (LiteGraph.debug) { console.log(`Node registered: ${config.type}`) }
 
     const classname = config.name
     const type = config.type
 
-    if (!type)
-      throw (`Config has no type: ${config}`)
+    if (!type) { throw (`Config has no type: ${config}`) }
 
-    if (LiteGraph.debug)
-      console.debug(classname, type)
+    if (LiteGraph.debug) { console.debug(classname, type) }
 
     if (config.category === null || config.category === '') {
       const pos = type.lastIndexOf('/')
       config.category = type.substring(0, pos)
     }
 
-    if (!config.title)
-      config.title = classname
+    if (!config.title) { config.title = classname }
 
     const prev = LiteGraph.registered_node_types[type]
-    if (prev)
-      console.warn(`replacing node type: ${type}`)
+    if (prev) { console.warn(`replacing node type: ${type}`) }
 
     // used to know which nodes to create when dragging files to the canvas
     if (config.supported_extensions) {
       for (const i in config.supported_extensions) {
         const ext = config.supported_extensions[i]
-        if (ext && ext.constructor === String)
-          LiteGraph.node_types_by_file_extension[ext.toLowerCase()] = config
+        if (ext && ext.constructor === String) { LiteGraph.node_types_by_file_extension[ext.toLowerCase()] = config }
       }
     }
 
     (config.class as any).__LITEGRAPH_TYPE__ = type
 
     LiteGraph.registered_node_types[type] = config
-    if (config.class.name)
-      LiteGraph.Nodes[classname] = config
+    if (config.class.name) { LiteGraph.Nodes[classname] = config }
 
-    if (LiteGraph.onNodeTypeRegistered)
-      LiteGraph.onNodeTypeRegistered(type, config)
+    if (LiteGraph.onNodeTypeRegistered) { LiteGraph.onNodeTypeRegistered(type, config) }
 
-    if (prev && LiteGraph.onNodeTypeReplaced)
-      LiteGraph.onNodeTypeReplaced(type, config, prev)
+    if (prev && LiteGraph.onNodeTypeReplaced) { LiteGraph.onNodeTypeReplaced(type, config, prev) }
 
     // TODO one would want to know input and ouput :: this would allow through registerNodeAndSlotType to get all the slots types
     // if (LiteGraph.auto_load_slot_types) {
@@ -205,17 +191,13 @@ export class LiteGraph {
   /** removes a node type from the system */
   static unregisterNodeType(type: string | LGraphNodeConstructor): void {
     let regConfig: LGraphNodeConstructor
-    if (typeof type === 'string')
-      regConfig = LiteGraph.registered_node_types[type]
+    if (typeof type === 'string') { regConfig = LiteGraph.registered_node_types[type] }
 
-    else
-      regConfig = type
+    else { regConfig = type }
 
-    if (!regConfig)
-      throw (`node type not found: ${type}`)
+    if (!regConfig) { throw (`node type not found: ${type}`) }
     delete LiteGraph.registered_node_types[regConfig.type]
-    if ((regConfig.constructor as any).name)
-      delete LiteGraph.Nodes[(regConfig.constructor as any).name]
+    if ((regConfig.constructor as any).name) { delete LiteGraph.Nodes[(regConfig.constructor as any).name] }
   }
 
   /**
@@ -240,27 +222,21 @@ export class LiteGraph {
       regConfig = type
     }
 
-    if (!regConfig)
-      throw new Error(`Node not registered!${type}`)
+    if (!regConfig) { throw new Error(`Node not registered!${type}`) }
 
     const sCN = (regConfig.class as any).__litegraph_type__
 
     let aTypes: string[]
-    if (typeof slot_type === 'string')
-      aTypes = slot_type.split(',')
-    else if (slot_type === BuiltInSlotType.EVENT || slot_type === BuiltInSlotType.ACTION)
-      aTypes = ['_event_']
-    else
-      aTypes = ['*']
+    if (typeof slot_type === 'string') { aTypes = slot_type.split(',') }
+    else if (slot_type === BuiltInSlotType.EVENT || slot_type === BuiltInSlotType.ACTION) { aTypes = ['_event_'] }
+    else { aTypes = ['*'] }
 
     for (let i = 0; i < aTypes.length; ++i) {
       let sT = aTypes[i] // .toLowerCase();
-      if (sT === '')
-        sT = '*'
+      if (sT === '') { sT = '*' }
 
       const registerTo = out ? 'registered_slot_out_types' : 'registered_slot_in_types'
-      if (typeof this[registerTo][sT] === 'undefined')
-        this[registerTo][sT] = { nodes: [] }
+      if (typeof this[registerTo][sT] === 'undefined') { this[registerTo][sT] = { nodes: [] } }
       this[registerTo][sT].nodes.push(sCN)
 
       // check if is a new type
@@ -405,38 +381,29 @@ export class LiteGraph {
     node.class = regConfig.class
     node.type = typeID
 
-    if (!node.title && title)
-      node.title = title
+    if (!node.title && title) { node.title = title }
 
-    if (!node.properties)
-      node.properties = {}
+    if (!node.properties) { node.properties = {} }
 
-    if (!node.properties_info)
-      node.properties_info = []
+    if (!node.properties_info) { node.properties_info = [] }
 
-    if (!node.flags)
-      node.flags = {}
+    if (!node.flags) { node.flags = {} }
 
-    if (!node.size)
-      node.size = node.computeSize()
+    if (!node.size) { node.size = node.computeSize() }
     // call onresize?
 
-    if (!node.pos)
-      node.pos = [LiteGraph.DEFAULT_POSITION[0], LiteGraph.DEFAULT_POSITION[1]]
+    if (!node.pos) { node.pos = [LiteGraph.DEFAULT_POSITION[0], LiteGraph.DEFAULT_POSITION[1]] }
 
-    if (!node.mode)
-      node.mode = NodeMode.ALWAYS
+    if (!node.mode) { node.mode = NodeMode.ALWAYS }
 
     // extra options
     if (options.instanceProps) {
-      for (const i in options.instanceProps)
-        node[i] = options.instanceProps[i]
+      for (const i in options.instanceProps) { node[i] = options.instanceProps[i] }
     }
 
     const propertyLayout = getStaticProperty<PropertyLayout>(regConfig.class, 'propertyLayout')
     if (propertyLayout) {
-      if (LiteGraph.debug)
-        console.debug('Found property layout!', propertyLayout)
+      if (LiteGraph.debug) { console.debug('Found property layout!', propertyLayout) }
       for (const item of propertyLayout) {
         const { name, defaultValue, type, options } = item
         node.addProperty(name, defaultValue, type, options)
@@ -445,8 +412,7 @@ export class LiteGraph {
 
     const slotLayout = getStaticProperty<SlotLayout>(regConfig.class, 'slotLayout')
     if (slotLayout) {
-      if (LiteGraph.debug)
-        console.debug('Found slot layout!', slotLayout)
+      if (LiteGraph.debug) { console.debug('Found slot layout!', slotLayout) }
       if (slotLayout.inputs) {
         for (const item of slotLayout.inputs) {
           const { name, type, options } = item
@@ -462,8 +428,7 @@ export class LiteGraph {
     }
 
     // callback
-    if (node.onNodeCreated)
-      node.onNodeCreated()
+    if (node.onNodeCreated) { node.onNodeCreated() }
 
     return node
   }
@@ -490,20 +455,17 @@ export class LiteGraph {
     const r = []
     for (const i in LiteGraph.registered_node_types) {
       const type = LiteGraph.registered_node_types[i]
-      if (type.filter !== filter)
-        continue
+      if (type.filter !== filter) { continue }
 
       if (category === '') {
-        if (type.category === null)
-          r.push(type)
+        if (type.category === null) { r.push(type) }
       }
       else if (type.category === category) {
         r.push(type)
       }
     }
 
-    if (LiteGraph.auto_sort_node_types)
-      r.sort((a, b) => { return a.title.localeCompare(b.title) })
+    if (LiteGraph.auto_sort_node_types) { r.sort((a, b) => { return a.title.localeCompare(b.title) }) }
 
     return r
   }
@@ -519,14 +481,12 @@ export class LiteGraph {
     for (const i in LiteGraph.registered_node_types) {
       const type = LiteGraph.registered_node_types[i]
       if (type.category && !type.hide_in_node_lists) {
-        if (type.filter !== filter)
-          continue
+        if (type.filter !== filter) { continue }
         categories[type.category] = 1
       }
     }
     const result = []
-    for (const i in categories)
-      result.push(i)
+    for (const i in categories) { result.push(i) }
 
     return LiteGraph.auto_sort_node_types ? result.sort() : result
   }
@@ -536,8 +496,7 @@ export class LiteGraph {
     const tmp = document.getElementsByTagName('script')
     // weird, this array changes by its own, so we use a copy
     const script_files = []
-    for (let i = 0; i < tmp.length; i++)
-      script_files.push(tmp[i])
+    for (let i = 0; i < tmp.length; i++) { script_files.push(tmp[i]) }
 
     const docHeadObj = document.getElementsByTagName('head')[0]
     folder_wildcard = document.location.href + folder_wildcard
@@ -547,12 +506,10 @@ export class LiteGraph {
       if (
         !src
         || src.substr(0, folder_wildcard.length) !== folder_wildcard
-      )
-        continue
+      ) { continue }
 
       try {
-        if (LiteGraph.debug)
-          console.log(`Reloading: ${src}`)
+        if (LiteGraph.debug) { console.log(`Reloading: ${src}`) }
 
         const dynamicScript = document.createElement('script')
         dynamicScript.type = 'text/javascript'
@@ -561,31 +518,25 @@ export class LiteGraph {
         docHeadObj.removeChild(script_files[i])
       }
       catch (err) {
-        if (LiteGraph.throw_errors)
-          throw err
+        if (LiteGraph.throw_errors) { throw err }
 
-        if (LiteGraph.debug)
-          console.log(`Error while reloading ${src}`)
+        if (LiteGraph.debug) { console.log(`Error while reloading ${src}`) }
       }
     }
 
-    if (LiteGraph.debug)
-      console.log('Nodes reloaded')
+    if (LiteGraph.debug) { console.log('Nodes reloaded') }
   }
 
   // TODO move
 
   // separated just to improve if it doesn't work
   static cloneObject<T>(obj?: T, target?: T): T {
-    if (obj === null)
-      return null
+    if (obj === null) { return null }
 
     const r = JSON.parse(JSON.stringify(obj))
-    if (!target)
-      return r
+    if (!target) { return r }
 
-    for (const i in r)
-      target[i] = r[i]
+    for (const i in r) { target[i] = r[i] }
 
     return target
   }
@@ -598,18 +549,15 @@ export class LiteGraph {
    * @return {boolean} true if they can be connected
    */
   static isValidConnection(type_a: SlotType, type_b: SlotType) {
-    if (type_a === '' || type_a === '*')
-      type_a = BuiltInSlotType.DEFAULT
-    if (type_b === '' || type_b === '*')
-      type_b = BuiltInSlotType.DEFAULT
+    if (type_a === '' || type_a === '*') { type_a = BuiltInSlotType.DEFAULT }
+    if (type_b === '' || type_b === '*') { type_b = BuiltInSlotType.DEFAULT }
     if (
       !type_a // generic output
       || !type_b // generic input
       || type_a === type_b // same type (is valid for triggers)
       || (type_a === BuiltInSlotType.EVENT && type_b === BuiltInSlotType.ACTION)
       || (type_a === BuiltInSlotType.ACTION && type_b === BuiltInSlotType.EVENT)
-    )
-      return true
+    ) { return true }
 
     // Enforce string type to handle toLowerCase call (-1 number not ok)
     type_a = String(type_a)
@@ -618,8 +566,7 @@ export class LiteGraph {
     type_b = type_b.toLowerCase()
 
     // For nodes supporting multiple connection types
-    if (!type_a.includes(',') && !type_b.includes(','))
-      return type_a === type_b
+    if (!type_a.includes(',') && !type_b.includes(',')) { return type_a === type_b }
 
     // Check all permutations to see if one is valid
     const supported_types_a = type_a.split(',')
@@ -646,8 +593,7 @@ export class LiteGraph {
 
   static compareObjects(a: object, b: object): boolean {
     for (const i in a) {
-      if (a[i] !== b[i])
-        return false
+      if (a[i] !== b[i]) { return false }
     }
     return true
   }
@@ -680,23 +626,18 @@ export class LiteGraph {
     width: number,
     height: number,
   ): boolean {
-    if (left < x && left + width > x && top < y && top + height > y)
-      return true
+    if (left < x && left + width > x && top < y && top + height > y) { return true }
 
     return false
   }
 
   // [minx,miny,maxx,maxy]
   static growBounding(bounding: Vector4, x: number, y: number): Vector4 {
-    if (x < bounding[0])
-      bounding[0] = x
-    else if (x > bounding[2])
-      bounding[2] = x
+    if (x < bounding[0]) { bounding[0] = x }
+    else if (x > bounding[2]) { bounding[2] = x }
 
-    if (y < bounding[1])
-      bounding[1] = y
-    else if (y > bounding[3])
-      bounding[3] = y
+    if (y < bounding[1]) { bounding[1] = y }
+    else if (y > bounding[3]) { bounding[3] = y }
 
     return bounding
   }
@@ -707,8 +648,7 @@ export class LiteGraph {
       || p[1] < bb[0][1]
       || p[0] > bb[1][0]
       || p[1] > bb[1][1]
-    )
-      return false
+    ) { return false }
 
     return true
   }
@@ -725,8 +665,7 @@ export class LiteGraph {
       || a[1] > B_end_y
       || A_end_x < b[0]
       || A_end_y < b[1]
-    )
-      return false
+    ) { return false }
 
     return true
   }
@@ -735,8 +674,7 @@ export class LiteGraph {
   // format of a hex triplet - the kind we use for HTML colours. The function
   // will return an array with three values.
   static hex2num(hex: string): [number, number, number] {
-    if (hex.charAt(0) === '#')
-      hex = hex.slice(1)
+    if (hex.charAt(0) === '#') { hex = hex.slice(1) }
     // Remove the '#' char - if there is one.
     hex = hex.toUpperCase()
     const hex_alphabets = '0123456789ABCDEF'
@@ -829,8 +767,7 @@ export class LiteGraph {
       // only pointerevents
       case 'leave': case 'cancel': case 'gotpointercapture': case 'lostpointercapture':
       {
-        if (sMethod !== 'mouse')
-          return oDOM.addEventListener(sMethod + sEvent, fCall, capture)
+        if (sMethod !== 'mouse') { return oDOM.addEventListener(sMethod + sEvent, fCall, capture) }
       }
       // not "pointer" || "mouse"
       default:
@@ -847,14 +784,12 @@ export class LiteGraph {
       // both pointer and move events
       case 'down': case 'up': case 'move': case 'over': case 'out': case 'enter':
       {
-        if (LiteGraph.pointerevents_method === 'pointer' || LiteGraph.pointerevents_method === 'mouse')
-          oDOM.removeEventListener(LiteGraph.pointerevents_method + sEvent, fCall, capture)
+        if (LiteGraph.pointerevents_method === 'pointer' || LiteGraph.pointerevents_method === 'mouse') { oDOM.removeEventListener(LiteGraph.pointerevents_method + sEvent, fCall, capture) }
       }
       // only pointerevents
       case 'leave': case 'cancel': case 'gotpointercapture': case 'lostpointercapture':
       {
-        if (LiteGraph.pointerevents_method === 'pointer')
-          return oDOM.removeEventListener(LiteGraph.pointerevents_method + sEvent, fCall, capture)
+        if (LiteGraph.pointerevents_method === 'pointer') { return oDOM.removeEventListener(LiteGraph.pointerevents_method + sEvent, fCall, capture) }
       }
       // not "pointer" || "mouse"
       default:
