@@ -13,3 +13,4 @@ coverage/
 .turbo/
 dist/
 /packages/tsconfig/build/
+.idea

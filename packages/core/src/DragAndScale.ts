@@ -1,245 +1,238 @@
-import type { Vector2, Vector4 } from "./types";
-import LiteGraph from "./LiteGraph";
+import type { Vector2, Vector4 } from './types'
+import { LiteGraph } from './LiteGraph'
 
 export interface EventExt {
-    canvasX: number;
-    canvasY: number;
-    dragging: boolean;
-    eventType?: string;
-    wheel?: number;
-    delta?: number;
-    wheelDelta?: number;
-    deltaX?: number;
-    deltaY?: number;
-    wheelDeltaY?: number;
-    click_time?: number;
-    layerY?: number;
+  canvasX: number
+  canvasY: number
+  dragging: boolean
+  eventType?: string
+  wheel?: number
+  delta?: number
+  wheelDelta?: number
+  deltaX?: number
+  deltaY?: number
+  wheelDeltaY?: number
+  click_time?: number
+  layerY?: number
 }
 
 export interface MouseEventExt extends MouseEvent, EventExt { }
 export interface DragEventExt extends DragEvent, EventExt { }
 export interface CustomEventExt extends CustomEvent, EventExt { }
 
-export default class DragAndScale {
-    constructor(element?: HTMLCanvasElement, skipEvents: boolean = false) {
-        if (element) {
-            this.element = element;
-            if (!skipEvents) {
-                this.bindEvents(element);
-            }
-        }
+export class DragAndScale {
+  constructor(element?: HTMLCanvasElement, skipEvents: boolean = false) {
+    if (element) {
+      this.element = element
+      if (!skipEvents)
+        this.bindEvents(element)
+    }
+  }
+
+  offset: [number, number] = [0, 0]
+  scale: number = 1
+  max_scale: number = 10
+  min_scale: number = 0.1
+  onredraw: Function | null = null
+  enabled: boolean = true
+  last_mouse: Vector2 = [0, 0]
+  element: HTMLCanvasElement | null = null
+  visible_area: Float32Array = new Float32Array([0, 0, 0, 0])
+  viewport: Vector4 | null = null
+
+  dragging: boolean = false
+
+  private _binded_mouse_callback: EventListener | null = null
+
+  bindEvents(element: HTMLCanvasElement): void {
+    this.last_mouse = [0, 0]
+
+    this._binded_mouse_callback = this.onMouse.bind(this)
+
+    LiteGraph.pointerListenerAdd(element, 'down', this._binded_mouse_callback)
+    LiteGraph.pointerListenerAdd(element, 'move', this._binded_mouse_callback)
+    LiteGraph.pointerListenerAdd(element, 'up', this._binded_mouse_callback)
+
+    element.addEventListener(
+      'mousewheel',
+      this._binded_mouse_callback,
+      false,
+    )
+    element.addEventListener('wheel', this._binded_mouse_callback, false)
+  }
+
+  computeVisibleArea(viewport?: Vector4): void {
+    if (!this.element) {
+      this.visible_area[0] = this.visible_area[1] = this.visible_area[2] = this.visible_area[3] = 0
+      return
+    }
+    let width = this.element.width
+    let height = this.element.height
+    let startx = -this.offset[0]
+    let starty = -this.offset[1]
+    if (viewport) {
+      startx += viewport[0] / this.scale
+      starty += viewport[1] / this.scale
+      width = viewport[2]
+      height = viewport[3]
+    }
+    const endx = startx + width / this.scale
+    const endy = starty + height / this.scale
+    this.visible_area[0] = startx
+    this.visible_area[1] = starty
+    this.visible_area[2] = endx - startx
+    this.visible_area[3] = endy - starty
+  }
+
+  onMouse(_e: MouseEvent): boolean | null {
+    if (!this.enabled)
+      return
+
+    const canvas = this.element
+    const rect = canvas.getBoundingClientRect()
+    const e = _e as MouseEventExt
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    e.canvasX = x
+    e.canvasX = y
+    e.dragging = this.dragging
+
+    const is_inside = !this.viewport || (this.viewport && x >= this.viewport[0] && x < (this.viewport[0] + this.viewport[2]) && y >= this.viewport[1] && y < (this.viewport[1] + this.viewport[3]))
+
+    // console.log("pointerevents: DragAndScale onMouse "+e.type+" "+is_inside);
+
+    const ignore = false
+    // if (this.onmouse) {
+    //     ignore = this.onmouse(e);
+    // }
+
+    if (e.type === `${LiteGraph.pointerevents_method}down` && is_inside) {
+      this.dragging = true
+      LiteGraph.pointerListenerRemove(canvas, 'move', this._binded_mouse_callback)
+      LiteGraph.pointerListenerAdd(document, 'move', this._binded_mouse_callback)
+      LiteGraph.pointerListenerAdd(document, 'up', this._binded_mouse_callback)
+    }
+    else if (e.type === `${LiteGraph.pointerevents_method}move`) {
+      if (!ignore) {
+        const deltax = x - this.last_mouse[0]
+        const deltay = y - this.last_mouse[1]
+        if (this.dragging)
+          this.mouseDrag(deltax, deltay)
+      }
+    }
+    else if (e.type === `${LiteGraph.pointerevents_method}up`) {
+      this.dragging = false
+      LiteGraph.pointerListenerRemove(document, 'move', this._binded_mouse_callback)
+      LiteGraph.pointerListenerRemove(document, 'up', this._binded_mouse_callback)
+      LiteGraph.pointerListenerAdd(canvas, 'move', this._binded_mouse_callback)
+    }
+    else if (is_inside
+      && (e.type === 'mousewheel'
+      || e.type === 'wheel'
+      || e.type === 'DOMMouseScroll')
+    ) {
+      e.eventType = 'mousewheel'
+      if (e.type === 'wheel') {
+        e.wheel = -e.deltaY
+      }
+      else {
+        e.wheel
+                    = e.wheelDeltaY !== null ? e.wheelDeltaY : e.detail * -60
+      }
+
+      // from stack overflow
+      e.delta = e.wheelDelta
+        ? e.wheelDelta / 40
+        : e.deltaY
+          ? -e.deltaY / 3
+          : 0
+      this.changeDeltaScale(1.0 + e.delta * 0.05, [e.clientX, e.clientY])
     }
 
-    offset: [number, number] = [0, 0];
-    scale: number = 1;
-    max_scale: number = 10
-    min_scale: number = 0.1
-    onredraw: Function | null = null;
-    enabled: boolean = true;
-    last_mouse: Vector2 = [0, 0];
-    element: HTMLCanvasElement | null = null;
-    visible_area: Float32Array = new Float32Array([0, 0, 0, 0]);
-    viewport: Vector4 | null = null;
+    this.last_mouse[0] = x
+    this.last_mouse[1] = y
 
-    dragging: boolean = false;
-
-    private _binded_mouse_callback: EventListener | null = null;
-
-    bindEvents(element: HTMLCanvasElement): void {
-        this.last_mouse = [0, 0]
-
-        this._binded_mouse_callback = this.onMouse.bind(this);
-
-        LiteGraph.pointerListenerAdd(element, "down", this._binded_mouse_callback);
-        LiteGraph.pointerListenerAdd(element, "move", this._binded_mouse_callback);
-        LiteGraph.pointerListenerAdd(element, "up", this._binded_mouse_callback);
-
-        element.addEventListener(
-            "mousewheel",
-            this._binded_mouse_callback,
-            false
-        );
-        element.addEventListener("wheel", this._binded_mouse_callback, false);
+    if (is_inside) {
+      e.preventDefault()
+      e.stopPropagation()
+      return false
     }
+  }
 
-    computeVisibleArea(viewport?: Vector4): void {
-        if (!this.element) {
-            this.visible_area[0] = this.visible_area[1] = this.visible_area[2] = this.visible_area[3] = 0;
-            return;
-        }
-        var width = this.element.width;
-        var height = this.element.height;
-        var startx = -this.offset[0];
-        var starty = -this.offset[1];
-        if (viewport) {
-            startx += viewport[0] / this.scale;
-            starty += viewport[1] / this.scale;
-            width = viewport[2];
-            height = viewport[3];
-        }
-        var endx = startx + width / this.scale;
-        var endy = starty + height / this.scale;
-        this.visible_area[0] = startx;
-        this.visible_area[1] = starty;
-        this.visible_area[2] = endx - startx;
-        this.visible_area[3] = endy - starty;
-    }
+  toCanvasContext(ctx: CanvasRenderingContext2D): void {
+    ctx.scale(this.scale, this.scale)
+    ctx.translate(this.offset[0], this.offset[1])
+  }
 
-    onMouse(_e: MouseEvent): boolean | null {
-        if (!this.enabled) {
-            return;
-        }
+  convertOffsetToCanvas(pos: Vector2): Vector2 {
+    // return [pos[0] / this.scale - this.offset[0], pos[1] / this.scale - this.offset[1]];
+    return [
+      (pos[0] + this.offset[0]) * this.scale,
+      (pos[1] + this.offset[1]) * this.scale,
+    ]
+  }
 
-        var canvas = this.element;
-        var rect = canvas.getBoundingClientRect();
-        let e = _e as MouseEventExt;
-        var x = e.clientX - rect.left;
-        var y = e.clientY - rect.top;
-        e.canvasX = x;
-        e.canvasX = y;
-        e.dragging = this.dragging;
+  convertCanvasToOffset(pos: Vector2, out: Vector2 = [0, 0]): Vector2 {
+    out[0] = pos[0] / this.scale - this.offset[0]
+    out[1] = pos[1] / this.scale - this.offset[1]
+    return out
+  }
 
-        var is_inside = !this.viewport || (this.viewport && x >= this.viewport[0] && x < (this.viewport[0] + this.viewport[2]) && y >= this.viewport[1] && y < (this.viewport[1] + this.viewport[3]));
+  mouseDrag(x: number, y: number): void {
+    this.offset[0] += x / this.scale
+    this.offset[1] += y / this.scale
 
-        //console.log("pointerevents: DragAndScale onMouse "+e.type+" "+is_inside);
+    if (this.onredraw)
+      this.onredraw(this)
+  }
 
-        var ignore = false;
-        // if (this.onmouse) {
-        //     ignore = this.onmouse(e);
-        // }
+  changeScale(value: number, zooming_center?: Vector2): void {
+    if (value < this.min_scale)
+      value = this.min_scale
+    else if (value > this.max_scale)
+      value = this.max_scale
 
-        if (e.type == LiteGraph.pointerevents_method + "down" && is_inside) {
-            this.dragging = true;
-            LiteGraph.pointerListenerRemove(canvas, "move", this._binded_mouse_callback);
-            LiteGraph.pointerListenerAdd(document, "move", this._binded_mouse_callback);
-            LiteGraph.pointerListenerAdd(document, "up", this._binded_mouse_callback);
-        } else if (e.type == LiteGraph.pointerevents_method + "move") {
-            if (!ignore) {
-                var deltax = x - this.last_mouse[0];
-                var deltay = y - this.last_mouse[1];
-                if (this.dragging) {
-                    this.mouseDrag(deltax, deltay);
-                }
-            }
-        } else if (e.type == LiteGraph.pointerevents_method + "up") {
-            this.dragging = false;
-            LiteGraph.pointerListenerRemove(document, "move", this._binded_mouse_callback);
-            LiteGraph.pointerListenerRemove(document, "up", this._binded_mouse_callback);
-            LiteGraph.pointerListenerAdd(canvas, "move", this._binded_mouse_callback);
-        } else if (is_inside &&
-            (e.type == "mousewheel" ||
-                e.type == "wheel" ||
-                e.type == "DOMMouseScroll")
-        ) {
-            e.eventType = "mousewheel";
-            if (e.type == "wheel") {
-                e.wheel = -e.deltaY;
-            } else {
-                e.wheel =
-                    e.wheelDeltaY != null ? e.wheelDeltaY : e.detail * -60;
-            }
+    if (value === this.scale)
+      return
 
-            //from stack overflow
-            e.delta = e.wheelDelta
-                ? e.wheelDelta / 40
-                : e.deltaY
-                    ? -e.deltaY / 3
-                    : 0;
-            this.changeDeltaScale(1.0 + e.delta * 0.05, [e.clientX, e.clientY]);
-        }
+    if (!this.element)
+      return
 
-        this.last_mouse[0] = x;
-        this.last_mouse[1] = y;
+    const rect = this.element.getBoundingClientRect()
+    if (!rect)
+      return
 
-        if (is_inside) {
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
-        }
-    }
+    zooming_center = zooming_center || [
+      rect.width * 0.5,
+      rect.height * 0.5,
+    ]
+    zooming_center[0] -= rect.left
+    zooming_center[1] -= rect.top
+    const center = this.convertCanvasToOffset(zooming_center)
+    this.scale = value
+    if (Math.abs(this.scale - 1) < 0.01)
+      this.scale = 1
 
-    toCanvasContext(ctx: CanvasRenderingContext2D): void {
-        ctx.scale(this.scale, this.scale);
-        ctx.translate(this.offset[0], this.offset[1]);
-    }
+    const new_center = this.convertCanvasToOffset(zooming_center)
+    const delta_offset = [
+      new_center[0] - center[0],
+      new_center[1] - center[1],
+    ]
 
-    convertOffsetToCanvas(pos: Vector2): Vector2 {
-        //return [pos[0] / this.scale - this.offset[0], pos[1] / this.scale - this.offset[1]];
-        return [
-            (pos[0] + this.offset[0]) * this.scale,
-            (pos[1] + this.offset[1]) * this.scale
-        ];
-    }
+    this.offset[0] += delta_offset[0]
+    this.offset[1] += delta_offset[1]
 
-    convertCanvasToOffset(pos: Vector2, out: Vector2 = [0, 0]): Vector2 {
-        out[0] = pos[0] / this.scale - this.offset[0];
-        out[1] = pos[1] / this.scale - this.offset[1];
-        return out;
-    }
+    if (this.onredraw)
+      this.onredraw(this)
+  }
 
-    mouseDrag(x: number, y: number): void {
-        this.offset[0] += x / this.scale;
-        this.offset[1] += y / this.scale;
+  changeDeltaScale(value: number, zooming_center?: Vector2): void {
+    this.changeScale(this.scale * value, zooming_center)
+  }
 
-        if (this.onredraw) {
-            this.onredraw(this);
-        }
-    }
-
-    changeScale(value: number, zooming_center?: Vector2): void {
-        if (value < this.min_scale) {
-            value = this.min_scale;
-        } else if (value > this.max_scale) {
-            value = this.max_scale;
-        }
-
-        if (value == this.scale) {
-            return;
-        }
-
-        if (!this.element) {
-            return;
-        }
-
-        var rect = this.element.getBoundingClientRect();
-        if (!rect) {
-            return;
-        }
-
-        zooming_center = zooming_center || [
-            rect.width * 0.5,
-            rect.height * 0.5
-        ];
-        zooming_center[0] -= rect.left
-        zooming_center[1] -= rect.top
-        var center = this.convertCanvasToOffset(zooming_center);
-        this.scale = value;
-        if (Math.abs(this.scale - 1) < 0.01) {
-            this.scale = 1;
-        }
-
-        var new_center = this.convertCanvasToOffset(zooming_center);
-        var delta_offset = [
-            new_center[0] - center[0],
-            new_center[1] - center[1]
-        ];
-
-        this.offset[0] += delta_offset[0];
-        this.offset[1] += delta_offset[1];
-
-        if (this.onredraw) {
-            this.onredraw(this);
-        }
-    }
-
-    changeDeltaScale(value: number, zooming_center?: Vector2): void {
-        this.changeScale(this.scale * value, zooming_center);
-    }
-
-    reset(): void {
-        this.scale = 1;
-        this.offset[0] = 0;
-        this.offset[1] = 0;
-    }
-
+  reset(): void {
+    this.scale = 1
+    this.offset[0] = 0
+    this.offset[1] = 0
+  }
 }

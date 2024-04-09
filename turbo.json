@@ -6,7 +6,7 @@
       "persistent": true
     },
     "build": {
-      "true": false,
+      "cache": false,
       "persistent": false
     }
   }
