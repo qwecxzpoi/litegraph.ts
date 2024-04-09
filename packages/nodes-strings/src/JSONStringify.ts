@@ -52,7 +52,7 @@ export default class JSONStringify extends LGraphNode {
     this.setOutputData(1, this._error)
   };
 
-  override onConnectionsChange(
+  override onConnectionChange(
     type: LConnectionKind,
     slotIndex: number,
     isConnected: boolean,

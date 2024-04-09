@@ -7,5 +7,6 @@ export default antfu({
   rules: {
     'no-console': 0,
     'unused-imports/no-unused-imports': 0,
+    'curly': [2, 'all'],
   },
 })

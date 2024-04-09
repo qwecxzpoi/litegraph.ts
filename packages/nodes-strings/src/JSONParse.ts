@@ -47,7 +47,7 @@ export default class JSONParse extends LGraphNode {
     this.setOutputData(1, this._error)
   };
 
-  override onConnectionsChange(
+  override onConnectionChange(
     type: LConnectionKind,
     slotIndex: number,
     isConnected: boolean,

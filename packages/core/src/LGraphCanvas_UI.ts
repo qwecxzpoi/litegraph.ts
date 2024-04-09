@@ -1345,7 +1345,7 @@ export class LGraphCanvas_UI {
         let filtered: string[] | null = null
         if (Array.prototype.filter) { // filter supported
           const keys = Object.keys(LiteGraph.registered_node_types) // types
-          const filtered = keys.filter(k => inner_test_filter(k, filter, str, sIn, sOut))
+          filtered = keys.filter(k => inner_test_filter(k, filter, str, sIn, sOut))
         }
         else {
           filtered = []

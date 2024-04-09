@@ -50,8 +50,7 @@ export default class StringTemplate extends LGraphNode {
 
   private substituteTemplate(templateString: string, arr: any[]): string | any {
     let val = templateString.replace(/\$(\d+)/g, (_, index) => this.formatTemplateValue(arr[index - 1]))
-    if (this.properties.outputJSON)
-      val = JSON.parse(val)
+    if (this.properties.outputJSON) { val = JSON.parse(val) }
     return val
   }
 
@@ -94,8 +93,7 @@ export default class StringTemplate extends LGraphNode {
       catch (error) {
         this.boxcolor = 'red'
         this._value = ''
-        if (LiteGraph.debug)
-          console.error(error)
+        if (LiteGraph.debug) { console.error(error) }
       }
       this.triggerSlot(1, this._value)
     }
@@ -107,10 +105,8 @@ export default class StringTemplate extends LGraphNode {
   override onAction(action: any, param: any) {
     if (action === 'update') {
       if (param != null) {
-        if (Array.isArray(param))
-          this._args = param
-        else
-          this._args = [param]
+        if (Array.isArray(param)) { this._args = param }
+        else { this._args = [param] }
       }
       else {
         this._args = null
@@ -120,7 +116,7 @@ export default class StringTemplate extends LGraphNode {
     }
   }
 
-  override onConnectionsChange(
+  override onConnectionChange(
     type: LConnectionKind,
     slotIndex: number,
     isConnected: boolean,
@@ -130,8 +126,7 @@ export default class StringTemplate extends LGraphNode {
     // Invalidate cached value
     this._value = null
 
-    if (type !== LConnectionKind.INPUT)
-      return
+    if (type !== LConnectionKind.INPUT) { return }
 
     // Try to auto-add new input
     if (isConnected) {
@@ -146,23 +141,19 @@ export default class StringTemplate extends LGraphNode {
       }
     }
     else {
-      if (this.getInputLink(this.inputs.length - 2) != null)
-        return
+      if (this.getInputLink(this.inputs.length - 2) != null) { return }
 
       // Pop off update action input
       this.removeInput(this.inputs.length - 1)
 
       // Remove empty inputs
       for (let i = this.inputs.length - 1; i > 1; i--) {
-        if (this.getInputLink(i) == null)
-          this.removeInput(i)
-        else
-          break
+        if (this.getInputLink(i) == null) { this.removeInput(i) }
+        else { break }
       }
 
       // Readd extra to end
-      if (this.getInputLink(this.inputs.length - 1) != null)
-        this.addInput('', '*')
+      if (this.getInputLink(this.inputs.length - 1) != null) { this.addInput('', '*') }
 
       this.addInput('update', BuiltInSlotType.ACTION)
     }
