@@ -265,9 +265,9 @@ export class LGraphCanvas_Rendering {
         ctx.fill()
 
         ctx.fillStyle = '#ffcc00'
+        const shape = this._highlight_input_slot.shape
         if (this._highlight_input) {
           ctx.beginPath()
-          var shape = this._highlight_input_slot.shape
           if (shape === BuiltInSlotShape.ARROW_SHAPE) {
             ctx.moveTo(this._highlight_input[0] + 8, this._highlight_input[1] + 0.5)
             ctx.lineTo(this._highlight_input[0] - 4, this._highlight_input[1] + 6 + 0.5)
@@ -378,7 +378,7 @@ export class LGraphCanvas_Rendering {
     ctx.font = '14px Arial'
     ctx.textAlign = 'left'
     ctx.fillText('Graph Inputs', 20, 34)
-    // var pos = this.mouse;
+    // let pos = this.mouse;
 
     if (this.drawButton(w - 20, 20, 20, 20, 'X', '#151515', undefined, undefined, true)) {
       this.closeSubgraph()
@@ -399,7 +399,7 @@ export class LGraphCanvas_Rendering {
         ctx.fill()
         ctx.fillStyle = '#AAA'
         ctx.fillText(input.name, 30, y + h * 0.75)
-        // var tw = ctx.measureText(input.name);
+        // let tw = ctx.measureText(input.name);
         ctx.fillStyle = '#777'
         ctx.fillText(getLitegraphTypeName(input.type), 130, y + h * 0.75)
         y += h
@@ -429,7 +429,7 @@ export class LGraphCanvas_Rendering {
     const title_text = 'Graph Outputs'
     const tw = ctx.measureText(title_text).width
     ctx.fillText(title_text, (canvas_w - tw) - 20, 34)
-    // var pos = this.mouse;
+    // let pos = this.mouse;
     if (this.drawButton(canvas_w - w, 20, 20, 20, 'X', '#151515', undefined, undefined, true)) {
       this.closeSubgraph()
       return
@@ -449,7 +449,7 @@ export class LGraphCanvas_Rendering {
         ctx.fill()
         ctx.fillStyle = '#AAA'
         ctx.fillText(output.name, canvas_w - w + 30, y + h * 0.75)
-        // var tw = ctx.measureText(input.name);
+        // let tw = ctx.measureText(input.name);
         ctx.fillStyle = '#777'
         ctx.fillText(getLitegraphTypeName(output.type), canvas_w - w + 130, y + h * 0.75)
         y += h
@@ -850,8 +850,8 @@ export class LGraphCanvas_Rendering {
         for (let i = 0; i < node.inputs.length; i++) {
           const slot = node.inputs[i]
 
-          var slot_type = slot.type
-          var slot_shape = slot.shape
+          const slot_type = slot.type
+          const slot_shape = slot.shape
 
           ctx.globalAlpha = editor_alpha
           // change opacity of incompatible slots when dragging a connection
@@ -871,7 +871,7 @@ export class LGraphCanvas_Rendering {
               || LGraphCanvas.DEFAULT_CONNECTION_COLORS_BY_TYPE[slot_type]
               || LGraphCanvas.DEFAULT_CONNECTION_COLORS.input_off
 
-          var pos = node.getConnectionPos(true, i, [slot_pos[0], slot_pos[1]])
+          const pos = node.getConnectionPos(true, i, [slot_pos[0], slot_pos[1]])
           pos[0] -= node.pos[0]
           pos[1] -= node.pos[1]
           if (max_y < pos[1] + LiteGraph.NODE_SLOT_HEIGHT * 0.5)
@@ -879,7 +879,7 @@ export class LGraphCanvas_Rendering {
 
           ctx.beginPath()
 
-          var doStroke = true
+          let doStroke = true
 
           if (slot.shape === BuiltInSlotShape.BOX_SHAPE) {
             if (horizontal) {
@@ -927,7 +927,7 @@ export class LGraphCanvas_Rendering {
 
           // render name
           if (render_text) {
-            var text = slot.label !== null ? slot.label : slot.name
+            const text = slot.label !== null ? slot.label : slot.name
             if (text) {
               ctx.fillStyle = LiteGraph.NODE_TEXT_COLOR
               if (horizontal || slot.dir === Dir.UP)
@@ -947,8 +947,8 @@ export class LGraphCanvas_Rendering {
         for (let i = 0; i < node.outputs.length; i++) {
           const slot = node.outputs[i]
 
-          var slot_type = slot.type
-          var slot_shape = slot.shape
+          const slot_type = slot.type
+          const slot_shape = slot.shape
 
           // change opacity of incompatible slots when dragging a connection
           if (this.connecting_input && !LiteGraph.isValidConnection(in_slot.type, slot_type))
@@ -957,7 +957,7 @@ export class LGraphCanvas_Rendering {
           else
             ctx.globalAlpha = editor_alpha
 
-          var pos = node.getConnectionPos(false, i, slot_pos)
+          const pos = node.getConnectionPos(false, i, slot_pos)
           pos[0] -= node.pos[0]
           pos[1] -= node.pos[1]
           if (max_y < pos[1] + LiteGraph.NODE_SLOT_HEIGHT * 0.5)
@@ -975,7 +975,7 @@ export class LGraphCanvas_Rendering {
           ctx.beginPath()
           // ctx.rect( node.size[0] - 14,i*14,10,10);
 
-          var doStroke = true
+          let doStroke = true
 
           if (slot_shape === BuiltInSlotShape.BOX_SHAPE) {
             if (horizontal) {
@@ -1031,7 +1031,7 @@ export class LGraphCanvas_Rendering {
 
           // render output name
           if (render_text) {
-            var text = slot.label !== null ? slot.label : slot.name
+            const text = slot.label !== null ? slot.label : slot.name
             if (text) {
               ctx.fillStyle = LiteGraph.NODE_TEXT_COLOR
               if (horizontal || slot.dir === Dir.DOWN)
@@ -1090,8 +1090,8 @@ export class LGraphCanvas_Rendering {
       }
 
       if (input_slot) {
-        var x = 0
-        var y = LiteGraph.NODE_TITLE_HEIGHT * -0.5 // center
+        let x = 0
+        let y = LiteGraph.NODE_TITLE_HEIGHT * -0.5 // center
         if (horizontal) {
           x = node._collapsed_width * 0.5
           y = -LiteGraph.NODE_TITLE_HEIGHT
@@ -1114,8 +1114,8 @@ export class LGraphCanvas_Rendering {
       }
 
       if (output_slot) {
-        var x = node._collapsed_width
-        var y = LiteGraph.NODE_TITLE_HEIGHT * -0.5 // center
+        let x = node._collapsed_width
+        let y = LiteGraph.NODE_TITLE_HEIGHT * -0.5 // center
         if (horizontal) {
           x = node._collapsed_width * 0.5
           y = 0
@@ -1419,7 +1419,7 @@ export class LGraphCanvas_Rendering {
           }
           if (node.flags.collapsed) {
             ctx.textAlign = 'left'
-            // var measure = ctx.measureText(title);
+            // let measure = ctx.measureText(title);
             ctx.fillText(
               title.substr(0, 20), // avoid urls too long
               title_height, // + measure.width * 0.5,
@@ -1707,15 +1707,15 @@ export class LGraphCanvas_Rendering {
 
     // begin line shape
     ctx.beginPath()
-    for (var i = 0; i < numSublines; i += 1) {
+    for (let i = 0; i < numSublines; i += 1) {
       const offsety = (i - (numSublines - 1) * 0.5) * 5
 
       if (this.links_render_mode === LinkRenderMode.SPLINE_LINK) {
         ctx.moveTo(a[0], a[1] + offsety)
-        var start_offset_x = 0
-        var start_offset_y = 0
-        var end_offset_x = 0
-        var end_offset_y = 0
+        let start_offset_x = 0
+        let start_offset_y = 0
+        let end_offset_x = 0
+        let end_offset_y = 0
         switch (startDir) {
           case Dir.LEFT:
             start_offset_x = dist * -0.25
@@ -1755,10 +1755,10 @@ export class LGraphCanvas_Rendering {
       }
       else if (this.links_render_mode === LinkRenderMode.LINEAR_LINK) {
         ctx.moveTo(a[0], a[1] + offsety)
-        var start_offset_x = 0
-        var start_offset_y = 0
-        var end_offset_x = 0
-        var end_offset_y = 0
+        let start_offset_x = 0
+        let start_offset_y = 0
+        let end_offset_x = 0
+        let end_offset_y = 0
         switch (startDir) {
           case Dir.LEFT:
             start_offset_x = -1
@@ -1840,7 +1840,7 @@ export class LGraphCanvas_Rendering {
     ctx.stroke()
     // end line shape
 
-    var pos = this.computeConnectionPoint(a, b, 0.5, startDir, endDir)
+    const pos = this.computeConnectionPoint(a, b, 0.5, startDir, endDir)
     if (link && link._pos) {
       link._pos[0] = pos[0]
       link._pos[1] = pos[1]
@@ -1925,9 +1925,9 @@ export class LGraphCanvas_Rendering {
     // render flowing points
     if (flow) {
       ctx.fillStyle = color
-      for (var i = 0; i < 5; ++i) {
+      for (let i = 0; i < 5; ++i) {
         const f = (LiteGraph.getTime() * 0.001 + i * 0.2) % 1
-        var pos = this.computeConnectionPoint(
+        const pos = this.computeConnectionPoint(
           a,
           b,
           f,
@@ -2123,8 +2123,8 @@ export class LGraphCanvas_Rendering {
         case 'slider':
           ctx.fillStyle = background_color
           ctx.fillRect(margin, y, widget_width - margin * 2, H)
-          var range = w.options.max - w.options.min
-          var nvalue = (w.value - w.options.min) / range
+          const range = w.options.max - w.options.min
+          const nvalue = (w.value - w.options.min) / range
           ctx.fillStyle = activeWidget === w ? '#89A' : '#678'
           ctx.fillRect(margin, y, nvalue * (widget_width - margin * 2), H)
           if (show_text && !w.disabled)

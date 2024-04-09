@@ -23,6 +23,7 @@ export class LGraphCanvas_Events {
     const document = ref_window.document
     LGraphCanvas.active_canvas = this
     const that = this
+    let block_drag_node = false
 
     const x = e.clientX
     const y = e.clientY
@@ -132,9 +133,9 @@ export class LGraphCanvas_Events {
           else {
             // search for outputs
             if (node.outputs) {
-              for (var i = 0, l = node.outputs.length; i < l; ++i) {
-                var output = node.outputs[i]
-                var link_pos = node.getConnectionPos(false, i)
+              for (let i = 0, l = node.outputs.length; i < l; ++i) {
+                const output = node.outputs[i]
+                const link_pos = node.getConnectionPos(false, i)
                 if (
                   LiteGraph.isInsideRectangle(
                     e.canvasX,
@@ -173,9 +174,9 @@ export class LGraphCanvas_Events {
 
             // search for inputs
             if (node.inputs) {
-              for (var i = 0, l = node.inputs.length; i < l; ++i) {
-                var input = node.inputs[i]
-                var link_pos = node.getConnectionPos(true, i)
+              for (let i = 0, l = node.inputs.length; i < l; ++i) {
+                const input = node.inputs[i]
+                const link_pos = node.getConnectionPos(true, i)
                 if (
                   LiteGraph.isInsideRectangle(
                     e.canvasX,
@@ -253,8 +254,7 @@ export class LGraphCanvas_Events {
 
         // it wasn't clicked on the links boxes
         if (!skip_action) {
-          var block_drag_node = false
-          var pos: Vector2 = [e.canvasX - node.pos[0], e.canvasY - node.pos[1]]
+          const pos: Vector2 = [e.canvasX - node.pos[0], e.canvasY - node.pos[1]]
 
           // widgets
           const widget = this.processNodeWidgets(node, this.graph_mouse, e)
@@ -310,7 +310,7 @@ export class LGraphCanvas_Events {
           // Allow traversing subgraphs even if locked
           let clickedSubgraphButton = false
           if (node && node.subgraph && !node.skip_subgraph_button) {
-            var pos: Vector2 = [e.canvasX - node.pos[0], e.canvasY - node.pos[1]]
+            const pos: Vector2 = [e.canvasX - node.pos[0], e.canvasY - node.pos[1]]
             if (!node.flags.collapsed && pos[0] > node.size[0] - LiteGraph.NODE_TITLE_HEIGHT && pos[1] < 0) {
               clickedSubgraphButton = true
               setTimeout(() => {
@@ -374,9 +374,9 @@ export class LGraphCanvas_Events {
 
             // search for outputs
             if (node.outputs) {
-              for (var i = 0, l = node.outputs.length; i < l; ++i) {
-                var output = node.outputs[i]
-                var link_pos = node.getConnectionPos(false, i)
+              for (let i = 0, l = node.outputs.length; i < l; ++i) {
+                const output = node.outputs[i]
+                const link_pos = node.getConnectionPos(false, i)
                 if (LiteGraph.isInsideRectangle(e.canvasX, e.canvasY, link_pos[0] - 15, link_pos[1] - 10, 30, 20)) {
                   mClikSlot = output
                   mClikSlot_index = i
@@ -388,9 +388,9 @@ export class LGraphCanvas_Events {
 
             // search for inputs
             if (node.inputs) {
-              for (var i = 0, l = node.inputs.length; i < l; ++i) {
-                var input = node.inputs[i]
-                var link_pos = node.getConnectionPos(true, i)
+              for (let i = 0, l = node.inputs.length; i < l; ++i) {
+                const input = node.inputs[i]
+                const link_pos = node.getConnectionPos(true, i)
                 if (LiteGraph.isInsideRectangle(e.canvasX, e.canvasY, link_pos[0] - 15, link_pos[1] - 10, 30, 20)) {
                   mClikSlot = input
                   mClikSlot_index = i
@@ -637,7 +637,7 @@ export class LGraphCanvas_Events {
           // if dragging a link
           if (this.connecting_node) {
             if (this.connecting_output) {
-              var pos = this._highlight_input || [0, 0] // to store the output of isOverNodeInput
+              const pos = this._highlight_input || [0, 0] // to store the output of isOverNodeInput
 
               // on top of input
               if (this.isOverNodeBox(node, e.canvasX, e.canvasY)) {
@@ -645,9 +645,9 @@ export class LGraphCanvas_Events {
               }
               else {
                 // check if I have a slot below de mouse
-                var slot = this.isOverNodeInput(node, e.canvasX, e.canvasY, pos)
+                const slot = this.isOverNodeInput(node, e.canvasX, e.canvasY, pos)
                 if (slot !== -1 && node.inputs[slot]) {
-                  var slot_type = node.inputs[slot].type
+                  const slot_type = node.inputs[slot].type
                   if (LiteGraph.isValidConnection(this.connecting_output.type, slot_type)) {
                     this._highlight_input = pos
                     this._highlight_input_slot = node.inputs[slot] // XXX CHECK THIS
@@ -660,7 +660,7 @@ export class LGraphCanvas_Events {
               }
             }
             else if (this.connecting_input) {
-              var pos = this._highlight_output || [0, 0] // to store the output of isOverNodeOutput
+              const pos = this._highlight_output || [0, 0] // to store the output of isOverNodeOutput
 
               // on top of output
               if (this.isOverNodeBox(node, e.canvasX, e.canvasY)) {
@@ -668,9 +668,9 @@ export class LGraphCanvas_Events {
               }
               else {
                 // check if I have a slot below de mouse
-                var slot = this.isOverNodeOutput(node, e.canvasX, e.canvasY, pos)
+                const slot = this.isOverNodeOutput(node, e.canvasX, e.canvasY, pos)
                 if (slot !== -1 && node.outputs[slot]) {
-                  var slot_type = node.outputs[slot].type
+                  const slot_type = node.outputs[slot].type
                   if (LiteGraph.isValidConnection(this.connecting_input.type, slot_type))
                     this._highlight_output = pos
                 }
@@ -825,7 +825,7 @@ export class LGraphCanvas_Events {
       }
       this.selected_group_resizing = false
 
-      var node = this.graph.getNodeOnPos(
+      const node = this.graph.getNodeOnPos(
         e.canvasX,
         e.canvasY,
         this.visible_nodes,
@@ -906,7 +906,7 @@ export class LGraphCanvas_Events {
           // slot below mouse? connect
 
           if (this.connecting_output) {
-            var slot = this.isOverNodeInput(
+            const slot = this.isOverNodeInput(
               node,
               e.canvasX,
               e.canvasY,
@@ -921,7 +921,7 @@ export class LGraphCanvas_Events {
             }
           }
           else if (this.connecting_input) {
-            var slot = this.isOverNodeOutput(
+            const slot = this.isOverNodeOutput(
               node,
               e.canvasX,
               e.canvasY,
@@ -971,7 +971,7 @@ export class LGraphCanvas_Events {
       }
       else if (this.node_dragged) {
         // node being dragged?
-        var node = this.node_dragged
+        const node = this.node_dragged
         if (
           node
           && e.click_time < 300
@@ -1001,7 +1001,7 @@ export class LGraphCanvas_Events {
       } // no node being dragged
       else {
         // get node over
-        var node = this.graph.getNodeOnPos(
+        const node = this.graph.getNodeOnPos(
           e.canvasX,
           e.canvasY,
           this.visible_nodes,

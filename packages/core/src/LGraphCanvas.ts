@@ -1,26 +1,24 @@
-import type { ContextMenuItem, IContextMenuItem } from './ContextMenu'
-import { ContextMenu } from './ContextMenu'
-import type { DragEventExt, MouseEventExt } from './DragAndScale'
-import { DragAndScale } from './DragAndScale'
-import type { INodeInputSlot, INodeOutputSlot, INodeSlot, SlotIndex, SlotNameOrIndex } from './INodeSlot'
-import type { IComboWidget, IWidget, WidgetPanelCallback, WidgetPanelOptions } from './IWidget'
-
-import type { LGraph } from './LGraph'
 import { LGraphCanvas_Events } from './LGraphCanvas_Events'
 import { LGraphCanvas_Rendering } from './LGraphCanvas_Rendering'
 import { LGraphCanvas_UI } from './LGraphCanvas_UI'
-import type { LGraphGroup } from './LGraphGroup'
-import type { LCreateDefaultNodeForSlotOptions, LGraphNode, LGraphNodeCloneData, NodeTypeOpts, NodeTypeSpec, SerializedLGraphNode } from './LGraphNode'
-
 import { LiteGraph } from './LiteGraph'
-import type { LLink } from './LLink'
 import { GraphInput } from './nodes/GraphInput'
 import { GraphOutput } from './nodes/GraphOutput'
+import { BuiltInSlotType, Dir, LinkRenderMode } from './types'
+import { DragAndScale } from './DragAndScale'
+import { ContextMenu } from './ContextMenu'
+import type { ContextMenuItem, IContextMenuItem } from './ContextMenu'
+import type { DragEventExt, MouseEventExt } from './DragAndScale'
+import type { INodeInputSlot, INodeOutputSlot, INodeSlot, SlotIndex, SlotNameOrIndex } from './INodeSlot'
+import type { IComboWidget, IWidget, WidgetPanelCallback, WidgetPanelOptions } from './IWidget'
+import type { LGraph } from './LGraph'
+import type { LGraphGroup } from './LGraphGroup'
+import type { LCreateDefaultNodeForSlotOptions, LGraphNode, LGraphNodeCloneData, NodeTypeOpts, NodeTypeSpec, SerializedLGraphNode } from './LGraphNode'
+import type { LLink } from './LLink'
 import type { Subgraph } from './nodes/Subgraph'
-import type { BuiltInSlotType, Dir, LinkRenderMode, NodeID, SlotType, Vector2, Vector4 } from './types'
+import type { NodeID, SlotType, Vector2, Vector4 } from './types'
 
 import { clamp } from './utils'
-import { UUID } from './types'
 
 export interface IGraphPanel extends HTMLDivElement {
   header: HTMLDivElement
@@ -106,7 +104,7 @@ export interface ClipboardInfo {
   nodeCloneData: Record<NodeID, ClipboardClonedNodeInfo>
 
   // indexInNodesArray, slotNumber, indexInNodesArray, slotNumber
-  links: [number, number, number, number][]
+  links: [number | string, number, number, number][]
 }
 
 /**
@@ -621,7 +619,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
     }
 
     /* TODO implement
-           var ctx = (this.ctx = canvas.getContext("2d"));
+           let ctx = (this.ctx = canvas.getContext("2d"));
            if (ctx === null) {
            if (!canvas.webgl_enabled) {
            console.warn(
@@ -954,12 +952,12 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
           // if is object pass options
           if (nodeNewOpts) {
             if (nodeNewOpts.properties) {
-              for (var i in nodeNewOpts.properties)
+              for (const i in nodeNewOpts.properties)
                 newNode.addProperty(i, nodeNewOpts.properties[i])
             }
             if (nodeNewOpts.inputs) {
               newNode.inputs = []
-              for (var i in nodeNewOpts.inputs) {
+              for (const i in nodeNewOpts.inputs) {
                 newNode.addOutput(
                   nodeNewOpts.inputs[i][0],
                   nodeNewOpts.inputs[i][1],
@@ -968,7 +966,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
             }
             if (nodeNewOpts.outputs) {
               newNode.outputs = []
-              for (var i in nodeNewOpts.outputs) {
+              for (const i in nodeNewOpts.outputs) {
                 newNode.addOutput(
                   nodeNewOpts.outputs[i][0],
                   nodeNewOpts.outputs[i][1],
@@ -1225,7 +1223,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
 
         // TODO
         if (this.selected_nodes) {
-          for (var i in this.selected_nodes) {
+          for (const i in this.selected_nodes) {
             if (this.selected_nodes[i].onKeyDown)
               this.selected_nodes[i].onKeyDown(e)
           }
@@ -1240,7 +1238,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
 
       if (can_interact) {
         if (this.selected_nodes) {
-          for (var i in this.selected_nodes) {
+          for (const i in this.selected_nodes) {
             if (this.selected_nodes[i].onKeyUp)
               this.selected_nodes[i].onKeyUp(e)
           }
@@ -1310,7 +1308,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
             continue
           } // not selected
           clipboard_info.links.push([
-            target_node._relative_id,
+            target_node._relative_id!,
             link_info.origin_slot, // j,
             node._relative_id,
             link_info.target_slot,
@@ -1336,7 +1334,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
     // calculate top-left node, could work without this processing but using diff with last node pos :: clipboard_info.nodes[clipboard_info.nodes.length-1].pos
     let posMin: Vector2 | null = null
     let posMinIndexes: [number, number] | null = null
-    for (var i = 0; i < clipboard_info.nodes.length; ++i) {
+    for (let i = 0; i < clipboard_info.nodes.length; ++i) {
       if (posMin) {
         if (posMin[0] > clipboard_info.nodes[i].pos[0]) {
           posMin[0] = clipboard_info.nodes[i].pos[0]
@@ -1353,7 +1351,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
       }
     }
     const nodes = []
-    for (var i = 0; i < clipboard_info.nodes.length; ++i) {
+    for (let i = 0; i < clipboard_info.nodes.length; ++i) {
       const node_data = clipboard_info.nodes[i]
       const node = LiteGraph.createNode(node_data.type)
       if (node) {
@@ -1372,7 +1370,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
     }
 
     // create links
-    for (var i = 0; i < clipboard_info.links.length; ++i) {
+    for (let i = 0; i < clipboard_info.links.length; ++i) {
       const link_info = clipboard_info.links[i]
       const origin_node = nodes[link_info[0]]
       const target_node = nodes[link_info[2]]
@@ -1468,8 +1466,8 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
       const files = e.dataTransfer.files
       if (files && files.length) {
         for (let i = 0; i < files.length; i++) {
-          var file = e.dataTransfer.files[0]
-          var filename = file.name
+          const file = e.dataTransfer.files[0]
+          const filename = file.name
           const ext = LGraphCanvas.getFileExtension(filename)
           // console.log(file);
 
@@ -1577,11 +1575,11 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
       this.selected_nodes[node.id] = node
 
       if (node.inputs) {
-        for (var j = 0; j < node.inputs.length; ++j)
+        for (let j = 0; j < node.inputs.length; ++j)
           this.highlighted_links[node.inputs[j].link] = true
       }
       if (node.outputs) {
-        for (var j = 0; j < node.outputs.length; ++j) {
+        for (let j = 0; j < node.outputs.length; ++j) {
           const out = node.outputs[j]
           if (out.links) {
             for (let k = 0; k < out.links.length; ++k)
@@ -1612,11 +1610,11 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
 
     // remove highlighted
     if (node.inputs) {
-      for (var i = 0; i < node.inputs.length; ++i)
+      for (let i = 0; i < node.inputs.length; ++i)
         delete this.highlighted_links[node.inputs[i].link]
     }
     if (node.outputs) {
-      for (var i = 0; i < node.outputs.length; ++i) {
+      for (let i = 0; i < node.outputs.length; ++i) {
         const out = node.outputs[i]
         if (out.links) {
           for (let j = 0; j < out.links.length; ++j)
@@ -1746,7 +1744,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
     const ref_window = this.getCanvasWindow()
 
     for (let i = 0; i < node.widgets.length; ++i) {
-      var w = node.widgets[i]
+      const w = node.widgets[i]
       if (!w || w.disabled)
         continue
       const widget_height = w.computeSize ? w.computeSize(width)[1] : LiteGraph.NODE_WIDGET_HEIGHT
@@ -1756,7 +1754,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
         && (x < 6 || x > widget_width - 12 || y < w.last_y || y > w.last_y + widget_height || w.last_y === undefined))
         continue
 
-      var old_value = w.value
+      const old_value = w.value
 
       // if ( w === activeWidget || (x > 6 && x < widget_width - 12 && y > w.last_y && y < w.last_y + widget_height) ) {
       // inside widget
@@ -1773,8 +1771,8 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
           }
           break
         case 'slider':
-          var range = w.options.max - w.options.min
-          var nvalue = clamp((x - 15) / (widget_width - 30), 0, 1)
+          const range = w.options.max - w.options.min
+          const nvalue = clamp((x - 15) / (widget_width - 30), 0, 1)
           w.value = w.options.min + (w.options.max - w.options.min) * nvalue
           if (w.callback) {
             setTimeout(() => {
@@ -1785,7 +1783,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
           break
         case 'number':
         case 'combo':
-          var old_value = w.value
+          const old_value = w.value
           if (event.type === `${LiteGraph.pointerevents_method}move` && w.type === 'number') {
             if (event.deltaX)
               w.value += event.deltaX * (w.options.step || 0.1)
@@ -1796,17 +1794,17 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
               w.value = w.options.max
           }
           else if (event.type === `${LiteGraph.pointerevents_method}down`) {
-            var values: string[] = w.options.values
+            let values: string[] = w.options.values
             if (values && typeof values === 'function') {
               const fn = w.options.values as ((widget: IComboWidget, node: LGraphNode) => string[])
               values = fn(w as IComboWidget, node)
             }
-            var values_list = null
+            let values_list = null
 
             if (w.type !== 'number')
               values_list = Array.isArray(values) ? values : Object.keys(values)
 
-            var delta = x < 40 ? -1 : x > widget_width - 40 ? 1 : 0
+            const delta = x < 40 ? -1 : x > widget_width - 40 ? 1 : 0
             if (w.type === 'number') {
               w.value += delta * (w.options.step || 0.1)
               if (w.options.min !== null && w.value < w.options.min)
@@ -1834,7 +1832,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
                 w.value = index
             }
             else { // combo clicked
-              var text_values = values !== values_list ? Object.values(values) : values
+              const text_values = values !== values_list ? Object.values(values) : values
               const choices = Array.from(text_values).map((n) => { return { content: n } })
               const menu = new ContextMenu(choices, {
                 scale: Math.max(1, this.ds.scale),
@@ -1854,7 +1852,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
             }
           } // end mousedown
           else if (event.type === `${LiteGraph.pointerevents_method}up` && w.type === 'number') {
-            var delta = x < 40 ? -1 : x > widget_width - 40 ? 1 : 0
+            const delta = x < 40 ? -1 : x > widget_width - 40 ? 1 : 0
             if (event.click_time < 200 && delta === 0) {
               this.prompt('Value', w.value, function (v) {
                 this.value = Number(v)
@@ -1978,7 +1976,7 @@ implements LGraphCanvas_Rendering, LGraphCanvas_UI, LGraphCanvas_Events {
       this.editor_alpha = 0.1
     }
 
-    var t = setInterval(() => {
+    const t = setInterval(() => {
       self.editor_alpha *= delta
       self.dirty_canvas = true
       self.dirty_bgcanvas = true

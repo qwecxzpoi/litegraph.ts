@@ -2,6 +2,7 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu({
   typescript: true,
+  ignores: ['build/', '**/dist/**'],
 }, {
   rules: {
     'no-console': 0,

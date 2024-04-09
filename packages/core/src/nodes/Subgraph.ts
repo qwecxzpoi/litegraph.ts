@@ -3,18 +3,18 @@ import type { ContextMenuItem } from '../ContextMenu'
 import type { MouseEventExt } from '../DragAndScale'
 import type { INodeInputSlot, INodeOutputSlot } from '../INodeSlot'
 import type { LGraphAddNodeOptions, LGraphRemoveNodeOptions, SerializedLGraph } from '../LGraph'
-import LGraph from '../LGraph'
-import type LGraphCanvas from '../LGraphCanvas'
+import { LGraph } from '../LGraph'
+import type { LGraphCanvas } from '../LGraphCanvas'
 import type { LActionOptions, LGraphNodeCloneData, OptionalSlots, PropertyLayout, SerializedLGraphNode, SlotLayout } from '../LGraphNode'
 import { LGraphNode } from '../LGraphNode'
-import type LLink from '../LLink'
+import type { LLink } from '../LLink'
 import { LiteGraph } from '../LiteGraph'
-import type { BuiltInSlotShape, BuiltInSlotType, LinkID, NodeID, type NodeMode, SlotType, type Vector2 } from '../types'
+import type { BuiltInSlotShape, BuiltInSlotType, LinkID, NodeID, NodeMode, SlotType, Vector2 } from '../types'
 
 import { UUID } from '../types'
 import { toHashMap } from '../utils'
-import GraphInput from './GraphInput'
-import GraphOutput from './GraphOutput'
+import { GraphInput } from './GraphInput'
+import { GraphOutput } from './GraphOutput'
 
 export interface SubgraphProperties extends Record<string, any> {
   enabled: boolean
@@ -218,9 +218,9 @@ export class Subgraph extends LGraphNode {
 
     // send inputs to subgraph global inputs
     if (this.inputs) {
-      for (var i = 0; i < this.inputs.length; i++) {
+      for (let i = 0; i < this.inputs.length; i++) {
         const input = this.inputs[i]
-        var value = this.getInputData(i)
+        const value = this.getInputData(i)
         this.subgraph.setInputData(input.name, value)
       }
     }
@@ -230,9 +230,9 @@ export class Subgraph extends LGraphNode {
 
     // send subgraph global outputs to outputs
     if (this.outputs) {
-      for (var i = 0; i < this.outputs.length; i++) {
+      for (let i = 0; i < this.outputs.length; i++) {
         const output = this.outputs[i]
-        var value = this.subgraph.getOutputData(output.name)
+        const value = this.subgraph.getOutputData(output.name)
         this.setOutputData(i, value)
       }
     }
@@ -246,10 +246,10 @@ export class Subgraph extends LGraphNode {
   override onDrawBackground(ctx: CanvasRenderingContext2D, graphcanvas: LGraphCanvas, canvas: HTMLCanvasElement, pos: Vector2) {
     // if (this.flags.collapsed)
     //     return;
-    // var y = this.size[1] - LiteGraph.NODE_TITLE_HEIGHT + 0.5;
+    // let y = this.size[1] - LiteGraph.NODE_TITLE_HEIGHT + 0.5;
     // const can_interact = graphcanvas.allow_interaction && !graphcanvas.read_only;
     // // button
-    // var over = LiteGraph.isInsideRectangle(pos[0], pos[1], this.pos[0], this.pos[1] + y, this.size[0], LiteGraph.NODE_TITLE_HEIGHT) && can_interact;
+    // let over = LiteGraph.isInsideRectangle(pos[0], pos[1], this.pos[0], this.pos[1] + y, this.size[0], LiteGraph.NODE_TITLE_HEIGHT) && can_interact;
     // let overleft = LiteGraph.isInsideRectangle(pos[0], pos[1], this.pos[0], this.pos[1] + y, this.size[0] / 2, LiteGraph.NODE_TITLE_HEIGHT)
     // ctx.fillStyle = over ? "#555" : "#222";
     // ctx.beginPath();
@@ -283,7 +283,7 @@ export class Subgraph extends LGraphNode {
 
   // override onMouseDown(e, localpos, graphcanvas)
   // {
-  // 	var y = this.size[1] - LiteGraph.NODE_TITLE_HEIGHT + 0.5;
+  // 	let y = this.size[1] - LiteGraph.NODE_TITLE_HEIGHT + 0.5;
   // 	if(localpos[1] > y)
   // 	{
   // 		graphcanvas.showSubgraphPropertiesDialog(this);
@@ -291,7 +291,7 @@ export class Subgraph extends LGraphNode {
   // }
 
   // override onMouseDown(e: MouseEventExt, localpos: Vector2, graphcanvas: LGraphCanvas): boolean | undefined {
-  //     var y = this.size[1] - LiteGraph.NODE_TITLE_HEIGHT + 0.5;
+  //     let y = this.size[1] - LiteGraph.NODE_TITLE_HEIGHT + 0.5;
   //     console.log(0)
   //     if (localpos[1] > y) {
   //         if (localpos[0] < this.size[0] / 2) {
@@ -313,7 +313,7 @@ export class Subgraph extends LGraphNode {
 
   //* *** INPUTS ***********************************
   private onSubgraphTrigger(event: string, param: string) {
-    // var slot = this.findOutputSlotIndexByName(event);
+    // let slot = this.findOutputSlotIndexByName(event);
     // if (slot !== -1) {
     //     this.triggerSlot(slot);
     // }

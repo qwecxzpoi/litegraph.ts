@@ -32,6 +32,7 @@ export class LGraphCanvas_UI {
     node?: LGraphNode,
   ): void {
     const propInfo = item.value as IPropertyInfo
+    console.log(propInfo)
 
     const property = propInfo.name
     const value = node[property]
@@ -1107,12 +1108,12 @@ export class LGraphCanvas_UI {
 
           if (extra && extra.data) {
             if (extra.data.properties) {
-              for (var i in extra.data.properties)
+              for (const i in extra.data.properties)
                 node.addProperty(`${i}`, extra.data.properties[i])
             }
             if (extra.data.inputs) {
               node.inputs = []
-              for (var i in extra.data.inputs) {
+              for (const i in extra.data.inputs) {
                 node.addInput(
                   extra.data.inputs[i][0],
                   extra.data.inputs[i][1],
@@ -1121,7 +1122,7 @@ export class LGraphCanvas_UI {
             }
             if (extra.data.outputs) {
               node.outputs = []
-              for (var i in extra.data.outputs) {
+              for (const i in extra.data.outputs) {
                 node.addOutput(
                   extra.data.outputs[i][0],
                   extra.data.outputs[i][1],
@@ -1137,7 +1138,7 @@ export class LGraphCanvas_UI {
 
           // join node after inserting
           if (options.node_from) {
-            var iS: SlotNameOrIndex | null = null
+            let iS: SlotNameOrIndex | null = null
             switch (typeof options.slotFrom) {
               case 'string':
                 iS = options.node_from.findOutputSlotIndexByName(options.slotFrom)
@@ -1167,7 +1168,7 @@ export class LGraphCanvas_UI {
             }
           }
           if (options.node_to) {
-            var iS: SlotNameOrIndex | null = null
+            let iS: SlotNameOrIndex | null = null
             switch (typeof options.slotFrom) {
               case 'string':
                 iS = options.node_to.findInputSlotIndexByName(options.slotFrom)
@@ -1256,7 +1257,7 @@ export class LGraphCanvas_UI {
           // console.log("will check filter against " + sV);
           if (LiteGraph.registered_slot_in_types[sV] && LiteGraph.registered_slot_in_types[sV].nodes) { // type is stored
             // console.debug("check " + sType + " in " + LiteGraph.registered_slot_in_types[sV].nodes);
-            var doesInc = LiteGraph.registered_slot_in_types[sV].nodes.includes(sType)
+            const doesInc = LiteGraph.registered_slot_in_types[sV].nodes.includes(sType)
             if (doesInc !== false) {
               // console.log(sType + " HAS " + sV);
             }
@@ -1277,7 +1278,7 @@ export class LGraphCanvas_UI {
           // console.log("search will check filter against "+sV);
           if (LiteGraph.registered_slot_out_types[sV] && LiteGraph.registered_slot_out_types[sV].nodes) { // type is stored
             // console.debug("check "+sType+" in "+LiteGraph.registered_slot_out_types[sV].nodes);
-            var doesInc = LiteGraph.registered_slot_out_types[sV].nodes.includes(sType)
+            const doesInc = LiteGraph.registered_slot_out_types[sV].nodes.includes(sType)
             if (doesInc !== false) {
               // console.log(sType+" HAS "+sV);
             }
@@ -1303,7 +1304,7 @@ export class LGraphCanvas_UI {
       if (that.onSearchBox) {
         const list = that.onSearchBox(helper, str, graphcanvas)
         if (list) {
-          for (var i = 0; i < list.length; ++i)
+          for (let i = 0; i < list.length; ++i)
             addResult(list[i])
         }
       }
@@ -1341,10 +1342,10 @@ export class LGraphCanvas_UI {
             break
         }
 
-        var filtered: string[] | null = null
+        let filtered: string[] | null = null
         if (Array.prototype.filter) { // filter supported
           const keys = Object.keys(LiteGraph.registered_node_types) // types
-          var filtered = keys.filter(k => inner_test_filter(k, filter, str, sIn, sOut))
+          const filtered = keys.filter(k => inner_test_filter(k, filter, str, sIn, sOut))
         }
         else {
           filtered = []
@@ -1354,7 +1355,7 @@ export class LGraphCanvas_UI {
           }
         }
 
-        for (var i = 0; i < filtered.length; i++) {
+        for (let i = 0; i < filtered.length; i++) {
           addResult(filtered[i])
           if (LGraphCanvas.search_limit !== -1 && c++ > LGraphCanvas.search_limit)
             break
@@ -1411,7 +1412,7 @@ export class LGraphCanvas_UI {
       }
     }
 
-    var input = dialog.querySelector('input')
+    let input = dialog.querySelector('input')
     if (input) {
       input.addEventListener('blur', function (e) {
         this.focus()
@@ -1454,8 +1455,8 @@ export class LGraphCanvas_UI {
     // if should filter on type, load and fill selected and choose elements if passed
     if (options.do_type_filter) {
       if (selIn) {
-        var aSlots = LiteGraph.slot_types_in
-        var nSlots = aSlots.length // this for object :: Object.keys(aSlots).length;
+        const aSlots = LiteGraph.slot_types_in
+        const nSlots = aSlots.length // this for object :: Object.keys(aSlots).length;
 
         if (options.type_filter_in === BuiltInSlotType.EVENT || options.type_filter_in === BuiltInSlotType.ACTION)
           options.type_filter_in = '_event_'
@@ -1463,8 +1464,8 @@ export class LGraphCanvas_UI {
                    else if(options.type_filter_in === "" || options.type_filter_in === 0)
                    options.type_filter_in = "*"; */
 
-        for (var iK = 0; iK < nSlots; iK++) {
-          var opt = document.createElement('option')
+        for (let iK = 0; iK < nSlots; iK++) {
+          const opt = document.createElement('option')
           opt.value = aSlots[iK]
           opt.innerHTML = aSlots[iK]
           selIn.appendChild(opt)
@@ -1480,8 +1481,8 @@ export class LGraphCanvas_UI {
         selIn.addEventListener('change', refreshHelper)
       }
       if (selOut) {
-        var aSlots = LiteGraph.slot_types_out
-        var nSlots = aSlots.length // this for object :: Object.keys(aSlots).length;
+        const aSlots = LiteGraph.slot_types_out
+        const nSlots = aSlots.length // this for object :: Object.keys(aSlots).length;
 
         if (options.type_filter_out === BuiltInSlotType.EVENT || options.type_filter_out === BuiltInSlotType.ACTION)
           options.type_filter_out = '_event_'
@@ -1489,8 +1490,8 @@ export class LGraphCanvas_UI {
                    else if(options.type_filter_out === "" || options.type_filter_out === 0)
                    options.type_filter_out = "*"; */
 
-        for (var iK = 0; iK < nSlots; iK++) {
-          var opt = document.createElement('option')
+        for (let iK = 0; iK < nSlots; iK++) {
+          const opt = document.createElement('option')
           opt.value = aSlots[iK]
           opt.innerHTML = aSlots[iK]
           selOut.appendChild(opt)
@@ -1516,8 +1517,8 @@ export class LGraphCanvas_UI {
       helper.style.maxHeight = `${rect.height - event.layerY - 20}px`
 
     /*
-          var offsetx = -20;
-          var offsety = -20;
+          let offsetx = -20;
+          let offsety = -20;
           if (rect) {
           offsetx -= rect.left;
           offsety -= rect.top;
@@ -1575,7 +1576,7 @@ export class LGraphCanvas_UI {
             node.title = value
             break
           case 'Mode':
-            var kV = Object.values(NODE_MODE_NAMES).indexOf(value) as NodeMode
+            const kV = Object.values(NODE_MODE_NAMES).indexOf(value) as NodeMode
             if (kV >= NodeMode.ALWAYS && NODE_MODE_NAMES[kV])
               node.changeMode(kV)
             else
@@ -1642,7 +1643,7 @@ export class LGraphCanvas_UI {
       /* if(window.CodeFlask) //disabled for now
               {
               panel.content.innerHTML = "<div class='code'></div>";
-              var flask = new CodeFlask( "div.code", { language: 'js' });
+              let flask = new CodeFlask( "div.code", { language: 'js' });
               flask.updateCode(node.properties[propname]);
               flask.onUpdate( function(code) {
               node.setProperty(propname, code);
@@ -2079,7 +2080,7 @@ export class LGraphCanvas_UI {
     }
 
     // build menu
-    var menu = new ContextMenu(options, {
+    let menu = new ContextMenu(options, {
       event: opts.e,
       title: (slotX && slotX.name !== '' ? (slotX.name + (fromSlotType ? ' | ' : '')) : '') + (slotX && fromSlotType ? fromSlotType : ''),
       callback: inner_clicked,
@@ -2234,7 +2235,7 @@ export class LGraphCanvas_UI {
       input.addEventListener('change', (e) => {
         dialog.modified()
         setValue(e.target.value)
-        // var index = e.target.value;
+        // let index = e.target.value;
         // setValue( e.options[e.selectedIndex].value );
       })
     }
@@ -2890,22 +2891,23 @@ export class LGraphCanvas_UI {
     // function to swap panel content
     root.toggleAltContent = function (force: boolean = false) {
       if (typeof force !== 'undefined') {
-        var vTo = force ? 'block' : 'none'
-        var vAlt = force ? 'none' : 'block'
+        const vTo = force ? 'block' : 'none'
+        const vAlt = force ? 'none' : 'block'
       }
       else {
-        var vTo = root.alt_content.style.display !== 'block' ? 'block' : 'none'
-        var vAlt = root.alt_content.style.display !== 'block' ? 'none' : 'block'
+        const vTo = root.alt_content.style.display !== 'block' ? 'block' : 'none'
+        const vAlt = root.alt_content.style.display !== 'block' ? 'none' : 'block'
       }
       root.alt_content.style.display = vTo
       root.content.style.display = vAlt
     }
 
     root.toggleFooterVisibility = function (force: boolean = false): void {
+      let vTo: string
       if (typeof force !== 'undefined')
-        var vTo = force ? 'block' : 'none'
+        vTo = force ? 'block' : 'none'
       else
-        var vTo = root.footer.style.display !== 'block' ? 'block' : 'none'
+        vTo = root.footer.style.display !== 'block' ? 'block' : 'none'
 
       root.footer.style.display = vTo
     }
@@ -2944,7 +2946,7 @@ export class LGraphCanvas_UI {
     }
 
     root.addWidget = function <T extends IWidget<O, V>, O extends WidgetPanelOptions, V>(type: string, name: string, value: V, options: O = {} as O, callback?: WidgetPanelCallback): IGraphWidgetUI {
-      var str_value = String(value)
+      let str_value = String(value)
       type = type.toLowerCase()
       if (type === 'number')
         str_value = (value as number).toFixed(3)
@@ -2967,7 +2969,7 @@ export class LGraphCanvas_UI {
         if (value)
           elem.classList.add('bool-on')
         elem.addEventListener('click', function (this: IGraphWidgetUI) {
-          // var v = node.properties[this.dataset["property"]];
+          // let v = node.properties[this.dataset["property"]];
           // node.setProperty(this.dataset["property"],!v); this.innerText = v ? "true" : "false";
           const propname = this.dataset.property
           this.value = !this.value
@@ -2997,7 +2999,7 @@ export class LGraphCanvas_UI {
         })
       }
       else if ((type === 'enum' || type === 'combo') && 'values' in options) {
-        var str_value = LGraphCanvas.getPropertyPrintableValue(value, options.values)
+        const str_value = LGraphCanvas.getPropertyPrintableValue(value, options.values)
         value_element.innerText = str_value
 
         value_element.addEventListener('click', function (event: MouseEvent) {
@@ -3068,10 +3070,10 @@ export class LGraphCanvas_UI {
   }
 
   closePanels() {
-    var panel = document.querySelector('#node-panel') as IGraphDialog
+    let panel = document.querySelector('#node-panel') as IGraphDialog
     if (panel)
       panel.close()
-    var panel = document.querySelector('#option-panel') as IGraphDialog
+    panel = document.querySelector('#option-panel') as IGraphDialog
     if (panel)
       panel.close()
   }

@@ -372,7 +372,7 @@ export class ContextMenu {
 
       // global callback
       if (options.callback) {
-        var r = options.callback.call(
+        const r = options.callback.call(
           this,
           value,
           options,
@@ -392,7 +392,7 @@ export class ContextMenu {
           && value.disabled !== true
         ) {
           // item callback
-          var r = value.callback.call(
+          const r = value.callback.call(
             this,
             value,
             options,

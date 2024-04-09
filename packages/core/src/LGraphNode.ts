@@ -292,7 +292,7 @@ export class LGraphNode {
     }
 
     if (this.outputs) {
-      for (var i = 0; i < this.outputs.length; ++i) {
+      for (let i = 0; i < this.outputs.length; ++i) {
         const output = this.outputs[i]
         output.properties ||= {}
 
@@ -311,7 +311,7 @@ export class LGraphNode {
     }
 
     if (this.widgets) {
-      for (var i = 0; i < this.widgets.length; ++i) {
+      for (let i = 0; i < this.widgets.length; ++i) {
         const w = this.widgets[i]
         if (!w)
           continue
@@ -319,7 +319,7 @@ export class LGraphNode {
           w.value = JSON.parse(JSON.stringify(this.properties[w.options.property]))
       }
       if (info.widgets_values) {
-        for (var i = 0; i < info.widgets_values.length; ++i) {
+        for (let i = 0; i < info.widgets_values.length; ++i) {
           if (this.widgets[i])
             this.widgets[i].value = info.widgets_values[i]
         }
@@ -352,7 +352,7 @@ export class LGraphNode {
 
     if (this.outputs) {
       // clear outputs last data (because data in connections is never serialized but stored inside the outputs info)
-      for (var i = 0; i < this.outputs.length; i++)
+      for (let i = 0; i < this.outputs.length; i++)
         delete this.outputs[i]._data
 
       o.outputs = this.outputs
@@ -366,7 +366,7 @@ export class LGraphNode {
 
     if (this.widgets && this.serialize_widgets) {
       o.widgets_values = []
-      for (var i = 0; i < this.widgets.length; ++i) {
+      for (let i = 0; i < this.widgets.length; ++i) {
         if (this.widgets[i])
           o.widgets_values[i] = this.widgets[i].value
         else
@@ -406,12 +406,12 @@ export class LGraphNode {
 
     // remove links
     if (data.inputs) {
-      for (var i = 0; i < data.inputs.length; ++i)
+      for (let i = 0; i < data.inputs.length; ++i)
         data.inputs[i].link = null
     }
 
     if (data.outputs) {
-      for (var i = 0; i < data.outputs.length; ++i) {
+      for (let i = 0; i < data.outputs.length; ++i) {
         if (data.outputs[i].links)
           data.outputs[i].links.length = 0
       }
@@ -1494,20 +1494,20 @@ export class LGraphNode {
     let output_width = 0
 
     if (this.inputs) {
-      for (var i = 0, l = this.inputs.length; i < l; ++i) {
+      for (let i = 0, l = this.inputs.length; i < l; ++i) {
         const input = this.inputs[i]
-        var text = input.label || input.name || ''
-        var text_width = compute_text_size(text)
+        const text = input.label || input.name || ''
+        const text_width = compute_text_size(text)
         if (input_width < text_width)
           input_width = text_width
       }
     }
 
     if (this.outputs) {
-      for (var i = 0, l = this.outputs.length; i < l; ++i) {
+      for (let i = 0, l = this.outputs.length; i < l; ++i) {
         const output = this.outputs[i]
-        var text = output.label || output.name || ''
-        var text_width = compute_text_size(text)
+        const text = output.label || output.name || ''
+        const text_width = compute_text_size(text)
         if (output_width < text_width)
           output_width = text_width
       }
@@ -1524,7 +1524,7 @@ export class LGraphNode {
 
     let widgets_height = 0
     if (this.widgets && this.widgets.length) {
-      for (var i = 0, l = this.widgets.length; i < l; ++i) {
+      for (let i = 0, l = this.widgets.length; i < l; ++i) {
         const w = this.widgets[i]
         if (w.hidden)
           continue
@@ -1733,7 +1733,7 @@ export class LGraphNode {
     // search for inputs
     const link_pos: Vector2 = [0, 0]
     if (this.inputs) {
-      for (var i = 0, l = this.inputs.length; i < l; ++i) {
+      for (let i = 0, l = this.inputs.length; i < l; ++i) {
         const input = this.inputs[i]
         this.getConnectionPos(true, i, link_pos)
         if (
@@ -1751,7 +1751,7 @@ export class LGraphNode {
     }
 
     if (this.outputs) {
-      for (var i = 0, l = this.outputs.length; i < l; ++i) {
+      for (let i = 0, l = this.outputs.length; i < l; ++i) {
         const output = this.outputs[i]
         this.getConnectionPos(false, i, link_pos)
         if (
@@ -1900,10 +1900,10 @@ export class LGraphNode {
     // !! empty string type is considered 0, * !!
     if (type === '' || type === '*')
       type = 0
-    for (var i = 0, l = aSlots.length; i < l; ++i) {
-      var tFound = false
-      var aSource: SlotType[] = (`${type}`).toLowerCase().split(',')
-      var aDests = (aSlots[i].type === '0' || aSlots[i].type === '*' ? '0' : aSlots[i].type) as string
+    for (let i = 0, l = aSlots.length; i < l; ++i) {
+      const tFound = false
+      const aSource: SlotType[] = (`${type}`).toLowerCase().split(',')
+      const aDests = (aSlots[i].type === '0' || aSlots[i].type === '*' ? '0' : aSlots[i].type) as string
       const aDest: SlotType[] = (`${aDests}`).toLowerCase().split(',')
       for (let sI = 0; sI < aSource.length; sI++) {
         for (let dI = 0; dI < aDest.length; dI++) {
@@ -1928,10 +1928,10 @@ export class LGraphNode {
     }
     // if didnt find some, stop checking for free slots
     if (preferFreeSlot && !doNotUseOccupied) {
-      for (var i = 0, l = aSlots.length; i < l; ++i) {
-        var tFound = false
-        var aSource: SlotType[] = (`${type}`).toLowerCase().split(',')
-        var aDests = aSlots[i].type === '0' || aSlots[i].type === '*' ? '0' : aSlots[i].type as string
+      for (let i = 0, l = aSlots.length; i < l; ++i) {
+        const tFound = false
+        const aSource: SlotType[] = (`${type}`).toLowerCase().split(',')
+        const aDests = aSlots[i].type === '0' || aSlots[i].type === '*' ? '0' : aSlots[i].type as string
         const aDest: SlotType[] = (`${aDests}`).toLowerCase().split(',')
         for (let sI = 0; sI < aSource.length; sI++) {
           for (let dI = 0; dI < aDest.length; dI++) {
@@ -2052,7 +2052,7 @@ export class LGraphNode {
     else {
       // connect to the first general output slot if not found a specific type and
       if (opts.generalTypeInCase) {
-        var sourceSlot = sourceNode.findOutputSlotIndexByType(0, true, true)
+        const sourceSlot = sourceNode.findOutputSlotIndexByType(0, true, true)
         if (sourceSlot >= 0)
           return sourceNode.connect(sourceSlot, this, slot)
       }
@@ -2060,7 +2060,7 @@ export class LGraphNode {
       if (opts.createEventInCase && sourceSlotType === BuiltInSlotType.EVENT || sourceSlotType === BuiltInSlotType.ACTION) {
         // WILL CREATE THE onExecuted OUT SLOT
         if (LiteGraph.do_add_triggers_slots) {
-          var sourceSlot = sourceNode.addOnExecutedOutput()
+          const sourceSlot = sourceNode.addOnExecutedOutput()
           return sourceNode.connect(sourceSlot, this, slot)
         }
       }
@@ -2351,14 +2351,14 @@ export class LGraphNode {
       if (!targetNode)
         throw 'Target Node not found'
 
-      for (var i = 0, l = output.links.length; i < l; i++) {
-        var link_id = output.links[i]
-        var link_info = this.graph.links[link_id]
+      for (let i = 0, l = output.links.length; i < l; i++) {
+        const link_id = output.links[i]
+        const link_info = this.graph.links[link_id]
 
         // is the link we are searching for...
         if (link_info.target_id === targetNode.id) {
           output.links.splice(i, 1) // remove here
-          var input = targetNode.inputs[link_info.target_slot]
+          const input = targetNode.inputs[link_info.target_slot]
           input.link = null // remove there
           delete this.graph.links[link_id] // remove the link from the links pool
           if (this.graph)
@@ -2406,16 +2406,16 @@ export class LGraphNode {
       }
     } // all the links in this output slot
     else {
-      for (var i = 0, l = output.links.length; i < l; i++) {
-        var link_id = output.links[i]
-        var link_info = this.graph.links[link_id]
+      for (let i = 0, l = output.links.length; i < l; i++) {
+        const link_id = output.links[i]
+        const link_info = this.graph.links[link_id]
         if (!link_info) {
           // bug: it happens sometimes
           continue
         }
 
-        var targetNode = this.graph.getNodeById(link_info.target_id)
-        var input: INodeInputSlot | null = null
+        const targetNode = this.graph.getNodeById(link_info.target_id)
+        let input: INodeInputSlot | null = null
         if (this.graph)
           (this.graph as any)._version++
 
@@ -2513,7 +2513,7 @@ export class LGraphNode {
           return false
 
         // search in the inputs list for this link
-        for (var i = 0, l = output.links.length; i < l; i++) {
+        for (let i = 0, l = output.links.length; i < l; i++) {
           if (output.links[i] === link_id) {
             output.links.splice(i, 1)
             break

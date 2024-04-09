@@ -1,17 +1,17 @@
-import { v4 as uuidv4 } from 'uuid'
-import type { ContextMenuItem, IContextMenuItem } from './ContextMenu'
+import { v4 as uuidV4 } from 'uuid'
+import type { ContextMenuItem } from './ContextMenu'
 import type { SlotIndex } from './INodeSlot'
 import { LGraphCanvas } from './LGraphCanvas'
 import { LGraphGroup } from './LGraphGroup'
 import type { LGraphNodeCloneData } from './LGraphNode'
-import { LGraphNode, LGraphNodeConstructor } from './LGraphNode'
+import { LGraphNode } from './LGraphNode'
 import type { SerializedLLink } from './LLink'
 import { LLink } from './LLink'
 import { LiteGraph } from './LiteGraph'
 import { GraphInput } from './nodes/GraphInput'
 import { Subgraph } from './nodes/Subgraph'
 import type { LConnectionKind, LinkID, NodeID, SlotType, Vector2, Version } from './types'
-import { LayoutDirection, NodeMode, TitleMode, UUID } from './types'
+import { LayoutDirection, NodeMode, TitleMode } from './types'
 
 export type LGraphAddNodeMode = 'configure' | 'cloneSelection' | 'paste' | 'moveIntoSubgraph' | 'moveOutOfSubgraph' | null
 export interface LGraphAddNodeOptions {
@@ -182,7 +182,7 @@ export class LGraph {
     this._nodes_in_order = [] // nodes sorted in execution order
     this._nodes_executable = null // nodes that contain onExecute sorted in execution order
 
-    // other scene stuff
+    // another scene stuff
     this._groups = []
 
     // links
@@ -251,8 +251,8 @@ export class LGraph {
   }
 
   /**
-   * Starts running this graph every interval milliseconds.
-   * @param interval amount of milliseconds between executions, if 0 then it renders to the monitor refresh rate
+   * Starts running this graph every interval millisecond.
+   * @param interval amount of milliseconds between executions, if zero then it renders to the monitor refresh rate
    */
   start(interval?: number): void {
     if (this.status === LGraphStatus.STATUS_RUNNING)
@@ -323,6 +323,7 @@ export class LGraph {
    * Run N steps (cycles) of the graph
    * @param num number of steps to run, default is 1
    * @param do_not_catch_errors if you want to try/catch errors
+   * @param limit
    */
   runStep(num: number = 1, do_not_catch_errors: boolean = false, limit?: number): void {
     const start = LiteGraph.getTime()
@@ -339,9 +340,9 @@ export class LGraph {
 
     if (do_not_catch_errors) {
       // iterations
-      for (var i = 0; i < num; i++) {
-        for (var j = 0; j < limit; ++j) {
-          var node = nodes[j]
+      for (let i = 0; i < num; i++) {
+        for (let j = 0; j < limit; ++j) {
+          const node = nodes[j]
           if (node.mode === NodeMode.ALWAYS && node.onExecute) {
             // wrap node.onExecute();
             node.doExecute()
@@ -359,9 +360,9 @@ export class LGraph {
     else {
       try {
         // iterations
-        for (var i = 0; i < num; i++) {
-          for (var j = 0; j < limit; ++j) {
-            var node = nodes[j]
+        for (let i = 0; i < num; i++) {
+          for (let j = 0; j < limit; ++j) {
+            const node = nodes[j]
             if (node.mode === NodeMode.ALWAYS && node.onExecute)
               node.onExecute(null, {})
           }
@@ -405,7 +406,7 @@ export class LGraph {
 
   /**
    * Updates the graph execution order according to relevance of the nodes (nodes with only outputs have more relevance than
-   * nodes with only inputs.
+   * nodes with only inputs.)
    */
   updateExecutionOrder(): void {
     this._nodes_in_order = this.computeExecutionOrder(false)
@@ -437,7 +438,7 @@ export class LGraph {
     const remaining_links = {}
 
     // search for the nodes without inputs (starting nodes)
-    for (var i = 0, l = this._nodes.length; i < l; ++i) {
+    for (let i = 0, l = this._nodes.length; i < l; ++i) {
       const node = this._nodes[i]
       if (only_onExecute && !node.onExecute)
         continue
@@ -446,7 +447,7 @@ export class LGraph {
 
       let num = 0 // num of input connections
       if (node.inputs) {
-        for (var j = 0, l2 = node.inputs.length; j < l2; j++) {
+        for (let j = 0, l2 = node.inputs.length; j < l2; j++) {
           if (node.inputs[j] && node.inputs[j].link !== null)
             num += 1
         }
@@ -470,16 +471,16 @@ export class LGraph {
       if (S.length === 0)
         break
 
-      // get an starting node
+      // get a starting node
       const node = S.shift()
-      L.push(node) // add to ordered list
+      L.push(node) // add to an ordered list
       delete M[node.id] // remove from the pending nodes
 
       if (!node.outputs)
         continue
 
       // for every output
-      for (var i = 0; i < node.outputs.length; i++) {
+      for (let i = 0; i < node.outputs.length; i++) {
         const output = node.outputs[i]
         // not connected
         if (
@@ -490,7 +491,7 @@ export class LGraph {
           continue
 
         // for every connection
-        for (var j = 0; j < output.links.length; j++) {
+        for (let j = 0; j < output.links.length; j++) {
           const linkId = output.links[j]
           const link = this.links[linkId]
           if (!link)
@@ -517,7 +518,7 @@ export class LGraph {
           remaining_links[target_node.id] -= 1 // reduce the number of links remaining
           if (remaining_links[target_node.id] === 0)
             S.push(target_node)
-          // if no more links, then add to starters array
+          // if no more links, then add to a starter array
         }
       }
     }
@@ -529,10 +530,10 @@ export class LGraph {
     if (L.length !== this._nodes.length && LiteGraph.debug)
       console.warn('something went wrong, nodes missing')
 
-    var l = L.length
+    const l = L.length
 
     // save order number in the node
-    for (var i = 0; i < l; ++i)
+    for (let i = 0; i < l; ++i)
       L[i].order = i
 
     // sort now by priority
@@ -547,7 +548,7 @@ export class LGraph {
     })
 
     // save order number in the node, again...
-    for (var i = 0; i < l; ++i)
+    for (let i = 0; i < l; ++i)
       L[i].order = i
 
     return L
@@ -717,6 +718,7 @@ export class LGraph {
    * Sends an event to all the nodes, useful to trigger stuff
    * @param eventName the name of the event (function to be called)
    * @param params parameters in array format
+   * @param mode node mode
    */
   sendEventToAllNodes(eventName: string, params: any[] = [], mode: NodeMode = NodeMode.ALWAYS): void {
     const nodes = this._nodes_in_order ? this._nodes_in_order : this._nodes
@@ -766,6 +768,7 @@ export class LGraph {
   /**
    * Adds a new node instance to this graph
    * @param node the instance of the node
+   * @param options
    */
   add(node: LGraphNode, options: LGraphAddNodeOptions = {}): LGraphNode | null {
     // nodes
@@ -775,7 +778,7 @@ export class LGraph {
         node.id,
       )
       if (LiteGraph.use_uuids)
-        node.id = uuidv4()
+        node.id = uuidV4()
 
       else
         node.id = ++this.last_node_id
@@ -789,10 +792,10 @@ export class LGraph {
     if (this._nodes.length >= LiteGraph.MAX_NUMBER_OF_NODES)
       throw 'LiteGraph: max number of nodes in a graph reached'
 
-    // give him an id
+    // give him id
     if (LiteGraph.use_uuids) {
       if (!node.id)
-        node.id = uuidv4()
+        node.id = uuidV4()
     }
     else {
       if (node.id === null || node.id === -1)
@@ -841,12 +844,14 @@ export class LGraph {
   /**
    * Called when a new node is added
    * @param node the instance of the node
+   * @param options
    */
   onNodeAdded?(node: LGraphNode, options: LGraphAddNodeOptions): void
 
   /**
    * Called when a node is removed
    * @param node the instance of the node
+   * @param options
    */
   onNodeRemoved?(node: LGraphNode, options: LGraphRemoveNodeOptions): void
 
@@ -862,18 +867,24 @@ export class LGraph {
 
   /**
    * Called when a node's connection is changed
+   * @param kind
    * @param node the instance of the node
+   * @param slot
+   * @param target_node
+   * @param target_slot
    */
-  onNodeConnectionChange?(kind: LConnectionKind,
+  onNodeConnectionChange?(
+    kind: LConnectionKind,
     node: LGraphNode,
     slot: SlotIndex,
     target_node?: LGraphNode,
-    target_slot?: SlotIndex): void
+    target_slot?: SlotIndex
+  ): void
 
   /** Called by `LGraph.configure` */
   onConfigure?(data: SerializedLGraph): void
 
-  onNodeTrace?(node: LGraphNode, message: string)
+  onNodeTrace?(node: LGraphNode, message: string): void
 
   /** Removes a node from the graph */
   remove(node: LGraphNode, options: LGraphRemoveNodeOptions = {}): void {
@@ -901,7 +912,7 @@ export class LGraph {
 
     // disconnect inputs
     if (node.inputs) {
-      for (var i = 0; i < node.inputs.length; i++) {
+      for (let i = 0; i < node.inputs.length; i++) {
         const slot = node.inputs[i]
         if (slot.link !== null)
           node.disconnectInput(i)
@@ -910,7 +921,7 @@ export class LGraph {
 
     // disconnect outputs
     if (node.outputs) {
-      for (var i = 0; i < node.outputs.length; i++) {
+      for (let i = 0; i < node.outputs.length; i++) {
         const slot = node.outputs[i]
         if (slot.links !== null && slot.links.length)
           node.disconnectOutput(i)
@@ -928,7 +939,7 @@ export class LGraph {
 
     // remove from canvas render
     if (this.list_of_graphcanvas) {
-      for (var i = 0; i < this.list_of_graphcanvas.length; ++i) {
+      for (let i = 0; i < this.list_of_graphcanvas.length; ++i) {
         const canvas = this.list_of_graphcanvas[i]
         if (canvas.selected_nodes[node.id])
           delete canvas.selected_nodes[node.id]
@@ -983,7 +994,8 @@ export class LGraph {
 
   /**
    * Returns a list of nodes that matches a class
-   * @param classObject the class itself (not an string)
+   * @param type the class itself (not a string)
+   * @param result
    * @return a list with all the nodes of this type
    */
   findNodesByClass<T extends LGraphNode>(type: new () => T, result: T[] = []): T[] {
@@ -997,10 +1009,11 @@ export class LGraph {
   /**
    * Returns a list of nodes that matches a type
    * @param type the name of the node type
+   * @param result
    * @return a list with all the nodes of this type
    */
   findNodesByType(type: string, result: LGraphNode[] = []): LGraphNode[] {
-    var type = type.toLowerCase()
+    type = type.toLowerCase()
     result.length = 0
     for (let i = 0, l = this._nodes.length; i < l; ++i) {
       if (this._nodes[i].type.toLowerCase() === type)
@@ -1011,7 +1024,8 @@ export class LGraph {
 
   /**
    * Returns a list of nodes that matches a class
-   * @param classObject the class itself (not an string)
+   * @param type the class itself (not a string)
+   * @param result
    * @return a list with all the nodes of this type
    */
   findNodesByClassRecursive<T extends LGraphNode>(type: new () => T, result: T[] = []): T[] {
@@ -1025,10 +1039,11 @@ export class LGraph {
   /**
    * Returns a list of nodes that matches a type
    * @param type the name of the node type
+   * @param result
    * @return a list with all the nodes of this type
    */
   findNodesByTypeRecursive(type: string, result: LGraphNode[] = []): LGraphNode[] {
-    var type = type.toLowerCase()
+    type = type.toLowerCase()
     result.length = 0
     for (const node of this.iterateNodesOfTypeRecursive(type))
       result.push(node)
@@ -1068,6 +1083,7 @@ export class LGraph {
    * @param x the x coordinate in canvas space
    * @param y the y coordinate in canvas space
    * @param nodesList a list with all the nodes to search from, by default is all the nodes in the graph
+   * @param margin
    * @return the node at this position or null
    */
   getNodeOnPos(x: number, y: number, nodesList?: LGraphNode[], margin?: number): LGraphNode | null {
@@ -1229,7 +1245,7 @@ export class LGraph {
 
   onInputTypeChanged?(name: string, oldType: SlotType, newType: SlotType): void
 
-  /** Changes the type of a global graph input */
+  /** Changes the type of global graph input */
   changeInputType(name: string, type: SlotType): boolean | undefined {
     if (!this.inputs[name])
       return false
@@ -1269,7 +1285,7 @@ export class LGraph {
     return true
   }
 
-  onOutputAdded?(name: string, type: SlotType, value: any)
+  onOutputAdded?(name: string, type: SlotType, value: any): void
 
   /** Creates a global graph output */
   addOutput(name: string, type: SlotType, value: any): void {
@@ -1283,7 +1299,7 @@ export class LGraph {
       this.onInputsOutputsChange()
   }
 
-  /** Assign a data to the global output */
+  /** Assign data to the global output */
   setOutputData(name: string, value: string): void {
     const output = this.outputs[name]
     if (!output)
@@ -1326,9 +1342,9 @@ export class LGraph {
     return true
   }
 
-  onOutputTypeChanged?(name: string, oldType: SlotType, newType: SlotType)
+  onOutputTypeChanged?(name: string, oldType: SlotType, newType: SlotType): void
 
-  /** Changes the type of a global graph output */
+  /** Changes the type of global graph output */
   changeOutputType(name: string, type: SlotType): boolean | undefined {
     if (!this.outputs[name])
       return false
@@ -1370,15 +1386,15 @@ export class LGraph {
 
   /* TODO implement
     triggerInput(name: string, value: any): void {
-        var nodes = this.findNodesByTitle(name);
-        for (var i = 0; i < nodes.length; ++i) {
+        let nodes = this.findNodesByTitle(name);
+        for (let i = 0; i < nodes.length; ++i) {
             nodes[i].onTrigger(value);
         }
     }
 
     setCallback(name: string, func: (...args: any[]) => any): void {
-        var nodes = this.findNodesByTitle(name);
-        for (var i = 0; i < nodes.length; ++i) {
+        let nodes = this.findNodesByTitle(name);
+        for (let i = 0; i < nodes.length; ++i) {
             nodes[i].setTrigger(func);
         }
     }
@@ -1402,7 +1418,7 @@ export class LGraph {
 
   onConnectionChange?(node: LGraphNode): void
 
-  connectionChange(node: LGraphNode, linkInfo?: LLink): void {
+  connectionChange(node: LGraphNode, _linkInfo?: LLink): void {
     this.updateExecutionOrder()
     if (this.onConnectionChange)
       this.onConnectionChange(node)
@@ -1465,10 +1481,10 @@ export class LGraph {
 
   onSerialize?(data: SerializedLGraph): void
 
-  /** Creates a Object containing all the info about this graph, it can be serialized */
+  /** Creates an Object containing all the info about this graph; it can be serialized */
   serialize<T extends SerializedLGraph>(): T {
     const nodes_info = []
-    for (var i = 0, l = this._nodes.length; i < l; ++i)
+    for (let i = 0, l = this._nodes.length; i < l; ++i)
       nodes_info.push(this._nodes[i].serialize())
 
     // pack link info into a non-verbose format
@@ -1494,7 +1510,7 @@ export class LGraph {
     }
 
     const groups_info = []
-    for (var i = 0; i < this._groups.length; ++i)
+    for (let i = 0; i < this._groups.length; ++i)
       groups_info.push(this._groups[i].serialize())
 
     const data: SerializedLGraph = {
@@ -1517,6 +1533,7 @@ export class LGraph {
   /**
    * Configure a graph from a JSON string
    * @param data configure a graph from a JSON string
+   * @param keep_old
    * @returns if there was any error parsing
    */
   configure(data: SerializedLGraph, keep_old?: boolean): boolean | undefined {
@@ -1531,7 +1548,7 @@ export class LGraph {
     // decode links info (they are very verbose)
     if (data.links && data.links.constructor === Array) {
       const links = []
-      for (var i = 0; i < data.links.length; ++i) {
+      for (let i = 0; i < data.links.length; ++i) {
         const link_data = data.links[i]
         if (!link_data) // weird bug
         {
@@ -1556,15 +1573,15 @@ export class LGraph {
     // create nodes
     this._nodes = []
     if (nodes) {
-      for (var i = 0, l = nodes.length; i < l; ++i) {
-        var n_info = nodes[i] // stored info
-        var node = LiteGraph.createNode(n_info.type, n_info.title)
+      for (let i = 0, l = nodes.length; i < l; ++i) {
+        const n_info = nodes[i] // stored info
+        let node = LiteGraph.createNode(n_info.type, n_info.title)
         if (!node) {
           console.error(
             `Node not found or has errors: ${n_info.type}`,
           )
 
-          // in case of error we create a replacement node to avoid losing info
+          // in case of error, we create a replacement node to avoid losing info
           node = new LGraphNode()
           node.last_serialization = n_info
           node.has_errors = true
@@ -1572,14 +1589,16 @@ export class LGraph {
           // continue;
         }
 
-        node.id = n_info.id // id it or it will create a new id
-        this.add(node, { addedBy: 'configure', skipComputeOrder: true }) // add before configure, otherwise configure cannot create links
+        node.id = n_info.id // id it, or it will create a new id
+        // add before configuring,
+        // otherwise configure cannot create links
+        this.add(node, { addedBy: 'configure', skipComputeOrder: true })
       }
 
-      // configure nodes afterwards so they can reach each other
-      for (var i = 0, l = nodes.length; i < l; ++i) {
-        var n_info = nodes[i]
-        var node = this.getNodeById(n_info.id)
+      // configure nodes afterward so they can reach each other
+      for (let i = 0, l = nodes.length; i < l; ++i) {
+        const n_info = nodes[i]
+        const node = this.getNodeById(n_info.id)
         if (node)
           node.configure(n_info)
       }
@@ -1588,7 +1607,7 @@ export class LGraph {
     // groups
     this._groups.length = 0
     if (data.groups) {
-      for (var i = 0; i < data.groups.length; ++i) {
+      for (let i = 0; i < data.groups.length; ++i) {
         const group = new LGraphGroup()
         group.configure(data.groups[i])
         this.addGroup(group)
@@ -1607,13 +1626,13 @@ export class LGraph {
     return error
   }
 
-  load(url: string, callback?: (any) => void): void {
+  load(url: string, callback?: (...params: any) => void): void {
     const that = this
 
     // from file
     if (url.constructor === File || url.constructor === Blob) {
       const reader = new FileReader()
-      reader.addEventListener('load', (event) => {
+      reader.addEventListener('load', (_event) => {
         const data = JSON.parse(reader.result as string)
         that.configure(data)
         if (callback)
@@ -1624,7 +1643,7 @@ export class LGraph {
       return
     }
 
-    // is a string, then an URL
+    // is a string, then a URL
     const req = new XMLHttpRequest()
     req.open('GET', url, true)
     req.send(null)

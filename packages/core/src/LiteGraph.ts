@@ -241,16 +241,17 @@ export class LiteGraph {
     }
 
     if (!regConfig)
-      throw `Node not registered!${type}`
+      throw new Error(`Node not registered!${type}`)
 
     const sCN = (regConfig.class as any).__litegraph_type__
 
+    let aTypes: string[]
     if (typeof slot_type === 'string')
-      var aTypes = slot_type.split(',')
+      aTypes = slot_type.split(',')
     else if (slot_type === BuiltInSlotType.EVENT || slot_type === BuiltInSlotType.ACTION)
-      var aTypes = ['_event_']
+      aTypes = ['_event_']
     else
-      var aTypes = ['*']
+      aTypes = ['*']
 
     for (let i = 0; i < aTypes.length; ++i) {
       let sT = aTypes[i] // .toLowerCase();
@@ -304,10 +305,10 @@ export class LiteGraph {
   //     return_type?: string,
   //     properties?: object
   // ): void {
-  //     var params = Array(func.length);
-  //     var code = "";
-  //     var names = LiteGraph.getParameterNames(func);
-  //     for (var i = 0; i < names.length; ++i) {
+  //     let params = Array(func.length);
+  //     let code = "";
+  //     let names = LiteGraph.getParameterNames(func);
+  //     for (let i = 0; i < names.length; ++i) {
   //         code +=
   //         "this.addInput('" +
   //             names[i] +
@@ -325,14 +326,14 @@ export class LiteGraph {
   //         code +=
   //         "this.properties = " + JSON.stringify(properties) + ";\n";
   //     }
-  //     var classobj = Function(code) as any;
+  //     let classobj = Function(code) as any;
   //     classobj.title = name.split("/").pop();
   //     classobj.desc = "Generated from " + func.name;
   //     classobj.prototype.onExecute = function onExecute() {
-  //         for (var i = 0; i < params.length; ++i) {
+  //         for (let i = 0; i < params.length; ++i) {
   //             params[i] = this.getInputData(i);
   //         }
-  //         var r = func.apply(this, params);
+  //         let r = func.apply(this, params);
   //         this.setOutputData(0, r);
   //     };
   //     LiteGraph.registerNodeType(name, classobj);
@@ -344,8 +345,8 @@ export class LiteGraph {
    */
   // static addNodeMethod(name: string, func: (...args: any[]) => any): void {
   //     LGraphNode.prototype[name] = func;
-  //     for (var i in LiteGraph.registered_node_types) {
-  //         var type = LiteGraph.registered_node_types[i];
+  //     for (let i in LiteGraph.registered_node_types) {
+  //         let type = LiteGraph.registered_node_types[i];
   //         if (type.prototype[name]) {
   //             type.prototype["_" + name] = type.prototype[name];
   //         } //keep old in case of replacing
@@ -515,7 +516,7 @@ export class LiteGraph {
    */
   static getNodeTypesCategories(filter: string): string[] {
     const categories = { '': 1 }
-    for (var i in LiteGraph.registered_node_types) {
+    for (const i in LiteGraph.registered_node_types) {
       const type = LiteGraph.registered_node_types[i]
       if (type.category && !type.hide_in_node_lists) {
         if (type.filter !== filter)
@@ -524,7 +525,7 @@ export class LiteGraph {
       }
     }
     const result = []
-    for (var i in categories)
+    for (const i in categories)
       result.push(i)
 
     return LiteGraph.auto_sort_node_types ? result.sort() : result
@@ -535,13 +536,13 @@ export class LiteGraph {
     const tmp = document.getElementsByTagName('script')
     // weird, this array changes by its own, so we use a copy
     const script_files = []
-    for (var i = 0; i < tmp.length; i++)
+    for (let i = 0; i < tmp.length; i++)
       script_files.push(tmp[i])
 
     const docHeadObj = document.getElementsByTagName('head')[0]
     folder_wildcard = document.location.href + folder_wildcard
 
-    for (var i = 0; i < script_files.length; i++) {
+    for (let i = 0; i < script_files.length; i++) {
       const src = script_files[i].src
       if (
         !src
