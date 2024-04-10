@@ -223,8 +223,8 @@ export default class Editor {
     this.graphCanvas.draw()
     const button = this.root.querySelector<HTMLButtonElement>('#livemode_button')!
     button.innerHTML = !is_live_mode
-      ? '<img src=\'imgs/icon-record.png\'/> Live'
-      : '<img src=\'imgs/icon-gear.png\'/> Edit'
+      ? '<img src="imgs/icon-record.png" /> Live'
+      : '<img src="imgs/icon-gear.png" /> Edit'
   };
 
   onDropItem(e: DragEvent) {

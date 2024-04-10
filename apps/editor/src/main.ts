@@ -40,7 +40,7 @@ elem.className = 'selector'
 elem.innerHTML = `
 Demo
 <select>
-	<option>Empty</option>
+  <option>Empty</option>
 </select>
 <button class='btn' id='save'>Save</button>
 <button class='btn' id='load'>Load</button>
@@ -57,8 +57,12 @@ select.addEventListener('change', function (_e) {
   const option = this.options[this.selectedIndex] as OptionElemExt
   const url = option.dataset.url
 
-  if (url) { editor.graph.load(url) }
-  else if (option.callback) { option.callback() }
+  if (url) {
+    editor.graph.load(url)
+  }
+  else if (option.callback) {
+    option.callback()
+  }
   else { editor.graph.clear() }
 })
 
@@ -69,7 +73,9 @@ elem.querySelector<HTMLButtonElement>('#save')!.addEventListener('click', () => 
 
 elem.querySelector<HTMLButtonElement>('#load')!.addEventListener('click', () => {
   const data = localStorage.getItem('graphdemo_save')
-  if (data) { editor.graph.configure(JSON.parse(data)) }
+  if (data) {
+    editor.graph.configure(JSON.parse(data))
+  }
   console.log('loaded')
 })
 
@@ -84,16 +90,24 @@ elem.querySelector<HTMLButtonElement>('#download')!.addEventListener('click', ()
   document.body.appendChild(element)
   element.click()
   document.body.removeChild(element)
-  setTimeout(() => { URL.revokeObjectURL(url) }, 1000 * 60) // wait one minute to revoke url
+  setTimeout(() => {
+    URL.revokeObjectURL(url)
+  }, 1000 * 60) // wait one minute to revoke url
 })
 
 elem.querySelector<HTMLButtonElement>('#webgl')!.addEventListener('click', enableWebGL)
-elem.querySelector<HTMLButtonElement>('#multiview')!.addEventListener('click', () => { editor.addMultiview() })
+elem.querySelector<HTMLButtonElement>('#multiview')!.addEventListener('click', () => {
+  editor.addMultiview()
+})
 
 function addDemo(name: string, url: string | (() => void)) {
   const option = document.createElement('option') as OptionElemExt
-  if (typeof url === 'string') { option.dataset.url = url }
-  else if (typeof url === 'function') { option.callback = url }
+  if (typeof url === 'string') {
+    option.dataset.url = url
+  }
+  else if (typeof url === 'function') {
+    option.callback = url
+  }
   option.innerHTML = name
   select.appendChild(option)
 }
