@@ -3573,9 +3573,7 @@ const Nt = class {
    * @param options
    */
   add(t, e = {}) {
-    if (console.log(t.id, this._nodes_by_id[t.id]), t.id !== -1 && this._nodes_by_id[t.id] && (console.warn(
-      `LiteGraph：已经有一个节点具有此ID，请修改它：${t.id}`
-    ), h.use_uuids ? t.id = Q() : t.id = ++this.last_node_id), e.pos && (isNaN(e.pos[0]) || isNaN(e.pos[1])))
+    if (console.log(t.id, this._nodes_by_id[t.id]), t.id !== -1 && this._nodes_by_id[t.id] && (console.warn(`LiteGraph：已经有一个节点具有此ID，请修改它：${t.id}`), h.use_uuids ? t.id = Q() : t.id = ++this.last_node_id), e.pos && (isNaN(e.pos[0]) || isNaN(e.pos[1])))
       throw "LiteGraph: Node position contained NaN(s)!";
     if (this._nodes.length >= h.MAX_NUMBER_OF_NODES)
       throw "LiteGraph: max number of nodes in a graph reached";

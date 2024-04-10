@@ -36,18 +36,18 @@ export default class Editor {
   constructor(containerId: string, options: EditorOptions = {}) {
     // fill container
     const html = `
-<div class='header'>
-	<div class='tools tools-left'></div>
-	<div class='tools tools-right'></div>
-</div>
-<div class='content'>
-	<div class='editor-area'>
-		<canvas class='graphCanvas' width='1000' height='500' tabindex=10></canvas>
-	</div>
+    <div class='header'>
+      <div class='tools tools-left'></div>
+      <div class='tools tools-right'></div>
+    </div>
+  <div class='content'>
+    <div class='editor-area'>
+        <canvas class='graphCanvas' width='1000' height='500' tabindex=10></canvas>
+    </div>
 </div>
 <div class='footer'>
-	<div class='tools tools-left'></div>
-	<div class='tools tools-right'></div>
+    <div class='tools tools-left'></div>
+    <div class='tools tools-right'></div>
 </div>
 `
 
@@ -111,15 +111,17 @@ export default class Editor {
         '.tools-right',
       )
     }
-    if (options.miniwindow)
+    if (options.miniwindow) {
       this.addMiniWindow(300, 200)
+    }
 
     this.containerId = containerId
 
     // append to DOM
     const parent = document.getElementById(this.containerId)
-    if (parent)
+    if (parent) {
       parent.appendChild(root)
+    }
 
     this.graphCanvas.resize()
     // graphCanvas.draw(true,true);
@@ -131,8 +133,7 @@ export default class Editor {
     this.meter = document.createElement('div') as EditorLoadCounter
     this.meter.className = 'headerpanel loadmeter toolbar-widget'
 
-    const html
-            = `
+    const html: string = `
 <div class='cpuload'>
   <strong>CPU</strong>
   <div class='bgload'>
@@ -149,14 +150,13 @@ export default class Editor {
 
     this.meter.innerHTML = html
     this.root.querySelector<HTMLDivElement>('.header .tools-left')!.appendChild(this.meter)
-    const self = this
 
     setInterval(() => {
       this.meter!.querySelector<HTMLDivElement>('.cpuload .fgload')!.style.width
-                = `${2 * self.graph.execution_time * 90}px`
-      if (self.graph.status == LGraphStatus.STATUS_RUNNING) {
+                = `${2 * this.graph.execution_time * 90}px`
+      if (this.graph.status === LGraphStatus.STATUS_RUNNING) {
         this.meter!.querySelector<HTMLDivElement>('.gpuload .fgload')!.style.width
-                    = `${self.graphCanvas.render_time * 10 * 90}px`
+                    = `${this.graphCanvas.render_time * 10 * 90}px`
       }
       else {
         this.meter!.querySelector<HTMLDivElement>('.gpuload .fgload')!.style.width = `${4}px`
@@ -165,8 +165,9 @@ export default class Editor {
   };
 
   addToolsButton(id: string, name: string, icon_url: string, callback: EventListener, container: string) {
-    if (!container)
+    if (!container) {
       container = '.tools'
+    }
 
     const button = this.createButton(name, icon_url, callback)
     button.id = id
@@ -175,13 +176,15 @@ export default class Editor {
 
   createButton(name: string, icon_url: string, callback?: EventListener) {
     const button = document.createElement('button')
-    if (icon_url)
+    if (icon_url) {
       button.innerHTML = `<img src='${icon_url}'/> `
+    }
 
     button.classList.add('btn')
     button.innerHTML += name
-    if (callback)
+    if (callback) {
       button.addEventListener('click', callback)
+    }
     return button
   };
 
@@ -198,7 +201,7 @@ export default class Editor {
     const graph = this.graph
     const button = this.root.querySelector<HTMLButtonElement>('#playnode_button')!
 
-    if (graph.status == LGraphStatus.STATUS_STOPPED) {
+    if (graph.status === LGraphStatus.STATUS_STOPPED) {
       button.innerHTML = '<img src=\'imgs/icon-stop.png\'/> Stop'
       graph.start()
     }
@@ -225,18 +228,18 @@ export default class Editor {
   };
 
   onDropItem(e: DragEvent) {
-    if (!e.dataTransfer)
+    if (!e.dataTransfer) {
       return
+    }
 
-    const that = this
     for (let i = 0; i < e.dataTransfer.files.length; ++i) {
       const file = e.dataTransfer.files[i]
       const ext = LGraphCanvas.getFileExtension(file.name)
       const reader = new FileReader()
-      if (ext == 'json') {
-        reader.onload = function (_event: Event) {
+      if (ext === 'json') {
+        reader.onload = (_event: Event) => {
           const data = JSON.parse(reader.result as string)
-          that.graph.configure(data)
+          this.graph.configure(data)
         }
         reader.readAsText(file)
       }
@@ -244,17 +247,19 @@ export default class Editor {
   }
 
   toggleFullscreen() {
-    if (!document.fullscreenElement)
+    if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen()
-    else if (document.exitFullscreen)
+    }
+    else if (document.exitFullscreen) {
       document.exitFullscreen()
+    }
 
-    else
-      throw 'Fullscreen not supported'
+    else {
+      throw new Error('Fullscreen not supported')
+    }
 
-    const self = this
     setTimeout(() => {
-      self.graphCanvas.resize()
+      this.graphCanvas.resize()
     }, 100)
   };
 
@@ -271,11 +276,7 @@ export default class Editor {
     this.miniwindow = document.createElement('div') as EditorMiniWindowPanel
     this.miniwindow.className = 'litegraph miniwindow'
     this.miniwindow.innerHTML
-            = `<canvas class='graphCanvas' width='${
-             w
-             }' height='${
-             h
-             }' tabindex=10></canvas>`
+            = `<canvas class='graphCanvas' width='${w}' height='${h}' tabindex=10></canvas>`
 
     const graphCanvas = new LGraphCanvas(this.canvas, this.graph)
     graphCanvas.show_info = false
