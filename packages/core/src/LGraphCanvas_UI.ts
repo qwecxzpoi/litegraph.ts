@@ -152,6 +152,7 @@ export class LGraphCanvas_UI {
     if (!graph) { return }
 
     function inner_onMenuAdded(base_category: string, prevMenu?: ContextMenu) {
+      console.log(canvas.filter, graph.filter)
       const categories = LiteGraph.getNodeTypesCategories(canvas.filter || graph.filter).filter((category) => { return category.startsWith(base_category) })
       const entries: IContextMenuItem[] = []
 

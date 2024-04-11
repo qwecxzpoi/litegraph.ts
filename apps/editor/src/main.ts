@@ -113,19 +113,19 @@ function addDemo(name: string, url: string | (() => void)) {
 }
 
 // some examples
-// addDemo('Features', 'examples/features.json')
-// addDemo('Benchmark', 'examples/benchmark.json')
-// addDemo('Subgraph', 'examples/subgraph.json')
-// addDemo('Audio', 'examples/audio.json')
-// addDemo('Audio Delay', 'examples/audio_delay.json')
-// addDemo('Audio Reverb', 'examples/audio_reverb.json')
-// addDemo('MIDI Generation', 'examples/midi_generation.json')
-// addDemo('autobackup', () => {
-//   const data = localStorage.getItem('litegraphg demo backup')
-//   if (!data) { return }
-//   const graph_data = JSON.parse(data)
-//   editor.graph.configure(graph_data)
-// })
+addDemo('Features', 'examples/features.json')
+addDemo('Benchmark', 'examples/benchmark.json')
+addDemo('Subgraph', 'examples/subgraph.json')
+addDemo('Audio', 'examples/audio.json')
+addDemo('Audio Delay', 'examples/audio_delay.json')
+addDemo('Audio Reverb', 'examples/audio_reverb.json')
+addDemo('MIDI Generation', 'examples/midi_generation.json')
+addDemo('autobackup', () => {
+  const data = localStorage.getItem('litegraphg demo backup')
+  if (!data) { return }
+  const graph_data = JSON.parse(data)
+  editor.graph.configure(graph_data)
+})
 
 // let webgl_canvas: HTMLCanvasElement | null = null;
 
